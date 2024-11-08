@@ -33,7 +33,7 @@ export default function CustomNavbar() {
     <div>
       <Navbar collapseOnSelect expand="lg" className="bg-body-tertiary">
         <Container className="MainNavContainer">
-          <Navbar.Brand href="#home">Logo</Navbar.Brand>
+          <Navbar.Brand href="/">Logo</Navbar.Brand>
           <Navbar.Toggle aria-controls="responsive-navbar-nav" />
           <Navbar.Collapse id="responsive-navbar-nav">
             <div className="NavBarItrms">
