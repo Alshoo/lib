@@ -3,7 +3,7 @@
 import "./register.css";
 import { useRouter } from "next/navigation";
 // import { toast, ToastContainer } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
+// import "react-toastify/dist/ReactToastify.css";
 // import axios from "axios";
 // import FirstApi from "@/Components/APIs/MainApi";
 

@@ -1,6 +1,6 @@
 
 
-import axios from "axios";
+// import axios from "axios";
 // import FirstApi from "@/Components/APIs/MainApi";
 import Image from "next/image";
 import bookIcon from "../../public/Images/iconoir-book-solid.png";
@@ -13,8 +13,8 @@ import RatingStars from "./ratingStar";
 
 
 
-export default async function HighBook() {
-
+export default  function HighBook() {
+  // async
 
 
 

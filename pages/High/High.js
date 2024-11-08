@@ -8,7 +8,7 @@ import RatingStars from '../Home/ratingStar'
 import CardImg from "../../public/Images/cardimage.png";
 import Editor from "../../public/Images/frame-2888.png";
 import arrow from "../../public/Images/arfegrow.png";
-import searchIcon from "@/public/Images/navSearch.png";
+import searchIcon from "../../public/Images/navSearch.png";
 
 
 export default function FamousPage() {
