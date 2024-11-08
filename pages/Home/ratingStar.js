@@ -5,9 +5,9 @@ const RatingStars = ({ rating }) => {
 
   return (
     <div className="star-rating">
-      {Array(fullStars).fill(<span className="star full">★</span>)}
+      {/* {Array(fullStars).fill(<span className="star full">★</span>)}
       {halfStar && <span className="star half">★</span>}
-      {Array(emptyStars).fill(<span className="star empty">★</span>)}
+      {Array(emptyStars).fill(<span className="star empty">★</span>)} */}
     </div>
   );
 };
