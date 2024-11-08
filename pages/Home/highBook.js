@@ -1,7 +1,7 @@
 
 
 import axios from "axios";
-import FirstApi from "@/Components/APIs/MainApi";
+// import FirstApi from "@/Components/APIs/MainApi";
 import Image from "next/image";
 import bookIcon from "../../public/Images/iconoir-book-solid.png";
 import LinkIcon from "../../public/Images/vector44.png";

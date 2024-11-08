@@ -5,7 +5,7 @@ import { useRouter } from "next/navigation";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import axios from "axios";
-import FirstApi from "@/Components/APIs/MainApi";
+// import FirstApi from "@/Components/APIs/MainApi";
 
 export default function RegisterPage() {
   const router = useRouter();
@@ -15,7 +15,8 @@ export default function RegisterPage() {
 
     try {
 
-      const res = await axios.post(`${FirstApi}/register`, {
+      // const res = await axios.post(`${FirstApi}/register`, {
+      const res = await axios.post("https://dipndipapi.mass-fluence.com/api/login", {
         name: e.target.name.value,
         email: e.target.email.value,
         password: e.target.password.value,

@@ -1,7 +1,7 @@
 import NextAuth from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
 import axios from "axios"; 
-import FirstApi from "@/Components/APIs/MainApi";
+// import FirstApi from "@/Components/APIs/MainApi";
 
 const handler = NextAuth({
   providers: [
@@ -14,7 +14,8 @@ const handler = NextAuth({
       authorize: async (credentials) => {
         try {
         
-          const res = await axios.post(`${FirstApi}/login`, credentials, {
+          // const res = await axios.post(`${FirstApi}/login`, credentials, {
+          const res = await axios.post("https://dipndipapi.mass-fluence.com/api/login", credentials, {
             headers: { "Content-Type": "application/json" }
           });
 
