@@ -1,0 +1,30 @@
+.AboutText{
+    width: 95%;
+    margin: auto;
+    padding-top: 40px;
+}
+.AboutText hr{
+    width: 25%;
+    padding-bottom: 20px;
+}
+.AboutText p{
+    color: var(--text, #000);
+    text-align: right;
+    font-family: Amiri;
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 50px;
+}
+@media (max-width:992px) {
+    .AboutText hr{
+        width: 35%;
+        padding-bottom: 10px;
+    }
+}
+@media (max-width:550px) {
+    .AboutText hr{
+        width: 200px;
+        padding-bottom: 10px;
+    }
+}

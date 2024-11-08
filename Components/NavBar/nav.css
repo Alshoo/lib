@@ -1,0 +1,49 @@
+.nav-link{
+    display: flex;
+    gap: 5px;
+}
+.navbar>.container, .navbar>.container-fluid, .navbar>.container-lg, .navbar>.container-md, .navbar>.container-sm, .navbar>.container-xl, .navbar>.container-xxl {
+    align-items:baseline!important;
+    gap: 25px;
+}
+
+.navbar-brand{
+    background: var(--Main-BackGround);
+    color: aliceblue;
+    padding: 10px;
+    border-radius: 15px;
+}
+.NavBarItrms{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.SignBtn{
+    display: flex;
+    gap: 13px;
+}
+
+.CreateBtn{
+    background: var(--Main-BackGround);
+    color: aliceblue;
+    border-radius: 10px;
+    padding: 5px 30px;
+}
+.loginBtn{
+    color: var(--Main-BackGround);
+    border: 1px solid var(--Main-BackGround);
+    border-radius: 10px;
+    padding: 5px 30px;
+}
+
+@media (max-width:992px) {
+    .NavBarItrms{
+        justify-content: center;
+        flex-direction: column;
+
+
+    }
+}
+
+

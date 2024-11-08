@@ -1,0 +1,23 @@
+
+:root {
+    --Main-BackGround: #4E342E;
+
+  }
+body {
+  font-family: 'Cairo', sans-serif; 
+  overflow-x: hidden;
+}
+::-webkit-scrollbar {
+  width: 10px; 
+}
+::-webkit-scrollbar-track {
+  background: #f0efef; 
+}
+::-webkit-scrollbar-thumb {
+  background: #4E342E; 
+  border-radius: 5px; 
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #261916;
+}

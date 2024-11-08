@@ -1,0 +1,52 @@
+.bookPageContainer {
+    margin-top: 80px;
+  }
+  .searchContainer2 {
+    display: flex;
+    align-items: center;
+    background-color: #f5f5f5;
+    border-radius: 30px;
+    padding: 5px 15px;
+    width: 350px;
+    margin: auto;
+  }
+  
+  .iconWrapper2 {
+    margin-right: 10px;
+  }
+  
+  .inputArea2 {
+    border: none;
+    outline: none;
+    background-color: transparent;
+    font-family: inherit;
+    width: 100%;
+  }
+  
+  .actionButton2 {
+    background-color: var(--Main-BackGround);
+    color: white;
+    border: none;
+    padding: 5px 15px;
+    border-radius: 20px;
+    margin-left: -10px;
+  }
+  
+  
+  .Breadcrumb{
+      display:flex ;
+      gap: 10px;
+      position: absolute;
+      top: 15%;
+      left: 8%;
+  }
+  .Breadcrumb a{
+      text-decoration: none;
+      color: var(--Main-BackGround);
+  }
+  
+  @media (max-width:369px) {
+      .searchContainer2 {
+          width: 85%;
+        }
+  }
