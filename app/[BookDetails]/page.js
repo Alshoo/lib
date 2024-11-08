@@ -13,8 +13,8 @@ import CardImg from "@/public/Images/cardimage.png";
 import Editor from "@/public/Images/frame-2888.png";
 import bookIcon from "../../public/Images/iconoir-book-solid.png";
 import download from "../../public/Images/arrow-backup-down-download-save-storage-transfer-1225091.png";
-import view from "../../public/images/unnاamed.png";
-import ratings from "../../public/images/unnamed.png";
+import view from "../../public/Images/unnاamed.png";
+import ratings from "../../public/Images/unnamed.png";
 
 
 

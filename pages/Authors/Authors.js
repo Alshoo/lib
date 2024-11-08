@@ -4,8 +4,8 @@ import "./Authors.css"
 import Image from 'next/image'
 import Link from 'next/link'
 import CardImg from "../../public/Images/frame-3036.png";
-import bookicon from "../../public/images/rret4.png";
-import arrow from "../../public/images/arfegrow.png";
+import bookicon from "../../public/Images/rret4.png";
+import arrow from "../../public/Images/arfegrow.png";
 import searchIcon from "@/public/Images/navSearch.png";
 
 

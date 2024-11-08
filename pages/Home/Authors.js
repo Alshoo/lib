@@ -2,7 +2,7 @@ import Image from "next/image";
 import bookIcon from "../../public/Images/iconoir-book-solid.png";
 import LinkIcon from "../../public/Images/vector44.png";
 import CardImg from "../../public/Images/frame-3036.png";
-import bookicon from "../../public/images/rret4.png";
+import bookicon from "../../public/Images/rret4.png";
 import Link from "next/link";
 
 export default function Authors() {

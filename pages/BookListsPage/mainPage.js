@@ -2,8 +2,8 @@
 import Image from 'next/image'
 import Link from 'next/link'
 import React, { useState } from 'react'
-import arrow from "../../public/images/arfegrow.png";
-import arrow2 from "../../public/images/vectogfr-2.png";
+import arrow from "../../public/Images/arfegrow.png";
+import arrow2 from "../../public/Images/vectogfr-2.png";
 import "./style.css";
 
 export default function MainPage() {
