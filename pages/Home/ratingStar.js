@@ -5,9 +5,25 @@ export default function RatingStars({ rating }) {
 
   return (
     <div className="star-rating">
-      {Array(fullStars).fill(<span className="star full">★</span>)}
-      {halfStar && <span className="star half">★</span>}
-      {Array(emptyStars).fill(<span className="star empty">★</span>)}
+      {Array(fullStars)
+        .fill()
+        .map((_, i) => (
+          <span key={`full-${i}`} className="star full">
+            ★
+          </span>
+        ))}
+      {halfStar && (
+        <span key="half" className="star half">
+          ★
+        </span>
+      )}
+      {Array(emptyStars)
+        .fill()
+        .map((_, i) => (
+          <span key={`empty-${i}`} className="star empty">
+            ★
+          </span>
+        ))}
     </div>
   );
 }
