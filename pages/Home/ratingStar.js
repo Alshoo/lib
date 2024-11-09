@@ -21,9 +21,9 @@ export default function RatingStars({ rating }) {
         .fill()
         .map((_, i) => (
           <span key={`empty-${i}`} className="star empty">
-            ★
+            ★ 
           </span>
-        ))}
+        ))} 
     </div>
   );
 }
