@@ -50,7 +50,7 @@ export default function Relations() {
           <p>المزيد</p>
           <Image src={LinkIcon} alt="ERR404" />
         </Link> */}
-      </div>
+      </div>  
 
 
 
