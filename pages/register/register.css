@@ -59,7 +59,7 @@
     font-weight: bold;
     margin-top: 55px;
 }
-.registerContainer span {
+.registerContainer a {
     color: beige;
     text-decoration:underline;
     cursor: pointer;

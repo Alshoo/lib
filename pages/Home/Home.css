@@ -138,11 +138,11 @@
     padding:0;
     flex-direction: column;
     align-items: center;
-    gap: 8px;
     text-decoration: none;
 }
 .CardImg44{
     width: 100%;
+    height: 100%;
     border-radius: 20px 20px 0 0;
 }
 .lastCardSec{
@@ -176,13 +176,18 @@
 .bookNum img{
     transform: translateY(41%);
 }
-
+.AuthorImg{
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  margin-top: 10px;
+}
 
 
 /*////////////////// Rating start ////////////////// */
 .star-rating {
     display: flex;
-    transform: translateX(-3%);
+    transform: translate(-3%,-90%);
   }
   
   .star {

@@ -59,7 +59,7 @@
     font-weight: bold;
     margin-top: 55px;
 }
-.loginContainer span {
+.loginContainer a {
     color: beige;
     text-decoration:underline;
     cursor: pointer;

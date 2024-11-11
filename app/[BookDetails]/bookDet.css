@@ -107,6 +107,133 @@
     font-size: 1rem;
 }
 
+/* Comment */
+.carousel {
+    padding: 10px;
+}
+.carousel-inner {
+    overflow:visible;
+}
+.carousel-indicators [data-bs-target] {
+    display: none;
+}
+.carousel-control-prev-icon {
+    background-image: url(../../public/Images/lincce-13.png);
+    width: 20px;
+}
+.carousel-control-next-icon {
+    background-image: url(../../public/Images/ligfne-12.png);
+    width: 20px;
+}
+
+.commCont{    
+    width: 80%;
+    padding: 20px 50px;
+    margin: auto;
+    border-radius: 20px 0px 20px 20px;
+    background: #FFF;
+    box-shadow: 1px 4px 18px -3px rgba(0, 0, 0, 0.25);
+}
+.commName{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 90%;
+    margin: auto;
+}
+.commentBtn{
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid black;
+    border-radius: 20px;
+    width: 150px;
+    margin: auto;
+    transform: translateY(50%);
+}
+
+
+/*////////////////// Rating start 22 ////////////////// */
+.star-rating2 {
+    display: flex;
+    transform: translate(0%,-9%);
+  }
+  
+  .star2 {
+    font-size: 24px;
+    color: #ccc; 
+  }
+  
+  .star2.full2 {
+    color: var(--Main-BackGround); 
+  }
+  
+  .star2.half2 {
+    color: var(--Main-BackGround); 
+    position: relative;
+    overflow: hidden;
+    width: 12px;
+  }
+  
+  .star2.empty2 {
+    color: #ccc;
+  }
+  /*////////////////// Rating start2 ////////////////// */
+
+/* Modal */
+.modal-header .btn-close {
+    position: absolute;
+    left: 10px;
+    top: 15px;
+}
+
+.modal-header {
+    border-bottom: none;
+    border-top-left-radius: none;
+    border-top-right-radius: none;
+}
+
+.booksubmitbtn{
+    background: var( --Main-BackGround);
+    color: white;
+    border: none;
+    border-radius: 20px;
+    padding: 5px 25px;
+    margin-top: 20px;
+
+  }
+  
+.form-container {
+    max-width: 500px;
+    margin: 20px auto;
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    background-color: #f9f9f9;
+    direction: rtl;
+  }
+  
+  .form-row {
+    display: flex;
+    gap: 20px;
+    margin-bottom: 15px;
+  }
+  
+  .form-row input,
+  .form-row textarea {
+    flex: 1;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  }
+  
+  .form-row input::placeholder,
+  .form-row textarea::placeholder {
+    text-align: right;
+  }
+/* Modal */
+
 @media (min-width: 768px) {
     .book-section {
         flex-direction: row;

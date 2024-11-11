@@ -1,8 +1,9 @@
-import "bootstrap/dist/css/bootstrap.min.css";
+
+import "bootstrap/dist/css/bootstrap.min.css"; 
+import "./globals.css"; 
 import Head from "next/head";
-import "./globals.css";
-
-
+import { AuthProvider } from "@/context/AuthContext";
+import ErrorBoundary from "@/Components/ErrorBoundary";
 
 
 export const metadata = {
@@ -12,16 +13,21 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    <html  lang="ar" dir="rtl">
+    <html lang="ar" dir="rtl">
+      <Head>
+        <link
+          href="https://fonts.googleapis.com/css2?family=Cairo:wght@200;400;700;900&display=swap"
+          rel="stylesheet"
+        />
+      </Head>
 
-    <head>
-    <Head>
-        <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@200;400;700;900&display=swap" rel="stylesheet" />
-    </Head>
-    </head>
+      <body>
+        <ErrorBoundary>
+          <AuthProvider>
+            {children}
+          </AuthProvider>
+        </ErrorBoundary>
 
-      <body >
-        {children}
       </body>
     </html>
   );

@@ -8,26 +8,38 @@ import Book from "../../public/Images/Books.png";
 import Group from "../../public/Images/Group.png";
 import List from "../../public/Images/align-left.png";
 import Search from "../../public/Images/navSearch.png";
+import defaultPortifolio from "../../public/Images/defaultPortifolio.jpeg";
 
 import Container from "react-bootstrap/Container";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 
-import { useEffect } from "react";
-import { useRouter } from "next/navigation";
+import useAuthContext from "@/hooks/useAuthContext";
+import Dropdown from 'react-bootstrap/Dropdown';
 
 
 
 
 export default function CustomNavbar() {
-  useEffect(() => {
-    if (typeof window !== "undefined") {
-      require("bootstrap/dist/js/bootstrap.bundle.min.js");
-    }
-  }, []);
 
 
-  const router = useRouter();
+  // useEffect(() => {
+  //   if (typeof window !== "undefined") {
+  //     require("bootstrap/dist/js/bootstrap.bundle.min.js");
+  //   }
+  // }, []);
+
+
+
+
+
+
+
+
+
+
+  
+  const { logout,user } = useAuthContext();
 
   return (
     <div>
@@ -68,22 +80,45 @@ export default function CustomNavbar() {
 
 
 
+  
 
-              <div className="SignBtn">
-                <button 
-                  className="CreateBtn"
-                  onClick={() => router.push("/register")}
-                >
-                  انشاء حساب
-                </button>
+<div className="SignBtn">
+      {user ? (
+        <div className="user-menu">
+      
+      
 
-                <button 
-                  className="loginBtn"
-                  onClick={() => router.push("/login")}
-                >
-                  تسجيل الدخول
-                </button>
-              </div>
+
+          <Dropdown>
+      <Dropdown.Toggle variant="none"  className="MAinDropdownContainer">
+        <p>{user.name}</p>
+        <Image src={defaultPortifolio} className="UserAvatar" alt="ERR404"/>
+      </Dropdown.Toggle>
+
+      <Dropdown.Menu>
+        <Dropdown.Item href="#/action-1">تعديل الملف الشخصي</Dropdown.Item>
+        <Dropdown.Item onClick={logout}>تسجيل الخروج</Dropdown.Item>
+      </Dropdown.Menu>
+    </Dropdown>
+
+
+
+    </div>
+
+      ) : (
+        <>
+          <Link href="/register" className="CreateBtn" >
+            انشاء حساب
+          </Link>
+          <Link href="/login" className="loginBtn">
+            تسجيل الدخول
+          </Link>
+        </>
+      )}
+    </div>
+
+
+
 
 
 
