@@ -1,83 +1,152 @@
-"use client"
+"use client";
 import "./style.css";
-import Image from 'next/image'
-import Link from 'next/link'
-import React, { useState } from 'react'
+import Image from 'next/image';
+import Link from 'next/link';
+import React, { useEffect, useState } from 'react';
 import arrow from "../../public/Images/arfegrow.png";
 import arrow2 from "../../public/Images/vectogfr-2.png";
+import axios from "axios";
+import add from "../../public/Images/unnbfbfamed.png";
+import AddMainCat from "./addMainCat";
+
 
 
 export default function MainPage() {
+  const [openSection, setOpenSection] = useState(null);
+  const [searchTerm, setSearchTerm] = useState(""); 
+  const [Cat, setCat] = useState([]);
+  const [loading, setLoading] = useState(true);
 
+  const toggleSection = (section) => {
+    setOpenSection(openSection === section ? null : section);
+  };
 
-
-    const [openSection, setOpenSection] = useState(null);
-
-    const toggleSection = (section) => {
-      setOpenSection(openSection === section ? null : section);
+  useEffect(() => {
+    const fetchCat = async () => {
+      try {
+        const response = await axios.get(
+          `${process.env.NEXT_PUBLIC_BACKEND_URL}/api/category-groups/`
+        );
+        setCat(response.data.data);
+        setLoading(false);
+      } catch (error) {
+        console.error("Error fetching categories:", error);
+        setLoading(false);
+      }
     };
+
+    fetchCat();
+  }, []);
+
+  const filteredCategories = Cat.filter(category =>
+    category.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+    category.categories.some(subCategory =>
+      subCategory.name.toLowerCase().includes(searchTerm.toLowerCase())
+    )
+  );
+
+
+
+
+  const [isPopupVisible1, setIsPopupVisible1] = useState(false);
+
+  const togglePopup1 = () => {
+    setIsPopupVisible1(!isPopupVisible1);
+  };
+
+
+  const [isPopupVisible2, setIsPopupVisible2] = useState(false);
+
+  const togglePopup2 = () => {
+    setIsPopupVisible2(!isPopupVisible2);
+  };
+
+
 
   return (
     <div>
-      
-
       <div className="Breadcrumb">
-            <Link href="/">الرئيسية</Link>
-            <Image src={arrow} alt='ERR404'/>
-            <Link href="">اقسام الكتب</Link>
-        </div>
+        <Link href="/">الرئيسية</Link>
+        <Image src={arrow} alt="ERR404" />
+        <Link href="">اقسام الكتب</Link>
+      </div>
 
-        
-        <div className="main-container">
 
-      <input type="text" placeholder="البحث عن قسم" className="search-input" />
+          {/* <div className="adding">
+          <div 
+              onClick={togglePopup1}
+              className="addauthorbtn" 
+              >
+                  <p>اضافه قسم اساسى</p>
+                  <Image src={add} alt="ERR404" />
+            </div>
+            <div 
+              onClick={togglePopup2}
+              className="addauthorbtn2" 
+              >
+                  <p>اضافه قسم فرعى</p>
+                  <Image src={add} alt="ERR404" />
+            </div>
+          </div> */}
 
-      <div className="dropdown-section">
-        <div className="dropdown-header" onClick={() => toggleSection('history')}>
-          <span>التاريخ</span>      
-                <Image src={arrow2} alt='ERR404' className={`arrow-icon ${openSection === 'history' ? 'rotate' : ''}`}/>
-        </div>
-        {openSection === 'history' && (
-          <div className="dropdown-content">
-            <div className="dropdown-item">التاريخ الإسلامي</div>
-            <div className="dropdown-item">التاريخ النبائي</div>
-            <div className="dropdown-item">التاريخ التركي والمغولي</div>
-            <div className="dropdown-item">التاريخ الروماني</div>
-            <div className="dropdown-item">التاريخ الأوروبي</div>
+
+      <div className="main-container">
+        <input
+          type="text"
+          placeholder="البحث عن قسم"
+          className="search-input"
+          value={searchTerm}
+          onChange={(e) => setSearchTerm(e.target.value)}
+          autoFocus
+        />
+
+        {loading ? (
+          <div className="spinner-container">
+            <div className="spinner"></div>
+          </div>
+        ) : (
+          <div>
+            {filteredCategories.length === 0 ? (
+              <p className="no-data-message">لا يوجد نتائج</p>
+            ) : (
+              filteredCategories.map((category) => (
+                <div className="dropdown-section" key={category.id}>
+                  <div className="dropdown-header" onClick={() => toggleSection(category.name)}>
+                    <span>{category.name}</span>
+                    <Image
+                      src={arrow2}
+                      alt="ERR404"
+                      className={`arrow-icon ${openSection === category.name ? 'rotate' : ''}`}
+                    />
+                  </div>
+                  {openSection === category.name && (
+                    <div className="dropdown-content">
+                      {category.categories.map((subCategory) => (
+                        <Link
+                          href={`/BookLists/${category.name} ?${subCategory.name}`}
+                          className="dropdown-item"
+                          key={subCategory.id}
+                        >
+                          {subCategory.name}
+                        </Link>
+                      ))}
+                    </div>
+                  )}
+                </div>
+              ))
+            )}
           </div>
         )}
       </div>
 
-      <div className="dropdown-section">
-        <div className="dropdown-header" onClick={() => toggleSection('literature')}>
-          <span>الأدب</span>
-          <Image src={arrow2} alt='ERR404' className={`arrow-icon ${openSection === 'history' ? 'rotate' : ''}`}/>
-        </div>
-        {openSection === 'literature' && (
-          <div className="dropdown-content">
-            <div className="dropdown-item">الأدب الجاهلي</div>
-            <div className="dropdown-item">الأدب العباسي</div>
-            <div className="dropdown-item">الأدب الحديث</div>
-          </div>
-        )}
-      </div>
 
-      <div className="dropdown-section">
-        <div className="dropdown-header" onClick={() => toggleSection('philosophy')}>
-          <span>الفلسفة</span>
-          <Image src={arrow2} alt='ERR404' className={`arrow-icon ${openSection === 'history' ? 'rotate' : ''}`}/>
-        </div>
-        {openSection === 'philosophy' && (
-          <div className="dropdown-content">
-            <div className="dropdown-item">فلسفة قديمة</div>
-            <div className="dropdown-item">فلسفة حديثة</div>
-          </div>
-        )}
-      </div>
+      {isPopupVisible1 && (
+      <AddMainCat/>
+      )}
+         {isPopupVisible2 && (
+      <AddSubCat/>
+      )}
+
     </div>
-
-
-
-    </div>
-  )
+  );
 }

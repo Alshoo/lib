@@ -18,7 +18,7 @@ import useAuthContext from "@/hooks/useAuthContext";
 import Dropdown from 'react-bootstrap/Dropdown';
 
 
-
+ 
 
 export default function CustomNavbar() {
 
@@ -41,8 +41,17 @@ export default function CustomNavbar() {
   
   const { logout,user } = useAuthContext();
 
+
+  console.log(user);
+  console.log(user);
+  console.log(user);
+  console.log(user);
+
+
+
   return (
-    <div>
+    <div className="MainNav1">
+    <div className="MainNav2">
       <Navbar collapseOnSelect expand="lg" className="bg-body-tertiary">
         <Container className="MainNavContainer">
           <Navbar.Brand href="/">Logo</Navbar.Brand>
@@ -66,14 +75,36 @@ export default function CustomNavbar() {
                 <p>مؤلفو الكتب</p>
               </Nav.Link>
 
-              <Nav.Link href="/BookLists">
+              <Nav.Link href="/req">
                 <Image src={List} alt="Home" />
-                <p>القائمة</p>
+                <p>الطلبات</p>
               </Nav.Link>
 
-              <Nav.Link href="#">
+              <Nav.Link>
+
+ 
+            
+
+
+
+                <Dropdown>
+                <Dropdown.Toggle id="dropdown-basic2">
                 <Image src={Search} alt="Home" />
-                <p>بحث</p>
+                <p  >بحث</p>
+                </Dropdown.Toggle>
+                <Dropdown.Menu>
+
+              <Dropdown.Item > 
+              <Link href="/Authors" className="searchDrop">بحث عن مؤلف</Link>
+              </Dropdown.Item>
+
+                     <Dropdown.Item > 
+              <Link href="/BookLists" className="searchDrop">بحث عن قسم </Link>
+              </Dropdown.Item>
+
+
+                </Dropdown.Menu>
+              </Dropdown>
               </Nav.Link>
             </Nav>
             </div>
@@ -96,7 +127,7 @@ export default function CustomNavbar() {
       </Dropdown.Toggle>
 
       <Dropdown.Menu>
-        <Dropdown.Item href="#/action-1">تعديل الملف الشخصي</Dropdown.Item>
+        {/* <Dropdown.Item href="#/action-1">تعديل الملف الشخصي</Dropdown.Item> */}
         <Dropdown.Item onClick={logout}>تسجيل الخروج</Dropdown.Item>
       </Dropdown.Menu>
     </Dropdown>
@@ -130,6 +161,7 @@ export default function CustomNavbar() {
           </Navbar.Collapse>
         </Container>
       </Navbar>
+    </div>
     </div>
   );
 }

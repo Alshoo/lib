@@ -16,19 +16,22 @@ import RatingStars from "./ratingStar";
 
 export default  function HighBook() {
    
-  const [Books, setBoooks] = useState([]);
+  const [Books, setBooks] = useState([]);
+  const [loading, setLoading] = useState(true); 
 
   useEffect(() => {
-    const fetchAuthors = async () => {
+    const fetchBooks = async () => {
       try {
-        const response = await axios.get(`${process.env.NEXT_PUBLIC_BACKEND_URL}/api`); 
-        setBoooks(response.data.topRatedBooks);
+        const response = await axios.get(`${process.env.NEXT_PUBLIC_BACKEND_URL}/api`);
+        setBooks(response.data.popularBooks);
+        setLoading(false);
       } catch (error) {
         console.error("Error fetching authors:", error);
+        setLoading(false); 
       }
     };
 
-    fetchAuthors();
+    fetchBooks();
   }, []);
 
 
@@ -54,40 +57,44 @@ const topRatedBooks = Books.slice(0, 4);
 
 
 
-      <div className="Maincards">
+  
 
 
+      {loading ? (
+           <div className="spinner-container">
+           <div className="spinner"></div> 
+         </div>
+      ) : (
+       
+        <div className="Maincards"> 
 
-
-
-
-
-
-
-      {topRatedBooks.map((book) => (
-        <Link href={`${book.id}`} className="CardCont" key={book.id}>
-          <Image className="CardImg44"
-           src={book.cover_image || defaultBook}
-            alt="ERR404" />
-         <div className="lastCardSec">
-            <Image src={defaultPortifolio} className="AuthorImg" alt="ERR404" />
-            <h6>{book.title}</h6>
-            <p>{book.author.name}</p>
-          </div>
-          
-          <RatingStars rating={3} />
-        </Link>
-      ))}
-
-
-
-
-
-
-
-
-      </div>
-
+        {topRatedBooks.map((book) => (
+          <Link href={`${book.id}`} className="CardCont" key={book.id}>
+              {book.cover_image ? (
+                <img 
+                  src={book.cover_image} 
+                  alt="Book Cover" 
+                  className="CardImg44"
+                />
+              ) : (
+                <Image 
+                  src={defaultBook} 
+                  alt="Default Book Cover" 
+                   className="CardImg44"
+                />
+              )}
+           <div className="lastCardSec">
+              <Image src={defaultPortifolio} className="AuthorImg" alt="ERR404" />
+              <h6>{book.title}</h6>
+              <p>{book.author.name}</p>
+            </div>
+            
+            <RatingStars rating={3} />
+          </Link>
+        ))}
+  
+        </div>
+      )}
 
 
 

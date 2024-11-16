@@ -1,5 +1,5 @@
 .bookPageContainer {
-    margin-top: 80px;
+    margin-top: 110px;
   }
   .searchContainer2 {
     display: flex;
@@ -44,32 +44,18 @@
       text-decoration: none;
       color: var(--Main-BackGround);
   }
-  .no-data-message{
-    display: flex;
-    justify-content: center;
-    text-align: center;
-    font-weight: bold;
-    color: var(--Main-BackGround);
-    margin-top: 50px;
-    font-size: 30px;
-    text-decoration:underline;
-}
+  
 
-
-.addauthorbtn{
-  display: flex;
-  gap: 5px;
-  position: absolute;
-  top: 15%;
-  right: 8%;
-  border: 1px solid black;
-  padding: 10px 15px;
-  border-radius: 25px;
-  cursor: pointer;
-}
-
-
-
+    .no-data-message{
+        display: flex;
+        justify-content: center;
+        text-align: center;
+        font-weight: bold;
+        color: var(--Main-BackGround);
+        margin-top: 50px;
+        font-size: 30px;
+        text-decoration:underline;
+    }
 
 
 

@@ -1,5 +1,5 @@
-"use client"
-import { useState } from 'react';
+"use client";
+import { useState, useEffect } from 'react';
 import Modal from 'react-bootstrap/Modal';
 import "./Author.css";
 import Image from 'next/image';
@@ -11,16 +11,14 @@ import toast, { Toaster } from 'react-hot-toast';
 const backendUrl = process.env.NEXT_PUBLIC_BACKEND_URL;
 
 export default function AddBook({ AuthorID }) {
-    
- 
     const [show, setShow] = useState(true);
-
+    const [editionNumber, setEditionNumber] = useState('');
+    const [categoryId, setCategoryId] = useState('');
+    const [bookSeriesId, setBookSeriesId] = useState('');
+    const [categories, setCategories] = useState([]);
+    
     const handleClose = () => setShow(false);
 
-
-
-
-    
     const [authorName, setAuthorName] = useState('');
     const [bookName, setBookName] = useState('');
     const [publisherName, setPublisherName] = useState('');
@@ -33,8 +31,6 @@ export default function AddBook({ AuthorID }) {
     const [copyrightImageName, setCopyrightImageName] = useState('');
     const [bookfileName, setbookfileName] = useState('');
     const [description, setDescription] = useState('');
- 
-
 
     const handleFileChange = (e, setFile, setFileName) => {
         const file = e.target.files[0];
@@ -48,14 +44,14 @@ export default function AddBook({ AuthorID }) {
         const formData = new FormData();
         formData.append('title', bookName);
         formData.append('description', description);
-        formData.append('category_id', 1);
-        formData.append('book_series_id', 1);
+        formData.append('category_id', bookSeriesId); 
+        formData.append('book_series_id', 1); 
         formData.append('published_at', publishDate);
         formData.append('author_id', AuthorID);
         formData.append('lang', bookLanguage);
         formData.append('file', bookfile);
         formData.append('cover_image', coverImage);
-        formData.append('edition_number', 1);
+        formData.append('edition_number', editionNumber);
         formData.append('publisher_name', publisherName);
         formData.append('copyright_image', copyrightImage);
     
@@ -69,7 +65,6 @@ export default function AddBook({ AuthorID }) {
                 withCredentials: true,
             });
     
-            // console.log('نجاح:', response.data);
             toast.success(`لقد تم انشاء الكتاب بنجاح`, {
                 duration: 4000,
                 position: "top-center",
@@ -80,17 +75,27 @@ export default function AddBook({ AuthorID }) {
               });
             handleClose();
         } catch (error) {
-            // console.error('خطأ:', error);
             toast.error('خطأ فى تسجيل البيانات');
-
         }
     };
-    
 
+    useEffect(() => {
+        const fetchCategories = async () => {
+            try {
+                const response = await axios.get(`${backendUrl}/api/category-groups/`);
+                setCategories(response.data.data);
+            } catch (error) {
+                console.error("Error fetching categories:", error);
+            }
+        };
+        fetchCategories();
+    }, []);
+
+
+    
     return (
         <div>
-                  <Toaster position="top-center" toastOptions={{ duration: 4000 }} />
-
+            <Toaster position="top-center" toastOptions={{ duration: 4000 }} />
             <Modal show={show} onHide={handleClose}>
                 <Modal.Header closeButton>
                     اضافة كتاب
@@ -98,12 +103,6 @@ export default function AddBook({ AuthorID }) {
                 <Modal.Body>
                     <form onSubmit={handleSubmit}>
                         <div className="form-row">
-                            <input
-                                type="text"
-                                placeholder="اسم المؤلف"
-                                value={authorName}
-                                onChange={(e) => setAuthorName(e.target.value)}
-                            />
                             <input
                                 type="text"
                                 placeholder="اسم الكتاب"
@@ -124,6 +123,14 @@ export default function AddBook({ AuthorID }) {
                                 value={bookLanguage}
                                 onChange={(e) => setBookLanguage(e.target.value)}
                             />
+                        </div> 
+                        <div className="form-row">
+                            <input
+                                type="number"
+                                placeholder="رقم الطبعة"
+                                value={editionNumber}
+                                onChange={(e) => setEditionNumber(e.target.value)}
+                            />
                         </div>
                         <div className="form-row">
                             <input
@@ -133,6 +140,44 @@ export default function AddBook({ AuthorID }) {
                                 onChange={(e) => setPublishDate(e.target.value)}
                             />
                         </div>
+                        <div className="form-row">
+                            <select
+                                value={categoryId}
+                                onChange={(e) => {
+                                    setCategoryId(e.target.value);
+                                    setBookSeriesId(''); 
+                                }}
+                            >
+                                <option value="">اختر الفئة الرئيسية</option>
+                                {categories.map((category) => (
+                                    <option key={category.id} value={category.id}>
+                                        {category.name}
+                                    </option>
+                                ))}
+                            </select>
+                        </div>
+                        {categoryId && (
+                            <div className="form-row">
+                                <select
+                                    value={bookSeriesId}
+                                    onChange={(e) => setBookSeriesId(e.target.value)}
+                                >
+                                    <option value="">اختر الفئة الفرعية</option>
+                                    {categories
+                                        .find(category => category.id === parseInt(categoryId))
+                                        ?.categories?.map((subCategory) => (
+                                            <option key={subCategory.id} value={subCategory.id}>
+                                                {subCategory.name}
+                                            </option>
+                                        ))}
+                                    {(!categories.find(category => category.id === parseInt(categoryId))?.categories) && (
+                                        <option disabled>لا توجد فئات فرعية</option>
+                                    )}
+                                </select>
+                            </div>
+                        )} 
+
+
                         <div className="form-row">
                             <div className="custom-file-upload">
                                 <Image src={upload} alt="ERR404" className='upload' />
@@ -148,11 +193,11 @@ export default function AddBook({ AuthorID }) {
                             </div>
                         </div>
                         <div className="custom-file-upload">
-                                <Image src={upload} alt="ERR404" className='upload' />
-                                <span>ملف الكتاب</span>
-                                <input type="file" onChange={(e) => handleFileChange(e, setbookfile, setbookfileName)} />
-                                {bookfileName && <p>{bookfileName}</p>}
-                            </div>
+                            <Image src={upload} alt="ERR404" className='upload' />
+                            <span>ملف الكتاب</span>
+                            <input type="file" onChange={(e) => handleFileChange(e, setbookfile, setbookfileName)} />
+                            {bookfileName && <p>{bookfileName}</p>}
+                        </div>
                         <div className="form-row description">
                             <textarea
                                 placeholder="وصف الكتاب"

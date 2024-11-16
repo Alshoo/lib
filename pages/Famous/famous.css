@@ -45,6 +45,18 @@
     color: var(--Main-BackGround);
 }
 
+
+.no-data-message{
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  font-weight: bold;
+  color: var(--Main-BackGround);
+  margin-top: 50px;
+  font-size: 30px;
+  text-decoration:underline;
+}
+
 @media (max-width:369px) {
     .searchContainer2 {
         width: 85%;

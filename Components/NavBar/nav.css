@@ -1,3 +1,13 @@
+/* .MainNav1{
+  height: 75px;
+}
+.MainNav2{
+    position: fixed;
+    width: 100%;
+    z-index: 1;
+    box-shadow: 1px 4px 10px 0px rgba(0, 0, 0, 0.30);
+    top: 0;
+} */
 .nav-link{
     display: flex;
     gap: 5px;
@@ -53,6 +63,26 @@
 }
 .dropdown-toggle::after {
     display: none;
+}
+
+
+#dropdown-basic2{
+    background: none;
+    display: flex;
+    color: var(--bs-nav-link-color);
+    border: none;
+    padding: 0;
+    margin: 0;
+    align-items: center;
+    gap: 5px;
+
+}
+#dropdown-basic2 img{
+    transform: translateY(-25%);
+}
+.searchDrop{
+    text-decoration: none;
+    color: var(--Main-BackGround);
 }
 @media (max-width:992px) {
     .NavBarItrms{

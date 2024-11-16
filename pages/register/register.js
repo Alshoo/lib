@@ -78,9 +78,7 @@ export default function RegisterPage() {
            value={password}
            onChange={(e) => setPassword(e.target.value)}
          />
-       {errors.password && (
-         <span>{errors.password[0]}</span>
-       )}
+      
 
          <input
            id="password_confirmation"
@@ -91,7 +89,9 @@ export default function RegisterPage() {
            value={password_confirmation}
            onChange={(e) => setPasswordConfirmation(e.target.value)}
          />
-
+    {errors.password && (
+         <span style={{color:"red!important"}}>{errors.password[0]}</span>
+       )}
    
             <button
               type="submit"

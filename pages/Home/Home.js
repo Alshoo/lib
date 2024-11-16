@@ -1,3 +1,5 @@
+"use client"
+
 import Image from "next/image";
 import "./Home.css";
 import HomeImage from "@/public/Images/MainHomeImg.png";
@@ -8,6 +10,7 @@ import FamousBook from "./famousBook";
 import LatestBook from "./latestBook";
 import HighBook from "./highBook";
 import Authors from "./Authors";
+import Dropdown from 'react-bootstrap/Dropdown';
 
 export default function Home() {
 
@@ -32,7 +35,7 @@ export default function Home() {
             <h3>مرحبا بك فى قارئ</h3>
             <h4>استمتع بقراءة الكتب المفضلة لديك في أي وقت وأي مكان</h4>
           </div>
-
+          <Dropdown>
           <div className="searchContainer">
             <div className="iconWrapper">
               <Image src={searchIcon} alt="ERR404" />
@@ -40,12 +43,26 @@ export default function Home() {
 
             <input
               type="text"
-              placeholder="ابحث عن كاتب او مؤلف او قسم كتب"
+              placeholder="ابحث عن مؤلف او قسم كتب"
               className="inputArea"
             />
 
-            <button className="actionButton">بحث</button>
+            <Dropdown.Toggle className="actionButton" id="dropdown-basic">
+            بحث
+            </Dropdown.Toggle>
           </div>
+
+
+       
+            <Dropdown.Menu>
+              <Dropdown.Item href="/Authors">بحث عن مؤلف </Dropdown.Item>
+              <Dropdown.Item href="/BookLists">بحث عن قسم</Dropdown.Item>
+            </Dropdown.Menu>
+          </Dropdown>
+
+
+
+
 
           <div className="HeadLinks2">
             <Link href="/FamousBook">

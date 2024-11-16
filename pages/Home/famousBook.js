@@ -15,19 +15,22 @@ export default function FamousBook() {
 
 
   
-  const [Books, setBoooks] = useState([]);
+  const [Books, setBooks] = useState([]);
+  const [loading, setLoading] = useState(true); 
 
   useEffect(() => {
-    const fetchAuthors = async () => {
+    const fetchBooks = async () => {
       try {
-        const response = await axios.get(`${process.env.NEXT_PUBLIC_BACKEND_URL}/api`); 
-        setBoooks(response.data.popularBooks);
+        const response = await axios.get(`${process.env.NEXT_PUBLIC_BACKEND_URL}/api`);
+        setBooks(response.data.popularBooks);
+        setLoading(false);
       } catch (error) {
         console.error("Error fetching authors:", error);
+        setLoading(false); 
       }
     };
 
-    fetchAuthors();
+    fetchBooks();
   }, []);
 
 const popularBooks = Books.slice(0, 4);
@@ -53,14 +56,35 @@ const popularBooks = Books.slice(0, 4);
 
 
 
-      <div className="Maincards">
+  
+
+
+      {loading ? (
+           <div className="spinner-container">
+           <div className="spinner"></div> 
+         </div>
+      ) : (
+       
+        <div className="Maincards">
 
      
         {popularBooks.map((book) => (
         <Link href={`${book.id}`} className="CardCont" key={book.id}>
-          <Image className="CardImg44"
-           src={book.cover_image || defaultBook}
-            alt="ERR404" />
+          
+              {book.cover_image ? (
+                <img 
+                  src={book.cover_image} 
+                  alt="Book Cover" 
+                  className="CardImg44"
+                />
+              ) : (
+                <Image 
+                  src={defaultBook} 
+                  alt="Default Book Cover" 
+                   className="CardImg44"
+                />
+              )}
+
          <div className="lastCardSec">
             <Image src={defaultPortifolio} className="AuthorImg" alt="ERR404" />
             <h6>{book.title}</h6>
@@ -72,7 +96,7 @@ const popularBooks = Books.slice(0, 4);
       ))}
 
       </div>
-
+      )}
 
 
 

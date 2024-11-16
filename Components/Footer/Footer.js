@@ -17,7 +17,7 @@ export default function Footer() {
 
         <div className="footer-right">
           <div className="footer-section">
-            <h4>الاقسام</h4>
+            <h4>الاقسام</h4> 
             <ul>
               <li><a href="#">الاسلام</a></li>
               <li><a href="#">الاسلام</a></li>
@@ -37,10 +37,10 @@ export default function Footer() {
           <div className="footer-section">
             <h4>الصفحات </h4>
             <ul>
-              <li><a href="#">المؤلفين</a></li>
-              <li><a href="#">احدث الكتب</a></li>
-              <li><a href="#">اشهر الكتب</a></li>
-              <li><a href="#">الاعلي تقييما</a></li>
+              <li><a href="/Authors">المؤلفين</a></li>
+              <li><a href="/RecentBook">احدث الكتب</a></li>
+              <li><a href="/FamousBook">اشهر الكتب</a></li>
+              <li><a href="/HighBook">الاعلي تقييما</a></li>
             </ul>
           </div>
         </div>

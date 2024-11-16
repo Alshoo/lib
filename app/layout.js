@@ -22,11 +22,11 @@ export default function RootLayout({ children }) {
       </Head>
 
       <body>
-        <ErrorBoundary>
+        {/* <ErrorBoundary> */}
           <AuthProvider>
             {children}
           </AuthProvider>
-        </ErrorBoundary>
+        {/* </ErrorBoundary> */}
 
       </body>
     </html>

@@ -20,6 +20,7 @@ import ratings from "../../public/Images/unnamed.png";
 import axios from "axios";
 import defaultPortifolio from "../../public/Images/defaultPortifolio.jpeg";
 import Carousel from 'react-bootstrap/Carousel';
+import { redirect } from "next/dist/server/api-utils";
 
 
 
@@ -40,23 +41,53 @@ export default function BookDet({props}) {
   const [Details, setDetails] = useState([]);
   const [category, setcategory] = useState([]);
   const [author, setauthor] = useState([]);
+  const [loading, setLoading] = useState(true); 
 
   useEffect(() => {
     const fetchAuthors = async () => {
       try {
         const response = await axios.get(`${process.env.NEXT_PUBLIC_BACKEND_URL}/api/books/${props.params.BookDetails}`); 
         setDetails(response.data.data);     
-        setcategory(response.data.data.category)
-        setauthor(response.data.data.author)
+        setcategory(response.data.data.category);
+        setauthor(response.data.data.author);
+        setLoading(false);
       } catch (error) {
         console.error("Error fetching authors:", error);
+        setLoading(false);
       }
     };
 
     fetchAuthors();
   }, []);
 
-  // console.log(Details.cover_image);
+
+  
+
+
+  
+
+  const downloadFile = async () => {
+    try {
+      const response = await axios.get(
+        `${process.env.NEXT_PUBLIC_BACKEND_URL}/api/books/${props.params.BookDetails}/download`, {
+        responseType: "blob",
+      });
+  
+      const url = window.URL.createObjectURL(new Blob([response.data.data]));
+      const link = document.createElement("a");
+      link.href = url;
+      link.setAttribute("download", `${Details.title}.pdf`);
+      document.body.appendChild(link);
+      link.click();
+      link.remove();
+      window.URL.revokeObjectURL(url);
+    } catch (error) {
+      console.error("Error downloading file:", error);
+    }
+  };
+
+
+
 
   return (
     <div>
@@ -68,7 +99,13 @@ export default function BookDet({props}) {
 }}>
 
 
-    <div className="book-section">
+{loading ? (
+           <div className="spinner-container">
+           <div className="spinner"></div> 
+         </div>
+      ) : (
+       
+        <div className="book-section">
       
 
 
@@ -76,7 +113,19 @@ export default function BookDet({props}) {
     <div className="details">
 
        <div>
-       <Image src={ defaultBook} alt="Book Cover" className="book-cover" />
+       {Details.cover_image ? (
+        <img 
+          src={Details.cover_image} 
+          alt="Book Cover" 
+          className="book-cover" 
+        />
+      ) : (
+        <Image 
+          src={defaultBook} 
+          alt="Default Book Cover" 
+          className="book-cover" 
+        />
+      )}
        </div>
                 <div className="info">
                 <h3>{Details.title}</h3>
@@ -94,8 +143,8 @@ export default function BookDet({props}) {
            
             </div>
 
-            <button className="down-button">تحميل</button>
-            <button className="view-button">مشاهده</button>
+            <button className="down-button" onClick={downloadFile}>تحميل</button>
+            <Link className="view-button" href={`${Details.file}`} target="_blank">مشاهده</Link>
 
 
             <div className="rating">
@@ -172,6 +221,9 @@ export default function BookDet({props}) {
             </div>
 
         </div>
+      )}
+
+
 
         </div>
     </div>

@@ -5,6 +5,7 @@
   }
 body {
   font-family: 'Cairo', sans-serif; 
+  width: 100vw;
   overflow-x: hidden;
 }
 ::-webkit-scrollbar {
@@ -25,3 +26,32 @@ body {
   border-bottom: 1px solid var(--Main-BackGround);
   margin:15px;
 }
+
+
+
+.spinner-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 50vh; 
+}
+
+.spinner {
+  border: 8px solid #f3f3f3;
+  border-top: 8px solid #4E342E; 
+  border-radius: 50%;
+  width: 80px; 
+  height: 80px; 
+  animation: spin 1.5s linear infinite; 
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+
