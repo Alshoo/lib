@@ -14,7 +14,8 @@ export default function AuthorAcc(props) {
             <CustomNavbar/>
 
 
-<AuthorPage AuthorID={props.params.AuthorAcc}/>
+{/* <AuthorPage AuthorID={props.params.AuthorAcc}/> */}
+<AuthorPage AuthorID={props?.params?.AuthorAcc || "defaultAuthorID"} />
 
 
 <Footer/>

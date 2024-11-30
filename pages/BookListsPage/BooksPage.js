@@ -17,11 +17,27 @@ export default function BooksPage({ props }) {
   const [loading, setLoading] = useState(true);
   const [searchTerm, setSearchTerm] = useState("");
 
+  // const fetchBooks = async (query = "") => {
+  //   setLoading(true);
+  //   try {
+  //     const response = await axios.get(
+  //       `${process.env.NEXT_PUBLIC_BACKEND_URL}/api/books?per_page=1520&search=${query || Object.keys(props.searchParams)[0]}`
+  //     );
+  //     setBooks(response.data.data);
+  //     setDisplayBooks(response.data.data); 
+  //     setLoading(false);
+  //   } catch (error) {
+  //     console.error("Error fetching books:", error);
+  //     setLoading(false);
+  //   }
+  // };
+
   const fetchBooks = async (query = "") => {
     setLoading(true);
     try {
+      const searchQuery = query || Object.keys(props?.searchParams || {})[0];
       const response = await axios.get(
-        `${process.env.NEXT_PUBLIC_BACKEND_URL}/api/books?per_page=1520&search=${query || Object.keys(props.searchParams)[0]}`
+        `${process.env.NEXT_PUBLIC_BACKEND_URL}/api/books?per_page=1520&search=${searchQuery}`
       );
       setBooks(response.data.data);
       setDisplayBooks(response.data.data); 
@@ -31,6 +47,8 @@ export default function BooksPage({ props }) {
       setLoading(false);
     }
   };
+  
+
 
   useEffect(() => {
     fetchBooks();
@@ -51,7 +69,7 @@ export default function BooksPage({ props }) {
         <Image src={arrow} alt="ERR404" />
         <Link href="/BookLists">اقسام الكتب</Link>
         <Image src={arrow} alt="ERR404" />
-        <p>{decodeURIComponent(props.params.Books)}</p>
+        <p>{props?.params?.Books ? decodeURIComponent(props.params.Books) : "القسم غير موجود"}</p>
         <Image src={arrow} alt="ERR404" />
         <p>{Object.keys(props.searchParams)[0]}</p>
       </div>
