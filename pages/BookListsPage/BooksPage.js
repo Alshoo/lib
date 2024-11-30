@@ -13,29 +13,14 @@ import axios from "axios";
 
 export default function BooksPage({ props }) {
   const [Books, setBooks] = useState([]);
-  const [displayBooks, setDisplayBooks] = useState([]); 
+  const [displayBooks, setDisplayBooks] = useState([]);
   const [loading, setLoading] = useState(true);
   const [searchTerm, setSearchTerm] = useState("");
-
-  // const fetchBooks = async (query = "") => {
-  //   setLoading(true);
-  //   try {
-  //     const response = await axios.get(
-  //       `${process.env.NEXT_PUBLIC_BACKEND_URL}/api/books?per_page=1520&search=${query || Object.keys(props.searchParams)[0]}`
-  //     );
-  //     setBooks(response.data.data);
-  //     setDisplayBooks(response.data.data); 
-  //     setLoading(false);
-  //   } catch (error) {
-  //     console.error("Error fetching books:", error);
-  //     setLoading(false);
-  //   }
-  // };
 
   const fetchBooks = async (query = "") => {
     setLoading(true);
     try {
-      const searchQuery = query || Object.keys(props?.searchParams || {})[0];
+      const searchQuery = query || (props?.searchParams ? Object.keys(props.searchParams)[0] : ""); // استخدام القيمة الافتراضية في حالة عدم وجود searchParams
       const response = await axios.get(
         `${process.env.NEXT_PUBLIC_BACKEND_URL}/api/books?per_page=1520&search=${searchQuery}`
       );
@@ -47,19 +32,17 @@ export default function BooksPage({ props }) {
       setLoading(false);
     }
   };
-  
-
 
   useEffect(() => {
     fetchBooks();
-  }, []);
+  }, [props]); // التأكد من تحديث الصفحة عند تغيير props
 
   const handleSearch = () => {
     const filteredBooks = Books.filter(book => 
       book.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
       book.author.name.toLowerCase().includes(searchTerm.toLowerCase())
     );
-    setDisplayBooks(filteredBooks); 
+    setDisplayBooks(filteredBooks);
   };
 
   return (
@@ -71,7 +54,7 @@ export default function BooksPage({ props }) {
         <Image src={arrow} alt="ERR404" />
         <p>{props?.params?.Books ? decodeURIComponent(props.params.Books) : "القسم غير موجود"}</p>
         <Image src={arrow} alt="ERR404" />
-        <p>{Object.keys(props.searchParams)[0]}</p>
+        <p>{props?.searchParams ? Object.keys(props.searchParams)[0] : "القسم غير موجود"}</p>
       </div>
 
       <div className="bookPageContainer">
@@ -86,7 +69,7 @@ export default function BooksPage({ props }) {
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)} 
           />
-          <button className="actionButton2" onClick={handleSearch}>بحث</button> 
+          <button className="actionButton2" onClick={handleSearch}>بحث</button>
         </div>
 
         {loading ? (

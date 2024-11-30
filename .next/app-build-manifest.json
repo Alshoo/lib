@@ -17,6 +17,18 @@
       "static/chunks/main-app.js",
       "static/css/app/register/page.css",
       "static/chunks/app/register/page.js"
+    ],
+    "/BookLists/page": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/css/app/BookLists/page.css",
+      "static/chunks/app/BookLists/page.js"
+    ],
+    "/BookLists/[Books]/page": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/css/app/BookLists/[Books]/page.css",
+      "static/chunks/app/BookLists/[Books]/page.js"
     ]
   }
 }
