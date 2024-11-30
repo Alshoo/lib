@@ -11,21 +11,21 @@ import Link from "next/link";
 
 
 export default function RegisterPage() {
-  const [email, setEmail] = useState('');
-  const [name, setName] = useState('');
-  const [password, setPassword] = useState('');
-  const [password_confirmation, setPasswordConfirmation] = useState('');
-  const { register, errors, loading } = useAuthContext();
+  // const [email, setEmail] = useState('');
+  // const [name, setName] = useState('');
+  // const [password, setPassword] = useState('');
+  // const [password_confirmation, setPasswordConfirmation] = useState('');
+  // const { register, errors, loading } = useAuthContext();
 
-  const handleRegister = async (e) => {
-    e.preventDefault();
-    register({ name, email, password, password_confirmation });
-  };
+  // const handleRegister = async (e) => {
+  //   e.preventDefault();
+  //   register({ name, email, password, password_confirmation });
+  // };
 
   return (
     <div >
     
-
+{/* 
     <div className="registerContainer">
       <div className="alignPage">
         <form
@@ -103,7 +103,7 @@ export default function RegisterPage() {
         </form>
       </div>
 
-    </div>
+    </div> */}
 
     </div>
   );

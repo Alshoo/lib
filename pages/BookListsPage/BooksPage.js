@@ -20,7 +20,7 @@ export default function BooksPage({ props }) {
   const fetchBooks = async (query = "") => {
     setLoading(true);
     try {
-      const searchQuery = query || (props?.searchParams ? Object.keys(props.searchParams)[0] : ""); // استخدام القيمة الافتراضية في حالة عدم وجود searchParams
+      const searchQuery = query || (props?.searchParams ? Object.keys(props.searchParams)[0] : "");
       const response = await axios.get(
         `${process.env.NEXT_PUBLIC_BACKEND_URL}/api/books?per_page=1520&search=${searchQuery}`
       );
@@ -35,7 +35,7 @@ export default function BooksPage({ props }) {
 
   useEffect(() => {
     fetchBooks();
-  }, [props]); // التأكد من تحديث الصفحة عند تغيير props
+  }, [props]); 
 
   const handleSearch = () => {
     const filteredBooks = Books.filter(book => 

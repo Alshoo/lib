@@ -1,5 +1,5 @@
 {
-  "/BookLists/page": "app/BookLists/page.js",
   "/page": "app/page.js",
-  "/BookLists/[Books]/page": "app/BookLists/[Books]/page.js"
+  "/BookLists/[Books]/page": "app/BookLists/[Books]/page.js",
+  "/BookLists/page": "app/BookLists/page.js"
 }

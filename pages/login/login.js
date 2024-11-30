@@ -7,18 +7,18 @@ import './login.css';
 
 
 export default function LoginPage() {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const { login, errors, loading } = useAuthContext();
+  // const [email, setEmail] = useState("");
+  // const [password, setPassword] = useState("");
+  // const { login, errors, loading } = useAuthContext();
 
-  const handleLogin = async (e) => {
-    e.preventDefault();
-    login({ email, password });
-  };
+  // const handleLogin = async (e) => {
+  //   e.preventDefault();
+  //   login({ email, password });
+  // };
 
   return (
     <div>
-      <div className='loginContainer'> 
+      {/* <div className='loginContainer'> 
       <form
        method="POST" onSubmit={handleLogin}
        >
@@ -83,7 +83,7 @@ export default function LoginPage() {
 
     </div>
 
-
+ */}
 
     </div>
   );
