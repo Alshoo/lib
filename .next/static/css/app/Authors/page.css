@@ -1,0 +1,832 @@
+/*!**************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/next/dist/build/webpack/loaders/css-loader/src/index.js??ruleSet[1].rules[14].oneOf[12].use[2]!./node_modules/next/dist/build/webpack/loaders/postcss-loader/src/index.js??ruleSet[1].rules[14].oneOf[12].use[3]!./Components/Footer/Footer.css ***!
+  \**************************************************************************************************************************************************************************************************************************************************************************/
+/* Footer.css */
+.footer {
+  background-color: var(--Main-BackGround);
+  color: #fff;
+  padding: 40px 20px 20px 20px;
+  font-family: Arial, sans-serif;
+  text-align: left;
+  margin-top: 100px;
+}
+
+.footer-container {
+  display: flex;
+  align-items: center;
+  margin: auto;
+  width: 80%;
+  gap: 100px;
+}
+
+.footer-left {
+  flex: 1 1;
+  min-width: 250px;
+}
+
+.logo {
+  background-color: #ffffff;
+  border-radius: 50%;
+  width: 100px;
+  height: 100px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  color: #333;
+  margin: auto;
+}
+
+.description {
+  font-size: 14px;
+  line-height: 1.5;
+  margin-bottom: 20px;
+  margin-top: 20px;
+}
+
+.social-icons {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+}
+
+.social-icons a {
+  margin-right: 10px;
+}
+
+.social-icons img {
+  border: 1px solid #fff;
+  border-radius: 10px;
+  padding: 10px;
+  width: 30px;
+  height: 30px;
+  transition: transform 0.3s;
+}
+
+.social-icons a:hover img {
+  transform: scale(1.1);
+}
+
+.footer-right {
+  display: flex;
+  justify-content: space-between;
+  flex: 2 1;
+}
+
+.footer-section {
+  margin-left: 20px;
+}
+
+.footer-section h4 {
+  font-size: 16px;
+  margin-bottom: 10px;
+  font-weight: bold;
+}
+
+.footer-section ul {
+  list-style: none;
+  padding: 0;
+}
+
+.footer-section ul li {
+  margin-bottom: 8px;
+}
+
+.footer-section ul li a {
+  color: #fff;
+  text-decoration: none;
+  font-size: 14px;
+}
+
+.footer-section ul li a:hover {
+  text-decoration: underline;
+}
+
+.footer-bottom {
+  text-align: center;
+  color: #ccc;
+  background: #212121;
+  padding: 20px;
+}
+
+.lastFooterSec {
+  display: flex;
+  justify-content: space-between;
+  width: 90%;
+  margin: auto;
+  margin-top: 60px;
+}
+.lastFooterSec a {
+  text-decoration: none;
+  color: #ffffff;
+} 
+.socialIcn {
+  display: flex;
+  gap: 10px;
+}
+.lastFooterLink{
+  display: flex;
+  gap: 30px;
+}
+
+@media (max-width: 768px) {
+  .footer-container {
+    flex-direction: column;
+    text-align: center;
+  }
+  .lastFooterSec {
+    flex-direction: column;
+    text-align: center;
+    gap: 10px;
+  }
+  .socialIcn {
+    justify-content: center;
+  }
+
+  .footer-right {
+    margin-top: 20px;
+    flex-direction: column;
+  }
+
+  .footer-section {
+    margin-left: 0;
+    margin-bottom: 20px;
+  }
+}
+
+/*!***********************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/next/dist/build/webpack/loaders/css-loader/src/index.js??ruleSet[1].rules[14].oneOf[12].use[2]!./node_modules/next/dist/build/webpack/loaders/postcss-loader/src/index.js??ruleSet[1].rules[14].oneOf[12].use[3]!./Components/NavBar/nav.css ***!
+  \***********************************************************************************************************************************************************************************************************************************************************************/
+/* .MainNav1{
+  height: 75px;
+}
+.MainNav2{
+    position: fixed;
+    width: 100%;
+    z-index: 1;
+    box-shadow: 1px 4px 10px 0px rgba(0, 0, 0, 0.30);
+    top: 0;
+} */
+.nav-link{
+    display: flex;
+    gap: 5px;
+}
+.navbar>.container, .navbar>.container-fluid, .navbar>.container-lg, .navbar>.container-md, .navbar>.container-sm, .navbar>.container-xl, .navbar>.container-xxl {
+    align-items:baseline!important;
+    gap: 25px;
+}
+
+.navbar-brand{
+    background: var(--Main-BackGround);
+    color: aliceblue;
+    padding: 10px;
+    border-radius: 15px;
+}
+.NavBarItrms{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.SignBtn{
+    display: flex;
+    gap: 13px;
+}
+
+.CreateBtn{
+    background: var(--Main-BackGround);
+    color: aliceblue;
+    border-radius: 10px;
+    padding: 5px 30px;
+    text-decoration: none;
+}
+.loginBtn{
+    color: var(--Main-BackGround);
+    border: 1px solid var(--Main-BackGround);
+    border-radius: 10px;
+    padding: 5px 30px;
+    text-decoration: none;
+}
+.UserAvatar{
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+}
+.MAinDropdownContainer{
+    display: flex;
+    align-items: center;
+    padding-right: 25px;
+}
+.MAinDropdownContainer p{
+    transform: translate(14%,35%);
+}
+.dropdown-toggle::after {
+    display: none;
+}
+
+
+#dropdown-basic2{
+    background: none;
+    display: flex;
+    color: var(--bs-nav-link-color);
+    border: none;
+    padding: 0;
+    margin: 0;
+    align-items: center;
+    gap: 5px;
+
+}
+#dropdown-basic2 img{
+    transform: translateY(-25%);
+}
+.searchDrop{
+    text-decoration: none;
+    color: var(--Main-BackGround);
+}
+@media (max-width:992px) {
+    .NavBarItrms{
+        justify-content: center;
+        flex-direction: column;
+
+
+    }
+}
+
+
+
+/*!*****************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/next/dist/build/webpack/loaders/css-loader/src/index.js??ruleSet[1].rules[14].oneOf[12].use[2]!./node_modules/next/dist/build/webpack/loaders/postcss-loader/src/index.js??ruleSet[1].rules[14].oneOf[12].use[3]!./pages/Home/Home.css ***!
+  \*****************************************************************************************************************************************************************************************************************************************************************/
+.CustomizeHeight {
+  height: 100vh;
+}
+.MainHomeImg {
+  position: absolute;
+  z-index: -99;
+  width: 100%;
+}
+
+.MainHomeImg img {
+  width: 100%;
+  height: 100vh;
+}
+
+.MainHeadlineContainer {
+  width: 40%;
+  margin: auto;
+  transform: translateY(80%);
+  text-align: center;
+}
+.headLineText {
+  text-align: center;
+}
+.headLineText h3 {
+  color: var(--back-ground, #fbfbfb);
+  text-align: center;
+  font-family: Amiri;
+  font-size: 32px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 30px;
+}
+.headLineText h4 {
+  color: var(--back-ground, #fbfbfb);
+  text-align: center;
+  font-family: Amiri;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 67px;
+}
+
+.searchContainer {
+  display: flex;
+  align-items: center;
+  background-color: #f5f5f5;
+  border-radius: 30px;
+  padding: 5px 15px;
+  width: 80%;
+  margin: auto;
+}
+
+.iconWrapper {
+  margin-right: 10px;
+}
+
+.inputArea {
+  border: none;
+  outline: none;
+  background-color: transparent;
+  font-family: inherit;
+  width: 100%;
+}
+
+.actionButton {
+  background-color: var(--Main-BackGround);
+  color: white;
+  border: none;
+  padding: 5px 15px;
+  border-radius: 20px;
+  margin-left: -10px;
+}
+.actionButton:hover{
+  background-color: rgb(75, 19, 2);
+  color: white;
+}
+
+.HeadLinks2 {
+  margin-top: 35px;
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+}
+.HeadLinks2 a button {
+  background: none;
+  color: #f5f5f5;
+  border: solid 1px white;
+  padding: 10px;
+  border-radius: 20px;
+}
+
+.CardSecContainer {
+  margin-top: 50px;
+}
+
+.CardSecHeadLine {
+  background: var(--Main-BackGround);
+  display: flex;
+  justify-content: space-between;
+  padding: 10px 40px 3px;
+  border-radius: 33px;
+  color: white;
+  width: 85%;
+  margin: auto;
+}
+.betweenItems1 {
+  display: flex;
+  gap: 10px;
+}
+.betweenItems2 {
+  display: flex;
+  gap: 10px;
+  text-decoration: none;
+  color: #fff;
+}
+.betweenItems2 img {
+  transform: translateY(55%);
+}
+
+
+
+
+
+
+
+.Maincards {
+  padding-top: 10px;
+  width: 85%;
+  margin: auto;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-gap: 20px;
+  gap: 20px;
+  margin-bottom: 20px;
+  margin-top: 40px;
+  border-radius: 25px;
+}
+.CardCont {
+  border-radius: 20px;
+  background: #FFF;
+  box-shadow: 1px 4px 10px 0px rgba(0, 0, 0, 0.30);
+  display: flex;
+  width: 80%;
+  height: 100%;
+  padding: 0;
+  flex-direction: column;
+  align-items: center;
+  text-decoration: none;
+  transition: transform 0.3s ease, box-shadow 0.3s ease; 
+}
+
+.CardCont:hover {
+  transform: scale(1.05); 
+  box-shadow: 0px 6px 15px 0px rgba(0, 0, 0, 0.4); 
+  background-color: #f0f0f0; 
+}
+
+.CardImg44{
+    width: 100%;
+    height: 100%;
+    border-radius: 20px 20px 0 0;
+    object-fit:cover;
+}
+.lastCardSec{
+    text-align: center;
+    transform: translateY(-30%);
+}
+.lastCardSec h6{
+    color: #000;
+    font-size: 24px;
+    font-weight: 400;
+}
+.lastCardSec p{
+    color:  #4E342E;
+    font-size: 16px;
+}
+.lastCardSecAuthor{
+    text-align: center;
+}
+.lastCardSecAuthor h6{
+    color: #000;
+    font-size: 24px;
+    font-weight: 400;
+}
+.bookNum{
+    display:flex ;
+    justify-content: center;
+    gap: 8px;
+    color: #646363;
+    font-size: 20px;
+}
+.bookNum img{
+    transform: translateY(41%);
+}
+.AuthorImg{
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  margin-top: 10px;
+}
+
+
+/*////////////////// Rating start ////////////////// */
+.star-rating {
+    display: flex;
+    transform: translate(-3%,-90%);
+  }
+  
+  .star {
+    font-size: 24px;
+    color: #ccc; 
+  }
+  
+  .star.full {
+    color: var(--Main-BackGround); 
+  }
+  
+  .star.half {
+    color: var(--Main-BackGround); 
+    position: relative;
+    overflow: hidden;
+    width: 12px;
+  }
+  
+  .star.empty {
+    color: #ccc;
+  }
+  /*////////////////// Rating start ////////////////// */
+
+
+
+
+@media (max-width: 1024px) and (min-width: 768px) {
+  .Maincards {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 992px) {
+  .MainHeadlineContainer {
+    width: 60%;
+    margin: auto;
+    transform: translateY(70%);
+    text-align: center;
+  }
+}
+@media (max-width: 752px) {
+  .MainHeadlineContainer {
+    width: 80%;
+    margin: auto;
+    transform: translateY(50%);
+    text-align: center;
+  }
+  .Maincards {
+    grid-template-columns: 1fr;
+  }
+  .CardCont{
+   
+    width: 100%;
+    margin: auto;
+}
+}
+@media (max-width: 552px) {
+  .MainHeadlineContainer {
+    width: 98%;
+    margin: auto;
+    transform: translateY(50%);
+    text-align: center;
+  }
+  .headLineText h3 {
+    line-height: 20px;
+  }
+  .headLineText h4 {
+    line-height: 37px;
+  }
+}
+
+/*!***********************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/next/dist/build/webpack/loaders/css-loader/src/index.js??ruleSet[1].rules[14].oneOf[12].use[2]!./node_modules/next/dist/build/webpack/loaders/postcss-loader/src/index.js??ruleSet[1].rules[14].oneOf[12].use[3]!./pages/Authors/Authors.css ***!
+  \***********************************************************************************************************************************************************************************************************************************************************************/
+.bookPageContainer {
+    margin-top: 80px;
+  }
+  .searchContainer2 {
+    display: flex;
+    align-items: center;
+    background-color: #f5f5f5;
+    border-radius: 30px;
+    padding: 5px 15px;
+    width: 350px;
+    margin: auto;
+  }
+  
+  .iconWrapper2 {
+    margin-right: 10px;
+  }
+  
+  .inputArea2 {
+    border: none;
+    outline: none;
+    background-color: transparent;
+    font-family: inherit;
+    width: 100%;
+  }
+  
+  .actionButton2 {
+    background-color: var(--Main-BackGround);
+    color: white;
+    border: none;
+    padding: 5px 15px;
+    border-radius: 20px;
+    margin-left: -10px;
+  }
+  
+  
+  .Breadcrumb{
+      display:flex ;
+      gap: 10px;
+      position: absolute;
+      top: 15%;
+      left: 8%;
+  }
+  .Breadcrumb a{
+      text-decoration: none;
+      color: var(--Main-BackGround);
+  }
+  .no-data-message{
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    font-weight: bold;
+    color: var(--Main-BackGround);
+    margin-top: 50px;
+    font-size: 30px;
+    text-decoration:underline;
+}
+
+
+.addauthorbtn{
+  display: flex;
+  gap: 5px;
+  position: absolute;
+  top: 15%;
+  right: 8%;
+  border: 1px solid black;
+  padding: 10px 15px;
+  border-radius: 25px;
+  cursor: pointer;
+}
+
+
+
+
+
+
+  @media (max-width:369px) {
+      .searchContainer2 {
+          width: 85%;
+        }
+  }
+/*!************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/next/dist/build/webpack/loaders/css-loader/src/index.js??ruleSet[1].rules[14].oneOf[12].use[2]!./node_modules/next/dist/build/webpack/loaders/postcss-loader/src/index.js??ruleSet[1].rules[14].oneOf[12].use[3]!./pages/AuthorAcc/Author.css ***!
+  \************************************************************************************************************************************************************************************************************************************************************************/
+.FirstSec{
+    width: 85%;
+    margin: auto;
+}
+.AuthorFir{
+    display: flex;
+    justify-content: space-between;
+    align-items: end;
+}
+.ImgContainer{
+    display: flex;
+    align-items: end;
+    gap: 10px;
+
+}
+.AuthorImg2{
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+}
+.EditionContainer{
+    display: flex;
+    gap: 8px;
+    align-items: center;
+
+}
+.EditionContainer img{
+    width: 30px;
+    height: 30px;
+}
+.EditionContainer p{
+    width: 100%;
+}
+.editbtn,.addbtn{
+    border: 1px solid black;
+    border-radius: 15px;
+    display: flex;
+    width: 157px;
+    padding: 7px 14px 0;
+    font-size: 15px;
+    gap: 5px;
+    cursor: pointer;
+}
+.modal-header .btn-close {
+    position: absolute;
+    left: 10px;
+    top: 15px;
+}
+
+.modal-header {
+    border-bottom: none;
+    border-top-left-radius: none;
+    border-top-right-radius: none;
+}
+
+
+
+
+
+
+
+
+.form-container {
+    max-width: 500px;
+    margin: 20px auto;
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    background-color: #f9f9f9;
+    direction: rtl;
+  }
+  
+  .form-row {
+    display: flex;
+    gap: 20px;
+    margin-bottom: 15px;
+  }
+  
+  .form-row input,
+  .form-row textarea {
+    flex: 1 1;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  }
+  
+  .form-row input::placeholder,
+  .form-row textarea::placeholder {
+    text-align: right;
+  }
+  
+  textarea {
+    height: 80px;
+    resize: none;
+  }
+  
+  .description {
+    flex: 1 1;
+  }
+  
+  .custom-file-upload {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 8px 12px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    cursor: pointer;
+    position: relative;
+  }
+  
+  .custom-file-upload input[type="file"] {
+    opacity: 0;
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    cursor: pointer;
+  }
+  
+  .icon-placeholder {
+    width: 20px;
+    height: 20px;
+    background-color: #ccc;
+    border-radius: 50%;
+    display: inline-block;
+  }
+  .upload {
+    width: 20px;
+    height: 20px;
+  }
+
+
+.booksubmitbtn{
+  background: var( --Main-BackGround);
+  color: white;
+  border: none;
+  border-radius: 20px;
+  padding: 5px 25px;
+}
+
+
+
+
+
+
+@media (max-width: 768px) {
+  .AuthorFir {
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+  }
+
+  .ImgContainer {
+      flex-direction: column;
+      align-items: center;
+      gap: 10px;
+  }
+
+  .AuthorImg2 {
+      width: 120px;
+      height: 120px;
+  }
+
+  .EditionContainer {
+      flex-direction: column;
+      gap: 5px;
+      align-items: center;
+  }
+
+  .editbtn, .addbtn {
+      width: auto;
+      padding: 5px 10px;
+      font-size: 14px;
+  }
+
+  .hr {
+      width: 80%;
+      margin: 20px auto;
+  }
+}
+
+
+@media (max-width: 768px) {
+  .form-container {
+      padding: 15px;
+      width: 90%;
+      max-width: 100%;
+  }
+
+  .form-row {
+      flex-direction: column;
+  }
+
+  .form-row input, 
+  .form-row textarea {
+      width: 100%;
+  }
+
+  .custom-file-upload {
+      flex-direction: column;
+      text-align: center;
+  }
+}
+  
+  
+
+  
+
+

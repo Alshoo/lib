@@ -32,7 +32,7 @@ export function AuthProvider({ children }) {
       const response = await axios.post("/api/login", data);
       await getUser();
 
-      console.log("response: " + JSON.stringify(response, null, 2));
+      // console.log("response: " + JSON.stringify(response, null, 2));
 
       toast.success("تم تسجيل الدخول بنجاح", {
         duration: 4000,
