@@ -1,7 +1,4 @@
 {
-  "/login/page": "app/login/page.js",
-  "/BookLists/page": "app/BookLists/page.js",
-  "/favicon.ico/route": "app/favicon.ico/route.js",
   "/page": "app/page.js",
-  "/Authors/page": "app/Authors/page.js"
+  "/favicon.ico/route": "app/favicon.ico/route.js"
 }
