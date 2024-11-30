@@ -1,18 +1,26 @@
 "use client";
 import "./register.css";
-import { useState } from 'react';
+import { useState } from "react";
 import useAuthContext from "@/hooks/useAuthContext";
 import Link from "next/link";
 
 export default function RegisterPage() {
-  const [email, setEmail] = useState('');
-  const [name, setName] = useState('');
-  const [password, setPassword] = useState('');
-  const [password_confirmation, setPasswordConfirmation] = useState('');
+  const [email, setEmail] = useState("");
+  const [name, setName] = useState("");
+  const [password, setPassword] = useState("");
+  const [password_confirmation, setPasswordConfirmation] = useState("");
   const { register, errors, loading } = useAuthContext();
 
   const handleRegister = async (e) => {
     e.preventDefault();
+    if (email === "" || password === "" || password_confirmation === "" || name === "") {
+      alert("من فضلك أكمل جميع الحقول.");
+      return;
+    }
+    if (password !== password_confirmation) {
+      alert("كلمة المرور وتأكيد كلمة المرور غير متطابقين.");
+      return;
+    }
     register({ name, email, password, password_confirmation });
   };
 
@@ -32,7 +40,11 @@ export default function RegisterPage() {
               placeholder="الاسم"
               onChange={(e) => setName(e.target.value)}
             />
-            {errors.name && <span className="error-message">{errors.name[0]}</span>}
+            {errors?.name && (
+              <span style={{ color: "red", fontSize: "12px", marginBottom: "5px" }}>
+                {errors.name[0]}
+              </span>
+            )}
 
             <input
               id="email"
@@ -43,7 +55,11 @@ export default function RegisterPage() {
               placeholder="البريد الإلكتروني"
               onChange={(e) => setEmail(e.target.value)}
             />
-            {errors.email && <span className="error-message">{errors.email[0]}</span>}
+            {errors?.email && (
+              <span style={{ color: "red", fontSize: "12px", marginBottom: "5px" }}>
+                {errors.email[0]}
+              </span>
+            )}
 
             <input
               id="password"
@@ -64,11 +80,16 @@ export default function RegisterPage() {
               value={password_confirmation}
               onChange={(e) => setPasswordConfirmation(e.target.value)}
             />
-            {errors.password && <span className="error-message">{errors.password[0]}</span>}
+            {errors?.password && (
+              <span style={{ color: "red", fontSize: "12px", marginBottom: "5px" }}>
+                {errors.password[0]}
+              </span>
+            )}
 
             <button type="submit" disabled={loading}>
-              إنشاء حساب
+              {loading ? "جاري إنشاء الحساب..." : "إنشاء حساب"}
             </button>
+
             <Link href="/login">تسجيل الدخول</Link>
           </form>
         </div>

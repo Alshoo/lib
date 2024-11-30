@@ -67,12 +67,7 @@
 
 }
 
-.error-message {
-    color: red;
-    font-size: 12px;
-    margin-bottom: 5px;
-  }
-  
+
 @media (max-width:700px) {
     .loginContainer form{
         width: 90%;

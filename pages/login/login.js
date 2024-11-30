@@ -11,12 +11,16 @@ export default function LoginPage() {
 
   const handleLogin = async (e) => {
     e.preventDefault();
+    if (email === "" || password === "") {
+      alert("من فضلك أكمل جميع الحقول.");
+      return;
+    }
     login({ email, password });
   };
 
   return (
     <div>
-      <div className='loginContainer'> 
+      <div className='loginContainer'>
         <form method="POST" onSubmit={handleLogin}>
           <h6>تسجيل الدخول</h6>
           <p>مكتبة غير محدودة من الكتب العربية</p>
@@ -41,11 +45,20 @@ export default function LoginPage() {
             onChange={(e) => setPassword(e.target.value)}
           />
 
-          {errors.email && <span className="error-message">{errors.email[0]}</span>}
-          {errors.password && <span className="error-message">{errors.password[0]}</span>}
+          {errors?.email && (
+            <span style={{ color: "red", fontSize: "12px", marginBottom: "5px" }}>
+              {errors.email[0]}
+            </span>
+          )}
+
+          {errors?.password && (
+            <span style={{ color: "red", fontSize: "12px", marginBottom: "5px" }}>
+              {errors.password[0]}
+            </span>
+          )}
 
           <button type="submit" disabled={loading}>
-            <span>تسجيل الدخول</span>
+            {loading ? "جاري تسجيل الدخول..." : "تسجيل الدخول"}
           </button>
 
           <Link href="/register">إنشاء حساب جديد</Link>
