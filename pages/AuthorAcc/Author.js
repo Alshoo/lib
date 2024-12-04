@@ -9,12 +9,13 @@ import "./Author.css";
 import AddBook from "./AddBook";
 import History from "./history";
 import AuthorUpdate from "./AuthorUpdate";
+import useAuthContext from "@/hooks/useAuthContext";
 
 export default function AuthorPage({AuthorID}) {
 
-
     const [authorData, setAuthorData] = useState([]);
     const [loading, setLoading] = useState(true); 
+    const { user } = useAuthContext();
 
     useEffect(() => {
       const fetchAuthors = async () => {
@@ -32,32 +33,23 @@ export default function AuthorPage({AuthorID}) {
       fetchAuthors();
     }, []);
 
-
-
-
-
-
-
     const [isPopupVisible1, setIsPopupVisible1] = useState(false);
-
     const togglePopup1 = () => {
       setIsPopupVisible1(!isPopupVisible1);
     };
     const [isPopupVisible2, setIsPopupVisible2] = useState(false);
-
     const togglePopup2 = () => {
       setIsPopupVisible2(!isPopupVisible2);
     };
 
 
+    
   return (
     <div>
       <br></br>
       <br></br>
 
       <div>
-
-
 
         {loading ? (
           <div className="spinner-container">
@@ -66,7 +58,6 @@ export default function AuthorPage({AuthorID}) {
         ) : (
    
           <div className="FirstSec">
-
 
           <div className="AuthorFir">
           <div className="ImgContainer">
@@ -89,19 +80,31 @@ export default function AuthorPage({AuthorID}) {
           
 
           <div className="EditionContainer">
-              <div
-              onClick={togglePopup2}
-               className="editbtn">
-                  <p>تعديل الصفحه</p>
-                  <Image src={edit} alt="ERR404" />
-              </div>
-              <div 
-              onClick={togglePopup1}
-              className="addbtn" 
-              >
-                  <p>اضافه كتاب</p>
-                  <Image src={add} alt="ERR404" />
-              </div>
+              {user && (
+                <>
+
+                {
+                  user.id == AuthorID&&(
+                    <div>
+                    <div
+                  onClick={togglePopup2}
+                   className="editbtn">
+                      <p>تعديل الصفحه</p>
+                      <Image src={edit} alt="ERR404" />
+                  </div>
+                    </div>
+                  )
+                }
+                
+                  <div 
+                  onClick={togglePopup1}
+                  className="addbtn" 
+                  >
+                      <p>اضافه كتاب</p>
+                      <Image src={add} alt="ERR404" />
+                  </div>
+                </>
+              )}
           </div>
           </div>
           <div className="hr"></div>
@@ -109,7 +112,6 @@ export default function AuthorPage({AuthorID}) {
           <p>
           {authorData.biography}
           </p>
-
 
           <div className="hr" 
           style={{
@@ -119,14 +121,10 @@ export default function AuthorPage({AuthorID}) {
           }}
           ></div>
 
-
       </div>
         )}
 
-
-
       </div>
-
 
       {isPopupVisible1 && (
       <AddBook AuthorID={AuthorID}/>
@@ -140,13 +138,7 @@ export default function AuthorPage({AuthorID}) {
        />
       )}
 
-
-
-
-
-
       <History AuthorID={AuthorID} AuthorName={authorData.name}/>
-
 
     </div>
   )
