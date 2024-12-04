@@ -19,19 +19,19 @@ export default function Footer() {
           <div className="footer-section">
             <h4>الاقسام</h4> 
             <ul>
-              <li><a href="#">الاسلام</a></li>
-              <li><a href="#">الاسلام</a></li>
-              <li><a href="#">الاسلام</a></li>
-              <li><a href="#">الاسلام</a></li>
+              <li><a href="/BookLists"> التاريخ الاسلامى </a></li>
+              <li><a href="/BookLists">الفراعنه</a></li>
+              <li><a href="/BookLists">التاريخ المعاصر</a></li>
+              <li><a href="/BookLists">الفتح</a></li>
             </ul>
           </div>
           <div className="footer-section">
             <h4>المجموعات</h4>
             <ul>
-              <li><a href="#">التاريخ</a></li>
-              <li><a href="#">التاريخ</a></li>
-              <li><a href="#">التاريخ</a></li>
-              <li><a href="#">التاريخ</a></li>
+              <li><a href="/BookLists">التاريخ</a></li>
+              <li><a href="/BookLists">الجغرافيا</a></li>
+              <li><a href="/BookLists">الفلك</a></li>
+              <li><a href="/BookLists">التاريخ</a></li>
             </ul>
           </div>
           <div className="footer-section">

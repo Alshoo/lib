@@ -71,6 +71,13 @@
 @media (max-width:700px) {
     .registerContainer form{
         width: 90%;
-        transform: translateY(15%);
+        margin: auto;
+        transform: translateY(10%);
+    }
+}
+@media (max-width:450px) {
+
+    .registerContainer input{
+        width: 100%;    
     }
 }

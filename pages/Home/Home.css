@@ -138,7 +138,7 @@
   background: #FFF;
   box-shadow: 1px 4px 10px 0px rgba(0, 0, 0, 0.30);
   display: flex;
-  width: 80%;
+  width: 95%;
   height: 100%;
   padding: 0;
   flex-direction: column;
@@ -165,12 +165,12 @@
 }
 .lastCardSec h6{
     color: #000;
-    font-size: 24px;
+    font-size: 22px;
     font-weight: 400;
 }
 .lastCardSec p{
     color:  #4E342E;
-    font-size: 16px;
+    font-size: 15px;
 }
 .lastCardSecAuthor{
     text-align: center;
@@ -179,6 +179,7 @@
     color: #000;
     font-size: 24px;
     font-weight: 400;
+    margin-top: 2px;
 }
 .bookNum{
     display:flex ;
@@ -205,7 +206,7 @@
   }
   
   .star {
-    font-size: 24px;
+    font-size: 22px;
     color: #ccc; 
   }
   
@@ -228,42 +229,140 @@
 
 
 
-@media (max-width: 1024px) and (min-width: 768px) {
-  .Maincards {
-    grid-template-columns: repeat(2, 1fr);
+@media (max-width: 1024px)  {
+  .MainHeadlineContainer {
+    transform: translateY(50%);
+    grid-template-columns: repeat(4, 1fr);
   }
+  .Maincards {
+    grid-template-columns: repeat(4, 1fr);
+  } 
+
+  .lastCardSec h6{
+    font-size: 18px;
+}
+.lastCardSec p{
+    font-size: 14px;
+}
+.star {
+  font-size: 17px;
+}
+
+.lastCardSec h6{
+  font-size: 18px;
+}
+
+.lastCardSecAuthor h6{
+  font-size: 18px;
+}
+.bookNum img{
+  transform: translate(-100%,41%);
+}
+
 }
 
 @media (max-width: 992px) {
   .MainHeadlineContainer {
-    width: 60%;
-    margin: auto;
-    transform: translateY(70%);
-    text-align: center;
+    transform: translateY(50%);
+    grid-template-columns: repeat(4, 1fr);
+  }
+  .Maincards {
+    grid-template-columns: repeat(4, 1fr);
+  }
+  .lastCardSec h6{
+    font-size: 16px;
+}
+.lastCardSec p{
+    font-size: 12px;
+}
+.star {
+  font-size: 15px;
+}
+.CardCont {
+  width: 100%;
+}
+
+
+.lastCardSecAuthor h6{
+  font-size: 16px;
+}
+.bookNum p{
+  font-size: 14px;
+}
+.bookNum img{
+  width: 15px;
+  height: 15px;
+  transform: translate(-10%,30%);
+}
+}
+@media (max-width: 791px) {
+  .lastCardSecAuthor h6{
+    font-size: 16px;
+  }
+  .bookNum p{
+    font-size: 14px;
+  }
+  .bookNum img{
+    width: 15px;
+    height: 15px;
+    transform: translate(-70%,30%);
+  }
+
+  .headLineText h4 {
+    line-height: 47px;
   }
 }
 @media (max-width: 752px) {
   .MainHeadlineContainer {
-    width: 80%;
-    margin: auto;
     transform: translateY(50%);
-    text-align: center;
+    grid-template-columns: repeat(4, 1fr);
   }
   .Maincards {
-    grid-template-columns: 1fr;
+    grid-template-columns: repeat(4, 1fr);
   }
-  .CardCont{
-   
-    width: 100%;
-    margin: auto;
+
+.lastCardSec{
+  transform: translateY(-35%);
+}
+.lastCardSec h6{
+  font-size: 13px;
+}
+.lastCardSec p{
+  font-size: 9px;
+}
+.star {
+font-size: 12px;
+transform: translateY(-120%);
+}
+.CardCont {
+  width: 100%;
+  height: 95%;
+}
+.lastCardSecAuthor h6{
+  font-size: 12px;
+}
+.bookNum p{
+  font-size: 10px;
+}
+.bookNum img{
+  width: 12px;
+  height: 12px;
+  transform: translate(-20%,20%);
+}
+.CardImg44 {
+  height: 110px;
+}
+.MainHeadlineContainer {
+  width: 60%;
 }
 }
+
 @media (max-width: 552px) {
   .MainHeadlineContainer {
-    width: 98%;
-    margin: auto;
-    transform: translateY(50%);
-    text-align: center;
+    grid-template-columns: repeat(3, 1fr);
+  }
+  .Maincards {
+    grid-template-columns: repeat(3, 1fr);
   }
   .headLineText h3 {
     line-height: 20px;
@@ -271,4 +370,125 @@
   .headLineText h4 {
     line-height: 37px;
   }
+  .lastCardSec h6{
+    font-size: 13px;
+  }
+  .lastCardSec p{
+    font-size: 9px;
+  }
+  .star {
+  font-size: 12px;
+  }
+
+
+.CardSecHeadLine {
+  padding: 10px 25px 0px;
+  width: 95%;
+  margin: auto;
+}
+.betweenItems1 p{
+font-size: 12px;
+}
+.betweenItems2 p{
+font-size: 12px;
+}
+.betweenItems2 {
+  display: flex;
+  gap: 10px;
+  text-decoration: none;
+  color: #fff;
+}
+.betweenItems1 img {
+  width: 25px;
+  height: 25px;
+}
+.betweenItems2 img {
+  transform: translateY(55%);
+  width: 10px;
+  height: 10px;
+}
+
+.CardCont {
+  width: 100%;
+}
+
+
+.MainHeadlineContainer {
+  width: 80%;
+}
+.headLineText h3 {
+  font-size: 24px;
+  line-height: 20px;
+}
+.headLineText h4 {
+  font-size: 20px;
+  line-height: 35px;
+  margin-bottom: 50px;
+}
+}
+
+@media (max-width: 402px) {
+  .MainHeadlineContainer {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .Maincards {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .lastCardSec h6{
+    font-size: 13px;
+  }
+  .lastCardSec p{
+    font-size: 9px;
+  }
+  .star {
+  font-size: 12px;
+  }
+
+
+.CardSecHeadLine {
+  padding: 10px 25px 0px;
+  width: 95%;
+  margin: auto;
+}
+.betweenItems1 p{
+font-size: 12px;
+}
+.betweenItems2 p{
+font-size: 12px;
+}
+.betweenItems2 {
+  display: flex;
+  gap: 10px;
+  text-decoration: none;
+  color: #fff;
+}
+.betweenItems1 img {
+  width: 25px;
+  height: 25px;
+}
+.betweenItems2 img {
+  transform: translateY(55%);
+  width: 10px;
+  height: 10px;
+}
+
+.CardCont {
+  width: 100%;
+}
+
+
+.MainHeadlineContainer {
+  width: 97%;
+}
+.headLineText h3 {
+  font-size: 26px;
+  line-height: 20px;
+}
+.headLineText h4 {
+  font-size: 22px;
+  line-height: 35px;
+  margin-bottom: 90px;
+}
+
 }

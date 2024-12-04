@@ -2,9 +2,8 @@
 import { useState, useEffect } from 'react';
 import Modal from 'react-bootstrap/Modal';
 import "./Authors.css";
-import "../AuthorAcc/Author.css";
 import Image from 'next/image';
-import upload from "../../public/Images/vechgfhor.png";
+import upload from "../../../public/Images/vechgfhor.png";
 import axios from 'axios'; 
 import Cookies from 'js-cookie';
 import toast, { Toaster } from 'react-hot-toast';
@@ -48,7 +47,7 @@ export default function AddAuthor() {
                 withCredentials: true,
             });
     
-            toast.success(`لقد تم انشاء المؤلف بنجاح`, {
+            toast.success(`لقد تم ارسال طلب انشاء المؤلف بنجاح`, {
                 duration: 4000,
                 position: "top-center",
                 style: {

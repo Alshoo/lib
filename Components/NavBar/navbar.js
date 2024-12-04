@@ -42,10 +42,10 @@ export default function CustomNavbar() {
   const { logout,user } = useAuthContext();
 
 
-  console.log(user);
-  console.log(user);
-  console.log(user);
-  console.log(user);
+  // console.log(user);
+  // console.log(user);
+  // console.log(user);
+  // console.log(user);
 
 
 

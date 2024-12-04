@@ -74,3 +74,9 @@
         transform: translateY(15%);
     }
 }
+@media (max-width:450px) {
+
+    .loginContainer input{
+        width: 100%;    
+    }
+}

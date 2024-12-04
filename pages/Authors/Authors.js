@@ -10,8 +10,6 @@ import CardImg from "../../public/Images/frame-3036.png";
 import bookicon from "../../public/Images/rret4.png";
 import arrow from "../../public/Images/arfegrow.png";
 import searchIcon from "@/public/Images/navSearch.png";
-import AddAuthor from "./addauthor";
-import add from "../../public/Images/unnbfbfamed.png";
 
 export default function AuthorsPage() {
   const [authors, setAuthors] = useState([]);
@@ -66,13 +64,6 @@ export default function AuthorsPage() {
       </div>
 
 
-              <div 
-              onClick={togglePopup1}
-              className="addauthorbtn" 
-              >
-                  <p>اضافه مؤلف</p>
-                  <Image src={add} alt="ERR404" />
-              </div>
 
 
       <div className="bookPageContainer">
@@ -135,9 +126,7 @@ export default function AuthorsPage() {
         
       </div>
 
-      {isPopupVisible1 && (
-      <AddAuthor/>
-      )}
+ 
 
 
 
