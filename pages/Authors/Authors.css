@@ -1,5 +1,5 @@
 .bookPageContainer {
-    margin-top: 80px;
+    margin-top: 30px;
   }
   .searchContainer2 {
     display: flex;
@@ -36,9 +36,11 @@
   .Breadcrumb{
       display:flex ;
       gap: 10px;
-      position: absolute;
-      top: 15%;
-      left: 8%;
+      float: left;
+      margin-top: 20px;
+      margin-bottom: 50px;
+      margin-left: 50px;
+      z-index: -1;
   }
   .Breadcrumb a{
       text-decoration: none;
@@ -73,6 +75,11 @@
 
 
 
+  @media (max-width:1000px) {
+    .Breadcrumb{
+      margin-left: 15px;
+  }
+  }
   @media (max-width:369px) {
       .searchContainer2 {
           width: 85%;

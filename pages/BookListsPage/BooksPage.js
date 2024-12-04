@@ -56,7 +56,9 @@ export default function BooksPage({ props }) {
         <Image src={arrow} alt="ERR404" />
         <p>{props?.searchParams ? Object.keys(props.searchParams)[0] : "القسم غير موجود"}</p>
       </div>
-
+      
+<br></br>
+<br></br>
       <div className="bookPageContainer">
         <div className="searchContainer2">
           <div className="iconWrapper2">

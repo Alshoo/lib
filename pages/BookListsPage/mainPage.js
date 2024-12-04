@@ -71,7 +71,8 @@ export default function MainPage() {
         <Link href="">اقسام الكتب</Link>
       </div>
 
-
+<br></br>
+<br></br>
           {/* <div className="adding">
           <div 
               onClick={togglePopup1}

@@ -53,7 +53,8 @@ export default function RecentPage() {
         <Image src={arrow} alt='ERR404'/>
         <Link href="">احدث الكتب</Link>
       </div>
-
+<br></br>
+<br></br>
       <div className="bookPageContainer">
         <div className="searchContainer2">
           <div className="iconWrapper2">

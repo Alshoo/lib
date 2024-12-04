@@ -1,5 +1,5 @@
 .bookPageContainer {
-    margin-top: 110px;
+    margin-top: 90px;
   }
   .searchContainer2 {
     display: flex;
@@ -34,16 +34,19 @@
   
   
   .Breadcrumb{
-      display:flex ;
-      gap: 10px;
-      position: absolute;
-      top: 15%;
-      left: 8%;
-  }
-  .Breadcrumb a{
-      text-decoration: none;
-      color: var(--Main-BackGround);
-  }
+    display:flex ;
+    gap: 10px;
+    float: left;
+    margin-top: 20px;
+    margin-bottom: 50px;
+    margin-left: 50px;
+    z-index: -1;
+}
+
+.Breadcrumb a{
+    text-decoration: none;
+    color: var(--Main-BackGround);
+}
   
 
     .no-data-message{
@@ -58,7 +61,26 @@
     }
 
 
-
+    @media (max-width:1000px) {
+      .Breadcrumb{
+        margin-left: 15px;
+    }
+    }
+    @media (max-width:591px) {
+      .Breadcrumb p{
+        font-size: 9px;
+      }
+      .Breadcrumb a{
+        font-size: 9px;
+      }
+      .Breadcrumb img{
+        width: 14px;
+        height: 14px;
+      }
+      .bookPageContainer {
+        margin-top: 10px;
+      }
+    }
   @media (max-width:369px) {
       .searchContainer2 {
           width: 85%;

@@ -64,7 +64,9 @@ export default function AuthorsPage() {
       </div>
 
 
-
+<br></br>
+<br></br>
+<br></br>
 
       <div className="bookPageContainer">
         <div className="searchContainer2">
