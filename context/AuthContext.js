@@ -3,6 +3,7 @@
 import { createContext, useEffect, useState } from "react";
 import axios from "../app/lib/axios";
 import toast, { Toaster } from "react-hot-toast";
+import Cookies from "js-cookie";
 
 export const AuthContext = createContext({});
 
@@ -18,12 +19,13 @@ export function AuthProvider({ children }) {
     try {
       const { data } = await axios.get("/api/user");
       setUser(data);
+      Cookies.set("user", JSON.stringify(data), { expires: 7 });
     } catch (e) {
       console.warn("Error ", e);
     }
   };
 
-  const login = async (data) => {
+  const login = async (data) => { 
     setErrors({});
     setLoading(true);
 
@@ -31,8 +33,6 @@ export function AuthProvider({ children }) {
       await csrf();
       const response = await axios.post("/api/login", data);
       await getUser();
-
-      // console.log("response: " + JSON.stringify(response, null, 2));
 
       toast.success("تم تسجيل الدخول بنجاح", {
         duration: 4000,
@@ -99,6 +99,7 @@ export function AuthProvider({ children }) {
     try {
       await axios.post("/api/logout");
       setUser(null);
+      Cookies.remove("user");
 
       toast.success("تم تسجيل الخروج بنجاح!", {
         duration: 4000,

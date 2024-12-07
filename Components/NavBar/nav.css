@@ -8,7 +8,7 @@
     box-shadow: 1px 4px 10px 0px rgba(0, 0, 0, 0.30);
     top: 0;
 } */
-.nav-link{
+.nav-link{ 
     display: flex;
     gap: 5px;
 }

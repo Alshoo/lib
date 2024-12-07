@@ -1,3 +1,5 @@
+
+
 import './Footer.css'
 import FaceBook from '../../public/Images/facebook-02.png'
 import Insta from '../../public/Images/instagram.png'
@@ -13,7 +15,15 @@ export default function Footer() {
     >
      <footer className="footer">
       <div className="footer-container">
-      
+
+
+      <div className="footer-left">
+          <div className="logo">Logo</div>
+          <p className="description">
+          أكبر منصة تواصل عربية مفتوحة لمشاركة الكتب الالكترونية والورقية، تسعى إلى إحداث أثر كبير في عالم المعرفة وإثراء المحتوى العربي على الانترنت والتسهيل على المؤلفين نشر الكتب وتفادي التكاليف الكبيرة للنشر والتسهيل على القراء اختيار الكتاب المناسب في أي مجال عن طريق عرض مراجعات واقتباسات للكتب و آراء المستخدمين في كل كتاب.
+          </p>
+    
+        </div>
 
         <div className="footer-right">
           <div className="footer-section">
@@ -47,27 +57,13 @@ export default function Footer() {
 
 
 
-        <div className="footer-left">
-          <div className="logo">Logo</div>
-          <p className="description">
-          أكبر منصة تواصل عربية مفتوحة لمشاركة الكتب الالكترونية والورقية، تسعى إلى إحداث أثر كبير في عالم المعرفة وإثراء المحتوى العربي على الانترنت والتسهيل على المؤلفين نشر الكتب وتفادي التكاليف الكبيرة للنشر والتسهيل على القراء اختيار الكتاب المناسب في أي مجال عن طريق عرض مراجعات واقتباسات للكتب و آراء المستخدمين في كل كتاب.
-          </p>
-    
-        </div>
+   
 
 
       </div>
      
         <div className='lastFooterSec'>
-        <div className='socialIcn'>
-            <Link href='#' >
-            <Image alt='ERR404' src={FaceBook} />
-            </Link>
-          
-            <Link href='#' >
-            <Image alt='ERR404' src={Insta} />
-            </Link>
-            </div>
+      
 
 
     <div className='lastFooterLink'>
@@ -78,7 +74,15 @@ export default function Footer() {
         
             
             
-
+    <div className='socialIcn'>
+            <Link href='#' >
+            <Image alt='ERR404' src={FaceBook} />
+            </Link>
+          
+            <Link href='#' >
+            <Image alt='ERR404' src={Insta} />
+            </Link>
+            </div>
 
            
         </div>

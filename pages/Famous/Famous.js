@@ -19,7 +19,7 @@ export default function FamousPage() {
   const [Books, setBooks] = useState([]);
   const [displayBooks, setDisplayBooks] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [searchTerm, setSearchTerm] = useState("");
+  const [searchTerm, setSearchTerm] = useState(""); 
 
   useEffect(() => {
     const fetchBooks = async () => {

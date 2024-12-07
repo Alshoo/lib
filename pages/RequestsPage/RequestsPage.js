@@ -13,8 +13,9 @@ const backendUrl = process.env.NEXT_PUBLIC_BACKEND_URL;
 export default function RequestsPage() {
 
 
-  const { user } = useAuthContext();
-  
+  // const { user } = useAuthContext();
+  const userData = Cookies.get("user");
+  const user = JSON.parse(userData);
  
   useEffect(() => {
     if (user === null || user === undefined ) {

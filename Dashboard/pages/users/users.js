@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from "react";
 import axios from "axios";
-import toast, { Toaster } from 'react-hot-toast'; // استيراد التنبيهات
+import toast, { Toaster } from 'react-hot-toast';
 import "./style.css";
 import Cookies from "js-cookie";
 

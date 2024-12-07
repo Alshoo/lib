@@ -5,6 +5,7 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import useAuthContext from "@/hooks/useAuthContext";
 import toast, { Toaster } from "react-hot-toast";
+import Cookies from "js-cookie";
 
 const backendUrl = process.env.NEXT_PUBLIC_BACKEND_URL;
 
@@ -12,7 +13,8 @@ const backendUrl = process.env.NEXT_PUBLIC_BACKEND_URL;
  
 
 export default function DashboardLayout({ children }) {
-  const { user } = useAuthContext();
+  const userData = Cookies.get("user");
+  const user = JSON.parse(userData);
   const [userDetails, setUserDetails] = useState([]);
   const [userRole, setUserRole] = useState("");
   const [loading, setLoading] = useState(true);

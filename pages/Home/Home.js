@@ -21,7 +21,7 @@ export default function Home() {
   const handleSearch = () => {
     if (searchTerm.trim() !== "") {
       router.push(`/Search/${encodeURIComponent(searchTerm)}`);
-    } else null  
+    } else null   
   };
 
   return (
@@ -39,7 +39,7 @@ export default function Home() {
             <h3>مرحبا بك فى قارئ</h3>
             <h4>استمتع بقراءة الكتب المفضلة لديك في أي وقت وأي مكان</h4>
           </div>
-          <Dropdown>
+
             <div className="searchContainer">
               <div className="iconWrapper">
                 <Image src={searchIcon} alt="ERR404" />
@@ -58,11 +58,7 @@ export default function Home() {
               </button>
             </div>
 
-            <Dropdown.Menu>
-              <Dropdown.Item href="/Authors">بحث عن مؤلف </Dropdown.Item>
-              <Dropdown.Item href="/BookLists">بحث عن قسم</Dropdown.Item>
-            </Dropdown.Menu>
-          </Dropdown>
+
 
           <div className="HeadLinks2">
             <Link href="/FamousBook">

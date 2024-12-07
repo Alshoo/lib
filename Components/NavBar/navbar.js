@@ -16,9 +16,16 @@ import Navbar from "react-bootstrap/Navbar";
 
 import useAuthContext from "@/hooks/useAuthContext";
 import Dropdown from "react-bootstrap/Dropdown";
+import Cookies from "js-cookie";
 
 export default function CustomNavbar() {
-  const { logout, user } = useAuthContext();
+  const { logout } = useAuthContext();
+
+
+  const userData = Cookies.get("user");
+  const user = JSON.parse(userData);
+
+
 
   return (
     <div className="MainNav1">

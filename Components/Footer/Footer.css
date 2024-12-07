@@ -1,10 +1,10 @@
-/* Footer.css */
+
 .footer {
   background-color: var(--Main-BackGround);
   color: #fff;
   padding: 40px 20px 20px 20px;
   font-family: Arial, sans-serif;
-  text-align: left;
+  text-align: right;
   margin-top: 100px;
 }
 

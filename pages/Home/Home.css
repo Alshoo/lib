@@ -13,7 +13,7 @@
 }
 
 .MainHeadlineContainer {
-  width: 40%;
+  width: 50%;
   margin: auto;
   transform: translateY(80%);
   text-align: center;
@@ -45,7 +45,7 @@
   background-color: #f5f5f5;
   border-radius: 30px;
   padding: 5px 15px;
-  width: 80%;
+  width: 100%;
   margin: auto;
 }
 
@@ -233,6 +233,7 @@
   .MainHeadlineContainer {
     transform: translateY(50%);
     grid-template-columns: repeat(4, 1fr);
+  width: 60%;
   }
   .Maincards {
     grid-template-columns: repeat(4, 1fr);
@@ -265,6 +266,7 @@
   .MainHeadlineContainer {
     transform: translateY(50%);
     grid-template-columns: repeat(4, 1fr);
+  width: 70%;
   }
   .Maincards {
     grid-template-columns: repeat(4, 1fr);
@@ -316,6 +318,7 @@
   .MainHeadlineContainer {
     transform: translateY(50%);
     grid-template-columns: repeat(4, 1fr);
+  width: 80%;
   }
   .Maincards {
     grid-template-columns: repeat(4, 1fr);
@@ -353,7 +356,7 @@ transform: translateY(-120%);
   height: 110px;
 }
 .MainHeadlineContainer {
-  width: 60%;
+  width: 80%;
 }
 }
 
@@ -395,7 +398,7 @@ font-size: 12px;
 .betweenItems2 {
   display: flex;
   gap: 10px;
-  text-decoration: none;
+  text-decoration: none; 
   color: #fff;
 }
 .betweenItems1 img {
@@ -430,7 +433,8 @@ font-size: 12px;
 @media (max-width: 402px) {
   .MainHeadlineContainer {
     grid-template-columns: repeat(2, 1fr);
-  }
+    width: 90%;
+      }
   .Maincards {
     grid-template-columns: repeat(2, 1fr);
   }
@@ -477,10 +481,6 @@ font-size: 12px;
   width: 100%;
 }
 
-
-.MainHeadlineContainer {
-  width: 97%;
-}
 .headLineText h3 {
   font-size: 26px;
   line-height: 20px;

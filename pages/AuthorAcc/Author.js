@@ -10,12 +10,14 @@ import AddBook from "./AddBook";
 import History from "./history";
 import AuthorUpdate from "./AuthorUpdate";
 import useAuthContext from "@/hooks/useAuthContext";
+import Cookies from "js-cookie";
 
 export default function AuthorPage({AuthorID}) {
 
     const [authorData, setAuthorData] = useState([]);
     const [loading, setLoading] = useState(true); 
-    const { user } = useAuthContext();
+    const userData = Cookies.get("user");
+    const user = JSON.parse(userData);
 
     useEffect(() => {
       const fetchAuthors = async () => {
