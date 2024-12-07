@@ -75,9 +75,10 @@ export default function CustomNavbar() {
                 <p>مؤلفو الكتب</p>
               </Nav.Link>
 
-              <Nav.Link href="/req">
+              {/* <Nav.Link href="/req"> */}
+              <Nav.Link href="/dashboard">
                 <Image src={List} alt="Home" />
-                <p>الطلبات</p>
+                <p>لوحه التحكم</p>
               </Nav.Link>
 
               <Nav.Link>
