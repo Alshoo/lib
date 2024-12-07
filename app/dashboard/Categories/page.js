@@ -5,7 +5,6 @@ import { useState, useEffect } from 'react';
 import toast, { Toaster } from 'react-hot-toast';
 import Category from "@/Dashboard/pages/Cat/Category";
 import useAuthContext from '@/hooks/useAuthContext';
-import Cookies from 'js-cookie';
 
 
 export default function DashCatPage() {
@@ -13,8 +12,17 @@ export default function DashCatPage() {
   const [loading, setLoading] = useState(true);
  
   // const { user } = useAuthContext();
-  const userData = Cookies.get("user");
-  const user = JSON.parse(userData);
+
+  const [user, setUser] = useState(null);
+    const updateUser = () => {
+      const userData = Cookies.get("user");
+      setUser(userData ? JSON.parse(userData) : null);
+    };
+    useEffect(() => {
+      updateUser();
+    }, []);
+
+
   const [userDetails, setUserDetails] = useState([]);
   const [userRole, setUserRole] = useState("");
 

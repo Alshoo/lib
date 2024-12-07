@@ -10,6 +10,7 @@ import CardImg from "../../public/Images/frame-3036.png";
 import bookicon from "../../public/Images/rret4.png";
 import arrow from "../../public/Images/arfegrow.png";
 import searchIcon from "@/public/Images/navSearch.png";
+import { motion } from "framer-motion";
 
 export default function AuthorsPage() {
   const [authors, setAuthors] = useState([]);
@@ -94,7 +95,13 @@ export default function AuthorsPage() {
     {displayAuthors.length > 0 ? (
       <div className="Maincards">
         {displayAuthors.map((author) => (
-          <Link href={`Authors/${author.id}`} className="CardCont" key={author.id}>
+              <motion.div
+              whileHover={{ scale: 1.06 }}
+              whileTap={{ scale: 0.95 }}
+              transition={{ duration: 0.2 }}
+              key={author.id}
+            >
+          <Link href={`Authors/${author.id}`} className="CardCont" >
             {author.profile_image ? (
               <img 
                 src={author.profile_image} 
@@ -116,6 +123,7 @@ export default function AuthorsPage() {
               </div>
             </div>
           </Link>
+          </motion.div>
         ))}
       </div>
     ) : (

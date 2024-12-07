@@ -17,13 +17,27 @@ import Navbar from "react-bootstrap/Navbar";
 import useAuthContext from "@/hooks/useAuthContext";
 import Dropdown from "react-bootstrap/Dropdown";
 import Cookies from "js-cookie";
+import { useEffect, useState } from "react";
 
 export default function CustomNavbar() {
   const { logout } = useAuthContext();
 
+  
+  const [user, setUser] = useState(null);
+  const updateUser = () => {
+    const userData = Cookies.get("user");
+    setUser(userData ? JSON.parse(userData) : null);
+  };
+  useEffect(() => {
+    updateUser();
+  }, []);
 
-  const userData = Cookies.get("user");
-  const user = JSON.parse(userData);
+  const handleLogout = () => {
+    setTimeout(() => {
+      Cookies.remove("user");
+      updateUser();
+    }, 2000);
+  };
 
 
 
@@ -101,7 +115,10 @@ export default function CustomNavbar() {
                         </Dropdown.Toggle>
 
                         <Dropdown.Menu>
-                          <Dropdown.Item onClick={logout}>
+                          <Dropdown.Item onClick={()=>{
+                            logout();
+                            handleLogout();
+                            }}>
                             تسجيل الخروج
                           </Dropdown.Item>
                         </Dropdown.Menu>

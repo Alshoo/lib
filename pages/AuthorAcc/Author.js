@@ -16,8 +16,15 @@ export default function AuthorPage({AuthorID}) {
 
     const [authorData, setAuthorData] = useState([]);
     const [loading, setLoading] = useState(true); 
-    const userData = Cookies.get("user");
-    const user = JSON.parse(userData);
+
+    const [user, setUser] = useState(null);
+    const updateUser = () => {
+      const userData = Cookies.get("user");
+      setUser(userData ? JSON.parse(userData) : null);
+    };
+    useEffect(() => {
+      updateUser();
+    }, []);
 
     useEffect(() => {
       const fetchAuthors = async () => {

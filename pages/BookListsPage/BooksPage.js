@@ -10,6 +10,7 @@ import defaultBook from "../../public/Images/defaultBook.jpg";
 import defaultPortifolio from "../../public/Images/defaultPortifolio.jpeg";
 import { useEffect, useState } from "react";
 import axios from "axios";
+import { motion } from "framer-motion";
 
 export default function BooksPage({ props }) {
   const [Books, setBooks] = useState([]);
@@ -81,7 +82,13 @@ export default function BooksPage({ props }) {
         ) : displayBooks.length > 0 ? (
           <div className="Maincards">
             {displayBooks.map((book) => (
-              <Link href={`/${book.id}`} className="CardCont" key={book.id}>
+                <motion.div
+                whileHover={{ scale: 1.06 }}
+                whileTap={{ scale: 0.95 }}
+                transition={{ duration: 0.2 }}
+                key={book.id}
+              >
+              <Link href={`/${book.id}`} className="CardCont">
                 {book.cover_image ? (
                   <img src={book.cover_image} alt="Book Cover" className="CardImg44" />
                 ) : (
@@ -94,6 +101,7 @@ export default function BooksPage({ props }) {
                 </div>
                 <RatingStars rating={3} />
               </Link>
+              </motion.div>
             ))}
           </div>
         ) : (

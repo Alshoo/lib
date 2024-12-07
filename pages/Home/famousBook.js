@@ -10,13 +10,11 @@ import Link from "next/link";
 import RatingStars from "./ratingStar";
 import { useEffect, useState } from "react";
 import axios from "axios";
+import { motion } from "framer-motion";
 
 export default function FamousBook() {
-
-
-  
   const [Books, setBooks] = useState([]);
-  const [loading, setLoading] = useState(true); 
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const fetchBooks = async () => {
@@ -26,18 +24,14 @@ export default function FamousBook() {
         setLoading(false);
       } catch (error) {
         console.error("Error fetching authors:", error);
-        setLoading(false); 
+        setLoading(false);
       }
     };
 
     fetchBooks();
   }, []);
 
-const popularBooks = Books.slice(0, 4);
-
-
-
-
+  const popularBooks = Books.slice(0, 4);
 
   return (
     <div className="CardSecContainer">
@@ -53,54 +47,43 @@ const popularBooks = Books.slice(0, 4);
         </Link>
       </div>
 
-
-
-
-  
-
-
       {loading ? (
-           <div className="spinner-container">
-           <div className="spinner"></div> 
-         </div>
+        <div className="spinner-container">
+          <div className="spinner"></div>
+        </div>
       ) : (
-       
         <div className="Maincards">
-
-     
-        {popularBooks.map((book) => (
-        <Link href={`${book.id}`} className="CardCont" key={book.id}>
-          
-              {book.cover_image ? (
-                <img 
-                  src={book.cover_image} 
-                  alt="Book Cover" 
-                  className="CardImg44"
-                />
-              ) : (
-                <Image 
-                  src={defaultBook} 
-                  alt="Default Book Cover" 
-                   className="CardImg44"
-                />
-              )}
-
-         <div className="lastCardSec">
-            <Image src={defaultPortifolio} className="AuthorImg" alt="ERR404" />
-            <h6>{book.title}</h6>
-            <p>{book.author.name}</p>
-          </div>
-          
-          <RatingStars rating={3} />
-        </Link>
-      ))}
-
-      </div>
+          {popularBooks.map((book) => (
+            <motion.div
+            whileHover={{ scale: 1.06 }}
+              whileTap={{ scale: 0.95 }}
+              transition={{ duration: 0.2 }}
+            >
+              <Link href={`${book.id}`} className="CardCont" key={book.id}>
+                {book.cover_image ? (
+                  <img
+                    src={book.cover_image}
+                    alt="Book Cover"
+                    className="CardImg44"
+                  />
+                ) : (
+                  <Image
+                    src={defaultBook}
+                    alt="Default Book Cover"
+                    className="CardImg44"
+                  />
+                )}
+                <div className="lastCardSec">
+                  <Image src={defaultPortifolio} className="AuthorImg" alt="ERR404" />
+                  <h6>{book.title}</h6>
+                  <p>{book.author.name}</p>
+                </div>
+                <RatingStars rating={3} />
+              </Link>
+            </motion.div>
+          ))}
+        </div>
       )}
-
-
-
-
     </div>
   );
 }

@@ -13,8 +13,18 @@ const backendUrl = process.env.NEXT_PUBLIC_BACKEND_URL;
  
 
 export default function DashboardLayout({ children }) {
-  const userData = Cookies.get("user");
-  const user = JSON.parse(userData);
+
+
+  const [user, setUser] = useState(null);
+    const updateUser = () => {
+      const userData = Cookies.get("user");
+      setUser(userData ? JSON.parse(userData) : null);
+    };
+    useEffect(() => {
+      updateUser();
+    }, []);
+    
+
   const [userDetails, setUserDetails] = useState([]);
   const [userRole, setUserRole] = useState("");
   const [loading, setLoading] = useState(true);

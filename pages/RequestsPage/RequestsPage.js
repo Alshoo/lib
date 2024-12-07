@@ -14,8 +14,15 @@ export default function RequestsPage() {
 
 
   // const { user } = useAuthContext();
-  const userData = Cookies.get("user");
-  const user = JSON.parse(userData);
+  const [user, setUser] = useState(null);
+    const updateUser = () => {
+      const userData = Cookies.get("user");
+      setUser(userData ? JSON.parse(userData) : null);
+    };
+    useEffect(() => {
+      updateUser();
+    }, []);
+    
  
   useEffect(() => {
     if (user === null || user === undefined ) {

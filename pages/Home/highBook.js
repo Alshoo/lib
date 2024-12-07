@@ -6,18 +6,13 @@ import axios from "axios";
 import Image from "next/image";
 import bookIcon from "../../public/Images/iconoir-book-solid.png";
 import LinkIcon from "../../public/Images/vector44.png";
-import CardImg from "../../public/Images/cardimage.png";
-import Editor from "../../public/Images/frame-2888.png";
 import Link from "next/link";
 import RatingStars from "./ratingStar";
+import { motion } from "framer-motion";
 
-
-
-
-export default  function HighBook() {
-   
+export default function HighBook() {
   const [Books, setBooks] = useState([]);
-  const [loading, setLoading] = useState(true); 
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const fetchBooks = async () => {
@@ -27,78 +22,67 @@ export default  function HighBook() {
         setLoading(false);
       } catch (error) {
         console.error("Error fetching authors:", error);
-        setLoading(false); 
+        setLoading(false);
       }
     };
 
     fetchBooks();
   }, []);
 
-
-
-const topRatedBooks = Books.slice(0, 4);
-
-
+  const topRatedBooks = Books.slice(0, 4);
 
   return (
     <div className="CardSecContainer">
       <div className="CardSecHeadLine">
         <div className="betweenItems1">
           <Image src={bookIcon} alt="ERR404" />
-          <p>الاعلي تقييما</p>
+          <p>الأعلى تقييما</p>
         </div>
 
         <Link href="/HighBook" className="betweenItems2">
           <p>المزيد</p>
           <Image src={LinkIcon} alt="ERR404" />
         </Link>
-      </div> 
-
-
-
-
-  
-
+      </div>
 
       {loading ? (
-           <div className="spinner-container">
-           <div className="spinner"></div> 
-         </div>
+        <div className="spinner-container">
+          <div className="spinner"></div>
+        </div>
       ) : (
-       
-        <div className="Maincards"> 
+        <div className="Maincards">
+          {topRatedBooks.map((book) => (
+            <motion.div
+            whileHover={{ scale: 1.06 }}
+              whileTap={{ scale: 0.95 }}
+              transition={{ duration: 0.2 }}
+            >
+              <Link href={`${book.id}`} className="CardCont" key={book.id}>
+                {book.cover_image ? (
+                  <img
+                    src={book.cover_image}
+                    alt="Book Cover"
+                    className="CardImg44"
+                  />
+                ) : (
+                  <Image
+                    src={defaultBook}
+                    alt="Default Book Cover"
+                    className="CardImg44"
+                  />
+                )}
+                <div className="lastCardSec">
+                  <Image src={defaultPortifolio} className="AuthorImg" alt="ERR404" />
+                  <h6>{book.title}</h6>
+                  <p>{book.author?.name || "غير معرف"}</p>
+                </div>
 
-        {topRatedBooks.map((book) => (
-          <Link href={`${book.id}`} className="CardCont" key={book.id}>
-              {book.cover_image ? (
-                <img 
-                  src={book.cover_image} 
-                  alt="Book Cover" 
-                  className="CardImg44"
-                />
-              ) : (
-                <Image 
-                  src={defaultBook} 
-                  alt="Default Book Cover" 
-                   className="CardImg44"
-                />
-              )}
-           <div className="lastCardSec">
-              <Image src={defaultPortifolio} className="AuthorImg" alt="ERR404" />
-              <h6>{book.title}</h6>
-              <p>{book.author.name}</p>
-            </div>
-            
-            <RatingStars rating={3} />
-          </Link>
-        ))}
-  
+                <RatingStars rating={3} />
+              </Link>
+            </motion.div>
+          ))}
         </div>
       )}
-
-
-
-
     </div>
   );
 }
