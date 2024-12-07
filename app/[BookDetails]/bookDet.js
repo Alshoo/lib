@@ -27,7 +27,7 @@ import { redirect } from "next/dist/server/api-utils";
 export default function BookDet({props}) {
 
 
-    
+     
   const [activeTab, setActiveTab] = useState('description');
 
   const toggleTab = (tab) => {

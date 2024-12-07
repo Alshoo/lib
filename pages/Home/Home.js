@@ -1,4 +1,4 @@
-"use client"
+"use client";
 
 import Image from "next/image";
 import "./Home.css";
@@ -10,18 +10,22 @@ import FamousBook from "./famousBook";
 import LatestBook from "./latestBook";
 import HighBook from "./highBook";
 import Authors from "./Authors";
-import Dropdown from 'react-bootstrap/Dropdown';
+import Dropdown from "react-bootstrap/Dropdown";
+import { useState } from "react";
+import { useRouter } from "next/navigation";
 
 export default function Home() {
+  const [searchTerm, setSearchTerm] = useState("");
+  const router = useRouter();
 
+  const handleSearch = () => {
+    if (searchTerm.trim() !== "") {
+      router.push(`/Search/${encodeURIComponent(searchTerm)}`);
+    } else null  
+  };
 
   return (
     <div>
-
-
-
-
-
       <div className="CustomizeHeight">
         <div className="MainHomeImg">
           <Image src={HomeImage} alt="ERR404" />
@@ -36,33 +40,29 @@ export default function Home() {
             <h4>استمتع بقراءة الكتب المفضلة لديك في أي وقت وأي مكان</h4>
           </div>
           <Dropdown>
-          <div className="searchContainer">
-            <div className="iconWrapper">
-              <Image src={searchIcon} alt="ERR404" />
+            <div className="searchContainer">
+              <div className="iconWrapper">
+                <Image src={searchIcon} alt="ERR404" />
+              </div>
+
+              <input
+                type="text"
+                placeholder="ابحث عن مؤلف او كتاب"
+                className="inputArea"
+                value={searchTerm}
+                onChange={(e) => setSearchTerm(e.target.value)}
+              />
+
+              <button className="actionButton" id="dropdown-basic" onClick={handleSearch}>
+                بحث
+              </button>
             </div>
 
-            <input
-              type="text"
-              placeholder="ابحث عن مؤلف او قسم كتب"
-              className="inputArea"
-            />
-
-            <Dropdown.Toggle className="actionButton" id="dropdown-basic">
-            بحث
-            </Dropdown.Toggle>
-          </div>
-
-
-       
             <Dropdown.Menu>
               <Dropdown.Item href="/Authors">بحث عن مؤلف </Dropdown.Item>
               <Dropdown.Item href="/BookLists">بحث عن قسم</Dropdown.Item>
             </Dropdown.Menu>
           </Dropdown>
-
-
-
-
 
           <div className="HeadLinks2">
             <Link href="/FamousBook">
@@ -78,23 +78,13 @@ export default function Home() {
         </div>
       </div>
 
+      <FamousBook />
 
+      <LatestBook />
 
+      <HighBook />
 
-
-
-    <FamousBook/>
-
-
-    <LatestBook/>
-
-
-    <HighBook/>
-
-    
-    <Authors/>
-
-
+      <Authors />
     </div>
   );
 }
