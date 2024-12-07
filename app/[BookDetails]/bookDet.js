@@ -106,7 +106,7 @@ export default function BookDet({props}) {
       ) : (
        
         <div className="book-section">
-      
+       
 
 
     <div className="firstSection">
@@ -148,9 +148,9 @@ export default function BookDet({props}) {
 
 
             <div className="rating">
-                    <span>45</span>
-                    <span>{Details.views_count}</span>
-                    <span>4567</span>
+                    <span>{Details.downloads_count||0}</span>
+                    <span>{Details.views_count||0}</span>
+                    <span>{Details.average_rating||0}</span>
                 </div>
             <div className="ratingIcons">
               <div>

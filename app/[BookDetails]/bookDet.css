@@ -67,6 +67,8 @@
 .info {
     margin: 0 auto;
     max-width: 300px;
+    text-align: right!important;
+
 }
 
 .info p {
