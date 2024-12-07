@@ -53,8 +53,9 @@ export default function Authors() {
               whileHover={{ scale: 1.06 }}
               whileTap={{ scale: 0.95 }}
               transition={{ duration: 0.2 }}
+              key={author.id}
             >
-              <Link href={`Authors/${author.id}`} className="CardCont" key={author.id}>
+              <Link href={`Authors/${author.id}`} className="CardCont" >
                 {author.profile_image ? (
                   <img
                     src={author.profile_image}

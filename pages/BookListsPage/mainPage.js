@@ -8,6 +8,7 @@ import arrow2 from "../../public/Images/vectogfr-2.png";
 import axios from "axios";
 import add from "../../public/Images/unnbfbfamed.png";
 import AddMainCat from "./addMainCat";
+import { motion } from "framer-motion";
 
 
 
@@ -42,7 +43,7 @@ export default function MainPage() {
     category.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
     category.categories.some(subCategory =>
       subCategory.name.toLowerCase().includes(searchTerm.toLowerCase())
-    )
+    ) 
   );
 
 
@@ -121,15 +122,26 @@ export default function MainPage() {
                     />
                   </div>
                   {openSection === category.name && (
+                     
                     <div className="dropdown-content">
+                      
                       {category.categories.map((subCategory) => (
+                       
                         <Link
                           href={`/BookLists/${category.name} ?${subCategory.name}`}
                           className="dropdown-item"
                           key={subCategory.id}
                         >
+                           <motion.div
+                      whileHover={{ scale: 1.2 }}
+                        whileTap={{ scale: 0.75 }}
+                        transition={{ duration: 0.2 }}
+                      >
                           {subCategory.name}
+                          
+                    </motion.div>
                         </Link>
+                     
                       ))}
                     </div>
                   )}

@@ -88,7 +88,7 @@ export default function RecentPage() {
                       <h6>{book.title}</h6>
                       <p>{book.author.name}</p>
                     </div>
-                    <RatingStars rating={3} />
+                    <RatingStars rating={Books.average_rating||0} />
                   </Link>
                 ))}
               </div>

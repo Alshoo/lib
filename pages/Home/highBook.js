@@ -56,8 +56,9 @@ export default function HighBook() {
             whileHover={{ scale: 1.06 }}
               whileTap={{ scale: 0.95 }}
               transition={{ duration: 0.2 }}
+              key={book.id}
             >
-              <Link href={`${book.id}`} className="CardCont" key={book.id}>
+              <Link href={`${book.id}`} className="CardCont">
                 {book.cover_image ? (
                   <img
                     src={book.cover_image}
@@ -77,7 +78,7 @@ export default function HighBook() {
                   <p>{book.author?.name || "غير معرف"}</p>
                 </div>
 
-                <RatingStars rating={3} />
+                <RatingStars rating={Books.average_rating||0} />
               </Link>
             </motion.div>
           ))}

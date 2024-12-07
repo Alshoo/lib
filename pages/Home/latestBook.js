@@ -79,7 +79,7 @@ export default function LatestBook() {
                   <p>{book.author?.name || "غير معرف"}</p>
                 </div>
 
-                <RatingStars rating={3} />
+                <RatingStars rating={Books.average_rating||0} />
               </Link>
             </motion.div>
           ))}

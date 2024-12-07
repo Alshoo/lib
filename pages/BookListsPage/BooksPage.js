@@ -14,6 +14,7 @@ import { motion } from "framer-motion";
 
 export default function BooksPage({ props }) {
   const [Books, setBooks] = useState([]);
+  const [Rate, setٌRate] = useState([]);
   const [displayBooks, setDisplayBooks] = useState([]);
   const [loading, setLoading] = useState(true);
   const [searchTerm, setSearchTerm] = useState("");
@@ -26,6 +27,7 @@ export default function BooksPage({ props }) {
         `${process.env.NEXT_PUBLIC_BACKEND_URL}/api/books?per_page=1520&search=${searchQuery}`
       );
       setBooks(response.data.data);
+      setٌRate(response.data.average_rating);
       setDisplayBooks(response.data.data); 
       setLoading(false);
     } catch (error) {
@@ -83,8 +85,8 @@ export default function BooksPage({ props }) {
           <div className="Maincards">
             {displayBooks.map((book) => (
                 <motion.div
-                whileHover={{ scale: 1.06 }}
-                whileTap={{ scale: 0.95 }}
+                whileHover={{ scale: 1.03 }}
+                whileTap={{ scale: 0.75 }}
                 transition={{ duration: 0.2 }}
                 key={book.id}
               >
@@ -99,7 +101,7 @@ export default function BooksPage({ props }) {
                   <h6>{book.title}</h6>
                   <p>{book.author.name}</p>
                 </div>
-                <RatingStars rating={3} />
+                <RatingStars rating={Rate||0} />
               </Link>
               </motion.div>
             ))}

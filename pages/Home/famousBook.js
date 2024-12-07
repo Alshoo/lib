@@ -14,6 +14,7 @@ import { motion } from "framer-motion";
 
 export default function FamousBook() {
   const [Books, setBooks] = useState([]);
+  const [Rate, setٌRate] = useState([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -32,6 +33,7 @@ export default function FamousBook() {
   }, []);
 
   const popularBooks = Books.slice(0, 4);
+
 
   return (
     <div className="CardSecContainer">
@@ -58,8 +60,9 @@ export default function FamousBook() {
             whileHover={{ scale: 1.06 }}
               whileTap={{ scale: 0.95 }}
               transition={{ duration: 0.2 }}
+              key={book.id}
             >
-              <Link href={`${book.id}`} className="CardCont" key={book.id}>
+              <Link href={`${book.id}`} className="CardCont" >
                 {book.cover_image ? (
                   <img
                     src={book.cover_image}
@@ -78,7 +81,7 @@ export default function FamousBook() {
                   <h6>{book.title}</h6>
                   <p>{book.author.name}</p>
                 </div>
-                <RatingStars rating={3} />
+                <RatingStars rating={Books.average_rating||0} />
               </Link>
             </motion.div>
           ))}
