@@ -15,154 +15,107 @@ import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 
 import useAuthContext from "@/hooks/useAuthContext";
-import Dropdown from 'react-bootstrap/Dropdown';
-
-
- 
+import Dropdown from "react-bootstrap/Dropdown";
 
 export default function CustomNavbar() {
-
-
-  // useEffect(() => {
-  //   if (typeof window !== "undefined") {
-  //     require("bootstrap/dist/js/bootstrap.bundle.min.js");
-  //   }
-  // }, []);
-
-
-
-
-
-
-
-
-
-
-  
-  const { logout,user } = useAuthContext();
-
-
-  // console.log(user);
-  // console.log(user);
-  // console.log(user);
-  // console.log(user);
-
-
+  const { logout, user } = useAuthContext();
 
   return (
     <div className="MainNav1">
-    <div className="MainNav2">
-      <Navbar collapseOnSelect expand="lg" className="bg-body-tertiary">
-        <Container className="MainNavContainer">
-          <Navbar.Brand href="/">Logo</Navbar.Brand>
-          <Navbar.Toggle aria-controls="responsive-navbar-nav" />
-          <Navbar.Collapse id="responsive-navbar-nav">
-            <div className="NavBarItrms">
-              <div>
-            <Nav>
-              <Nav.Link href="/">
-                <Image src={Home} alt="Home" />
-                <p>الرئيسية</p>
-              </Nav.Link>
+      <div className="MainNav2">
+        <Navbar collapseOnSelect expand="lg" className="bg-body-tertiary">
+          <Container className="MainNavContainer">
+            <Navbar.Brand href="/">Logo</Navbar.Brand>
+            <Navbar.Toggle aria-controls="responsive-navbar-nav" />
+            <Navbar.Collapse id="responsive-navbar-nav">
+              <div className="NavBarItrms">
+                <div>
+                  <Nav>
+                    <Nav.Link href="/">
+                      <Image src={Home} alt="Home" />
+                      <p>الرئيسية</p>
+                    </Nav.Link>
 
-              <Nav.Link href="/BookLists">
-                <Image src={Book} alt="Home" />
-                <p>أقسام الكتب</p>
-              </Nav.Link>
+                    <Nav.Link href="/BookLists">
+                      <Image src={Book} alt="Home" />
+                      <p>أقسام الكتب</p>
+                    </Nav.Link>
 
-              <Nav.Link href="/Authors">
-                <Image src={Group} alt="Home" />
-                <p>مؤلفو الكتب</p>
-              </Nav.Link>
+                    <Nav.Link href="/Authors">
+                      <Image src={Group} alt="Home" />
+                      <p>مؤلفو الكتب</p>
+                    </Nav.Link>
 
-              {/* <Nav.Link href="/req"> */}
-              <Nav.Link href="/dashboard">
-                <Image src={List} alt="Home" />
-                <p>لوحه التحكم</p>
-              </Nav.Link>
+                    {user && (
+                      <Nav.Link href="/dashboard">
+                        <Image src={List} alt="Home" />
+                        <p>لوحه التحكم</p>
+                      </Nav.Link>
+                    )}
 
-              <Nav.Link>
+                    <Nav.Link>
+                      <Dropdown>
+                        <Dropdown.Toggle id="dropdown-basic2">
+                          <Image src={Search} alt="Home" />
+                          <p>بحث</p>
+                        </Dropdown.Toggle>
+                        <Dropdown.Menu>
+                          <Dropdown.Item>
+                            <Link href="/Authors" className="searchDrop">
+                              بحث عن مؤلف
+                            </Link>
+                          </Dropdown.Item>
 
- 
-            
+                          <Dropdown.Item>
+                            <Link href="/BookLists" className="searchDrop">
+                              بحث عن قسم
+                            </Link>
+                          </Dropdown.Item>
+                        </Dropdown.Menu>
+                      </Dropdown>
+                    </Nav.Link>
+                  </Nav>
+                </div>
 
+                <div className="SignBtn">
+                  {user ? (
+                    <div className="user-menu">
+                      <Dropdown>
+                        <Dropdown.Toggle
+                          variant="none"
+                          className="MAinDropdownContainer"
+                        >
+                          <p>{user.name}</p>
+                          <Image
+                            src={defaultPortifolio}
+                            className="UserAvatar"
+                            alt="ERR404"
+                          />
+                        </Dropdown.Toggle>
 
-
-                <Dropdown>
-                <Dropdown.Toggle id="dropdown-basic2">
-                <Image src={Search} alt="Home" />
-                <p  >بحث</p>
-                </Dropdown.Toggle>
-                <Dropdown.Menu>
-
-              <Dropdown.Item > 
-              <Link href="/Authors" className="searchDrop">بحث عن مؤلف</Link>
-              </Dropdown.Item>
-
-                     <Dropdown.Item > 
-              <Link href="/BookLists" className="searchDrop">بحث عن قسم </Link>
-              </Dropdown.Item>
-
-
-                </Dropdown.Menu>
-              </Dropdown>
-              </Nav.Link>
-            </Nav>
-            </div>
-
-
-
-  
-
-<div className="SignBtn">
-      {user ? (
-        <div className="user-menu">
-      
-      
-
-
-          <Dropdown>
-      <Dropdown.Toggle variant="none"  className="MAinDropdownContainer">
-        <p>{user.name}</p>
-        <Image src={defaultPortifolio} className="UserAvatar" alt="ERR404"/>
-      </Dropdown.Toggle>
-
-      <Dropdown.Menu>
-        {/* <Dropdown.Item href="#/action-1">تعديل الملف الشخصي</Dropdown.Item> */}
-        <Dropdown.Item onClick={logout}>تسجيل الخروج</Dropdown.Item>
-      </Dropdown.Menu>
-    </Dropdown>
-
-
-
-    </div>
-
-      ) : (
-        <>
-          <Link href="/register" className="CreateBtn" >
-            انشاء حساب
-          </Link>
-          <Link href="/login" className="loginBtn">
-            تسجيل الدخول
-          </Link>
-        </>
-      )}
-    </div>
-
-
-
-
-
-
-
-
-
-            </div>
-            
-          </Navbar.Collapse>
-        </Container>
-      </Navbar>
-    </div>
+                        <Dropdown.Menu>
+                          <Dropdown.Item onClick={logout}>
+                            تسجيل الخروج
+                          </Dropdown.Item>
+                        </Dropdown.Menu>
+                      </Dropdown>
+                    </div>
+                  ) : (
+                    <>
+                      <Link href="/register" className="CreateBtn">
+                        انشاء حساب
+                      </Link>
+                      <Link href="/login" className="loginBtn">
+                        تسجيل الدخول
+                      </Link>
+                    </>
+                  )}
+                </div>
+              </div>
+            </Navbar.Collapse>
+          </Container>
+        </Navbar>
+      </div>
     </div>
   );
 }
