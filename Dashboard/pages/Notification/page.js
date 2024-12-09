@@ -33,7 +33,7 @@ export default function NotiPage() {
             },
             withCredentials: true,
           })
-
+ 
       if (response?.status === 200) {
         toast.success("تم إرسال الإشعار بنجاح");
         setMessage("");
@@ -47,6 +47,20 @@ export default function NotiPage() {
     }
   };
 
+
+
+
+  const [loading, setLoading] = useState(true);
+      setTimeout(() => {
+        setLoading(false);
+      }, 1001); 
+    if (loading) {
+      return (
+        <div className="spinner-container">
+          <div className="spinner"></div>
+        </div>
+      );
+    }
   return (
     <div>
       <Toaster position="top-center" toastOptions={{ duration: 4000 }} />
