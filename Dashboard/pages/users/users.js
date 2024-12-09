@@ -15,7 +15,13 @@ export default function Users() {
   useEffect(() => {
     const fetchUsers = async () => {
       try {
-        const response = await axios.get(`${backendUrl}/api/users`);
+        const csrfToken = Cookies.get('XSRF-TOKEN');
+        const response = await axios.get(`${backendUrl}/api/users`, {
+          headers: {
+            'X-XSRF-TOKEN': csrfToken,
+          },
+          withCredentials: true,
+        });
         setUsers(response.data.data);
         setLoading(false);
       } catch (error) {

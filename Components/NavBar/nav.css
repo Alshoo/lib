@@ -84,6 +84,25 @@
     text-decoration: none;
     color: var(--Main-BackGround);
 }
+.notif i{
+    margin-left: 2px;
+    font-size: 20px;
+    transform: translateY(10%);
+}
+.notif span{
+    transform: translate(-80%,0);
+    padding: 5px;
+    font-size: 8px;
+    width: 15px;
+    height: 15px;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    background: var(--Main-BackGround);
+    color: antiquewhite;
+    border-radius: 50%;
+    z-index: 99;
+}
 @media (max-width:992px) {
     .NavBarItrms{
         justify-content: center;

@@ -5,6 +5,7 @@ import { useState, useEffect } from 'react';
 import toast, { Toaster } from 'react-hot-toast';
 import Category from "@/Dashboard/pages/Cat/Category";
 import useAuthContext from '@/hooks/useAuthContext';
+import Cookies from 'js-cookie';
 
 
 export default function DashCatPage() {
@@ -62,7 +63,7 @@ export default function DashCatPage() {
 
   
   }, [userRole,user]);
-  console.log(userRole);
+
   
   if (loading) {
     return (

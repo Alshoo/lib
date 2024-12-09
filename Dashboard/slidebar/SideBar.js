@@ -3,7 +3,7 @@ import Link from "next/link";
 import "../style.css"; 
 import '@fortawesome/fontawesome-free/css/all.min.css';
 
-export default function Sidebar() {
+export default function Sidebar() { 
 
   return (
     <div lang="en" dir="ltr" style={{height:"100vh"}}>

@@ -13,21 +13,24 @@ import defaultPortifolio from "../../public/Images/defaultPortifolio.jpeg";
 import Container from "react-bootstrap/Container";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
-
-import useAuthContext from "@/hooks/useAuthContext";
 import Dropdown from "react-bootstrap/Dropdown";
+import { Badge } from "react-bootstrap";
+import useAuthContext from "@/hooks/useAuthContext";
 import Cookies from "js-cookie";
 import { useEffect, useState } from "react";
+import '@fortawesome/fontawesome-free/css/all.min.css';
+
 
 export default function CustomNavbar() {
   const { logout } = useAuthContext();
-
-  
   const [user, setUser] = useState(null);
+  const [notifications, setNotifications] = useState(3);
+
   const updateUser = () => {
     const userData = Cookies.get("user");
     setUser(userData ? JSON.parse(userData) : null);
   };
+
   useEffect(() => {
     updateUser();
   }, []);
@@ -38,8 +41,6 @@ export default function CustomNavbar() {
       updateUser();
     }, 2000);
   };
-
-
 
   return (
     <div className="MainNav1">
@@ -58,18 +59,18 @@ export default function CustomNavbar() {
                     </Nav.Link>
 
                     <Nav.Link href="/BookLists">
-                      <Image src={Book} alt="Home" />
+                      <Image src={Book} alt="Books" />
                       <p>أقسام الكتب</p>
                     </Nav.Link>
 
                     <Nav.Link href="/Authors">
-                      <Image src={Group} alt="Home" />
+                      <Image src={Group} alt="Authors" />
                       <p>مؤلفو الكتب</p>
                     </Nav.Link>
 
                     {user && (
                       <Nav.Link href="/dashboard">
-                        <Image src={List} alt="Home" />
+                        <Image src={List} alt="Dashboard" />
                         <p>لوحه التحكم</p>
                       </Nav.Link>
                     )}
@@ -77,7 +78,7 @@ export default function CustomNavbar() {
                     <Nav.Link>
                       <Dropdown>
                         <Dropdown.Toggle id="dropdown-basic2">
-                          <Image src={Search} alt="Home" />
+                          <Image src={Search} alt="Search" />
                           <p>بحث</p>
                         </Dropdown.Toggle>
                         <Dropdown.Menu>
@@ -94,6 +95,13 @@ export default function CustomNavbar() {
                           </Dropdown.Item>
                         </Dropdown.Menu>
                       </Dropdown>
+                    </Nav.Link>
+
+                    <Nav.Link href="/notification" className="notif">
+                      
+                    <span>{notifications}</span>
+                      <i class="fa-regular fa-bell"></i>
+                      <p>الإشعارات</p>
                     </Nav.Link>
                   </Nav>
                 </div>
@@ -115,10 +123,10 @@ export default function CustomNavbar() {
                         </Dropdown.Toggle>
 
                         <Dropdown.Menu>
-                          <Dropdown.Item onClick={()=>{
+                          <Dropdown.Item onClick={() => {
                             logout();
                             handleLogout();
-                            }}>
+                          }}>
                             تسجيل الخروج
                           </Dropdown.Item>
                         </Dropdown.Menu>
