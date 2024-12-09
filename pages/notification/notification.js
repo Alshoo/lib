@@ -10,6 +10,7 @@ import Cookies from "js-cookie";
 import defaultPortifolio from "../../public/Images/defaultPortifolio.jpeg";
 import arrow from "../../public/Images/arfegrow.png";
 import { motion } from "framer-motion";
+import toast, { Toaster } from "react-hot-toast";
 
 export default function NotificationPage() {
   const [notifications, setNotifications] = useState([]);
@@ -21,9 +22,9 @@ export default function NotificationPage() {
       const user = Cookies.get("user") ? JSON.parse(Cookies.get("user")) : null;
       if (user) {
         const response = await axios.get(
-          `${process.env.NEXT_PUBLIC_BACKEND_URL}/api/notifications?user_id=${user.id}`
+          `${process.env.NEXT_PUBLIC_BACKEND_URL}/api/notifications/user`
         );
-        setNotifications(response.data.notifications);
+        setNotifications(response.data.data);
       }
       setLoading(false);
     } catch (error) {
@@ -32,114 +33,85 @@ export default function NotificationPage() {
     }
   };
 
+  const markAsRead = async (notificationId) => {
+    try {
+      const response = await axios.post(
+        `${process.env.NEXT_PUBLIC_BACKEND_URL}/api/notifications/read/${notificationId}`,
+        {},
+        {
+          headers: {
+            "X-XSRF-TOKEN": Cookies.get("XSRF-TOKEN"),
+          },
+          withCredentials: true,
+        }
+      );
+
+      if (response.status === 200) {
+        setNotifications((prevNotifications) =>
+          prevNotifications.filter((notification) => notification.id !== notificationId)
+        );
+        toast.success("تم التمييز على انها مقرؤه ");
+      } else {
+        toast.error("فشل في قراءة الإشعار");
+      }
+    } catch (error) {
+      toast.error("حدث خطأ أثناء قراءة الإشعار");
+      console.error("Error marking notification as read:", error);
+    }
+  };
+
   useEffect(() => {
     fetchNotifications();
   }, []);
 
-
   return (
-   <div>
-      <div className="Breadcrumb">
-        <Link href="/">الرئيسية</Link>
-        <Image src={arrow} alt="ERR404" />
-        <p>الإشعارات</p>
-      </div>
-      <br></br>
-      <br></br>
-      <div className="notificationsPageContainer">
-        {loading ? (
-          <div className="spinner-container">
-            <div className="spinner"></div>
-          </div>
-        ) : notifications.length > 0 ? (
-          <div className="notificationsList">
-            {notifications.map((notification) => (
-              <motion.div
-                whileHover={{ scale: 1.03 }}
-                whileTap={{ scale: 0.95 }}
-                transition={{ duration: 0.2 }}
-                key={notification.id}
-                className="notificationCard"
-              >
-                <div className="notificationContent">
-                  <Image
-                    src={defaultPortifolio}
-                    alt="Notification Icon"
-                    className="notificationIcon"
-                  />
-                  <div>
-                    <h6>{notification.title}</h6>
-                    <p>{notification.message}</p>
-                  </div>
-                </div>
-                <p className="notificationTime">{notification.created_at}</p>
-              </motion.div>
-            ))}
-          </div>
-        ) : (
-          <div className="no-data-message">لا توجد إشعارات حاليا</div>
-        )}
-        <div className="notificationsList">
-        <motion.div
-          whileHover={{ scale: 1.03 }}
-          whileTap={{ scale: 0.95 }}
-          transition={{ duration: 0.2 }}
-          className="notificationCard"
-        >
-          <div className="notificationContent">
-            <Image
-              src={defaultPortifolio}
-              alt="Notification Icon"
-              className="notificationIcon"
-            />
-            <div>
-              <h6>notification.title</h6>
-              <p>notification.message</p>
-            </div>
-          </div>
-          <p className="notificationTime">notification.created_at</p>
-        </motion.div>
-        <motion.div
-          whileHover={{ scale: 1.03 }}
-          whileTap={{ scale: 0.95 }}
-          transition={{ duration: 0.2 }}
-          className="notificationCard"
-        >
-          <div className="notificationContent">
-            <Image
-              src={defaultPortifolio}
-              alt="Notification Icon"
-              className="notificationIcon"
-            />
-            <div>
-              <h6>notification.title</h6>
-              <p>notification.message</p>
-            </div>
-          </div>
-          <p className="notificationTime">notification.created_at</p>
-        </motion.div>
-        <motion.div
-          whileHover={{ scale: 1.03 }}
-          whileTap={{ scale: 0.95 }}
-          transition={{ duration: 0.2 }}
-          className="notificationCard"
-        >
-          <div className="notificationContent">
-            <Image
-              src={defaultPortifolio}
-              alt="Notification Icon"
-              className="notificationIcon"
-            />
-            <div>
-              <h6>notification.title</h6>
-              <p>notification.message</p>
-            </div>
-          </div>
-          <p className="notificationTime">notification.created_at</p>
-        </motion.div>
+    <>
+      <Toaster position="top-center" toastOptions={{ duration: 4000 }} />
+      <div>
+        <div className="Breadcrumb">
+          <Link href="/">الرئيسية</Link>
+          <Image src={arrow} alt="ERR404" />
+          <p>الإشعارات</p>
         </div>
- 
+        <br></br>
+        <br></br>
+        <div className="notificationsPageContainer">
+          {loading ? (
+            <div className="spinner-container">
+              <div className="spinner"></div>
+            </div>
+          ) : notifications ? (
+            <div className="notificationsList">
+              {notifications.map((notification) => (
+                <motion.div
+                  whileHover={{ scale: 1.03 }}
+                  whileTap={{ scale: 0.95 }}
+                  transition={{ duration: 0.2 }}
+                  key={notification.id}
+                  className="notificationCard"
+                  style={{cursor:"pointer"}}
+                  onClick={() => markAsRead(notification.id)}
+                >
+                  <div className="notificationContent">
+                    <Image
+                      src={defaultPortifolio}
+                      alt="Notification Icon"
+                      className="notificationIcon"
+                    />
+                    <div>
+                      <h6>{notification.type}</h6>
+                      <p>{notification.data.message}</p>
+                    </div>
+                  </div>
+                  <p className="notificationTime">{notification.created_at}</p>
+                </motion.div>
+              ))}
+            </div>
+          ) : (
+            <div className="no-data-message">لا توجد إشعارات حاليا</div>
+          )}
+        </div>
       </div>
-    </div>
-  )
+    </>
+  );
 }

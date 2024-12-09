@@ -90,12 +90,12 @@
     transform: translateY(10%);
 }
 .notif span{
-    transform: translate(-80%,0);
-    padding: 5px;
+    transform: translate(-85%,-10%);
+    padding: 5px 3px;
     font-size: 8px;
-    width: 15px;
+    /* width: 15px; */
     height: 15px;
-    text-align: center;
+    /* text-align: center; */
     display: flex;
     align-items: center;
     background: var(--Main-BackGround);

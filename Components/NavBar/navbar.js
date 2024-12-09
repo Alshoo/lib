@@ -19,12 +19,29 @@ import useAuthContext from "@/hooks/useAuthContext";
 import Cookies from "js-cookie";
 import { useEffect, useState } from "react";
 import '@fortawesome/fontawesome-free/css/all.min.css';
+import axios from "axios";
 
 
 export default function CustomNavbar() {
   const { logout } = useAuthContext();
   const [user, setUser] = useState(null);
-  const [notifications, setNotifications] = useState(3);
+  const [notifications, setNotifications] = useState([]);
+  const [notificationsCount, setNotificationsCount] = useState(0);
+
+  const fetchNotifications = async () => {
+    try {
+      const response = await axios.get(
+        `${process.env.NEXT_PUBLIC_BACKEND_URL}/api/notifications/user`
+      );
+      const unreadNotifications = response?.data?.data?.filter(
+        (item) => item.read_at === null
+      ) || [];
+      setNotifications(unreadNotifications);
+      setNotificationsCount(unreadNotifications.length);
+    } catch (error) {
+      console.error("Error fetching notifications:", error);
+    }
+  };
 
   const updateUser = () => {
     const userData = Cookies.get("user");
@@ -33,6 +50,7 @@ export default function CustomNavbar() {
 
   useEffect(() => {
     updateUser();
+    fetchNotifications();
   }, []);
 
   const handleLogout = () => {
@@ -41,7 +59,6 @@ export default function CustomNavbar() {
       updateUser();
     }, 2000);
   };
-
   return (
     <div className="MainNav1">
       <div className="MainNav2">
@@ -75,6 +92,13 @@ export default function CustomNavbar() {
                       </Nav.Link>
                     )}
 
+                  <Nav.Link href="/notification" className="notif">         
+                      <span>{notificationsCount}</span>
+                        <i class="fa-regular fa-bell"></i>
+                        <p>الإشعارات</p>
+                      </Nav.Link>
+
+
                     <Nav.Link>
                       <Dropdown>
                         <Dropdown.Toggle id="dropdown-basic2">
@@ -97,12 +121,6 @@ export default function CustomNavbar() {
                       </Dropdown>
                     </Nav.Link>
 
-                    <Nav.Link href="/notification" className="notif">
-                      
-                    <span>{notifications}</span>
-                      <i class="fa-regular fa-bell"></i>
-                      <p>الإشعارات</p>
-                    </Nav.Link>
                   </Nav>
                 </div>
 

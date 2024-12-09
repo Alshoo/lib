@@ -32,12 +32,14 @@ export default function Sidebar() {
           <i className="fas fa-list"></i>
           <span>الاقسام</span>
         </Link>
-        <hr />
+        <Link href="/dashboard/Notification" className="nav-button">
+        <i class="fas fa-regular fa-bell"></i>
+          <span>ارسال اشعارات</span>
+        </Link>
         <Link href="/dashboard/Users" className="nav-button">
           <i className="fas fa-user"></i>
           <span>المستخدمون</span>
         </Link>
-        <hr />
       
       
         <div id="nav-content-highlight"></div>
