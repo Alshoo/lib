@@ -66,6 +66,7 @@ export default function NotiPage() {
       <Toaster position="top-center" toastOptions={{ duration: 4000 }} />
       <br></br>
       <h1 className="title">إرسال إشعار للكل</h1>
+      <br></br>
       <div className="form-container">
         <textarea
           className="message-input"

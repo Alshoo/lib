@@ -6,32 +6,38 @@
   }
   
   .title {
-    font-size: 2em;
-    font-weight: bold;
-    margin-bottom: 20px;
-    text-align: center;
-    color: #333;
+    color: white;
+    background: var(--Main-BackGround);
+    margin-top: 50px;
+    font-size: 1.7em;
+    width: 85%;
+    margin: auto;
+    border-radius: 30px;
+    padding: 5px 25px;
   }
   
+  
   .form-container {
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
-    background-color: #f8f9fa;
-    border: 1px solid #e0e0e0;
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    display: flex!important;
+    flex-direction: column!important;
+    gap: 15px!important;
+    background-color: #f8f9fa!important;
+    border: 1px solid #e0e0e0!important;
+    padding: 20px!important;
+    border-radius: 10px!important;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1)!important;
+    width: 85%!important;
+    margin: auto!important;
   }
   
   .message-input {
-    height: 150px;
-    padding: 15px;
-    font-size: 1.1em;
-    border: 1px solid #ced4da;
-    border-radius: 8px;
-    resize: none;
-    transition: border-color 0.2s ease;
+    height: 150px!important;
+    padding: 15px!important;
+    font-size: 1.1em!important;
+    border: 1px solid #ced4da!important;
+    border-radius: 8px!important;
+    resize: none!important;
+    transition: border-color 0.2s ease!important;
   }
   
   .message-input:focus {

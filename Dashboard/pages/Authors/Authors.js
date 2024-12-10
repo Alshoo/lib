@@ -176,7 +176,9 @@ export default function Authors() {
 
 
               <h3 className="book-title">{author.name}</h3>
+              <div className="descript">
               <p className="book-description">{author.biography || "لا توجد سيرة ذاتية متاحة"}</p>
+              </div>
               <p className="book-info"><strong>تاريخ الميلاد:</strong> {author.birthdate || "غير محدد"}</p>
               <button 
                 className="approve-btn" 
@@ -224,7 +226,9 @@ export default function Authors() {
 
 
               <h3 className="book-title">{author.name}</h3>
+              <div className="descript">
               <p className="book-description">{author.biography || "لا توجد سيرة ذاتية متاحة"}</p>
+              </div>
               <p className="book-info"><strong>تاريخ الميلاد:</strong> {author.birthdate || "غير محدد"}</p>
               <button 
                 className="reject-btn" 
