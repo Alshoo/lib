@@ -35,11 +35,12 @@ export default function RecentPage() {
     fetchBooks();
   }, []);
 
-  const handleSearch = () => {
-    if (searchTerm) {
+  const handleSearch = (e) => {
+    setSearchTerm(e.target.value);
+    if (e.target.value) {
       setDisplayBooks(Books.filter(book =>
-        book.title.toLowerCase().includes(searchTerm.toLowerCase()) || 
-        book.author.name.toLowerCase().includes(searchTerm.toLowerCase())
+        book.title.toLowerCase().includes(e.target.value.toLowerCase()) || 
+        book.author.name.toLowerCase().includes(e.target.value.toLowerCase())
       ));
     } else {
       setDisplayBooks(Books.slice(0, 4)); 
@@ -53,8 +54,8 @@ export default function RecentPage() {
         <Image src={arrow} alt='ERR404'/>
         <Link href="">احدث الكتب</Link>
       </div>
-<br></br>
-<br></br>
+      <br />
+      <br />
       <div className="bookPageContainer">
         <div className="searchContainer2">
           <div className="iconWrapper2">
@@ -65,9 +66,9 @@ export default function RecentPage() {
             placeholder="ابحث عن كتاب"
             className="inputArea2"
             value={searchTerm}
-            onChange={(e) => setSearchTerm(e.target.value)}
+            onChange={handleSearch}
           />
-          <button className="actionButton2" onClick={handleSearch}>بحث</button>
+          <button className="actionButton2">بحث</button>
         </div>
 
         {loading ? (
@@ -88,7 +89,7 @@ export default function RecentPage() {
                       <h6>{book.title}</h6>
                       <p>{book.author.name}</p>
                     </div>
-                    <RatingStars rating={Books.average_rating||0} />
+                    <RatingStars rating={book.average_rating || 0} />
                   </Link>
                 ))}
               </div>

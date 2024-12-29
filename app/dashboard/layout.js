@@ -81,6 +81,7 @@ export default function DashboardLayout({ children }) {
 <Toaster position="top-center" toastOptions={{ duration: 4000 }} />
 
         <Sidebar />
+        
         {children}   
 
       </div>

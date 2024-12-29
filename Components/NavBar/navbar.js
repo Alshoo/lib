@@ -134,7 +134,7 @@ export default function CustomNavbar() {
                         >
                           <p>{user.name}</p>
                           <Image
-                            src={defaultPortifolio}
+                            src={defaultPortifolio} 
                             className="UserAvatar"
                             alt="ERR404"
                           />

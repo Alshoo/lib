@@ -1,10 +1,10 @@
-"use client"
-import "../Home/Home.css"
-import "./famous.css"
-import Image from 'next/image'
-import Link from 'next/link'
-import React, { useState, useEffect } from 'react'
-import RatingStars from '../Home/ratingStar'
+"use client";
+import "../Home/Home.css";
+import "./famous.css";
+import Image from 'next/image';
+import Link from 'next/link';
+import React, { useState, useEffect } from 'react';
+import RatingStars from '../Home/ratingStar';
 import CardImg from "../../public/Images/cardimage.png";
 import Editor from "../../public/Images/frame-2888.png";
 import arrow from "../../public/Images/arfegrow.png";
@@ -37,11 +37,12 @@ export default function FamousPage() {
     fetchBooks();
   }, []);
 
-  const handleSearch = () => {
-    if (searchTerm) {
+  const handleSearch = (e) => {
+    setSearchTerm(e.target.value);
+    if (e.target.value) {
       setDisplayBooks(Books.filter(book =>
-        book.title.toLowerCase().includes(searchTerm.toLowerCase()) || 
-        book.author.name.toLowerCase().includes(searchTerm.toLowerCase())
+        book.title.toLowerCase().includes(e.target.value.toLowerCase()) || 
+        book.author.name.toLowerCase().includes(e.target.value.toLowerCase())
       ));
     } else {
       setDisplayBooks(Books); 
@@ -55,8 +56,8 @@ export default function FamousPage() {
         <Image src={arrow} alt='ERR404'/>
         <Link href="">اشهر الكتب</Link>
       </div>
-<br></br>
-<br></br>
+      <br />
+      <br />
       <div className="bookPageContainer">
         <div className="searchContainer2">
           <div className="iconWrapper2">
@@ -67,9 +68,9 @@ export default function FamousPage() {
             placeholder="ابحث عن كتاب"
             className="inputArea2"
             value={searchTerm}
-            onChange={(e) => setSearchTerm(e.target.value)}
+            onChange={handleSearch}
           />
-          <button className="actionButton2" onClick={handleSearch}>بحث</button>
+          <button className="actionButton2">بحث</button>
         </div>
 
         {loading ? (

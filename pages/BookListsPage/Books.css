@@ -1,15 +1,15 @@
 .bookPageContainer {
-    margin-top: 90px;
-  }
-  .searchContainer2 {
-    display: flex;
-    align-items: center;
-    background-color: #f5f5f5;
-    border-radius: 30px;
-    padding: 5px 15px;
-    width: 350px;
-    margin: auto;
-  }
+  margin-top: 30px;
+}
+.searchContainer2 {
+  display: flex;
+  align-items: center;
+  background-color: #f5f5f5;
+  border-radius: 30px;
+  padding: 5px 15px;
+  width: 70%;
+  margin: auto;
+}
   
   .iconWrapper2 {
     margin-right: 10px;
@@ -81,6 +81,19 @@
         margin-top: 10px;
       }
     }
+
+  @media (max-width:992px) {
+    .searchContainer2 {
+        width: 85%;
+      }
+}
+
+@media (max-width:750px) {
+    .searchContainer2 {
+        width: 85%;
+      }
+}
+
   @media (max-width:369px) {
       .searchContainer2 {
           width: 85%;

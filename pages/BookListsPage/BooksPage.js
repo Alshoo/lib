@@ -38,15 +38,19 @@ export default function BooksPage({ props }) {
 
   useEffect(() => {
     fetchBooks();
-  }, [props]); 
+  }, [props]);
 
-  const handleSearch = () => {
-    const filteredBooks = Books.filter(book => 
-      book.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      book.author.name.toLowerCase().includes(searchTerm.toLowerCase())
-    );
-    setDisplayBooks(filteredBooks);
-  };
+  useEffect(() => {
+    if (searchTerm === "") {
+      setDisplayBooks(Books);
+    } else {
+      const filteredBooks = Books.filter(book => 
+        book.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        book.author.name.toLowerCase().includes(searchTerm.toLowerCase())
+      );
+      setDisplayBooks(filteredBooks);
+    }
+  }, [searchTerm, Books]);
 
   return (
     <div>
@@ -60,8 +64,8 @@ export default function BooksPage({ props }) {
         <p>{props?.searchParams ? Object.keys(props.searchParams)[0] : "القسم غير موجود"}</p>
       </div>
       
-<br></br>
-<br></br>
+      <br></br>
+      <br></br>
       <div className="bookPageContainer">
         <div className="searchContainer2">
           <div className="iconWrapper2">
@@ -74,7 +78,7 @@ export default function BooksPage({ props }) {
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)} 
           />
-          <button className="actionButton2" onClick={handleSearch}>بحث</button>
+          <button className="actionButton2">بحث</button>
         </div>
 
         {loading ? (
@@ -84,25 +88,25 @@ export default function BooksPage({ props }) {
         ) : displayBooks.length > 0 ? (
           <div className="Maincards">
             {displayBooks.map((book) => (
-                <motion.div
+              <motion.div
                 whileHover={{ scale: 1.03 }}
                 whileTap={{ scale: 0.75 }}
                 transition={{ duration: 0.2 }}
                 key={book.id}
               >
-              <Link href={`/${book.id}`} className="CardCont">
-                {book.cover_image ? (
-                  <img src={book.cover_image} alt="Book Cover" className="CardImg44" />
-                ) : (
-                  <Image src={defaultBook} alt="Default Book Cover" className="CardImg44" />
-                )}
-                <div className="lastCardSec">
-                  <Image src={defaultPortifolio} className="AuthorImg" alt="ERR404" />
-                  <h6>{book.title}</h6>
-                  <p>{book.author.name}</p>
-                </div>
-                <RatingStars rating={Rate||0} />
-              </Link>
+                <Link href={`/${book.id}`} className="CardCont">
+                  {book.cover_image ? (
+                    <img src={book.cover_image} alt="Book Cover" className="CardImg44" />
+                  ) : (
+                    <Image src={defaultBook} alt="Default Book Cover" className="CardImg44" />
+                  )}
+                  <div className="lastCardSec">
+                    <Image src={defaultPortifolio} className="AuthorImg" alt="ERR404" />
+                    <h6>{book.title}</h6>
+                    <p>{book.author.name}</p>
+                  </div>
+                  <RatingStars rating={Rate || 0} />
+                </Link>
               </motion.div>
             ))}
           </div>

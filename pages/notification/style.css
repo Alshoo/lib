@@ -15,7 +15,18 @@
     color: var(--Main-BackGround);
 }
 
-
+.title {
+  color: white;
+  background: var(--Main-BackGround);
+  margin-top: 50px;
+  font-size: 1.7em;
+  /* width: 85%; */
+  margin: auto;
+  border-radius: 30px;
+  padding: 8px 25px ;
+  display: flex;
+  gap: 24px;
+}
 .notificationsPageContainer {
     padding: 20px;
     max-width: 1200px;
@@ -36,6 +47,13 @@
     width: 40px;
     height: 40px;
     animation: spin 1s linear infinite;
+  }
+  .modal-footer-buttons {
+    display: flex;
+  }
+  
+  .modal-footer-buttons button {
+    margin-left: 10px;
   }
   
   @keyframes spin {
@@ -88,7 +106,25 @@
     color: #6c757d;
     font-size: 16px;
   }
-  
+  .actionButton{
+    float: left!important;
+  }
+  .cancel-button,.confirm-button{
+    background: var(--Main-BackGround);
+    color: white;
+    border: none;
+    border-radius: 20px;
+    padding: 3px 15px;
+    margin: 0 2px;
+  }
+  .close-button,.cos-button,.delete-button{
+    background: var(--Main-BackGround);
+    color: white;
+    border: none;
+    border-radius: 20px;
+    padding: 3px 15px;
+    margin: 0 2px;
+  }
   @media (max-width: 768px) {
     .notificationCard {
       flex-direction: column;

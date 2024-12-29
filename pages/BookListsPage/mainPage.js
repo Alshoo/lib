@@ -79,7 +79,7 @@ export default function MainPage() {
               onClick={togglePopup1}
               className="addauthorbtn" 
               >
-                  <p>اضافه قسم اساسى</p>
+                  <p>اضافه قسم اساسى</p> 
                   <Image src={add} alt="ERR404" />
             </div>
             <div 

@@ -13,23 +13,36 @@ import axios from "axios";
 export default function SearchResultpage({ props }) {
   const [Books, setBooks] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [searchQuery, setSearchQuery] = useState(
+    decodeURIComponent(props.params.SearchResults)
+  );
+  const [showSearchInput, setShowSearchInput] = useState(false);
+
+  const fetchBooks = async (query) => {
+    try {
+      const response = await axios.get(
+        `${process.env.NEXT_PUBLIC_BACKEND_URL}/api/books?search=${query}`
+      );
+      setBooks(response.data.data || []);
+    } catch (error) {
+      setBooks([]);
+    } finally {
+      setLoading(false);
+    }
+  };
 
   useEffect(() => {
-    const fetchBooks = async () => {
-      try {
-        const searchQuery = decodeURIComponent(props.params.SearchResults);
-        const response = await axios.get(
-          `${process.env.NEXT_PUBLIC_BACKEND_URL}/api/books?search=${searchQuery}`
-        );
-        setBooks(response.data.data || []);
-        setLoading(false);
-      } catch (error) {
-        setLoading(false);
-      }
-    };
+    setLoading(true);
+    fetchBooks(searchQuery);
+  }, []);
 
-    fetchBooks();
-  }, [props.params.SearchResults]);
+  const handleSearch = () => {
+    if (searchQuery.trim()) {
+      setLoading(true);
+      fetchBooks(searchQuery);
+      setShowSearchInput(false);
+    }
+  };
 
   return (
     <div>
@@ -37,52 +50,78 @@ export default function SearchResultpage({ props }) {
       <br />
       <br />
       <br />
-      <h1 className="title">
-        نتائج البحث عن
-        <p>{decodeURIComponent(props.params.SearchResults)}</p>
-      </h1>
+      <div className="searchHeader">
+        {!showSearchInput ? (
+          <div className="searchHeaderContent">
+            <h1 className="title">
+              نتائج البحث عن: <span>{searchQuery}</span>
+            </h1>
+            <button
+              className="actionButton toggleButton"
+              onClick={() => setShowSearchInput(true)}
+            >
+              بحث جديد
+            </button>
+          </div>
+        ) : (
+          <div className="searchAgainContainer">
+            <input
+              type="text"
+              placeholder="أدخل قيمة جديدة للبحث"
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
+              className="inputArea"
+            />
+            <button className="actionButton" onClick={handleSearch}>
+              ابحث
+            </button>
+            <button
+              className="actionButton toggleButton"
+              onClick={() => setShowSearchInput(false)}
+            >
+              إلغاء
+            </button>
+          </div>
+        )}
+      </div>
 
       <div className="bookPageContainer">
         {loading ? (
           <div className="spinner-container">
             <div className="spinner"></div>
           </div>
-        ) : (
-          <div>
-            {Books.length > 0 ? (
-              <div className="Maincards">
-                {Books.map((book) => (
-                  <Link href={`${book.id}`} className="CardCont" key={book.id}>
-                    {book.cover_image ? (
-                      <img
-                        src={book.cover_image}
-                        alt="Book Cover"
-                        className="CardImg44"
-                      />
-                    ) : (
-                      <Image
-                        src={defaultBook}
-                        alt="Default Book Cover"
-                        className="CardImg44"
-                      />
-                    )}
-                    <div className="lastCardSec">
-                      <Image
-                        src={defaultPortifolio}
-                        className="AuthorImg"
-                        alt="ERR404"
-                      />
-                      <h6>{book.title}</h6>
-                      <p>{book.author.name}</p>
-                    </div>
-                    <RatingStars rating={3} />
-                  </Link>
-                ))}
-              </div>
-            ) : (
-              <div className="no-data-message">لا توجد كتب تطابق البحث</div>
-            )}
+        ) : Books.length > 0 ? (
+          <div className="Maincards">
+            {Books.map((book) => (
+              <Link href={`${book.id}`} className="CardCont" key={book.id}>
+                {book.cover_image ? (
+                  <img
+                    src={book.cover_image}
+                    alt="Book Cover"
+                    className="CardImg44"
+                  />
+                ) : (
+                  <Image
+                    src={defaultBook}
+                    alt="Default Book Cover"
+                    className="CardImg44"
+                  />
+                )}
+                <div className="lastCardSec">
+                  <Image
+                    src={defaultPortifolio}
+                    className="AuthorImg"
+                    alt="ERR404"
+                  />
+                  <h6>{book.title}</h6>
+                  <p>{book.author.name}</p>
+                </div>
+                <RatingStars rating={3} />
+              </Link>
+            ))}
           </div>
+        ) : (
+          <div className="no-data-message">لا توجد كتب تطابق البحث</div>
         )}
       </div>
     </div>
