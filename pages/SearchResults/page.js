@@ -10,11 +10,11 @@ import defaultBook from "../../public/Images/defaultBook.jpg";
 import defaultPortifolio from "../../public/Images/defaultPortifolio.jpeg";
 import axios from "axios";
 
-export default function SearchResultpage({ props }) {
+export default function SearchResultpage({ params }) {
   const [Books, setBooks] = useState([]);
   const [loading, setLoading] = useState(true);
   const [searchQuery, setSearchQuery] = useState(
-    decodeURIComponent(props.params.SearchResults)
+    params?.SearchResults ? decodeURIComponent(params.SearchResults) : ""
   );
   const [showSearchInput, setShowSearchInput] = useState(false);
 
@@ -34,7 +34,7 @@ export default function SearchResultpage({ props }) {
   useEffect(() => {
     setLoading(true);
     fetchBooks(searchQuery);
-  }, []);
+  }, [searchQuery]);
 
   const handleSearch = () => {
     if (searchQuery.trim()) {
