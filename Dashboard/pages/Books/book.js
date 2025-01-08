@@ -182,7 +182,7 @@ export default function Book() {
                       src={book.cover_image} 
                       alt={book.title} className="book-image" 
                     />
-                  ) : (
+                  ) : ( 
                     <Image
                       src={defaultPortifolio} 
                       alt={book.title} className="book-image"  
