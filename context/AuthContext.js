@@ -31,8 +31,8 @@ export function AuthProvider({ children }) {
 
     try {
       await csrf();
-      // const response = await axios.post("/login", data);
-      const response = await axios.post("/api/login", data);
+      const response = await axios.post("/login", data);
+      // const response = await axios.post("/api/login", data);
       await getUser();
 
       toast.success("تم تسجيل الدخول بنجاح", {
@@ -67,8 +67,8 @@ export function AuthProvider({ children }) {
 
     try {
       await csrf();
-      await axios.post("/api/register", data);
-      // await axios.post("/register", data);
+      // await axios.post("/api/register", data);
+      await axios.post("/register", data);
       await getUser();
 
       toast.success("تم التسجيل بنجاح", {
@@ -99,12 +99,12 @@ export function AuthProvider({ children }) {
 
   const logout = async () => {
     try {
-      // await axios.post("/logout");
-      await axios.post("/api/logout");
+      await axios.post("/logout");
+      // await axios.post("/api/logout");
       setUser(null);
       Cookies.remove("user");
-       Cookies.remove("laravel_session"); 
-        Cookies.remove("XSRF-TOKEN"); 
+      Cookies.remove("laravel_session");
+      Cookies.remove("XSRF-TOKEN");
       toast.success("تم تسجيل الخروج بنجاح!", {
         duration: 4000,
         position: "top-center",
