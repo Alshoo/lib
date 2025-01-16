@@ -47,6 +47,11 @@ export default function Authors() {
           <div className="spinner"></div>
         </div>
       ) : (
+        authors == "" ? (
+          <div className="notFundTxt">
+          لا توجد مؤلفين حاليا هنا
+        </div>
+        ):(
         <div className="Maincards">
           {authors.map((author) => (
             <motion.div
@@ -80,6 +85,7 @@ export default function Authors() {
             </motion.div>
           ))}
         </div>
+        )
       )}
     </div>
   );

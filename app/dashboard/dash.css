@@ -2,3 +2,22 @@
     display: grid;
     grid-template-columns: 1fr 5fr;
 }
+
+@media (max-width: 1170px) {
+    .MainDashContainer{
+        grid-template-columns: 1fr 4fr;
+    }
+    
+}
+@media (max-width: 1050px) {
+    .MainDashContainer{
+        grid-template-columns: 1fr 3fr;
+    }
+    
+}
+@media (max-width: 890px) {
+    .MainDashContainer{
+        grid-template-columns: 1fr 2fr;
+    }
+    
+}

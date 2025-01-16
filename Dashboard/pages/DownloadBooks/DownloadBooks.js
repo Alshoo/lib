@@ -1,23 +1,27 @@
-"use client"
-import defaultBook from "../../public/Images/defaultBook.jpg";
-import defaultPortifolio from "../../public/Images/defaultPortifolio.jpeg";
+"use client";
+import "./style.css";
+
+import Image from "next/image";
+import bookIcon from "../../../public/Images/iconoir-book-solid.png";
+import LinkIcon from "../../../public/Images/vector44.png";
+import defaultBook from "../../../public/Images/defaultBook.jpg";
+import defaultPortifolio from "../../../public/Images/defaultPortifolio.jpeg";
+import Link from "next/link";
 import { useEffect, useState } from "react";
 import axios from "axios";
-import Image from "next/image";
-import bookIcon from "../../public/Images/iconoir-book-solid.png";
-import LinkIcon from "../../public/Images/vector44.png";
-import Link from "next/link";
-import RatingStars from "./ratingStar";
 import { motion } from "framer-motion";
+import "../../../pages/Home/Home.css";
 
-export default function HighBook() {
+export default function DownloadBooks() {
   const [Books, setBooks] = useState([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const fetchBooks = async () => {
       try {
-        const response = await axios.get(`${process.env.NEXT_PUBLIC_BACKEND_URL}/api`);
+        const response = await axios.get(
+          `${process.env.NEXT_PUBLIC_BACKEND_URL}/api`
+        );
         setBooks(response.data.popularBooks);
         setLoading(false);
       } catch (error) {
@@ -29,41 +33,33 @@ export default function HighBook() {
     fetchBooks();
   }, []);
 
-  const topRatedBooks = Books.slice(0, 4);
+  const popularBooks = Books.slice(0, 4);
 
   return (
     <div className="CardSecContainer">
       <div className="CardSecHeadLine">
         <div className="betweenItems1">
           <Image src={bookIcon} alt="ERR404" />
-          <p>الأعلى تقييما</p>
+          <p>الكتب التى تم تنزيلها</p>
         </div>
-
-        <Link href="/HighBook" className="betweenItems2">
-          <p>المزيد</p>
-          <Image src={LinkIcon} alt="ERR404" />
-        </Link>
       </div>
 
       {loading ? (
         <div className="spinner-container">
           <div className="spinner"></div>
         </div>
+      ) : popularBooks == "" ? (
+        <div className="notFundTxt">لا توجد كتب حاليا هنا</div>
       ) : (
-        topRatedBooks == "" ? (
-          <div className="notFundTxt">
-          لا توجد كتب حاليا هنا
-        </div>
-        ):(
         <div className="Maincards">
-          {topRatedBooks.map((book) => (
+          {popularBooks.map((book) => (
             <motion.div
-            whileHover={{ scale: 1.06 }}
+              whileHover={{ scale: 1.06 }}
               whileTap={{ scale: 0.95 }}
               transition={{ duration: 0.2 }}
               key={book.id}
             >
-              <Link href={`${book.id}`} className="CardCont">
+              <Link href={`/${book.id}`} className="CardCont">
                 {book.cover_image ? (
                   <img
                     src={book.cover_image}
@@ -78,17 +74,18 @@ export default function HighBook() {
                   />
                 )}
                 <div className="lastCardSec">
-                  <Image src={defaultPortifolio} className="AuthorImg" alt="ERR404" />
+                  <Image
+                    src={defaultPortifolio}
+                    className="AuthorImg"
+                    alt="ERR404"
+                  />
                   <h6>{book.title}</h6>
-                  <p>{book.author?.name || "غير معرف"}</p>
+                  <p>{book.author.name}</p>
                 </div>
-
-                <RatingStars rating={Books.average_rating||0} />
               </Link>
             </motion.div>
           ))}
         </div>
-        )
       )}
     </div>
   );

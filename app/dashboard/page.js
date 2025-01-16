@@ -5,7 +5,7 @@ export default function Dashboard() {
     <div>
       
 
-    <MainDash/>
+    <MainDash  />
 
     </div>
   )

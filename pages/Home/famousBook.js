@@ -54,38 +54,47 @@ export default function FamousBook() {
           <div className="spinner"></div>
         </div>
       ) : (
-        <div className="Maincards">
-          {popularBooks.map((book) => (
-            <motion.div
-            whileHover={{ scale: 1.06 }}
-              whileTap={{ scale: 0.95 }}
-              transition={{ duration: 0.2 }}
-              key={book.id}
-            >
-              <Link href={`${book.id}`} className="CardCont" >
-                {book.cover_image ? (
-                  <img
-                    src={book.cover_image}
-                    alt="Book Cover"
-                    className="CardImg44"
-                  />
-                ) : (
-                  <Image
-                    src={defaultBook}
-                    alt="Default Book Cover"
-                    className="CardImg44"
-                  />
-                )}
-                <div className="lastCardSec">
-                  <Image src={defaultPortifolio} className="AuthorImg" alt="ERR404" />
-                  <h6>{book.title}</h6>
-                  <p>{book.author.name}</p>
-                </div>
-                <RatingStars rating={Books.average_rating||0} />
-              </Link>
-            </motion.div>
-          ))}
-        </div>
+        
+        popularBooks == "" ? (
+            <div className="notFundTxt">
+            لا توجد كتب حاليا هنا
+          </div>
+          ):(
+            <div className="Maincards">
+            {popularBooks.map((book) => (
+              <motion.div
+              whileHover={{ scale: 1.06 }}
+                whileTap={{ scale: 0.95 }}
+                transition={{ duration: 0.2 }}
+                key={book.id}
+              >
+                <Link href={`${book.id}`} className="CardCont" >
+                  {book.cover_image ? (
+                    <img
+                      src={book.cover_image}
+                      alt="Book Cover"
+                      className="CardImg44"
+                    />
+                  ) : (
+                    <Image
+                      src={defaultBook}
+                      alt="Default Book Cover"
+                      className="CardImg44"
+                    />
+                  )}
+                  <div className="lastCardSec">
+                    <Image src={defaultPortifolio} className="AuthorImg" alt="ERR404" />
+                    <h6>{book.title}</h6>
+                    <p>{book.author.name}</p>
+                  </div>
+                  <RatingStars rating={Books.average_rating||0} />
+                </Link>
+              </motion.div>
+            ))}
+          </div>
+          )
+        
+
       )}
     </div>
   );

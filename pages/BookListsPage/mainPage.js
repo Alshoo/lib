@@ -75,7 +75,7 @@ export default function MainPage() {
 <br></br>
 <br></br>
           {/* <div className="adding">
-          <div 
+          <div  
               onClick={togglePopup1}
               className="addauthorbtn" 
               >

@@ -51,6 +51,11 @@ export default function LatestBook() {
           <div className="spinner"></div>
         </div>
       ) : (
+        latestBooks == "" ? (
+          <div className="notFundTxt">
+          لا توجد كتب حاليا هنا
+        </div>
+        ):(
         <div className="Maincards">
           {latestBooks.map((book) => (
             <motion.div
@@ -84,6 +89,7 @@ export default function LatestBook() {
             </motion.div>
           ))}
         </div>
+        )
       )}
     </div>
   );

@@ -198,6 +198,12 @@
   margin-top: 10px;
 }
 
+.notFundTxt{
+  color: var(--Main-BackGround);
+  display: flex;
+  justify-content: center;
+  margin-top: 40px;
+}
 
 /*////////////////// Rating start ////////////////// */
 .star-rating {

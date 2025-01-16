@@ -3,6 +3,7 @@ import { useState } from "react";
 import useAuthContext from "@/hooks/useAuthContext";
 import Link from "next/link";
 import './login.css';
+import toast, { Toaster } from "react-hot-toast";
 
 export default function LoginPage() {
   const [email, setEmail] = useState("");
@@ -12,6 +13,7 @@ export default function LoginPage() {
   const handleLogin = async (e) => {
     e.preventDefault();
     if (email === "" || password === "") {
+      toast.error("من فضلك أكمل جميع الحقول.");
       alert("من فضلك أكمل جميع الحقول.");
       return;
     }
@@ -19,7 +21,9 @@ export default function LoginPage() {
   };
 
   return (
-    <div>
+    <div>            
+      <Toaster position="top-center" toastOptions={{ duration: 4000 }} />
+
       <div className='loginContainer'>
         <form method="POST" onSubmit={handleLogin}>
           <h6>تسجيل الدخول</h6>

@@ -11,6 +11,7 @@ const backendUrl = process.env.NEXT_PUBLIC_BACKEND_URL;
 export default function Users() {
   const [users, setUsers] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [roles, setRoles] = useState([]); // State لتخزين الأدوار
 
   useEffect(() => {
     const fetchUsers = async () => {
@@ -31,12 +32,35 @@ export default function Users() {
       }
     };
 
+    const fetchRoles = async () => {
+      try {
+        const csrfToken = Cookies.get('XSRF-TOKEN');
+        const response = await axios.get(`${backendUrl}/api/roles`, {
+          headers: {
+            'X-XSRF-TOKEN': csrfToken,
+          },
+          withCredentials: true,
+        });
+        setRoles(response.data.data);
+      } catch (error) {
+        console.error("Error fetching roles");
+        toast.error("حدث خطأ أثناء جلب الأدوار");
+      }
+    };
+
     fetchUsers();
+    fetchRoles();
   }, []);
 
   const deleteUser = async (userId) => {
     try {
-      await axios.delete(`${backendUrl}/api/users/${userId}`);
+      const csrfToken = Cookies.get('XSRF-TOKEN');
+      await axios.delete(`${backendUrl}/api/users/${userId}`, {
+        headers: {
+          'X-XSRF-TOKEN': csrfToken,
+        },
+        withCredentials: true,
+      });
       setUsers(users.filter((user) => user.id !== userId));
       toast.success("تم حذف المستخدم بنجاح");
     } catch (error) {
@@ -58,18 +82,22 @@ export default function Users() {
         },
         withCredentials: true,
       });
-      if (response.status === 200) {
+      if (response.data) {
+        const updatedUsers = users.map((user) => {
+          if (user.id === userId) {
+            return { ...user, role: [...user.role, response.data.role] };
+          }
+          return user;
+        });
+        setUsers(updatedUsers);
         toast.success("تم إضافة الدور للمستخدم بنجاح");
-      } else {
-        toast.error('حدث خطأ أثناء المعالجة');
       }
     } catch (error) {
       toast.error("فشل إضافة الدور للمستخدم");
       console.error(error);
     }
-
-
   };
+
   const removeRoleFromUser = async (userId, roleId) => {
     const formData = new FormData();
     formData.append('role_id', roleId);
@@ -83,22 +111,21 @@ export default function Users() {
         },
         withCredentials: true,
       });
-      if (response.status === 200) {
+      if (response.data) {
+        const updatedUsers = users.map((user) => {
+          if (user.id === userId) {
+            return { ...user, role: user.role.filter((role) => role.id !== roleId) };
+          }
+          return user;
+        });
+        setUsers(updatedUsers);
         toast.success("تم إزالة الدور من المستخدم بنجاح");
-      } else {
-        toast.error('حدث خطأ أثناء المعالجة');
       }
     } catch (error) {
       toast.error("فشل إزالة الدور من المستخدم");
       console.error(error);
     }
-
-
   };
-
-
-  
-
 
   if (loading) {
     return (
@@ -111,13 +138,13 @@ export default function Users() {
   return (
     <div className="users-container">
       <Toaster position="top-center" toastOptions={{ duration: 4000 }} />
-      <h1>قائمه المستخدمين</h1>
+      <h1>قائمة المستخدمين</h1>
       <table className="users-table">
         <thead>
           <tr>
             <th>#</th>
             <th>الاسم</th>
-            <th>البريد الالكترونى</th>
+            <th>البريد الإلكتروني</th>
             <th>الدور</th>
             <th>تعديل الصلاحيات</th>
             <th>إجراءات</th>
@@ -133,12 +160,12 @@ export default function Users() {
                 {user.role.length > 0 ? (
                   user.role.map((role) => (
                     <div key={role.id} className="role-item">
-                      <span>    {role.name}</span>
+                      <span>{role.name}</span>
                       <button
                         className="remove-role-btn"
                         onClick={() => removeRoleFromUser(user.id, role.id)}
                       >
-                         حذف الدور
+                        حذف الدور
                       </button>
                     </div>
                   ))
@@ -146,15 +173,16 @@ export default function Users() {
                   "لا توجد أدوار"
                 )}
               </td>
-       
               <td>
                 <select
                   onChange={(e) => addRoleToUser(user.id, e.target.value)}
                 >
                   <option value="">اختر دورًا</option>
-                  <option value="1">SuperAdmin</option>
-                  <option value="2">Editor</option>
-                  <option value="3">User</option>
+                  {roles.map((role) => (
+                    <option key={role.id} value={role.id}>
+                      {role.name}
+                    </option>
+                  ))}
                 </select>
               </td>
               <td>

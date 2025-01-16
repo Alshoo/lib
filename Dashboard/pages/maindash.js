@@ -4,65 +4,51 @@ import axios from "axios";
 import useAuthContext from "@/hooks/useAuthContext";
 import Book from "./Books/book";
 import toast, { Toaster } from "react-hot-toast";
+import Cookies from "js-cookie";
+import UserDetails from "./userDetails/userDetails";
 
 const backendUrl = process.env.NEXT_PUBLIC_BACKEND_URL;
 
-export default function MainDash() {
-  // const { user } = useAuthContext();
-  // const [userDetails, setUserDetails] = useState([]);
-  // const [userRole, setUserRole] = useState("");
-  // const [loading, setLoading] = useState(true);
-
-
-
-
- 
-  // useEffect(() => {
-  //   const fetchUserDetails = async () => {
-  //     if (user?.name) {
-  //       try {
-  //         const response = await axios.get(
-  //           `${backendUrl}/api/users?search=${encodeURIComponent(user.name)}`
-  //         );
-  //         const userData = response.data.data;
-  //         setUserDetails(userData);
-  //         setUserRole(userData[0]?.role[0]?.name || "");
-  //       } catch (error) {
-  //         console.error("Error fetching user details:", error);
-  //       } finally {
-  //         setLoading(false);
-  //       }
-  //     }
-  //   };
-
-  //   fetchUserDetails();
-  // }, [user?.name]);
-
-
-  // useEffect(() => {
-  //   if (userRole && userRole !== "SuperAdmin") {
-  //     toast.error("ليس لديك صلاحية للوصول لهذه الصفحة.");
-  //         setTimeout(() => {
-  //           window.location.href = "/";
-  //         }, 1000);
-  //   }
-
+export default function MainDash() { 
   
-  // }, [userRole,user]); 
-  
+  const [user, setUser] = useState(null);
+  const [userRoleLev, setUserRoleLev] = useState("");
 
-  // if (loading) {
-  //   return (
-  //     <div className="spinner-container">
-  //       <div className="spinner"></div>
-  //     </div>
-  //   );
-  // }
+  const updateUser = () => {
+    const userData = Cookies.get("user");
+    setUser(userData ? JSON.parse(userData) : null);
+  };
 
+  useEffect(() => {
+    const fetchUserDetails = async () => {
+      if (user?.name) {
+        try {
+          const response = await axios.get(
+            `${backendUrl}/api/users?search=${encodeURIComponent(user.name)}`
+          );
+          const userData = response.data.data;
+          setUserRoleLev(userData[0]?.role[0]?.role_level || "");
+        } catch (error) {
+          console.error("Error fetching user details:", error);
+        }
+      }
+    };
+
+    fetchUserDetails();
+  }, [user?.name]);
+
+  useEffect(() => { 
+    updateUser();
+  }, []);  
   return (
-    <div>
+    <div >
       {/* <Toaster position="top-center" toastOptions={{ duration: 4000 }} /> */}
-      <Book />
+      {userRoleLev == 1 ?(
+        <UserDetails/>
+      ):(
+        <Book />
+      )}
+     
     </div>
   );
 }

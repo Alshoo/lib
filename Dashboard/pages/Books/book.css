@@ -112,15 +112,53 @@ body {
   overflow-y: scroll;
 }
 
+
+
+.search-container {
+  margin: 20px auto;
+  text-align: center;
+  border-radius: 50px;
+}
+.search-input {
+  width: 80%;
+  max-width: 500px;
+  padding: 10px;
+  font-size: 16px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+}
+.search-input:focus {
+  outline: none;
+  border-color: var(--Main-BackGround);
+  box-shadow: 0 0 5px #4e342e;
+}
+
+
+
+
 @media (max-width: 1024px) {
   .books-list {
     grid-template-columns: repeat(3, 1fr);
   }
+
 }
 
 @media (max-width: 768px) {
   .books-list {
     grid-template-columns: repeat(2, 1fr);
+  }
+  .title {
+    font-size: 16px!important;
+    width: 85%;
+  }
+  .no-books-message{
+    font-size: 14px!important;
+  }
+  .search-input {
+    width: 100%!important;
+    max-width: 300px!important;
+    padding: 7px!important;
+    font-size: 13px!important;
   }
 }
 

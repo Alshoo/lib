@@ -3,6 +3,7 @@ import "./register.css";
 import { useState } from "react";
 import useAuthContext from "@/hooks/useAuthContext";
 import Link from "next/link";
+import toast, { Toaster } from "react-hot-toast";
 
 export default function RegisterPage() {
   const [email, setEmail] = useState("");
@@ -14,11 +15,11 @@ export default function RegisterPage() {
   const handleRegister = async (e) => {
     e.preventDefault();
     if (email === "" || password === "" || password_confirmation === "" || name === "") {
-      alert("من فضلك أكمل جميع الحقول.");
-      return;
+      toast.error("من فضلك أكمل جميع الحقول.");
+      return; 
     }
     if (password !== password_confirmation) {
-      alert("كلمة المرور وتأكيد كلمة المرور غير متطابقين.");
+      toast.error("كلمة المرور وتأكيد كلمة المرور غير متطابقين.");
       return;
     }
     register({ name, email, password, password_confirmation });
@@ -26,9 +27,10 @@ export default function RegisterPage() {
 
   return (
     <div>
+            <Toaster position="top-center" toastOptions={{ duration: 4000 }} />
       <div className="registerContainer">
         <div className="alignPage">
-          <form method="POST" onSubmit={handleRegister}>
+          <form onSubmit={handleRegister}>
             <h6>إنشاء حساب</h6>
             <p>مكتبة غير محدودة من الكتب العربية</p>
 

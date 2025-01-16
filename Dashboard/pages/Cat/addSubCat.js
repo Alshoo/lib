@@ -8,7 +8,7 @@ import toast, { Toaster } from 'react-hot-toast';
 
 const backendUrl = process.env.NEXT_PUBLIC_BACKEND_URL;
 
-export default function AddSubCat() {
+export default function AddSubCat({MainCatId}) {
     const [show, setShow] = useState(true);
     
     const handleClose = () => setShow(false);
@@ -105,7 +105,9 @@ export default function AddSubCat() {
                     <form onSubmit={handleSubmit}>
 
                     <div className="form-row">
-                            <select
+                        <p> اسم القسم الرئيسي : {MainCatId.name}</p>
+                        
+                            {/* <select
                                 value={categoryId}
                                 onChange={(e) => {
                                     setCategoryId(e.target.value);
@@ -118,28 +120,9 @@ export default function AddSubCat() {
                                         {category.name}
                                     </option>
                                 ))}
-                            </select>
+                            </select> */}
                         </div>
-                        {/* {categoryId && (
-                            <div className="form-row">
-                                <select
-                                    value={bookSeriesId}
-                                    onChange={(e) => setBookSeriesId(e.target.value)}
-                                >
-                                    <option value="">اختر الفئة الفرعية</option>
-                                    {categories
-                                        .find(category => category.id === parseInt(categoryId))
-                                        ?.categories?.map((subCategory) => (
-                                            <option key={subCategory.id} value={subCategory.id}>
-                                                {subCategory.name}
-                                            </option>
-                                        ))}
-                                    {(!categories.find(category => category.id === parseInt(categoryId))?.categories) && (
-                                        <option disabled>لا توجد فئات فرعية</option>
-                                    )}
-                                </select>
-                            </div>
-                        )}  */}
+               
 
 
 

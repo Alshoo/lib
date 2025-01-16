@@ -55,16 +55,16 @@ export default function DashboardLayout({ children }) {
   }, [user?.name]);
 
 
-  useEffect(() => {
-    if (userRole && userRole !== "SuperAdmin") {
-      toast.error("ليس لديك صلاحية للوصول لهذه الصفحة.");
-          setTimeout(() => {
-            window.location.href = "/";
-          }, 1000);
-    }
+  // useEffect(() => {
+  //   if (userRole && userRole !== "SuperAdmin") {
+  //     toast.error("ليس لديك صلاحية للوصول لهذه الصفحة.");
+  //         setTimeout(() => {
+  //           window.location.href = "/";
+  //         }, 1000);
+  //   }
 
   
-  }, [userRole,user]);
+  // }, [userRole,user]);
   
 
   if (loading) {
