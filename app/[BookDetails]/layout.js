@@ -1,10 +1,11 @@
+import { api } from "@/context/ApiText/APITEXT";
 import axios from "axios";
 
 export async function generateMetadata({ params }) {
     
   try {
     const response = await axios.get(
-      `${process.env.NEXT_PUBLIC_BACKEND_URL}/api/books/${params.BookDetails}`
+      `${api}/api/books/${params.BookDetails}`
     );
 
     const data = response?.data?.data;

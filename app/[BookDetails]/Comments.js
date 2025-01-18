@@ -16,6 +16,7 @@ import defaultPortifolio from "../../public/Images/defaultPortifolio.jpeg";
 import Carousel from 'react-bootstrap/Carousel';
 import RatingStars2 from "./ratingStar2";
 import AddComment from "./AddComment";
+import { api } from "@/context/ApiText/APITEXT";
 
 
 
@@ -38,7 +39,7 @@ const [User, setUser] = useState([]);
 useEffect(() => {
   const fetchAuthors = async () => {
     try {
-      const response = await axios.get(`${process.env.NEXT_PUBLIC_BACKEND_URL}/api/books/${props.params.BookDetails}/comments`); 
+      const response = await axios.get(`${api}/api/books/${props.params.BookDetails}/comments`); 
       setComments(response.data.data);
       setUser(response.data.data.user.name);
     } catch (error) {

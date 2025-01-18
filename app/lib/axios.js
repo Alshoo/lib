@@ -1,7 +1,9 @@
+
+import { api } from '@/context/ApiText/APITEXT';
 import axios from 'axios';
 
 const instance = axios.create({
-    baseURL: process.env.NEXT_PUBLIC_BACKEND_URL,
+    baseURL: api,
     withXSRFToken: true,
     withCredentials: true,
   });

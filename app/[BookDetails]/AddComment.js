@@ -1,4 +1,5 @@
 "use client"
+import { api } from '@/context/ApiText/APITEXT';
 import axios from 'axios';
 import Cookies from 'js-cookie';
 import { useState } from 'react';
@@ -6,7 +7,7 @@ import Modal from 'react-bootstrap/Modal';
 import toast, { Toaster } from 'react-hot-toast'
 
 
-const backendUrl = process.env.NEXT_PUBLIC_BACKEND_URL;
+const backendUrl = api;
 
 export default function AddComment({props}) {
 

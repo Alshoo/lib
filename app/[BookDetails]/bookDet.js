@@ -21,6 +21,7 @@ import axios from "axios";
 import defaultPortifolio from "../../public/Images/defaultPortifolio.jpeg";
 import Carousel from 'react-bootstrap/Carousel';
 import { redirect } from "next/dist/server/api-utils";
+import { api } from "@/context/ApiText/APITEXT";
 
 
 
@@ -46,7 +47,7 @@ export default function BookDet({props}) {
   useEffect(() => {
     const fetchAuthors = async () => {
       try {
-        const response = await axios.get(`${process.env.NEXT_PUBLIC_BACKEND_URL}/api/books/${props.params.BookDetails}`); 
+        const response = await axios.get(`${api}/api/books/${props.params.BookDetails}`); 
         setDetails(response.data.data);     
         setcategory(response.data.data.category);
         setauthor(response.data.data.author);
@@ -69,7 +70,7 @@ export default function BookDet({props}) {
   const downloadFile = async () => {
     try {
       const response = await axios.get(
-        `${process.env.NEXT_PUBLIC_BACKEND_URL}/api/books/${props.params.BookDetails}/download`, {
+        `${api}/api/books/${props.params.BookDetails}/download`, {
         responseType: "blob",
       });
   

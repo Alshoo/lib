@@ -8,6 +8,7 @@ import Link from "next/link";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { motion } from "framer-motion";
+import { api } from "@/context/ApiText/APITEXT";
 
 export default function Authors() {
   const [authors, setAuthors] = useState([]);
@@ -16,7 +17,7 @@ export default function Authors() {
   useEffect(() => {
     const fetchAuthors = async () => {
       try {
-        const response = await axios.get(`${process.env.NEXT_PUBLIC_BACKEND_URL}/api/authors`);
+        const response = await axios.get(`${api}/api/authors`);
         setAuthors(response.data.data.slice(0, 4));
         setLoading(false);
       } catch (error) {
