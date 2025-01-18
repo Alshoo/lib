@@ -20,7 +20,6 @@ export function AuthProvider({ children }) {
       const { data } = await axios.get("/api/user");
       setUser(data);
       Cookies.set("user", JSON.stringify(data), { expires: 7 });
-      
     } catch (e) {
       console.warn("Error ", e);
     }
@@ -44,11 +43,10 @@ export function AuthProvider({ children }) {
           width: "50%",
         },
       });
-      console.log("User", user);
 
-      // setTimeout(() => {
-      //   window.location.href = "/";
-      // }, 900);
+      setTimeout(() => {
+        window.location.href = "/";
+      }, 900);
     } catch (e) {
       if (e.response) {
         console.warn(e.response.data);
