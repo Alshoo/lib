@@ -1,2 +1,2 @@
 
-export const api = "https://backend.stylingresume.com/"
+export const api = "https://backend.stylingresume.com"
