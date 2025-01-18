@@ -16,7 +16,7 @@ import { api } from "@/context/ApiText/APITEXT";
 export default function MainPage() {
   const [openSection, setOpenSection] = useState(null);
   const [searchTerm, setSearchTerm] = useState(""); 
-  const [Cat, setCat] = useState([]);
+  const [Cat, setCat] = useState([]); 
   const [loading, setLoading] = useState(true);
 
   const toggleSection = (section) => {
@@ -27,7 +27,7 @@ export default function MainPage() {
     const fetchCat = async () => {
       try {
         const response = await axios.get(
-          `${api}/api/category-groups/`
+          `${api}/api/category-groups`
         );
         setCat(response.data.data);
         setLoading(false);

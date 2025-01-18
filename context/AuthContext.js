@@ -20,6 +20,8 @@ export function AuthProvider({ children }) {
       const { data } = await axios.get("/api/user");
       setUser(data);
       Cookies.set("user", JSON.stringify(data), { expires: 7 });
+      console.log("User", data);
+      
     } catch (e) {
       console.warn("Error ", e);
     }

@@ -20,7 +20,7 @@ export default function Authors() {
         const response = await axios.get(`${api}/api/authors`);
         setAuthors(response.data.data.slice(0, 4));
         setLoading(false);
-      } catch (error) {
+      } catch (error) { 
         console.error("Error fetching authors:", error);
         setLoading(false);
       }
