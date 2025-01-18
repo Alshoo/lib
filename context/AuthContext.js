@@ -46,9 +46,9 @@ export function AuthProvider({ children }) {
         },
       });
 
-      setTimeout(() => {
-        window.location.href = "/";
-      }, 900);
+      // setTimeout(() => {
+      //   window.location.href = "/";
+      // }, 900);
     } catch (e) {
       if (e.response) {
         console.warn(e.response.data);
