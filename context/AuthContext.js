@@ -19,7 +19,7 @@ export function AuthProvider({ children }) {
     try {
       const { data } = await axios.get("/api/user");
       setUser(data);
-      Cookies.set("user", JSON.stringify(data), { expires: 7 });
+      Cookies.set("user", JSON.stringify(data), { expires: 7 }); 
     } catch (e) {
       console.warn("Error ", e);
     }
