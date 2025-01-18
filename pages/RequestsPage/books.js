@@ -6,10 +6,11 @@ import toast, { Toaster } from 'react-hot-toast';
 import Cookies from 'js-cookie';
 import defaultPortifolio from "../../public/Images/defaultPortifolio.jpeg";
 import Image from 'next/image';
+import { api } from '@/context/ApiText/APITEXT';
 
 
 
-const backendUrl = process.env.NEXT_PUBLIC_BACKEND_URL;
+const backendUrl = api;
 
 export default function Books() {
   const [books, setBooks] = useState([]);

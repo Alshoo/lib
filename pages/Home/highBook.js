@@ -9,6 +9,7 @@ import LinkIcon from "../../public/Images/vector44.png";
 import Link from "next/link";
 import RatingStars from "./ratingStar";
 import { motion } from "framer-motion";
+import { api } from "@/context/ApiText/APITEXT";
 
 export default function HighBook() {
   const [Books, setBooks] = useState([]);
@@ -17,7 +18,7 @@ export default function HighBook() {
   useEffect(() => {
     const fetchBooks = async () => {
       try {
-        const response = await axios.get(`${process.env.NEXT_PUBLIC_BACKEND_URL}/api`);
+        const response = await axios.get(`${api}/api`);
         setBooks(response.data.popularBooks);
         setLoading(false);
       } catch (error) {

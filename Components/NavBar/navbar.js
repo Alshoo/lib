@@ -20,6 +20,7 @@ import Cookies from "js-cookie";
 import { useEffect, useState } from "react";
 import '@fortawesome/fontawesome-free/css/all.min.css';
 import axios from "axios";
+import { api } from "@/context/ApiText/APITEXT";
 
 
 export default function CustomNavbar() {
@@ -31,7 +32,7 @@ export default function CustomNavbar() {
   const fetchNotifications = async () => {
     try {
       const response = await axios.get(
-        `${process.env.NEXT_PUBLIC_BACKEND_URL}/api/notifications/user`
+        `${api}/api/notifications/user`
       );
       const unreadNotifications = response?.data?.data?.filter(
         (item) => item.read_at === null

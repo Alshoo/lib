@@ -11,6 +11,7 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import { motion } from "framer-motion";
 import "../../../pages/Home/Home.css";
+import { api } from "@/context/ApiText/APITEXT";
 
 export default function DownloadBooks() {
   const [Books, setBooks] = useState([]);
@@ -20,7 +21,7 @@ export default function DownloadBooks() {
     const fetchBooks = async () => {
       try {
         const response = await axios.get(
-          `${process.env.NEXT_PUBLIC_BACKEND_URL}/api`
+          `${api}/api`
         );
         setBooks(response.data.popularBooks);
         setLoading(false);

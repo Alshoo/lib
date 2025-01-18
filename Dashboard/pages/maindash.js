@@ -6,8 +6,9 @@ import Book from "./Books/book";
 import toast, { Toaster } from "react-hot-toast";
 import Cookies from "js-cookie";
 import UserDetails from "./userDetails/userDetails";
+import { api } from "@/context/ApiText/APITEXT";
 
-const backendUrl = process.env.NEXT_PUBLIC_BACKEND_URL;
+const backendUrl = api;
 
 export default function MainDash() { 
   

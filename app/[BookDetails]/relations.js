@@ -19,6 +19,7 @@ import ratings from "../../public/Images/unnamed.png";
 import axios from "axios";
 import defaultPortifolio from "../../public/Images/defaultPortifolio.jpeg";
 import Carousel from 'react-bootstrap/Carousel';
+import { api } from "@/context/ApiText/APITEXT";
 
 export default function Relations() {
 
@@ -29,7 +30,7 @@ export default function Relations() {
   useEffect(() => {
     const fetchBooks = async () => {
       try {
-        const response = await axios.get(`${process.env.NEXT_PUBLIC_BACKEND_URL}/api`);
+        const response = await axios.get(`${api}/api`);
         setBooks(response.data.popularBooks);
         setLoading(false);
       } catch (error) {

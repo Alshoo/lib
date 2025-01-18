@@ -10,6 +10,7 @@ import defaultPortifolio from "../../public/Images/defaultPortifolio.jpeg";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { motion } from "framer-motion";
+import { api } from "@/context/ApiText/APITEXT";
 
 export default function LatestBook() {
   const [Books, setBooks] = useState([]);
@@ -18,7 +19,7 @@ export default function LatestBook() {
   useEffect(() => {
     const fetchBooks = async () => {
       try {
-        const response = await axios.get(`${process.env.NEXT_PUBLIC_BACKEND_URL}/api`);
+        const response = await axios.get(`${api}/api`);
         setBooks(response.data.popularBooks);
         setLoading(false);
       } catch (error) {

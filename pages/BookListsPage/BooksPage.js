@@ -11,6 +11,7 @@ import defaultPortifolio from "../../public/Images/defaultPortifolio.jpeg";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { motion } from "framer-motion";
+import { api } from "@/context/ApiText/APITEXT";
 
 export default function BooksPage({ props }) {
   const [Books, setBooks] = useState([]);
@@ -24,7 +25,7 @@ export default function BooksPage({ props }) {
     try {
       const searchQuery = query || (props?.searchParams ? Object.keys(props.searchParams)[0] : "");
       const response = await axios.get(
-        `${process.env.NEXT_PUBLIC_BACKEND_URL}/api/books?per_page=1520&search=${searchQuery}`
+        `${api}/api/books?per_page=1520&search=${searchQuery}`
       );
       setBooks(response.data.data);
       setٌRate(response.data.average_rating);

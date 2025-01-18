@@ -12,8 +12,9 @@ import axios from "axios";
 import Link from "next/link";
 import { motion } from "framer-motion";
 import Cookies from 'js-cookie';
+import { api } from "@/context/ApiText/APITEXT";
 
-const backendUrl = process.env.NEXT_PUBLIC_BACKEND_URL;
+const backendUrl = api;
 
 export default function Category() {
   const [openSection, setOpenSection] = useState(null);

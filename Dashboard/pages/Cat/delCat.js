@@ -5,8 +5,9 @@ import axios from 'axios';
 import Cookies from 'js-cookie';
 import toast, { Toaster } from 'react-hot-toast';
 import "./Category.css";
+import { api } from '@/context/ApiText/APITEXT';
 
-const backendUrl = process.env.NEXT_PUBLIC_BACKEND_URL;
+const backendUrl = api;
 
 export default function DelCat() {
     const [show, setShow] = useState(true);

@@ -4,8 +4,9 @@ import { useState } from "react";
 import axios from "axios";
 import toast, { Toaster } from "react-hot-toast";
 import Cookies from "js-cookie";
+import { api } from "@/context/ApiText/APITEXT";
 
-const backendUrl = process.env.NEXT_PUBLIC_BACKEND_URL;
+const backendUrl = api;
 
 export default function NotiPage() {
   const [message, setMessage] = useState("");

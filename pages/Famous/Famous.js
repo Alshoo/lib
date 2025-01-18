@@ -14,6 +14,7 @@ import LinkIcon from "../../public/Images/vector44.png";
 import defaultBook from "../../public/Images/defaultBook.jpg";
 import defaultPortifolio from "../../public/Images/defaultPortifolio.jpeg";
 import axios from "axios";
+import { api } from "@/context/ApiText/APITEXT";
 
 export default function FamousPage() {
   const [Books, setBooks] = useState([]);
@@ -24,7 +25,7 @@ export default function FamousPage() {
   useEffect(() => {
     const fetchBooks = async () => {
       try {
-        const response = await axios.get(`${process.env.NEXT_PUBLIC_BACKEND_URL}/api`);
+        const response = await axios.get(`${api}/api`);
         setBooks(response.data.popularBooks);
         setDisplayBooks(response.data.popularBooks);
         setLoading(false);

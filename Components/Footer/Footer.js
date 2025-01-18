@@ -6,6 +6,7 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { useEffect, useState } from 'react'
 import axios from 'axios'
+import { api } from '@/context/ApiText/APITEXT'
 
 export default function Footer() {
   const [categories, setCategories] = useState([])
@@ -14,9 +15,9 @@ export default function Footer() {
     const fetchCategories = async () => {
       try {
         const response = await axios.get(
-          `${process.env.NEXT_PUBLIC_BACKEND_URL}/api/category-groups/`
+          `${api}/api/category-groups/`
         )
-        setCategories(response.data.data.slice(0, 6)) // أخذ أول 6 مجموعات فقط
+        setCategories(response.data.data.slice(0, 6))
       } catch (error) {
         console.error('Error fetching categories:', error)
       }

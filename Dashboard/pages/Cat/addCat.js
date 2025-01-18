@@ -5,8 +5,9 @@ import "./Category.css";
 import axios from 'axios'; 
 import Cookies from 'js-cookie';
 import toast, { Toaster } from 'react-hot-toast';
+import { api } from '@/context/ApiText/APITEXT';
 
-const backendUrl = process.env.NEXT_PUBLIC_BACKEND_URL;
+const backendUrl = api;
 
 export default function AddCat() {
     const [show, setShow] = useState(true);

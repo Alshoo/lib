@@ -6,8 +6,9 @@ import axios from "axios";
 import useAuthContext from "@/hooks/useAuthContext";
 import toast, { Toaster } from "react-hot-toast";
 import Cookies from "js-cookie";
+import { api } from "@/context/ApiText/APITEXT";
 
-const backendUrl = process.env.NEXT_PUBLIC_BACKEND_URL;
+const backendUrl = api;
 
 
  

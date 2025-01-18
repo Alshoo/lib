@@ -9,6 +9,7 @@ import RatingStars from "../Home/ratingStar";
 import defaultBook from "../../public/Images/defaultBook.jpg";
 import defaultPortifolio from "../../public/Images/defaultPortifolio.jpeg";
 import axios from "axios";
+import { api } from "@/context/ApiText/APITEXT";
 
 export default function SearchResultpage({ params }) {
   const [Books, setBooks] = useState([]);
@@ -21,7 +22,7 @@ export default function SearchResultpage({ params }) {
   const fetchBooks = async (query) => {
     try {
       const response = await axios.get(
-        `${process.env.NEXT_PUBLIC_BACKEND_URL}/api/books?search=${query}`
+        `${api}/api/books?search=${query}`
       );
       setBooks(response.data.data || []);
     } catch (error) {

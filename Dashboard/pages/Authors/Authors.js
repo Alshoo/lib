@@ -8,8 +8,9 @@ import defaultPortifolio from "../../../public/Images/defaultPortifolio.jpeg";
 import Image from 'next/image';
 import AddAuthor from './addauthor';
 import add from "../../../public/Images/unnbfbfamed.png";
+import { api } from '@/context/ApiText/APITEXT';
 
-const backendUrl = process.env.NEXT_PUBLIC_BACKEND_URL;
+const backendUrl = api;
 
 export default function Authors() {
   const [isPopupVisible, setIsPopupVisible] = useState(false);

@@ -7,8 +7,9 @@ import Cookies from 'js-cookie';
 import useAuthContext from '@/hooks/useAuthContext';
 import Books from './books';
 import Authors from './authors';
+import { api } from '@/context/ApiText/APITEXT';
 
-const backendUrl = process.env.NEXT_PUBLIC_BACKEND_URL;
+const backendUrl = api;
 
 export default function RequestsPage() {
 

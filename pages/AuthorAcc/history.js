@@ -9,6 +9,7 @@ import RatingStars from '../../pages/Home/ratingStar'
 import bookIcon from "../../public/Images/iconoir-book-solid.png";
 import axios from "axios";
 import defaultPortifolio from "../../public/Images/defaultPortifolio.jpeg";
+import { api } from "@/context/ApiText/APITEXT";
 
 
 
@@ -24,7 +25,7 @@ export default function History({AuthorID,AuthorName}) {
     const fetchBooks = async () => {
       try {
         const response = await axios.get(
-          `${process.env.NEXT_PUBLIC_BACKEND_URL}/api/authors/${AuthorID}/books`);
+          `${api}/api/authors/${AuthorID}/books`);
         setBooks(response.data);
         setLoading(false);
       } catch (error) {

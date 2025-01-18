@@ -11,6 +11,7 @@ import History from "./history";
 import AuthorUpdate from "./AuthorUpdate";
 import useAuthContext from "@/hooks/useAuthContext";
 import Cookies from "js-cookie";
+import { api } from "@/context/ApiText/APITEXT";
 
 export default function AuthorPage({AuthorID}) {
 
@@ -30,7 +31,7 @@ export default function AuthorPage({AuthorID}) {
       const fetchAuthors = async () => {
         try { 
           const response = await axios.get
-          (`${process.env.NEXT_PUBLIC_BACKEND_URL}/api/authors/${AuthorID}`); 
+          (`${api}/api/authors/${AuthorID}`); 
             setAuthorData(response.data.data);
             setLoading(false); 
         } catch (error) {

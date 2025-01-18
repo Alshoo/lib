@@ -12,6 +12,7 @@ import React from 'react'
 import RatingStars from '../Home/ratingStar'
 import arrow from "../../public/Images/arfegrow.png";
 import searchIcon from "@/public/Images/navSearch.png";
+import { api } from "@/context/ApiText/APITEXT";
 
 export default function RecentPage() {
   const [Books, setBooks] = useState([]);
@@ -22,7 +23,7 @@ export default function RecentPage() {
   useEffect(() => {
     const fetchBooks = async () => {
       try {
-        const response = await axios.get(`${process.env.NEXT_PUBLIC_BACKEND_URL}/api`);
+        const response = await axios.get(`${api}/api`);
         setBooks(response.data.popularBooks);
         setDisplayBooks(response.data.popularBooks.slice(0, 4)); 
         setLoading(false);

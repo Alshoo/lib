@@ -11,6 +11,7 @@ import bookicon from "../../public/Images/rret4.png";
 import arrow from "../../public/Images/arfegrow.png";
 import searchIcon from "@/public/Images/navSearch.png";
 import { motion } from "framer-motion";
+import { api } from "@/context/ApiText/APITEXT";
 
 export default function AuthorsPage() {
   const [authors, setAuthors] = useState([]);
@@ -21,7 +22,7 @@ export default function AuthorsPage() {
   useEffect(() => {
     const fetchAuthors = async () => {
       try {
-        const response = await axios.get(`${process.env.NEXT_PUBLIC_BACKEND_URL}/api/authors?per_page=1520`);
+        const response = await axios.get(`${api}/api/authors?per_page=1520`);
         setAuthors(response.data.data);
         setDisplayAuthors(response.data.data);
         setLoading(false);

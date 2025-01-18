@@ -7,6 +7,7 @@ import Image from "next/image";
 import defaultPortifolio from "../../../public/Images/defaultPortifolio.jpeg";
 import toast, { Toaster } from 'react-hot-toast';
 import { useRouter } from 'next/navigation';
+import { api } from "@/context/ApiText/APITEXT";
 
 export default function UserDetails() {
   const [user, setUser] = useState(null);
@@ -66,7 +67,7 @@ export default function UserDetails() {
       console.log("CSRF Token:", csrfToken);
 
       const response = await axios.post(
-        `${process.env.NEXT_PUBLIC_BACKEND_URL}/api/users/${user.id}`,
+        `${api}/api/users/${user.id}`,
         formDataToSend,
         {
           headers: {

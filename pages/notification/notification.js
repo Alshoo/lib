@@ -11,6 +11,7 @@ import arrow from "../../public/Images/arfegrow.png";
 import { motion } from "framer-motion";
 import toast from "react-hot-toast";
 import { Button, Modal } from "react-bootstrap";
+import { api } from "@/context/ApiText/APITEXT";
 
 export default function NotificationPage() {
   const [notifications, setNotifications] = useState([]);
@@ -25,7 +26,7 @@ export default function NotificationPage() {
       const user = Cookies.get("user") ? JSON.parse(Cookies.get("user")) : null;
       if (user) {
         const response = await axios.get(
-          `${process.env.NEXT_PUBLIC_BACKEND_URL}/api/notifications/user`
+          `${api}/api/notifications/user`
         );
         if (response.data.data && response.data.data.length) {
           setNotifications(response.data.data);
@@ -34,7 +35,7 @@ export default function NotificationPage() {
         }
 
         const readResponse = await axios.get(
-          `${process.env.NEXT_PUBLIC_BACKEND_URL}/api/notifications/user/read`
+          `${api}/api/notifications/user/read`
         );
         if (readResponse.data.data && readResponse.data.data.length) {
           setReadNotifications(readResponse.data.data);
@@ -55,7 +56,7 @@ export default function NotificationPage() {
   const markAsRead = async (notificationId) => {
     try {
       const response = await axios.post(
-        `${process.env.NEXT_PUBLIC_BACKEND_URL}/api/notifications/read/${notificationId}`,
+        `${api}/api/notifications/read/${notificationId}`,
         {},
         {
           headers: {
@@ -91,7 +92,7 @@ export default function NotificationPage() {
             onClick={async () => {
               try {
                 const response = await axios.delete(
-                  `${process.env.NEXT_PUBLIC_BACKEND_URL}/api/notifications/${notificationId}`,
+                  `${api}/api/notifications/${notificationId}`,
                   {
                     headers: {
                       "X-XSRF-TOKEN": Cookies.get("XSRF-TOKEN"),
@@ -136,7 +137,7 @@ export default function NotificationPage() {
             onClick={async () => {
               try {
                 const response = await axios.delete(
-                  `${process.env.NEXT_PUBLIC_BACKEND_URL}/api/notifications/delete-all`,
+                  `${api}/api/notifications/delete-all`,
                   {
                     headers: {
                       "X-XSRF-TOKEN": Cookies.get("XSRF-TOKEN"),

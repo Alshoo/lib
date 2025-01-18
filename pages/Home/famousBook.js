@@ -11,6 +11,7 @@ import RatingStars from "./ratingStar";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { motion } from "framer-motion";
+import { api } from "@/context/ApiText/APITEXT";
 
 export default function FamousBook() {
   const [Books, setBooks] = useState([]);
@@ -20,7 +21,7 @@ export default function FamousBook() {
   useEffect(() => {
     const fetchBooks = async () => {
       try {
-        const response = await axios.get(`${process.env.NEXT_PUBLIC_BACKEND_URL}/api`);
+        const response = await axios.get(`${api}/api`);
         setBooks(response.data.popularBooks);
         setLoading(false);
       } catch (error) {

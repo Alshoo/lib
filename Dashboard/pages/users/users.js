@@ -5,13 +5,14 @@ import axios from "axios";
 import toast, { Toaster } from 'react-hot-toast';
 import "./style.css";
 import Cookies from "js-cookie";
+import { api } from "@/context/ApiText/APITEXT";
 
-const backendUrl = process.env.NEXT_PUBLIC_BACKEND_URL;
+const backendUrl = api;
 
 export default function Users() {
   const [users, setUsers] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [roles, setRoles] = useState([]); // State لتخزين الأدوار
+  const [roles, setRoles] = useState([]); 
 
   useEffect(() => {
     const fetchUsers = async () => {
