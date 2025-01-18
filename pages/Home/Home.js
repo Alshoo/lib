@@ -26,7 +26,7 @@ export default function Home() {
 
   return (
     <div>
-      <div className="CustomizeHeight">
+      <div className="CustomizeHeight">ggfgfgfggfgfgfgfgfggfgffggfgfg
         <div className="MainHomeImg">
           <Image src={HomeImage} alt="ERR404" />
         </div>
