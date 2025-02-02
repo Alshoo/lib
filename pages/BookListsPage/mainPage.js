@@ -75,22 +75,7 @@ export default function MainPage() {
 
 <br></br>
 <br></br>
-          {/* <div className="adding">
-          <div  
-              onClick={togglePopup1}
-              className="addauthorbtn" 
-              >
-                  <p>اضافه قسم اساسى</p> 
-                  <Image src={add} alt="ERR404" />
-            </div>
-            <div 
-              onClick={togglePopup2}
-              className="addauthorbtn2" 
-              >
-                  <p>اضافه قسم فرعى</p>
-                  <Image src={add} alt="ERR404" />
-            </div>
-          </div> */}
+ 
 
 
       <div className="main-container">

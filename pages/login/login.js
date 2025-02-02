@@ -15,7 +15,7 @@ export default function LoginPage() {
     if (email === "" || password === "") {
       toast.error("من فضلك أكمل جميع الحقول.");
       alert("من فضلك أكمل جميع الحقول.");
-      return;
+      return; 
     }
     login({ email, password });
   };

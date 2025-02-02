@@ -23,7 +23,7 @@ export function AuthProvider({ children }) {
     } catch (e) {
       console.warn("Error ", e);
     }
-  };
+  }; 
 
   const login = async (data) => {
     setErrors({});
