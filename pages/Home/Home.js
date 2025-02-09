@@ -38,6 +38,7 @@ export default function Home() {
           <div className="headLineText">
             <h3>مرحبا بك فى قارئ</h3>
             <h4>استمتع بقراءة الكتب المفضلة لديك في أي وقت وأي مكان</h4>
+            <h4>            test test test             </h4>
           </div>
 
             <div className="searchContainer">
