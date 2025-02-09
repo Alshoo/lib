@@ -29,7 +29,10 @@ export default function Category() {
   useEffect(() => {
     const fetchCat = async () => {
       try {
-        const response = await axios.get(`${backendUrl}/api/category-groups/`);
+        const auth_token = Cookies.get('auth_token');
+        const response = await axios.get(`${backendUrl}/api/category-groups/`,{
+          headers: { Authorization: `Bearer ${auth_token}` }
+        });
         setCat(response.data.data);
         setLoading(false);
       } catch (error) {
@@ -83,10 +86,9 @@ export default function Category() {
           <button className="confirm-button"
             onClick={async () => {
               try {
-                const csrfToken = Cookies.get('XSRF-TOKEN');
+                const auth_token = Cookies.get('auth_token');
                 await axios.delete(`${backendUrl}/api/category-groups/${categoryId}`, {
-                  headers: { 'X-XSRF-TOKEN': csrfToken },
-                  withCredentials: true,
+                  headers: { "Authorization": `Bearer ${auth_token}` },
                 });
                 toast.success('تم حذف القسم بنجاح');
                 setCat(Cat.filter(category => category.id !== categoryId));
@@ -109,10 +111,9 @@ export default function Category() {
   const handleDeleteSubCategory = async (subCategoryId, e) => {
     e.stopPropagation();
     try {
-      const csrfToken = Cookies.get('XSRF-TOKEN');
+      const auth_token = Cookies.get('auth_token');
       await axios.delete(`${backendUrl}/api/categories/${subCategoryId}`, {
-        headers: { 'X-XSRF-TOKEN': csrfToken },
-        withCredentials: true,
+        headers: { "Authorization": `Bearer ${auth_token}` },
       });
       toast.success('تم حذف القسم الفرعي بنجاح');
       setCat(Cat.map(category => ({

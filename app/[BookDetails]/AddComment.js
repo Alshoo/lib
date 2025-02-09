@@ -35,13 +35,15 @@ export default function AddComment({props}) {
         formData.append('rating', rating);
     
         try {
-            const csrfToken = Cookies.get('XSRF-TOKEN');
+            // const csrfToken = Cookies.get('XSRF-TOKEN');
+            const auth_token = Cookies.get('auth_token');
     
             const response = await axios.post(`${backendUrl}/api/books/${props.params.BookDetails}/comments`, formData, {
                 headers: {
-                    'X-XSRF-TOKEN': csrfToken,
+                    "Authorization": `Bearer ${auth_token}`,
+                    // 'X-XSRF-TOKEN': csrfToken,
                 },
-                withCredentials: true,
+                // withCredentials: true,
             });
     
             // console.log('نجاح:', response.data);

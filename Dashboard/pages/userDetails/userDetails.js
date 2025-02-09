@@ -13,7 +13,7 @@ export default function UserDetails() {
   const [user, setUser] = useState(null);
   const [formData, setFormData] = useState({
     name: "",
-    email: "",
+    email: "", 
     password: "",
     image: null,
   });
@@ -21,9 +21,9 @@ export default function UserDetails() {
 
   useEffect(() => {
     const fetchUserData = async () => {
-      const userData = Cookies.get("user");
+      const userData = JSON.parse(Cookies.get("user"));
       if (userData) {
-        const parsedUser = JSON.parse(userData);
+        const parsedUser = userData.user;
         setUser(parsedUser);
         setFormData({
           name: parsedUser.name,
@@ -60,21 +60,21 @@ export default function UserDetails() {
     }
     if (formData.image) {
       formDataToSend.append("image", formData.image);
-    }
+    } 
 
     try {
-      const csrfToken = Cookies.get('XSRF-TOKEN');
-      console.log("CSRF Token:", csrfToken);
+      // const csrfToken = Cookies.get('XSRF-TOKEN');
+      const auth_token = Cookies.get('auth_token');
 
       const response = await axios.post(
         `${api}/api/users/${user.id}`,
         formDataToSend,
         {
           headers: {
-            'X-XSRF-TOKEN': csrfToken,
-            'Content-Type': 'multipart/form-data',
+            // 'X-XSRF-TOKEN': csrfToken,
+            "Authorization": `Bearer ${auth_token}`,
           },
-          withCredentials: true,
+          // withCredentials: true,
         }
       );
 
@@ -83,6 +83,7 @@ export default function UserDetails() {
         Cookies.remove("user"); 
         Cookies.remove("laravel_session"); 
         Cookies.remove("XSRF-TOKEN"); 
+        Cookies.remove("auth_token"); 
         router.push("/login");
       }
     } catch (error) {

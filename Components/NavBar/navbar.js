@@ -133,7 +133,7 @@ export default function CustomNavbar() {
                           variant="none"
                           className="MAinDropdownContainer"
                         >
-                          <p>{user.name}</p>
+                          <p>{user.user.name}</p>
                           <Image
                             src={defaultPortifolio} 
                             className="UserAvatar"

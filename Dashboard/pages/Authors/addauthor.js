@@ -39,13 +39,12 @@ export default function AddAuthor() {
         formData.append('image', coverImage);
     
         try {
-            const csrfToken = Cookies.get('XSRF-TOKEN');
+            const auth_token = Cookies.get('auth_token');
     
             const response = await axios.post(`${backendUrl}/api/author-requests/create/`, formData, {
                 headers: {
-                    'X-XSRF-TOKEN': csrfToken,
+                    'Authorization': `Bearer ${auth_token}`,
                 },
-                withCredentials: true,
             });
     
             toast.success(`لقد تم ارسال طلب انشاء المؤلف بنجاح`, {

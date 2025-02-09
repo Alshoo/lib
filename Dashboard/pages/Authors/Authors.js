@@ -26,7 +26,12 @@ export default function Authors() {
   useEffect(() => {
     const fetchBooks = async () => {
       try {
-        const response = await axios.get(`${backendUrl}/api/author-requests`);
+          const auth_token = Cookies.get('auth_token');
+        const response = await axios.get(`${backendUrl}/api/author-requests`,{
+          headers: {
+            Authorization: `Bearer ${auth_token}`,
+          },
+        });
         setBooks(response.data);
         setLoading(false);
       } catch (error) {
@@ -37,7 +42,12 @@ export default function Authors() {
 
     const fetchBooks1 = async () => {
       try {
-        const response = await axios.get(`${backendUrl}/api/authors/`);
+        const auth_token = Cookies.get('auth_token');
+        const response = await axios.get(`${backendUrl}/api/authors/`,{
+          headers: {
+            Authorization: `Bearer ${auth_token}`,
+          },
+        });
         setBooks1(response.data.data);
         setLoading(false);
       } catch (error) {
@@ -57,12 +67,11 @@ export default function Authors() {
     formData.append('status', status);
 
     try {
-      const csrfToken = Cookies.get('XSRF-TOKEN');
+      const auth_token = Cookies.get('auth_token');
       const response = await axios.post(`${backendUrl}/api/author-requests/${authorId}/handle`, formData, {
         headers: {
-          'X-XSRF-TOKEN': csrfToken,
+          Authorization: `Bearer ${auth_token}`,
         },
-        withCredentials: true,
       });
 
       if (response.status === 200) {
@@ -80,12 +89,11 @@ export default function Authors() {
 
   const handledelete = async (authorId) => {
     try {
-      const csrfToken = Cookies.get('XSRF-TOKEN');
+      const auth_token = Cookies.get('auth_token');
       const response = await axios.delete(`${backendUrl}/api/books/${authorId}`, {
         headers: {
-          'X-XSRF-TOKEN': csrfToken,
+          "Authorization": `Bearer ${auth_token}`,
         },
-        withCredentials: true,
       });
 
       if (response.status === 200) {

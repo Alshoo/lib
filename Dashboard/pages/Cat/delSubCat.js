@@ -21,7 +21,12 @@ export default function DelSubCat() {
     useEffect(() => {
         const fetchCategories = async () => {
             try {
-                const response = await axios.get(`${backendUrl}/api/category-groups/`);
+                const auth_token = Cookies.get('auth_token');
+                const response = await axios.get(`${backendUrl}/api/category-groups/`,{
+                    headers:{
+                        'Authorization': `Bearer ${auth_token}`,
+                    }
+                });
                 setCategories(response.data.data);
             } catch (error) {
                 console.error("Error fetching categories:", error);
@@ -33,11 +38,12 @@ export default function DelSubCat() {
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            const csrfToken = Cookies.get('XSRF-TOKEN');
+            const auth_token = Cookies.get('auth_token');
 
             await axios.delete(`${backendUrl}/api/categories/${bookSeriesId}`, {
-                headers: { 'X-XSRF-TOKEN': csrfToken },
-                withCredentials: true,
+               headers: {
+                'Authorization': `Bearer ${auth_token}`,
+               }
             });
 
             toast.success(`تم حذف القسم بنجاح`, {

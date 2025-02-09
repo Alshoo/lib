@@ -7,10 +7,10 @@ import Cookies from "js-cookie";
 import "./style.css";
 import { api } from "@/context/ApiText/APITEXT";
 
-const backendUrl = api;
+const backendUrl = api; 
 
 export default function RolesPage() {
-    const [roles, setRoles] = useState([]);
+    const [roles, setRoles] = useState([]);  
     const [formData, setFormData] = useState({
         name: "",
         description: "",
@@ -27,7 +27,12 @@ export default function RolesPage() {
 
     const fetchRoles = async () => {
         try {
-            const response = await axios.get(`${backendUrl}/api/roles/`);
+            const auth_token = Cookies.get('auth_token');
+            const response = await axios.get(`${backendUrl}/api/roles/`,{
+                headers: {
+                    'Authorization': `Bearer ${auth_token}`,
+                }
+            });
             setRoles(response.data.data);
             setLoading(false);
         } catch (error) {
@@ -46,15 +51,13 @@ export default function RolesPage() {
         };
 
         try {
-            const csrfToken = Cookies.get("XSRF-TOKEN");
+            const auth_token = Cookies.get("auth_token");
 
             if (editMode) {
                 const response = await axios.put(`${backendUrl}/api/roles/${currentRoleId}`, formDataPayload, {
                     headers: {
-                        "X-XSRF-TOKEN": csrfToken,
-                        "Content-Type": "application/json",
+                        "Authorization": `Bearer ${auth_token}`,
                     },
-                    withCredentials: true,
                 });
 
                 if (response.status === 200) {
@@ -65,10 +68,8 @@ export default function RolesPage() {
             } else {
                 const response = await axios.post(`${backendUrl}/api/roles/`, formDataPayload, {
                     headers: {
-                        "X-XSRF-TOKEN": csrfToken,
-                        "Content-Type": "application/json",
+                        "Authorization": `Bearer ${auth_token}`,
                     },
-                    withCredentials: true,
                 });
 
                 
@@ -88,14 +89,12 @@ export default function RolesPage() {
 
     const handleDelete = async (roleId) => {
         try {
-            const csrfToken = Cookies.get("XSRF-TOKEN");
+            const auth_token = Cookies.get("auth_token");
 
             const response = await axios.delete(`${backendUrl}/api/roles/${roleId}`, {
                 headers: {
-                    "X-XSRF-TOKEN": csrfToken,
-                    "Content-Type": "application/json",
+                    "Authorization": `Bearer ${auth_token}`,
                 },
-                withCredentials: true,
             });
 
      

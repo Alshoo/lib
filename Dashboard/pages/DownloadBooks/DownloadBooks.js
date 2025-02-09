@@ -20,8 +20,13 @@ export default function DownloadBooks() {
   useEffect(() => {
     const fetchBooks = async () => {
       try {
+        const auth_token = Cookies.get("auth_token");
         const response = await axios.get(
-          `${api}/api`
+          `${api}/api`,{
+          headers: {
+            "Authorization": `Bearer ${auth_token}`,
+          }
+        }
         );
         setBooks(response.data.popularBooks);
         setLoading(false);

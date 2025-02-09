@@ -42,7 +42,7 @@ useEffect(() => {
       const response = await axios.get(`${api}/api/books/${props.params.BookDetails}/comments`); 
       setComments(response.data.data);
       setUser(response.data.data.user.name);
-    } catch (error) {
+    } catch (error) { 
       console.error("Error fetching authors:", error);
     }
   };

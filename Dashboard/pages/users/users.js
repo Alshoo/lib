@@ -14,15 +14,17 @@ export default function Users() {
   const [loading, setLoading] = useState(true);
   const [roles, setRoles] = useState([]); 
 
-  useEffect(() => {
+  useEffect(() => { 
     const fetchUsers = async () => {
       try {
-        const csrfToken = Cookies.get('XSRF-TOKEN');
+        // const csrfToken = Cookies.get('XSRF-TOKEN');
+        const auth_token = Cookies.get('auth_token');
         const response = await axios.get(`${backendUrl}/api/users`, {
           headers: {
-            'X-XSRF-TOKEN': csrfToken,
+            // 'X-XSRF-TOKEN': csrfToken,
+             'Authorization': `Bearer ${auth_token}`, 
           },
-          withCredentials: true,
+          // withCredentials: true,
         });
         setUsers(response.data.data);
         setLoading(false);
@@ -35,12 +37,13 @@ export default function Users() {
 
     const fetchRoles = async () => {
       try {
-        const csrfToken = Cookies.get('XSRF-TOKEN');
+        // const csrfToken = Cookies.get('XSRF-TOKEN');
+        const auth_token = Cookies.get('auth_token');
         const response = await axios.get(`${backendUrl}/api/roles`, {
           headers: {
-            'X-XSRF-TOKEN': csrfToken,
+            "Authorization": `Bearer ${auth_token}`,
           },
-          withCredentials: true,
+          // withCredentials: true,
         });
         setRoles(response.data.data);
       } catch (error) {
@@ -55,12 +58,14 @@ export default function Users() {
 
   const deleteUser = async (userId) => {
     try {
-      const csrfToken = Cookies.get('XSRF-TOKEN');
+      // const csrfToken = Cookies.get('XSRF-TOKEN');
+      const auth_token = Cookies.get('auth_token');
       await axios.delete(`${backendUrl}/api/users/${userId}`, {
         headers: {
-          'X-XSRF-TOKEN': csrfToken,
+          // 'X-XSRF-TOKEN': csrfToken,
+          'Authorization': `Bearer ${auth_token}`, 
         },
-        withCredentials: true,
+        // withCredentials: true,
       });
       setUsers(users.filter((user) => user.id !== userId));
       toast.success("تم حذف المستخدم بنجاح");
@@ -75,13 +80,12 @@ export default function Users() {
     formData.append('role_id', roleId);
 
     try {
-      const csrfToken = Cookies.get('XSRF-TOKEN');
+      const auth_token = Cookies.get('auth_token');
 
       const response = await axios.post(`${backendUrl}/api/users/${userId}/roles/add`, formData, {
         headers: {
-          'X-XSRF-TOKEN': csrfToken,
+          "Authorization": `Bearer ${auth_token}`,
         },
-        withCredentials: true,
       });
       if (response.data) {
         const updatedUsers = users.map((user) => {
@@ -104,13 +108,12 @@ export default function Users() {
     formData.append('role_id', roleId);
 
     try {
-      const csrfToken = Cookies.get('XSRF-TOKEN');
+      const auth_token = Cookies.get('auth_token');
 
       const response = await axios.post(`${backendUrl}/api/users/${userId}/roles/remove`, formData, {
         headers: {
-          'X-XSRF-TOKEN': csrfToken,
+          "Authorization": `Bearer ${auth_token}`,
         },
-        withCredentials: true,
       });
       if (response.data) {
         const updatedUsers = users.map((user) => {

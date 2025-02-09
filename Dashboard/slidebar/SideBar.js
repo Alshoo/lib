@@ -27,28 +27,24 @@ export default function Sidebar() {
 
   useEffect(() => {
     const fetchUserDetails = async () => {
-      if (user?.name) {
-        try {
-          const response = await axios.get(
-            `${backendUrl}/api/users?search=${encodeURIComponent(user.name)}`
-          );
-          const userData = response.data.data;
-          setUserRole(userData[0]?.role[0]?.name || "");
-          setUserImg(userData.image_url);
-          setUserDes(userData[0]?.role[0]?.description || "");
-          setUserRoleLev(userData[0]?.role[0]?.role_level || "");
-        } catch (error) {
-          console.error("Error fetching user details:", error);
-        }
+      if (user?.user?.name) {
+   
+          const userData = Cookies.get("user");
+          const JSONPARSEUSERDATA = JSON.parse(userData);
+          setUserRole(JSONPARSEUSERDATA.user.role?.name || null);
+          setUserImg(JSONPARSEUSERDATA.image_url);
+          setUserDes(JSONPARSEUSERDATA.user.created_at);
+          setUserRoleLev(JSONPARSEUSERDATA.user.role?.role_level || null);
       }
+ 
     };
-
     fetchUserDetails();
-  }, [user?.name]);
+  }, [user?.user?.name]);
 
   useEffect(() => { 
     updateUser();
   }, []);  
+
 
   
   return (
@@ -66,7 +62,7 @@ export default function Sidebar() {
       </div>
         <div id="nav-content">
           {
-            userRoleLev == 1 ?(
+            userRoleLev ==  null || userRoleLev ==  1 ?(
                <>
               <Link href="/dashboard/userDetails" className={`nav-button  ${pathname == "/dashboard" ? "active" : "" ||pathname == "/dashboard/userDetails" ? "active" : ""|| pathname == "/dashboard/DownloadBooks"   ? "" : "active"}`}>
               <i className="fas fa-solid fa-user"></i>
@@ -135,7 +131,7 @@ export default function Sidebar() {
             </div>
             <div id="nav-footer-titlebox">
               <a id="nav-footer-title" href="#">
-                {user ? user.name : "مستخدم مجهول"}
+                {user ? user.user.name : "مستخدم مجهول"}
               </a>
               <span id="nav-footer-subtitle">{userRole}</span>
             </div>

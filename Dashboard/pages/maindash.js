@@ -8,7 +8,7 @@ import Cookies from "js-cookie";
 import UserDetails from "./userDetails/userDetails";
 import { api } from "@/context/ApiText/APITEXT";
 
-const backendUrl = api;
+const backendUrl = api; 
 
 export default function MainDash() { 
   
@@ -22,21 +22,17 @@ export default function MainDash() {
 
   useEffect(() => {
     const fetchUserDetails = async () => {
-      if (user?.name) {
-        try {
-          const response = await axios.get(
-            `${backendUrl}/api/users?search=${encodeURIComponent(user.name)}`
-          );
-          const userData = response.data.data;
-          setUserRoleLev(userData[0]?.role[0]?.role_level || "");
-        } catch (error) {
-          console.error("Error fetching user details:", error);
-        }
+      if (user?.user?.name) {
+        const userData = Cookies.get("user");
+        const JSONPARSEUSERDATA = JSON.parse(userData);
+          setUserRoleLev(JSONPARSEUSERDATA.user.role?.role_level );
       }
+      
+
     };
 
     fetchUserDetails();
-  }, [user?.name]);
+  }, [user?.user?.name]); 
 
   useEffect(() => { 
     updateUser();
@@ -44,7 +40,7 @@ export default function MainDash() {
   return (
     <div >
       {/* <Toaster position="top-center" toastOptions={{ duration: 4000 }} /> */}
-      {userRoleLev == 1 ?(
+      { userRoleLev ==  null || userRoleLev ==  1?(
         <UserDetails/>
       ):(
         <Book />

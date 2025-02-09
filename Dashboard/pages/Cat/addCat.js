@@ -27,13 +27,12 @@ export default function AddCat() {
         formData.append('name', bookName);
     
         try {
-            const csrfToken = Cookies.get('XSRF-TOKEN');
+            const auth_token = Cookies.get('auth_token');
     
             const response = await axios.post(`${backendUrl}/api/category-groups/`, formData, {
                 headers: {
-                    'X-XSRF-TOKEN': csrfToken,
+                    "Authorization": `Bearer ${auth_token}`,
                 },
-                withCredentials: true,
             });
     
             toast.success(`لقد تم انشاء القسم بنجاح`, {

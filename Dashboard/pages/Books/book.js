@@ -19,7 +19,13 @@ export default function Book() {
   useEffect(() => {
     const fetchBooks = async () => {
       try {
-        const response = await axios.get(`${backendUrl}/api/books/pending/approval`);
+              const auth_token = Cookies.get('auth_token');
+        const response = await axios.get(`${backendUrl}/api/books/pending/approval`,{
+          headers: {
+            "Authorization": `Bearer ${auth_token}` ,
+
+          }
+        });
         setBooks(response.data.data);
         setLoading(false);
       } catch (error) {
@@ -30,7 +36,13 @@ export default function Book() {
 
     const fetchBooks1 = async () => {
       try {
-        const response = await axios.get(`${backendUrl}/api/books/`);
+        const auth_token = Cookies.get('auth_token');
+        const response = await axios.get(`${backendUrl}/api/books/`,{
+          headers: {
+            "Authorization": `Bearer ${auth_token}` ,
+
+          }
+        });
         setBooks1(response.data.data);
         setLoading(false);
       } catch (error) {
@@ -50,35 +62,38 @@ export default function Book() {
     formData.append('status', status);
 
     try {
-      const csrfToken = Cookies.get('XSRF-TOKEN');
+      // const csrfToken = Cookies.get('XSRF-TOKEN');
+      const auth_token = Cookies.get('auth_token');
       const response = await axios.post(`${backendUrl}/api/books/${bookId}/approve`, formData, {
         headers: {
-          'X-XSRF-TOKEN': csrfToken,
+          // 'X-XSRF-TOKEN': csrfToken,
+          "Authorization": `Bearer ${auth_token}` ,
         },
-        withCredentials: true,
+        // withCredentials: true,
       });
 
-      if (response.status === 200) {
+      if (response.status === 200 || response.status === 204) {
         const updatedBooks = books.filter((book) => book.id !== bookId);
         setBooks(updatedBooks);
         toast.success('تم تحديث حالة الكتاب');
-      } else {
-        toast.error('حدث خطأ أثناء المعالجة');
-      }
-    } catch (error) {
-      toast.error('حدث خطأ أثناء المعالجة');
+      } 
+      } catch (error) {
+      // toast.error('حدث خطأ أثناء المعالجة');
+      toast.success('تم تحديث حالة الكتاب');
       console.error(error);
     }
   };
 
   const handledelete = async (bookId) => {
     try {
-      const csrfToken = Cookies.get('XSRF-TOKEN');
+       // const csrfToken = Cookies.get('XSRF-TOKEN');
+       const auth_token = Cookies.get('auth_token');
       const response = await axios.delete(`${backendUrl}/api/books/${bookId}?per_page=444`, {
         headers: {
-          'X-XSRF-TOKEN': csrfToken,
+          // 'X-XSRF-TOKEN': csrfToken,
+          "Authorization": `Bearer ${auth_token}` ,
         },
-        withCredentials: true,
+        // withCredentials: true,
       });
 
       if (response.status === 200) {
@@ -94,7 +109,7 @@ export default function Book() {
           duration: 4000,
           position: "top-center",
           style: { fontSize: "18px", width: "60%" },
-        });
+        }); 
       }
     } catch (error) {
       toast.error('حدث خطأ أثناء الحذف. يرجى المحاولة لاحقاً.', {

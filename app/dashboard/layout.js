@@ -36,7 +36,7 @@ export default function DashboardLayout({ children }) {
  
   useEffect(() => {
     const fetchUserDetails = async () => {
-      if (user?.name) {
+      if (user?.user?.name) {
         try {
           const response = await axios.get(
             `${backendUrl}/api/users?search=${encodeURIComponent(user.name)}`
@@ -53,7 +53,7 @@ export default function DashboardLayout({ children }) {
     };
 
     fetchUserDetails();
-  }, [user?.name]);
+  }, [user?.user?.name]);
 
 
   // useEffect(() => {

@@ -57,13 +57,16 @@ export default function AddBook({ AuthorID }) {
         formData.append('copyright_image', copyrightImage);
     
         try {
-            const csrfToken = Cookies.get('XSRF-TOKEN');
+            // const csrfToken = Cookies.get('XSRF-TOKEN');
+            const auth_token = Cookies.get('auth_token');
     
             const response = await axios.post(`${backendUrl}/api/books/`, formData, {
                 headers: {
-                    'X-XSRF-TOKEN': csrfToken,
+                    // 'X-XSRF-TOKEN': csrfToken,
+                    'Authorization': `Bearer ${auth_token}`,
+                    'Content-Type': 'multipart/form-data',
                 },
-                withCredentials: true,
+                // withCredentials: true,
             });
     
             toast.success(`لقد تم انشاء الكتاب بنجاح`, {

@@ -21,7 +21,9 @@ export default function AddSubCat({MainCatId}) {
     const [categories, setCategories] = useState([]);
     
 
-
+ 
+console.log(MainCatId.id);
+console.log(MainCatId);
 
 
 
@@ -29,7 +31,12 @@ export default function AddSubCat({MainCatId}) {
     useEffect(() => {
         const fetchCategories = async () => {
             try {
-                const response = await axios.get(`${backendUrl}/api/category-groups/`);
+                const auth_token = Cookies.get('auth_token');
+                const response = await axios.get(`${backendUrl}/api/category-groups/`,{
+                    headers: {
+                        "Authorization": `Bearer ${auth_token}`,
+                    },
+                });
                 setCategories(response.data.data);
             } catch (error) {
                 console.error("Error fetching categories:", error);
@@ -47,16 +54,15 @@ export default function AddSubCat({MainCatId}) {
         
         const formData = new FormData();
         formData.append('name', bookName);
-        formData.append('category_group_id', categoryId);
+        formData.append('category_group_id', MainCatId.id);
     
         try {
-            const csrfToken = Cookies.get('XSRF-TOKEN');
+            const auth_token = Cookies.get('auth_token');
     
             const response = await axios.post(`${backendUrl}/api/categories/`, formData, {
                 headers: {
-                    'X-XSRF-TOKEN': csrfToken,
+                    "Authorization": `Bearer ${auth_token}`,
                 },
-                withCredentials: true,
             });
     
             toast.success(`لقد تم انشاء القسم بنجاح`, {

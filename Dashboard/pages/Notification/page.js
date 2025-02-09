@@ -24,15 +24,14 @@ export default function NotiPage() {
     formData.append("message", message);
 
     try {
-        const csrfToken = Cookies.get('XSRF-TOKEN');
+        const auth_token = Cookies.get('auth_token');
       const response = await axios.post(
         `${backendUrl}/api/notifications/send/all`,
         formData,
         {
             headers: {
-              'X-XSRF-TOKEN': csrfToken,
+              "Authorization": `Bearer ${auth_token}`,
             },
-            withCredentials: true,
           })
  
       if (response?.status === 200) {

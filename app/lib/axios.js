@@ -4,8 +4,8 @@ import axios from 'axios';
 
 const instance = axios.create({
     baseURL: api,
-    withXSRFToken: true,
-    withCredentials: true,
+    // withXSRFToken: true,
+    // withCredentials: true,
   });
   
 

@@ -13,8 +13,6 @@ export function AuthProvider({ children }) {
   const [loading, setLoading] = useState(true);
   const [status, setStatus] = useState(null);
 
-  const csrf = () => axios.get("/sanctum/csrf-cookie");
-
   const getUser = async () => {
     try {
       const { data } = await axios.get("/api/user");
@@ -23,16 +21,21 @@ export function AuthProvider({ children }) {
     } catch (e) {
       console.warn("Error ", e);
     }
-  }; 
+  };
 
   const login = async (data) => {
     setErrors({});
     setLoading(true);
 
     try {
-      await csrf();
-      const response = await axios.post("/login", data);
-      // const response = await axios.post("/api/login", data);
+      // const response = await axios.post("/login", data);
+      const response = await axios.post("/api/login", data);
+      
+      // Set token from response
+      const token = response.data.token;
+      Cookies.set("auth_token", token, { expires: 7 });
+      axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;
+
       await getUser();
 
       toast.success("تم تسجيل الدخول بنجاح", {
@@ -66,9 +69,14 @@ export function AuthProvider({ children }) {
     setLoading(true);
 
     try {
-      await csrf();
-      // await axios.post("/api/register", data);
-      await axios.post("/register", data);
+      // await axios.post("/register", data);
+      const response = await axios.post("/api/register", data);
+      
+      // Set token from response
+      const token = response.data.token;
+      Cookies.set("auth_token", token, { expires: 7 });
+      axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;
+
       await getUser();
 
       toast.success("تم التسجيل بنجاح", {
@@ -99,12 +107,16 @@ export function AuthProvider({ children }) {
 
   const logout = async () => {
     try {
-      await axios.post("/logout");
       // await axios.post("/api/logout");
+      await axios.post("/api/logout");
+      
+      // Clear token and headers
+      Cookies.remove("auth_token");
+      delete axios.defaults.headers.common["Authorization"];
+      
       setUser(null);
       Cookies.remove("user");
-      Cookies.remove("laravel_session");
-      Cookies.remove("XSRF-TOKEN");
+      
       toast.success("تم تسجيل الخروج بنجاح!", {
         duration: 4000,
         position: "top-center",
@@ -122,6 +134,12 @@ export function AuthProvider({ children }) {
   };
 
   useEffect(() => {
+    // Initialize auth token on app load
+    const token = Cookies.get("auth_token");
+    if (token) {
+      axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;
+    }
+
     const fetchUser = async () => {
       try {
         await getUser();
@@ -142,7 +160,6 @@ export function AuthProvider({ children }) {
       <Toaster position="top-center" toastOptions={{ duration: 4000 }} />
       <AuthContext.Provider
         value={{
-          csrf,
           errors,
           user,
           login,
