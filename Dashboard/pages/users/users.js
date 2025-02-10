@@ -163,8 +163,8 @@ export default function Users() {
               <td>
                 {user.role.length > 0 ? (
                   user.role.map((role) => (
-                    <div key={role.id} className="role-item">
-                      <span>{role.name}</span>
+                    <div key={role?.id} className="role-item">
+                      <span>{role?.name}</span>
                       <button
                         className="remove-role-btn"
                         onClick={() => removeRoleFromUser(user.id, role.id)}
