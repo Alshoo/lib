@@ -4,7 +4,7 @@
 .MainNav2{
     position: fixed;
     width: 100%;
-    z-index: 1;
+    z-index: 1; 
     box-shadow: 1px 4px 10px 0px rgba(0, 0, 0, 0.30);
     top: 0;
 } */
@@ -16,18 +16,32 @@
     align-items:baseline!important;
     gap: 25px;
 }
+.MainNavContainer{
+    display: flex;
+    width: 95%;
+    margin: auto;
+    justify-content: space-between;
+    align-items: center;
+    align-items: baseline;
+}
 
-.navbar-brand{
-    background: var(--Main-BackGround);
-    color: aliceblue;
-    padding: 10px;
-    border-radius: 15px;
+.navbar-toggler{
+    float: left!important;
+    transform: translateY(12%);
+}
+.navbar-brand  {
+    padding: 0 30px;
+}
+.navbar-brand img {
+    width: 90px;
+    height: 50px;
 }
 .NavBarItrms{
     width: 100%;
     display: flex;
     justify-content: space-between;
     align-items: center;
+    transform: translateY(7%);
 }
 .SignBtn{
     display: flex;
@@ -104,11 +118,22 @@
     z-index: 99;
 }
 @media (max-width:992px) {
+    .MainNavContainer{
+        display: block;
+        width: 95%;
+        margin: auto;
+        justify-content: space-between;
+        align-items: center;
+        align-items: baseline;
+    }
     .NavBarItrms{
         justify-content: center;
         flex-direction: column;
+            transform: translateY(0%);
 
-
+    }
+    .navbar-brand  {
+        padding: 0;
     }
 }
 

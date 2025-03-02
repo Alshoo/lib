@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from "react";
 import axios from "axios";
-import toast, { Toaster } from 'react-hot-toast';
+import toast, { Toaster } from "react-hot-toast";
 import "./style.css";
 import Cookies from "js-cookie";
 import { api } from "@/context/ApiText/APITEXT";
@@ -12,17 +12,17 @@ const backendUrl = api;
 export default function Users() {
   const [users, setUsers] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [roles, setRoles] = useState([]); 
+  const [roles, setRoles] = useState([]);
 
-  useEffect(() => { 
+  useEffect(() => {
     const fetchUsers = async () => {
       try {
         // const csrfToken = Cookies.get('XSRF-TOKEN');
-        const auth_token = Cookies.get('auth_token');
+        const auth_token = Cookies.get("auth_token");
         const response = await axios.get(`${backendUrl}/api/users`, {
           headers: {
             // 'X-XSRF-TOKEN': csrfToken,
-             'Authorization': `Bearer ${auth_token}`, 
+            Authorization: `Bearer ${auth_token}`,
           },
           // withCredentials: true,
         });
@@ -38,10 +38,10 @@ export default function Users() {
     const fetchRoles = async () => {
       try {
         // const csrfToken = Cookies.get('XSRF-TOKEN');
-        const auth_token = Cookies.get('auth_token');
+        const auth_token = Cookies.get("auth_token");
         const response = await axios.get(`${backendUrl}/api/roles`, {
           headers: {
-            "Authorization": `Bearer ${auth_token}`,
+            Authorization: `Bearer ${auth_token}`,
           },
           // withCredentials: true,
         });
@@ -59,11 +59,11 @@ export default function Users() {
   const deleteUser = async (userId) => {
     try {
       // const csrfToken = Cookies.get('XSRF-TOKEN');
-      const auth_token = Cookies.get('auth_token');
+      const auth_token = Cookies.get("auth_token");
       await axios.delete(`${backendUrl}/api/users/${userId}`, {
         headers: {
           // 'X-XSRF-TOKEN': csrfToken,
-          'Authorization': `Bearer ${auth_token}`, 
+          Authorization: `Bearer ${auth_token}`,
         },
         // withCredentials: true,
       });
@@ -77,16 +77,20 @@ export default function Users() {
 
   const addRoleToUser = async (userId, roleId) => {
     const formData = new FormData();
-    formData.append('role_id', roleId);
+    formData.append("role_id", roleId);
 
     try {
-      const auth_token = Cookies.get('auth_token');
+      const auth_token = Cookies.get("auth_token");
 
-      const response = await axios.post(`${backendUrl}/api/users/${userId}/roles/add`, formData, {
-        headers: {
-          "Authorization": `Bearer ${auth_token}`,
-        },
-      });
+      const response = await axios.post(
+        `${backendUrl}/api/users/${userId}/roles/add`,
+        formData,
+        {
+          headers: {
+            Authorization: `Bearer ${auth_token}`,
+          },
+        }
+      );
       if (response.data) {
         const updatedUsers = users.map((user) => {
           if (user.id === userId) {
@@ -105,20 +109,27 @@ export default function Users() {
 
   const removeRoleFromUser = async (userId, roleId) => {
     const formData = new FormData();
-    formData.append('role_id', roleId);
+    formData.append("role_id", roleId);
 
     try {
-      const auth_token = Cookies.get('auth_token');
+      const auth_token = Cookies.get("auth_token");
 
-      const response = await axios.post(`${backendUrl}/api/users/${userId}/roles/remove`, formData, {
-        headers: {
-          "Authorization": `Bearer ${auth_token}`,
-        },
-      });
+      const response = await axios.post(
+        `${backendUrl}/api/users/${userId}/roles/remove`,
+        formData,
+        {
+          headers: {
+            Authorization: `Bearer ${auth_token}`,
+          },
+        }
+      );
       if (response.data) {
         const updatedUsers = users.map((user) => {
           if (user.id === userId) {
-            return { ...user, role: user.role.filter((role) => role.id !== roleId) };
+            return {
+              ...user,
+              role: user.role.filter((role) => role.id !== roleId),
+            };
           }
           return user;
         });
@@ -161,21 +172,19 @@ export default function Users() {
               <td>{user.name}</td>
               <td>{user.email}</td>
               <td>
-                {user.role.length > 0 ? (
-                  user.role.map((role) => (
-                    <div key={role?.id} className="role-item">
-                      <span>{role?.name}</span>
-                      <button
-                        className="remove-role-btn"
-                        onClick={() => removeRoleFromUser(user.id, role.id)}
-                      >
-                        حذف الدور
-                      </button>
-                    </div>
-                  ))
-                ) : (
-                  "لا توجد أدوار"
-                )}
+                {user.role.length > 0
+                  ? user.role.map((role) => (
+                      <div key={role?.id} className="role-item">
+                        <span>{role?.name}</span>
+                        <button
+                          className="remove-role-btn"
+                          onClick={() => removeRoleFromUser(user.id, role.id)}
+                        >
+                          حذف الدور
+                        </button>
+                      </div>
+                    ))
+                  : "لا توجد أدوار"}
               </td>
               <td>
                 <select

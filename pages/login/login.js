@@ -10,7 +10,7 @@ export default function LoginPage() {
   const [password, setPassword] = useState("");
   const { login, errors, loading } = useAuthContext();
 
-  const handleLogin = async (e) => {
+  const handleLogin = async (e) => { 
     e.preventDefault();
     if (email === "" || password === "") {
       toast.error("من فضلك أكمل جميع الحقول.");

@@ -12,13 +12,13 @@ import { api } from "@/context/ApiText/APITEXT";
 
 export default function Authors() {
   const [authors, setAuthors] = useState([]);
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(true); 
 
   useEffect(() => {
     const fetchAuthors = async () => {
       try {
         const response = await axios.get(`${api}/api/authors`);
-        setAuthors(response.data.data.slice(0, 4));
+        setAuthors(response.data.data.slice(0, 6));
         setLoading(false);
       } catch (error) { 
         console.error("Error fetching authors:", error);
@@ -73,12 +73,12 @@ export default function Authors() {
                     src={defaultPortifolio}
                     alt="ERR404"
                     className="CardImg44"
-                  />
+                  /> 
                 )}
                 <div className="lastCardSecAuthor">
                   <h6>{author.name}</h6>
                   <div className="bookNum">
-                    <Image src={bookicon} alt="ERR404" />
+                    {/* <Image src={bookicon} alt="ERR404" /> */}
                     <p>عدد الكتب: {author.book_count || "غير معروف"}</p>
                   </div>
                 </div>

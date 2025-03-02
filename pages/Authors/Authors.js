@@ -44,18 +44,17 @@ export default function AuthorsPage() {
 
   return (
     <div> 
-      <div className="Breadcrumb">
-        <Link href="/">الرئيسية</Link>
+      {/* <div className="Breadcrumb">
+        <Link href="/">الرئيسية</Link> 
         <Image src={arrow} alt='ERR404'/>
         <Link href="">المؤلفين</Link>
-      </div>
+      </div> */}
 
-      <br></br>
       <br></br>
       <br></br>
 
       <div className="bookPageContainer">
-        <div className="searchContainer2">
+        {/* <div className="searchContainer2">
           <div className="iconWrapper2">
             <Image src={searchIcon} alt="ERR404" />
           </div>
@@ -67,7 +66,23 @@ export default function AuthorsPage() {
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)} 
           />
+
+
+          
           <button className="actionButton2">بحث</button>
+        </div> */}
+
+        <h5 className="titCat11">مؤلفو الكتب  :</h5>
+        <div className="search-container11">
+          <i className="fas fa-search search-icon11"></i>
+          <input 
+            type="text"
+            placeholder="ابحث عن مؤلف"
+            className="search-input11"
+            value={searchTerm}
+            onChange={(e) => setSearchTerm(e.target.value)} 
+            autoFocus
+          />
         </div>
 
         {loading ? (

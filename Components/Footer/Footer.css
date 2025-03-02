@@ -5,7 +5,7 @@
   padding: 40px 20px 20px 20px;
   font-family: Arial, sans-serif;
   text-align: right;
-  margin-top: 100px;
+  margin-top: 5px; 
 }
 
 .footer-container {
@@ -22,15 +22,9 @@
 }
 
 .logo {
-  background-color: #ffffff;
-  border-radius: 50%;
   width: 100px;
   height: 100px;
   display: flex;
-  align-items: center;
-  justify-content: center;
-  font-weight: bold;
-  color: #333;
   margin: auto;
 }
 
@@ -123,7 +117,8 @@
 }
 .lastFooterLink{
   display: flex;
-  gap: 30px;
+  gap: 15px;
+  align-items: center;
 }
 
 @media (max-width: 768px) {

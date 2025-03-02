@@ -11,6 +11,39 @@
   margin: auto;
 }
 
+
+
+
+.search-container {
+  position: relative;
+  width: 90%;
+  margin-bottom: 20px;
+  margin: auto;
+}
+
+.search-icon {
+  position: absolute;
+  left: 10px;
+  top: 60px;
+  color: #000000;
+  font-size: 16px;
+}
+
+.search-input {
+  width: 100%;
+  padding: 10px 10px 10px 40px;
+  font-size: 16px;
+  border: 1px solid #000000;
+  border-radius: 20px;
+}
+.titCat{
+  margin: 0 0 20px;
+}
+
+
+
+
+
 .iconWrapper2 {
   margin-right: 10px;
 }

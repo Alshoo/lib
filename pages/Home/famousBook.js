@@ -33,7 +33,7 @@ export default function FamousBook() {
     fetchBooks();
   }, []);
 
-  const popularBooks = Books.slice(0, 4);
+  const popularBooks = Books.slice(0, 6);
 
 
   return (
@@ -59,7 +59,7 @@ export default function FamousBook() {
         popularBooks == "" ? (
             <div className="notFundTxt">
             لا توجد كتب حاليا هنا
-          </div>
+          </div> 
           ):(
             <div className="Maincards">
             {popularBooks.map((book) => (
@@ -82,13 +82,14 @@ export default function FamousBook() {
                       alt="Default Book Cover"
                       className="CardImg44"
                     />
+                                  
                   )}
                   <div className="lastCardSec">
                     <Image src={defaultPortifolio} className="AuthorImg" alt="ERR404" />
                     <h6>{book.title}</h6>
                     <p>{book.author.name}</p>
                   </div>
-                  <RatingStars rating={Books.average_rating||0} />
+                  <RatingStars rating={book.average_rating||0} />
                 </Link>
               </motion.div>
             ))}

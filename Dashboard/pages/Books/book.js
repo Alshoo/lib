@@ -1,31 +1,33 @@
 "use client";
 import "./book.css";
-import { useState, useEffect } from 'react';
-import axios from 'axios';
-import toast, { Toaster } from 'react-hot-toast';
-import Cookies from 'js-cookie';
+import { useState, useEffect } from "react";
+import axios from "axios";
+import toast, { Toaster } from "react-hot-toast";
+import Cookies from "js-cookie";
 import defaultPortifolio from "../../../public/Images/defaultPortifolio.jpeg";
-import Image from 'next/image';
+import Image from "next/image";
 import { api } from "@/context/ApiText/APITEXT";
 
 const backendUrl = api;
 
 export default function Book() {
-  const [books, setBooks] = useState([]); 
-  const [books1, setBooks1] = useState([]); 
+  const [books, setBooks] = useState([]);
+  const [books1, setBooks1] = useState([]);
   const [loading, setLoading] = useState(true);
   const [searchTerm, setSearchTerm] = useState("");
 
   useEffect(() => {
     const fetchBooks = async () => {
       try {
-              const auth_token = Cookies.get('auth_token');
-        const response = await axios.get(`${backendUrl}/api/books/pending/approval`,{
-          headers: {
-            "Authorization": `Bearer ${auth_token}` ,
-
+        const auth_token = Cookies.get("auth_token");
+        const response = await axios.get(
+          `${backendUrl}/api/books/pending/approval`,
+          {
+            headers: {
+              Authorization: `Bearer ${auth_token}`,
+            },
           }
-        });
+        );
         setBooks(response.data.data);
         setLoading(false);
       } catch (error) {
@@ -36,12 +38,11 @@ export default function Book() {
 
     const fetchBooks1 = async () => {
       try {
-        const auth_token = Cookies.get('auth_token');
-        const response = await axios.get(`${backendUrl}/api/books/`,{
+        const auth_token = Cookies.get("auth_token");
+        const response = await axios.get(`${backendUrl}/api/books/`, {
           headers: {
-            "Authorization": `Bearer ${auth_token}` ,
-
-          }
+            Authorization: `Bearer ${auth_token}`,
+          },
         });
         setBooks1(response.data.data);
         setLoading(false);
@@ -59,39 +60,43 @@ export default function Book() {
 
   const handleApproval = async (bookId, status) => {
     const formData = new FormData();
-    formData.append('status', status);
+    formData.append("status", status);
 
     try {
       // const csrfToken = Cookies.get('XSRF-TOKEN');
-      const auth_token = Cookies.get('auth_token');
-      const response = await axios.post(`${backendUrl}/api/books/${bookId}/approve`, formData, {
-        headers: {
-          // 'X-XSRF-TOKEN': csrfToken,
-          "Authorization": `Bearer ${auth_token}` ,
-        },
-        // withCredentials: true,
-      });
+      const auth_token = Cookies.get("auth_token");
+      const response = await axios.post(
+        `${backendUrl}/api/books/${bookId}/approve`,
+        formData,
+        {
+          headers: {
+            // 'X-XSRF-TOKEN': csrfToken,
+            Authorization: `Bearer ${auth_token}`,
+          },
+          // withCredentials: true,
+        }
+      );
 
       if (response.status === 200 || response.status === 204) {
         const updatedBooks = books.filter((book) => book.id !== bookId);
         setBooks(updatedBooks);
-        toast.success('تم تحديث حالة الكتاب');
-      } 
-      } catch (error) {
+        toast.success("تم تحديث حالة الكتاب");
+      }
+    } catch (error) {
       // toast.error('حدث خطأ أثناء المعالجة');
-      toast.success('تم تحديث حالة الكتاب');
+      toast.success("تم تحديث حالة الكتاب");
       console.error(error);
     }
   };
 
   const handledelete = async (bookId) => {
     try {
-       // const csrfToken = Cookies.get('XSRF-TOKEN');
-       const auth_token = Cookies.get('auth_token');
-      const response = await axios.delete(`${backendUrl}/api/books/${bookId}?per_page=444`, {
+      // const csrfToken = Cookies.get('XSRF-TOKEN');
+      const auth_token = Cookies.get("auth_token");
+      const response = await axios.delete(`${backendUrl}/api/books/${bookId}`, {
         headers: {
           // 'X-XSRF-TOKEN': csrfToken,
-          "Authorization": `Bearer ${auth_token}` ,
+          Authorization: `Bearer ${auth_token}`,
         },
         // withCredentials: true,
       });
@@ -99,20 +104,20 @@ export default function Book() {
       if (response.status === 200) {
         const updatedBooks = books1.filter((book) => book.id !== bookId);
         setBooks1(updatedBooks);
-        toast.success('تم حذف الكتاب بنجاح', {
+        toast.success("تم حذف الكتاب بنجاح", {
           duration: 4000,
           position: "top-center",
           style: { fontSize: "20px", width: "50%" },
         });
       } else {
-        toast.error('حدث خطأ أثناء الحذف', {
+        toast.error("حدث خطأ أثناء الحذف", {
           duration: 4000,
           position: "top-center",
           style: { fontSize: "18px", width: "60%" },
-        }); 
+        });
       }
     } catch (error) {
-      toast.error('حدث خطأ أثناء الحذف. يرجى المحاولة لاحقاً.', {
+      toast.error("حدث خطأ أثناء الحذف. يرجى المحاولة لاحقاً.", {
         duration: 4000,
         position: "top-center",
         style: { fontSize: "18px", width: "60%" },
@@ -148,21 +153,43 @@ export default function Book() {
           <p className="no-books-message">لا توجد كتب في انتظار الموافقة</p>
         </div>
       ) : (
-        <ul className="books-list">
+        <ul className="books-list12">
           {books.map((book) => (
             <li key={book.id} className="book-item">
               <div>
                 {book.cover_image ? (
-                  <img src={book.cover_image} alt={book.title} className="book-image" />
+                  <img
+                    src={book.cover_image}
+                    alt={book.title}
+                    className="book-image"
+                  />
                 ) : (
-                  <Image src={defaultPortifolio} alt={book.title} className="book-image" />
+                  <Image
+                    src={defaultPortifolio}
+                    alt={book.title}
+                    className="book-image"
+                  />
                 )}
                 <h3 className="book-title">{book.title}</h3>
                 <p className="book-description">{book.description}</p>
-                <p className="book-info"><strong>المؤلف:</strong> {book.author.name}</p>
-                <p className="book-info"><strong>الفئة:</strong> {book.category.name}</p>
-                <button className="approve-btn" onClick={() => handleApproval(book.id, "approved")}>قبول</button>
-                <button className="reject-btn" onClick={() => handleApproval(book.id, "rejected")}>رفض</button>
+                <p className="book-info">
+                  <strong>المؤلف:</strong> {book.author.name}
+                </p>
+                <p className="book-info"> 
+                  <strong>الفئة:</strong> {book.category.name}
+                </p>
+                <button
+                  className="approve-btn"
+                  onClick={() => handleApproval(book.id, "approved")}
+                >
+                  قبول
+                </button>
+                <button
+                  className="reject-btn"
+                  onClick={() => handleApproval(book.id, "rejected")}
+                >
+                  رفض
+                </button>
               </div>
             </li>
           ))}
@@ -172,7 +199,6 @@ export default function Book() {
       <br />
       <br />
       <h1 className="title">حذف عناصر</h1>
-
 
       <div className="search-container">
         <input
@@ -189,22 +215,39 @@ export default function Book() {
           <p className="no-books-message">لا توجد كتب مطابقة للبحث</p>
         </div>
       ) : (
-        <ul className="books-list">
+        <ul className="books-list12">
           {filteredBooks.map((book) => (
-            <li key={book.id} className="book-item"> 
+            <li key={book.id} className="book-item">
               <div>
                 {book.cover_image ? (
-                  <img src={book.cover_image} alt={book.title} className="book-image" />
+                  <img
+                    src={book.cover_image}
+                    alt={book.title}
+                    className="book-image"
+                  />
                 ) : (
-                  <Image src={defaultPortifolio} alt={book.title} className="book-image" />
+                  <Image
+                    src={defaultPortifolio}
+                    alt={book.title}
+                    className="book-image"
+                  />
                 )}
                 <h3 className="book-title">{book.title}</h3>
                 <div className="descript">
                   <p className="book-description">{book.description}</p>
                 </div>
-                <p className="book-info"><strong>المؤلف:</strong> {book.author.name}</p>
-                <p className="book-info"><strong>الفئة:</strong> {book.category.name}</p>
-                <button className="reject-btn" onClick={() => handledelete(book.id)}>حذف</button>
+                <p className="book-info">
+                  <strong>المؤلف:</strong> {book.author.name}
+                </p>
+                <p className="book-info">
+                  <strong>الفئة:</strong> {book.category.name}
+                </p>
+                <button
+                  className="reject-btn"
+                  onClick={() => handledelete(book.id)}
+                >
+                  حذف
+                </button>
               </div>
             </li>
           ))}

@@ -90,7 +90,7 @@ export default function Authors() {
   const handledelete = async (authorId) => {
     try {
       const auth_token = Cookies.get('auth_token');
-      const response = await axios.delete(`${backendUrl}/api/books/${authorId}`, {
+      const response = await axios.delete(`${backendUrl}/api/authors/${authorId}`, {
         headers: {
           "Authorization": `Bearer ${auth_token}`,
         },
@@ -157,8 +157,8 @@ export default function Authors() {
         <div className="no-books-message-container">
           <p className="no-books-message">لا توجد مؤلفين في انتظار الموافقة</p>
         </div>
-      ) : (
-        <ul className="books-list">
+      ) : ( 
+        <ul className="books-list22">
           {books.map((author) => (
             <li key={author.id} className="book-item">
               {author.request_image ? (
@@ -199,20 +199,28 @@ export default function Authors() {
           <p className="no-books-message">لا توجد مؤلفين مطابقين للبحث</p>
         </div>
       ) : (
-        <ul className="books-list">
+        <ul className="books-list22">
           {filteredAuthors.map((author) => (
             <li key={author.id} className="book-item">
-              {author.request_image ? (
-                <img src={author.request_image} alt={author.name} className="book-image" />
-              ) : (
-                <Image src={defaultPortifolio} alt={author.name} className="book-image" />
-              )}
+            {author.profile_image ? (
+                           <img
+                             src={author.profile_image}
+                             alt="ERR404"
+                             className="CardImg44"
+                           />
+                         ) : (
+                           <Image
+                             src={defaultPortifolio}
+                             alt="ERR404"
+                             className="CardImg44"
+                           /> 
+                         )}
               <h3 className="book-title">{author.name}</h3>
               <div className="descript">
                 <p className="book-description">{author.biography || "لا توجد سيرة ذاتية متاحة"}</p>
               </div>
               <p className="book-info"><strong>تاريخ الميلاد:</strong> {author.birthdate || "غير محدد"}</p>
-              <button className="reject-btn" onClick={() => handledelete(author.id)}>حذف</button>
+              <button className="reject-btn11" onClick={() => handledelete(author.id)}>حذف</button>
             </li>
           ))}
         </ul>

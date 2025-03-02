@@ -13,6 +13,8 @@ import Link from "next/link";
 import { motion } from "framer-motion";
 import Cookies from 'js-cookie';
 import { api } from "@/context/ApiText/APITEXT";
+import EditCat from "./edit";
+import EditSubCat from "./editSub";
 
 const backendUrl = api;
 
@@ -21,6 +23,7 @@ export default function Category() {
   const [searchTerm, setSearchTerm] = useState("");
   const [Cat, setCat] = useState([]);
   const [MainCatId, setMainCatId] = useState([]);
+  const [subCatId, setSubCatId] = useState([]);
 
   const toggleSection = (section) => {
     setOpenSection(openSection === section ? null : section);
@@ -64,6 +67,18 @@ export default function Category() {
 
   const [isPopupVisible3, setIsPopupVisible3] = useState(false);
   const togglePopup3 = () => setIsPopupVisible3(!isPopupVisible3);
+
+  const [isPopupVisible4, setIsPopupVisible4] = useState(false);
+  const togglePopup4 = (ID) => {
+    setMainCatId(ID);
+    setIsPopupVisible4(!isPopupVisible4)
+  };
+
+  const [isPopupVisible5, setIsPopupVisible5] = useState(false);
+  const togglePopup5 = (ID) => {
+    setSubCatId(ID);
+    setIsPopupVisible5(!isPopupVisible5)
+  };
 
   const [loading, setLoading] = useState(true);
   setTimeout(() => setLoading(false), 2101);
@@ -129,12 +144,10 @@ export default function Category() {
     <div>
       <Toaster position="top-center" toastOptions={{ duration: 4000 }} />
       <br></br>
-      <br></br>
-      <br></br>
-      <h1 className="title">جميع العناصر</h1>
+      {/* <h1 className="title">جميع العناصر</h1> */}
    
       
-      <br></br>
+      <br></br> 
       <div className="CatBTN">
         <div onClick={togglePopup} className="addauthorbtn">
           <p>اضافه قسم</p>
@@ -145,15 +158,23 @@ export default function Category() {
           <Image src={add} alt="ERR404" />
         </div> */}
       </div>
-      <input
-        type="text"
-        placeholder="البحث عن قسم"
-        className="search-input"
-        value={searchTerm}
-        onChange={(e) => setSearchTerm(e.target.value)}
-        autoFocus
-      />
-      <br></br>
+
+        <div className="main-Search-container11">
+        <div className="search-container11">
+                  <i className="fas fa-search search-icon11"></i>
+                  <input 
+                    type="text"
+                    placeholder="البحث عن قسم"
+                    className="search-input11"
+                    value={searchTerm}
+                    onChange={(e) => setSearchTerm(e.target.value)}
+                    autoFocus
+                  />
+                </div>
+        </div>
+
+
+
       <br></br>
       <div>
         {filteredCategories.length === 0 ? (
@@ -166,9 +187,12 @@ export default function Category() {
                 <span>{category.name}</span>
                 </div>
                 <div>
-                <button className="toggle-btn" onClick={() => toggleSection(category.name)}>
+                <button className="toggle-btn" onClick={() => {
+                  setMainCatId(category);
+                  toggleSection(category.name)}}>
                   {openSection === category.name ? "إخفاء القائمة" : "عرض القائمة"}
                 </button>
+                <button className="edit-sub-btn" onClick={()=>togglePopup4(category)}>تعديل اسم القسم</button>
                 <button className="add-sub-btn" onClick={()=>togglePopup1(category)}>إضافة قسم فرعي</button>
                 <button className="delete-btn" onClick={(e) => handleDeleteCategory(category.id, e)}>حذف</button>
                 </div>
@@ -178,8 +202,13 @@ export default function Category() {
                 <div className="dropdown-content">
                   {category.categories.map((subCategory) => (
                     <div className="dropdown-item" key={subCategory.id}>
-                        {subCategory.name}
-                        <button className="delete-btn" onClick={(e) => handleDeleteSubCategory(subCategory.id, e)}>حذف</button>
+                       <div>
+                       {subCategory.name}
+                       </div>
+                       <div>
+                       <button className="edit-btn" onClick={() => togglePopup5(subCategory)}>تعديل</button>
+                       <button className="delete-btn" onClick={(e) => handleDeleteSubCategory(subCategory.id, e)}>حذف</button>
+                       </div>
 
                     </div>
                   ))}
@@ -193,6 +222,8 @@ export default function Category() {
       {isPopupVisible1 && <AddSubCat MainCatId={MainCatId} />}
       {isPopupVisible2 && <DelCat />}
       {isPopupVisible3 && <DelSubCat />}
+      {isPopupVisible4 && <EditCat MainCatId2={MainCatId}/>}
+      {isPopupVisible5 && <EditSubCat subCatId={subCatId} MainCatId={MainCatId}/>}
     </div>
   );
 }

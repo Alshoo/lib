@@ -1,6 +1,35 @@
-.bookPageContainer {
-    margin-top: 30px;
-  }
+.bookPageContainer{
+  direction: rtl;
+  width: 90%;
+  margin: auto;
+}
+.search-container11 {
+  position: relative;
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+.search-icon11 {
+  position: absolute;
+  left: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #000000;
+  font-size: 16px;
+}
+
+.search-input11 {
+  width: 100%;
+  padding: 10px 10px 10px 40px;
+  font-size: 16px;
+  border: 1px solid #000000;
+  border-radius: 20px;
+}
+.titCat11{
+  margin: 0 0 20px;
+}
+
+
   .searchContainer2 {
     display: flex;
     align-items: center;
@@ -9,7 +38,7 @@
     padding: 5px 15px;
     width: 70%;
     margin: auto;
-  }
+  } 
   
   .iconWrapper2 {
     margin-right: 10px;

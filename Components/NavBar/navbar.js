@@ -9,12 +9,10 @@ import Group from "../../public/Images/Group.png";
 import List from "../../public/Images/align-left.png";
 import Search from "../../public/Images/navSearch.png";
 import defaultPortifolio from "../../public/Images/defaultPortifolio.jpeg";
-
-import Container from "react-bootstrap/Container";
+import logo from "../../public/Images/logo.svg";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import Dropdown from "react-bootstrap/Dropdown";
-import { Badge } from "react-bootstrap";
 import useAuthContext from "@/hooks/useAuthContext";
 import Cookies from "js-cookie";
 import { useEffect, useState } from "react";
@@ -32,7 +30,11 @@ export default function CustomNavbar() {
   const fetchNotifications = async () => {
     try {
       const response = await axios.get(
-        `${api}/api/notifications/user`
+        `${api}/api/notifications/user`,{
+          headers: {
+            Authorization: `Bearer ${Cookies.get("auth_token")}`,
+          },
+        }
       );
       const unreadNotifications = response?.data?.data?.filter(
         (item) => item.read_at === null
@@ -64,8 +66,8 @@ export default function CustomNavbar() {
     <div className="MainNav1">
       <div className="MainNav2">
         <Navbar collapseOnSelect expand="lg" className="bg-body-tertiary">
-          <Container className="MainNavContainer">
-            <Navbar.Brand href="/">Logo</Navbar.Brand>
+          <div className="MainNavContainer">
+            <Navbar.Brand href="/"><Image src={logo} alt="ERR404"/></Navbar.Brand>
             <Navbar.Toggle aria-controls="responsive-navbar-nav" />
             <Navbar.Collapse id="responsive-navbar-nav">
               <div className="NavBarItrms">
@@ -92,12 +94,15 @@ export default function CustomNavbar() {
                         <p>لوحه التحكم</p>
                       </Nav.Link>
                     )}
+                    {user && (
+                        <Nav.Link href="/notification" className="notif">         
+                        <span>{notificationsCount}</span>
+                          <i class="fa-regular fa-bell"></i>
+                          <p>الإشعارات</p>
+                        </Nav.Link>
+                    )}
 
-                  <Nav.Link href="/notification" className="notif">         
-                      <span>{notificationsCount}</span>
-                        <i class="fa-regular fa-bell"></i>
-                        <p>الإشعارات</p>
-                      </Nav.Link>
+               
 
 
                     <Nav.Link>
@@ -133,7 +138,7 @@ export default function CustomNavbar() {
                           variant="none"
                           className="MAinDropdownContainer"
                         >
-                          <p>{user.user.name}</p>
+                          <p>{user?.user?.name}</p>
                           <Image
                             src={defaultPortifolio} 
                             className="UserAvatar"
@@ -164,7 +169,7 @@ export default function CustomNavbar() {
                 </div>
               </div>
             </Navbar.Collapse>
-          </Container>
+          </div>
         </Navbar>
       </div>
     </div>

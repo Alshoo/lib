@@ -132,10 +132,10 @@ body {
     display: flex;
     justify-content: space-evenly;
     gap: 5px;
-    width: 200px;
+    width: 150px;
     margin: 20px;
     border: 1px solid black;
-    padding: 10px 15px;
+    padding: 5px 10px;
     border-radius: 25px;
     cursor: pointer;
   }
@@ -294,7 +294,7 @@ body {
 
 
 .CatBTN{
-    width: 85%;
+    width: 92%;
     margin: auto;
 }
 
@@ -364,7 +364,7 @@ body {
   .no-books-message{
     font-size: 14px!important;
   }
-  .search-input {
+  .search-input11 {
     width: 100%!important;
     max-width: 300px!important;
     padding: 7px!important;
@@ -380,17 +380,34 @@ body {
   display: flex;
   justify-content: center;
 }
- 
-.search-input {
-  width: 300px;
-  display: flex;
-  justify-content: center;
+.main-Search-container11 {
+  width: 90%;
   margin: auto;
-  padding: 10px;
+}
+.search-container11 {
+  position: relative;
+  width: 100%;
+  margin-bottom: 20px;
+  display: flex;
+}
+
+.search-icon11 {
+  position: absolute;
+  left: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #000000;
+  font-size: 16px;
+}
+
+.search-input11 {
+  width: 100%;
+  padding: 10px 10px 10px 40px;
   font-size: 16px;
   border: 1px solid #000000;
   border-radius: 20px;
 }
+
   .dropdown-section {
     border: 1px solid #ddd;
     border-radius: 5px;
@@ -470,15 +487,33 @@ body {
   font-size: 14px;
   margin-left: 10px;
 }
-
-.delete-btn:hover {
-  background-color: #c82333;
+.edit-btn {
+  padding: 5px 10px;
+  background-color: #b0490d;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 14px;
+  margin-left: 10px;
 }
+
+
 
 
 .add-sub-btn {
   padding: 5px 10px;
   background-color: #b0490d;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 14px;
+  margin-left: 10px;
+}
+.edit-sub-btn {
+  padding: 5px 10px;
+  background-color: #602701;
   color: white;
   border: none;
   border-radius: 5px;

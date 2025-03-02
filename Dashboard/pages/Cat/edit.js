@@ -9,61 +9,35 @@ import { api } from '@/context/ApiText/APITEXT';
 
 const backendUrl = api;
 
-export default function AddSubCat({MainCatId}) {
+export default function EditCat({MainCatId2}) {
     const [show, setShow] = useState(true);
     
     const handleClose = () => setShow(false);
 
     const [bookName, setBookName] = useState('');
     
-    const [categoryId, setCategoryId] = useState('');
-    const [bookSeriesId, setBookSeriesId] = useState('');
-    const [categories, setCategories] = useState([]);
-    
 
-
-
-
-
-
-    useEffect(() => {
-        const fetchCategories = async () => {
-            try {
-                const auth_token = Cookies.get('auth_token');
-                const response = await axios.get(`${backendUrl}/api/category-groups/`,{
-                    headers: {
-                        "Authorization": `Bearer ${auth_token}`,
-                    },
-                });
-                setCategories(response.data.data);
-            } catch (error) {
-                console.error("Error fetching categories:", error);
-            }
-        };
-        fetchCategories();
-    }, []);
-
-    
 
 
 
     const handleSubmit = async (e) => {
         e.preventDefault();
         
-        const formData = new FormData();
-        formData.append('name', bookName);
-        formData.append('category_group_id', MainCatId.id);
+        const Raw = {
+            name: bookName,
+        }
     
         try {
             const auth_token = Cookies.get('auth_token');
     
-            const response = await axios.post(`${backendUrl}/api/categories/`, formData, {
+            const response = await axios.put(`${backendUrl}/api/category-groups/${MainCatId2.id}`, Raw, {
                 headers: {
                     "Authorization": `Bearer ${auth_token}`,
+                    'Content-Type': 'application/json',
                 },
             });
     
-            toast.success(`لقد تم انشاء القسم بنجاح`, {
+            toast.success(`لقد تم تعديل اسم القسم بنجاح`, {
                 duration: 4000,
                 position: "top-center",
                 style: {
@@ -104,13 +78,13 @@ export default function AddSubCat({MainCatId}) {
             <Toaster position="top-center" toastOptions={{ duration: 4000 }} />
             <Modal show={show} onHide={handleClose}>
                 <Modal.Header closeButton>
-                    اضافة قسم
+                    تعديل اسم القسم
                 </Modal.Header>
                 <Modal.Body>
                     <form onSubmit={handleSubmit}>
 
                     <div className="form-row">
-                        <p> اسم القسم الرئيسي : {MainCatId.name}</p>
+                        <p> اسم القسم الحالى : {MainCatId2.name}</p>
                         
                             {/* <select
                                 value={categoryId}
@@ -134,7 +108,7 @@ export default function AddSubCat({MainCatId}) {
                         <div className="form-row">
                             <input
                                 type="text"
-                                placeholder="اضافه قسم فرعى جديد"
+                                placeholder="اسم القسم الجديد"
                                 value={bookName}
                                 onChange={(e) => setBookName(e.target.value)}
                             />

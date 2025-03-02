@@ -7,6 +7,7 @@ import { usePathname } from "next/navigation";
 import Cookies from "js-cookie";
 import axios from "axios";
 import defaultPortifolio from "../../public/Images/defaultPortifolio.jpeg";
+import logo from "../../public/Images/logo.svg";
 import Image from "next/image";
 import { api } from "@/context/ApiText/APITEXT";
 
@@ -52,8 +53,8 @@ export default function Sidebar() {
       <div id="nav-bar">
         <input id="nav-toggle" type="checkbox" />
         <div id="nav-header">
-        <a id="nav-title" href="/dashboard" rel="noopener noreferrer">
-          Logo
+        <a href="/" rel="noopener noreferrer" style={{margin:"auto",transform:"translateX(-7%)"}}>
+          <Image src={logo} style={{width:"90px", height:"90px",margin:"auto",textAlign:"center",display:'flex',justifyContent:"center"}} alt="ERR404" />
         </a>
         {/* <label htmlFor="nav-toggle">
           <span id="nav-toggle-burger"></span>
@@ -85,7 +86,7 @@ export default function Sidebar() {
             </Link>
             <Link href="/dashboard/Categories" className={`nav-button ${pathname === "/dashboard/Categories" ? "active" : ""}`}>
               <i className="fas fa-list"></i>
-              <span>الاقسام</span>
+              <span>أقسام الكتب </span>
             </Link>
                 <Link href="/dashboard/userDetails" className={`nav-button  ${pathname == "/dashboard/userDetails" ? "active" : "" }`}>
               <i className="fas fa-solid fa-user"></i>

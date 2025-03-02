@@ -25,9 +25,12 @@ export default function NotificationPage() {
     try {
       const user = Cookies.get("user") ? JSON.parse(Cookies.get("user")) : null;
       if (user) {
-        const response = await axios.get(
-          `${api}/api/notifications/user`
-        );
+        const auth_token = Cookies.get("auth_token");
+        const response = await axios.get(`${api}/api/notifications/user`, {
+          headers: {
+            Authorization: `Bearer ${auth_token}`,
+          },
+        });
         if (response.data.data && response.data.data.length) {
           setNotifications(response.data.data);
         } else {
@@ -35,7 +38,12 @@ export default function NotificationPage() {
         }
 
         const readResponse = await axios.get(
-          `${api}/api/notifications/user/read`
+          `${api}/api/notifications/user/read`,
+          {
+            headers: {
+              Authorization: `Bearer ${Cookies.get("auth_token")}`,
+            },
+          }
         );
         if (readResponse.data.data && readResponse.data.data.length) {
           setReadNotifications(readResponse.data.data);
@@ -55,24 +63,28 @@ export default function NotificationPage() {
 
   const markAsRead = async (notificationId) => {
     try {
+      const auth_token = Cookies.get("auth_token");
       const response = await axios.post(
         `${api}/api/notifications/read/${notificationId}`,
         {},
         {
           headers: {
-            "X-XSRF-TOKEN": Cookies.get("XSRF-TOKEN"),
+            Authorization: `Bearer ${auth_token}`,
           },
-          withCredentials: true,
         }
       );
 
       if (response.status === 200) {
         setNotifications((prevNotifications) =>
-          prevNotifications.filter((notification) => notification.id !== notificationId)
+          prevNotifications.filter(
+            (notification) => notification.id !== notificationId
+          )
         );
         setReadNotifications((prevReadNotifications) => [
           ...prevReadNotifications,
-          notifications.find((notification) => notification.id === notificationId),
+          notifications.find(
+            (notification) => notification.id === notificationId
+          ),
         ]);
       } else {
         toast.error("فشل في قراءة الإشعار");
@@ -88,25 +100,29 @@ export default function NotificationPage() {
       (t) => (
         <div>
           <p>هل أنت متأكد أنك تريد حذف هذا الإشعار؟</p>
-          <button className="confirm-button"
+          <button
+            className="confirm-button"
             onClick={async () => {
               try {
                 const response = await axios.delete(
                   `${api}/api/notifications/${notificationId}`,
                   {
                     headers: {
-                      "X-XSRF-TOKEN": Cookies.get("XSRF-TOKEN"),
+                    Authorization: `Bearer ${Cookies.get("auth_token")}`,
                     },
-                    withCredentials: true,
                   }
                 );
 
                 if (response.status === 200) {
                   setNotifications((prevNotifications) =>
-                    prevNotifications.filter((notification) => notification.id !== notificationId)
+                    prevNotifications.filter(
+                      (notification) => notification.id !== notificationId
+                    )
                   );
                   setReadNotifications((prevNotifications) =>
-                    prevNotifications.filter((notification) => notification.id !== notificationId)
+                    prevNotifications.filter(
+                      (notification) => notification.id !== notificationId
+                    )
                   );
                   toast.success("تم حذف الإشعار");
                 } else {
@@ -121,7 +137,9 @@ export default function NotificationPage() {
           >
             نعم
           </button>
-          <button className="cancel-button" onClick={() => toast.dismiss(t.id)}>لا</button>
+          <button className="cancel-button" onClick={() => toast.dismiss(t.id)}>
+            لا
+          </button>
         </div>
       ),
       { duration: 4000 }
@@ -133,16 +151,16 @@ export default function NotificationPage() {
       (t) => (
         <div>
           <p>هل أنت متأكد أنك تريد حذف جميع الإشعارات؟</p>
-          <button className="confirm-button"
+          <button
+            className="confirm-button"
             onClick={async () => {
               try {
                 const response = await axios.delete(
                   `${api}/api/notifications/delete-all`,
                   {
                     headers: {
-                      "X-XSRF-TOKEN": Cookies.get("XSRF-TOKEN"),
+                      Authorization: `Bearer ${Cookies.get("auth_token")}`,
                     },
-                    withCredentials: true,
                   }
                 );
 
@@ -162,8 +180,9 @@ export default function NotificationPage() {
           >
             نعم
           </button>
-          <button className="cancel-button" onClick={() => toast.dismiss(t.id)}>لا</button>
-          
+          <button className="cancel-button" onClick={() => toast.dismiss(t.id)}>
+            لا
+          </button>
         </div>
       ),
       { duration: 4000 }
@@ -197,11 +216,12 @@ export default function NotificationPage() {
   return (
     <div>
       <div>
-        <div className="Breadcrumb">
+        {/* <div className="Breadcrumb">
           <Link href="/">الرئيسية</Link>
           <Image src={arrow} alt="ERR404" />
           <p>الإشعارات</p>
-        </div>
+        </div> */}
+
         <br />
         <br />
         <div className="notificationsPageContainer">
@@ -236,7 +256,9 @@ export default function NotificationPage() {
                             key={notification.id}
                             className="notificationCard"
                             style={{ cursor: "pointer" }}
-                            onClick={() => handleNotificationClick(notification)}
+                            onClick={() =>
+                              handleNotificationClick(notification)
+                            }
                           >
                             <div className="notificationContent">
                               <div>
@@ -244,7 +266,9 @@ export default function NotificationPage() {
                                 <p>{notification.data.message}</p>
                               </div>
                             </div>
-                            <p className="notificationTime">{notification.created_at}</p>
+                            <p className="notificationTime">
+                              {notification.created_at}
+                            </p>
                           </motion.div>
                         ))}
                       </div>
@@ -265,7 +289,9 @@ export default function NotificationPage() {
                             key={notification.id}
                             className="notificationCard"
                             style={{ cursor: "pointer" }}
-                            onClick={() => handleNotificationClick(notification)}
+                            onClick={() =>
+                              handleNotificationClick(notification)
+                            }
                           >
                             <div className="notificationContent">
                               <div>
@@ -273,7 +299,9 @@ export default function NotificationPage() {
                                 <p>{notification.data.message}</p>
                               </div>
                             </div>
-                            <p className="notificationTime">{notification.created_at}</p>
+                            <p className="notificationTime">
+                              {notification.created_at}
+                            </p>
                           </motion.div>
                         ))}
                       </div>
@@ -290,7 +318,7 @@ export default function NotificationPage() {
 
       {showModal && (
         <Modal show={showModal} onHide={handleCloseModal}>
-          <Modal.Header >
+          <Modal.Header>
             <Modal.Title>{selectedNotification?.type}</Modal.Title>
           </Modal.Header>
           <Modal.Body>
@@ -303,12 +331,14 @@ export default function NotificationPage() {
             </button>
             {notifications.includes(selectedNotification) && (
               <>
-                <button className="cos-button"
+                <button
+                  className="cos-button"
                   onClick={() => handleNotificationAction("markAsRead")}
                 >
                   تمييز كـ مقروء
                 </button>
-                <button className="delete-button"
+                <button
+                  className="delete-button"
                   onClick={() => handleNotificationAction("delete")}
                 >
                   حذف
@@ -316,7 +346,8 @@ export default function NotificationPage() {
               </>
             )}
             {readNotifications.includes(selectedNotification) && (
-              <button className="delete-button"
+              <button
+                className="delete-button"
                 onClick={() => handleNotificationAction("delete")}
               >
                 حذف

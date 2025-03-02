@@ -36,7 +36,7 @@ export default function Home() {
 
         <div className="MainHeadlineContainer">
           <div className="headLineText">
-            <h3>مرحبا بك فى قارئ</h3>
+            <h3>مرحبا بك فى المكتبة الاندلسية </h3>
             <h4>استمتع بقراءة الكتب المفضلة لديك في أي وقت وأي مكان</h4>
           </div>
 

@@ -1,6 +1,7 @@
 "use client";
 import "../Home/Home.css";
 import "./Books.css";
+import './style.css'
 import Image from 'next/image';
 import Link from 'next/link';
 import RatingStars from '../Home/ratingStar';
@@ -36,6 +37,7 @@ export default function BooksPage({ props }) {
       setLoading(false);
     }
   };
+console.log(Rate);
 
   useEffect(() => {
     fetchBooks();
@@ -55,7 +57,7 @@ export default function BooksPage({ props }) {
 
   return (
     <div>
-      <div className="Breadcrumb">
+      {/* <div className="Breadcrumb">
         <Link href="/">الرئيسية</Link>
         <Image src={arrow} alt="ERR404" />
         <Link href="/BookLists">اقسام الكتب</Link>
@@ -63,24 +65,27 @@ export default function BooksPage({ props }) {
         <p>{props?.params?.Books ? decodeURIComponent(props.params.Books) : "القسم غير موجود"}</p>
         <Image src={arrow} alt="ERR404" />
         <p>{props?.searchParams ? Object.keys(props.searchParams)[0] : "القسم غير موجود"}</p>
-      </div>
+      </div> */}
       
       <br></br>
       <br></br>
       <div className="bookPageContainer">
-        <div className="searchContainer2">
-          <div className="iconWrapper2">
-            <Image src={searchIcon} alt="ERR404" />
-          </div>
-          <input
+
+      <h5 className="titCat">{props?.searchParams ? Object.keys(props.searchParams)[0] : "none"} :</h5>
+        <div className="search-container">
+          <i className="fas fa-search search-icon"></i>
+          <input 
             type="text"
-            placeholder="ابحث عن كتاب"
-            className="inputArea2"
+            placeholder="البحث عن كتاب"
+            className="search-input"
             value={searchTerm}
-            onChange={(e) => setSearchTerm(e.target.value)} 
+            onChange={(e) => setSearchTerm(e.target.value)}
+            autoFocus
           />
-          <button className="actionButton2">بحث</button>
         </div>
+
+
+
 
         {loading ? (
           <div className="spinner-container">
@@ -106,7 +111,7 @@ export default function BooksPage({ props }) {
                     <h6>{book.title}</h6>
                     <p>{book.author.name}</p>
                   </div>
-                  <RatingStars rating={Rate || 0} />
+                  <RatingStars rating={book.average_rating || 0} />
                 </Link>
               </motion.div>
             ))}

@@ -1,8 +1,12 @@
+
 :root {
   --Main-BackGround: #4e342e;
 }
+html, body {
+  font-family: "Cairo", sans-serif !important;
+}
+
 body {
-  font-family: "Cairo", sans-serif;
   width: 100vw;
   overflow-x: hidden;
 }
@@ -25,11 +29,10 @@ body {
   margin: 15px;
 }
 
-p,h1,h2,h3,h3,h4,h5,h6,span,strong {
-  font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue",
-    "Noto Sans", "Liberation Sans", Arial, sans-serif, "Apple Color Emoji",
-    "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji" !important;
+p, h1, h2, h3, h4, h5, h6, span, strong, div {
+  font-family: "Cairo", sans-serif !important;
 }
+
 
 .spinner-container {
   display: flex;

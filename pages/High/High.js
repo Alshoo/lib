@@ -48,26 +48,24 @@ export default function FamousPage() {
 
   return (
     <div>
-      <div className="Breadcrumb">
+      {/* <div className="Breadcrumb">
         <Link href="/">الرئيسية</Link>
         <Image src={arrow} alt='ERR404' />
         <Link href="">الأعلى تقييما</Link>
-      </div>
-      <br></br>
-      <br></br>
+      </div> */}
       <div className="bookPageContainer">
-        <div className="searchContainer2">
-          <div className="iconWrapper2">
-            <Image src={searchIcon} alt="ERR404" />
-          </div>
-          <input
+
+      <div className="search-container">
+      <h5 className="titCat">الأعلى تقييما  :</h5>
+          <i className="fas fa-search search-icon"></i>
+          <input 
             type="text"
             placeholder="ابحث عن كتاب"
-            className="inputArea2"
+            className="search-input"
             value={searchTerm}
             onChange={handleSearch}
+            autoFocus
           />
-          <button className="actionButton2">بحث</button>
         </div>
 
         {loading ? (

@@ -67,26 +67,30 @@ export default function MainPage() {
 
   return (
     <div>
-      <div className="Breadcrumb">
+      {/* <div className="Breadcrumb">
         <Link href="/">الرئيسية</Link>
         <Image src={arrow} alt="ERR404" />
         <Link href="">اقسام الكتب</Link>
-      </div>
+      </div> */}
 
 <br></br>
 <br></br>
- 
+  
 
 
       <div className="main-container">
-        <input
-          type="text"
-          placeholder="البحث عن قسم"
-          className="search-input"
-          value={searchTerm}
-          onChange={(e) => setSearchTerm(e.target.value)}
-          autoFocus
-        />
+        <h5 className="titCat">أقسام الكتب  :</h5>
+        <div className="search-container">
+          <i className="fas fa-search search-icon"></i>
+          <input 
+            type="text" 
+            placeholder="البحث عن قسم"
+            className="search-input"
+            value={searchTerm}
+            onChange={(e) => setSearchTerm(e.target.value)}
+            autoFocus
+          />
+        </div>
 
         {loading ? (
           <div className="spinner-container">

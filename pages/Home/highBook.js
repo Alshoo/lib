@@ -30,7 +30,7 @@ export default function HighBook() {
     fetchBooks();
   }, []);
 
-  const topRatedBooks = Books.slice(0, 4);
+  const topRatedBooks = Books.slice(0, 6);
 
   return (
     <div className="CardSecContainer">
@@ -84,7 +84,7 @@ export default function HighBook() {
                   <p>{book.author?.name || "غير معرف"}</p>
                 </div>
 
-                <RatingStars rating={Books.average_rating||0} />
+                <RatingStars rating={book.average_rating||0} />
               </Link>
             </motion.div>
           ))}

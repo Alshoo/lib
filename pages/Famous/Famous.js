@@ -52,14 +52,26 @@ export default function FamousPage() {
 
   return (
     <div>
-      <div className="Breadcrumb">
+      {/* <div className="Breadcrumb">
         <Link href="/">الرئيسية</Link>
         <Image src={arrow} alt='ERR404'/>
         <Link href="">اشهر الكتب</Link>
-      </div>
-      <br />
-      <br />
+      </div> */}
       <div className="bookPageContainer">
+
+        <div className="search-container">
+      <h5 className="titCat">أشهر الكتب  :</h5>
+          <i className="fas fa-search search-icon"></i>
+          <input 
+            type="text"
+            placeholder="ابحث عن كتاب"
+            className="search-input"
+            value={searchTerm}
+            onChange={handleSearch}
+            autoFocus
+          />
+        </div>
+{/* 
         <div className="searchContainer2">
           <div className="iconWrapper2">
             <Image src={searchIcon} alt="ERR404" />
@@ -72,7 +84,7 @@ export default function FamousPage() {
             onChange={handleSearch}
           />
           <button className="actionButton2">بحث</button>
-        </div>
+        </div> */}
 
         {loading ? (
           <div className="spinner-container">
@@ -102,7 +114,7 @@ export default function FamousPage() {
                       <h6>{book.title}</h6>
                       <p>{book.author.name}</p>
                     </div>
-                    <RatingStars rating={Books.average_rating||0} />
+                    <RatingStars rating={book.average_rating||0} />
                   </Link>
                 ))}
               </div>

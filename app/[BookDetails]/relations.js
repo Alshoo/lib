@@ -42,7 +42,7 @@ export default function Relations() {
     fetchBooks();
   }, []);
 
-const popularBooks = Books.slice(0, 4);
+const popularBooks = Books.slice(0, 6);
 
 
   
@@ -92,7 +92,7 @@ const popularBooks = Books.slice(0, 4);
             <p>{book.author.name}</p>
           </div>
           
-          <RatingStars rating={3} />
+          <RatingStars rating={book.average_rating || 0} />
         </Link>
       ))}
 

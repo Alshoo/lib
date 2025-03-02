@@ -51,7 +51,7 @@ export default function AddBook({ AuthorID }) {
         formData.append('author_id', AuthorID);
         formData.append('lang', bookLanguage);
         formData.append('file', bookfile);
-        formData.append('cover_image', coverImage);
+        formData.append('cover_image', coverImage); 
         formData.append('edition_number', editionNumber);
         formData.append('publisher_name', publisherName);
         formData.append('copyright_image', copyrightImage);
@@ -130,7 +130,7 @@ export default function AddBook({ AuthorID }) {
                         </div> 
                         <div className="form-row">
                             <input
-                                type="number"
+                                type="text"
                                 placeholder="رقم الطبعة"
                                 value={editionNumber}
                                 onChange={(e) => setEditionNumber(e.target.value)}
