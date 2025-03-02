@@ -117,7 +117,7 @@ export default function AuthorsPage() {
                       <div className="lastCardSecAuthor">
                         <h6>{author.name}</h6>
                         <div className="bookNum">
-                          <Image src={bookicon} alt="ERR404" />
+                          {/* <Image src={bookicon} alt="ERR404" /> */}
                           <p>عدد الكتب: {author.book_count || "غير معروف"}</p>
                         </div>
                       </div>
