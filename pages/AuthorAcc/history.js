@@ -85,7 +85,7 @@ return (
                   <h6>{book.title}</h6>
                   <p>{AuthorName}</p>
                 </div>
-                <RatingStars rating={book.average_rating} />
+                <RatingStars rating={book.average_rating || 0 } />
               </Link>
             ))}
           </div>
