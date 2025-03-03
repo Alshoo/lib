@@ -56,7 +56,7 @@ export default function FamousPage() {
       <div className="bookPageContainer">
 
       <div className="search-container">
-      <h5 className="titCat">الأعلى تقييما  :</h5>
+      <h5 className="titCat">الأعلى تقييما  </h5>
           <i className="fas fa-search search-icon"></i>
           <input 
             type="text"

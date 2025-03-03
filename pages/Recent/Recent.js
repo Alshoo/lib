@@ -59,7 +59,7 @@ export default function RecentPage() {
       <br />
       <div className="bookPageContainer">
       <div className="search-container">
-      <h5 className="titCat">أحدث الكتب  :</h5>
+      <h5 className="titCat">أحدث الكتب </h5>
           <i className="fas fa-search search-icon"></i>
           <input 
             type="text"

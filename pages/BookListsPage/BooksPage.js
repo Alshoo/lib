@@ -71,7 +71,7 @@ console.log(Rate);
       <br></br>
       <div className="bookPageContainer">
 
-      <h5 className="titCat">{props?.searchParams ? Object.keys(props.searchParams)[0] : "none"} :</h5>
+      <h5 className="titCat">{props?.searchParams ? Object.keys(props.searchParams)[0] : "none"} </h5>
         <div className="search-container">
           <i className="fas fa-search search-icon"></i>
           <input 

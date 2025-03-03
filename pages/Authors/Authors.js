@@ -72,7 +72,7 @@ export default function AuthorsPage() {
           <button className="actionButton2">بحث</button>
         </div> */}
 
-        <h5 className="titCat11">مؤلفو الكتب  :</h5>
+        <h5 className="titCat11">مؤلفو الكتب  </h5>
         <div className="search-container11">
           <i className="fas fa-search search-icon11"></i>
           <input 

@@ -46,7 +46,8 @@ export default function FamousBook() {
 
         <Link href="/FamousBook" className="betweenItems2">
           <p>المزيد</p>
-          <Image src={LinkIcon} alt="ERR404" />
+          <i class="fa-solid fa-arrow-left iifram"></i>
+          {/* <Image src={LinkIcon} alt="ERR404" /> */}
         </Link>
       </div>
 

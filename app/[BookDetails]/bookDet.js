@@ -1,11 +1,11 @@
-"use client"
-import "./bookDet.css"
+"use client";
+import "./bookDet.css";
 import Image from "next/image";
 import defaultBook from "../../public/Images/defaultBook.jpg";
 import { useEffect, useState } from "react";
-import "../../pages/Famous/famous.css" 
-import "../../pages/Home/Home.css"
-import Link from 'next/link'
+import "../../pages/Famous/famous.css";
+import "../../pages/Home/Home.css";
+import Link from "next/link";
 import download from "../../public/Images/arrow-backup-down-download-save-storage-transfer-1225091.png";
 import view from "../../public/Images/unnاamed.png";
 import ratings from "../../public/Images/unnamed.png";
@@ -13,7 +13,7 @@ import axios from "axios";
 import { api } from "@/context/ApiText/APITEXT";
 
 export default function BookDet({ props }) {
-  const [activeTab, setActiveTab] = useState('description');
+  const [activeTab, setActiveTab] = useState("description");
   const [details, setDetails] = useState([]);
   const [category, setCategory] = useState([]);
   const [author, setAuthor] = useState([]);
@@ -26,7 +26,9 @@ export default function BookDet({ props }) {
   useEffect(() => {
     const fetchAuthors = async () => {
       try {
-        const response = await axios.get(`${api}/api/books/${props.params.BookDetails}`);
+        const response = await axios.get(
+          `${api}/api/books/${props.params.BookDetails}`
+        );
         setDetails(response.data.data);
         setCategory(response.data.data.category);
         setAuthor(response.data.data.author);
@@ -43,7 +45,8 @@ export default function BookDet({ props }) {
   const downloadFile = async () => {
     try {
       const response = await axios.get(
-        `${api}/api/books/${props.params.BookDetails}/download`, {
+        `${api}/api/books/${props.params.BookDetails}/download`,
+        {
           responseType: "blob",
         }
       );
@@ -60,6 +63,7 @@ export default function BookDet({ props }) {
       console.error("Error downloading file:", error);
     }
   };
+  console.log(details.description);
 
   return (
     <div>
@@ -117,7 +121,7 @@ export default function BookDet({ props }) {
                     <strong>حجم الملف:</strong> {details.size} MB
                   </p>
                   <p>
-                    <strong>نوع الملف:</strong> {details.file.split('.')[3]}
+                    <strong>نوع الملف:</strong> {details.file.split(".")[3]}
                   </p>
                   <p>
                     <strong>تاريخ النشر:</strong>{" "}
@@ -129,7 +133,11 @@ export default function BookDet({ props }) {
               <button className="down-button" onClick={downloadFile}>
                 تحميل
               </button>
-              <Link className="view-button" href={`${details.file}`} target="_blank">
+              <Link
+                className="view-button"
+                href={`${details.file}`}
+                target="_blank"
+              >
                 مشاهده
               </Link>
 
@@ -166,22 +174,27 @@ export default function BookDet({ props }) {
             <div className="sidebar">
               <div className="tab-buttons">
                 <p
-                  onClick={() => toggleTab('description')}
-                  className={activeTab === 'description' ? 'active' : ''}
+                  onClick={() => toggleTab("description")}
+                  className={activeTab === "description" ? "active" : ""}
                 >
                   وصف الكتاب
                 </p>
                 <p
-                  onClick={() => toggleTab('author')}
-                  className={activeTab === 'author' ? 'active' : ''}
+                  onClick={() => toggleTab("author")}
+                  className={activeTab === "author" ? "active" : ""}
                 >
                   المؤلف
                 </p>
               </div>
 
               <div className="tab-content">
-                {activeTab === 'description' && <p>{details.description}</p>}
-                {activeTab === 'author' && <p>{author.biography}</p>}
+                {activeTab === "description" && (
+                  <ul
+                    dangerouslySetInnerHTML={{ __html: details.description }}
+                  />
+                )}
+
+                {activeTab === "author" && <p>{author.biography}</p>}
               </div>
             </div>
           </div>

@@ -42,7 +42,7 @@ export default function HighBook() {
 
         <Link href="/HighBook" className="betweenItems2">
           <p>المزيد</p>
-          <Image src={LinkIcon} alt="ERR404" />
+          <i class="fa-solid fa-arrow-left iifram"></i>
         </Link>
       </div>
 

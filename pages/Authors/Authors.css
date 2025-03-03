@@ -27,6 +27,9 @@
 }
 .titCat11{
   margin: 0 0 20px;
+  font-size:xx-large;
+  font-weight: bold;
+  color: var(--Main-BackGround);
 }
 
 
