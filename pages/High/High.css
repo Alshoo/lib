@@ -1,120 +1,115 @@
 .bookPageContainer {
-    margin-top: 80px;
-  }
-  .searchContainer2 {
-    display: flex;
-    align-items: center;
-    background-color: #f5f5f5;
-    border-radius: 30px;
-    padding: 5px 15px;
-    width: 70%;
-    margin: auto;
-  }
-
-
-
-
-
-  .search-container {
-    position: relative;
-    width: 90%;
-    margin-bottom: 20px;
-    margin: auto;
-  }
-  
-  .search-icon {
-    position: absolute;
-    left: 10px;
-    top: 60px;
-    color: #000000;
-    font-size: 16px;
-  }
-  
-  .search-input {
-    width: 100%;
-    padding: 10px 10px 10px 40px;
-    font-size: 16px;
-    border: 1px solid #000000;
-    border-radius: 20px;
-  }
-  .titCat{
-    margin: 0 0 20px;
-    font-size:xx-large;
-    font-weight: bold;
-    color: var(--Main-BackGround);
-  }
-  
-  
-  
-  
-
-
-  .iconWrapper2 {
-    margin-right: 10px;
-  }
-  
-  .inputArea2 {
-    border: none;
-    outline: none;
-    background-color: transparent;
-    font-family: inherit;
-    width: 100%;
-  }
-  
-  .actionButton2 {
-    background-color: var(--Main-BackGround);
-    color: white;
-    border: none;
-    padding: 5px 15px;
-    border-radius: 20px;
-    margin-left: -10px;
-  }
-  
-  
-  .Breadcrumb{
-    display:flex ;
-    gap: 10px;
-    float: left;
-    margin-top: 20px;
-    margin-bottom: 50px;
-    margin-left: 50px;
-    z-index: -1;
+  margin-top: 80px;
 }
-.Breadcrumb a{
-    text-decoration: none;
-    color: var(--Main-BackGround);
+.searchContainer2 {
+  display: flex;
+  align-items: center;
+  background-color: #f5f5f5;
+  border-radius: 30px;
+  padding: 5px 15px;
+  width: 70%;
+  margin: auto;
 }
 
-  .no-data-message{
-    display: flex;
-    justify-content: center;
-    text-align: center;
-    font-weight: bold;
-    color: var(--Main-BackGround);
-    margin-top: 50px;
-    font-size: 30px;
-    text-decoration:underline;
+.search-container {
+  position: relative;
+  width: 90%;
+  margin-bottom: 20px;
+  margin: auto;
 }
 
-@media (max-width:1000px) {
-  .Breadcrumb{
+.search-icon {
+  position: absolute;
+  left: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #000000;
+  font-size: 16px;
+}
+
+.search-input {
+  width: 100%;
+  padding: 10px 10px 10px 40px;
+  font-size: 16px;
+  border: 1px solid #000000;
+  border-radius: 20px;
+}
+.titcatContainer{
+  width: 90%;
+  margin: auto;
+}
+.titCat{
+  margin: 0 0 20px;
+  font-size:xx-large;
+  font-weight: bold;
+  color: var(--Main-BackGround);
+}
+
+.iconWrapper2 {
+  margin-right: 10px;
+}
+
+.inputArea2 {
+  border: none;
+  outline: none;
+  background-color: transparent;
+  font-family: inherit;
+  width: 100%;
+}
+
+.actionButton2 {
+  background-color: var(--Main-BackGround);
+  color: white;
+  border: none;
+  padding: 5px 15px;
+  border-radius: 20px;
+  margin-left: -10px;
+}
+
+.Breadcrumb {
+  display: flex;
+  gap: 10px;
+  float: left;
+  margin-top: 20px;
+  margin-bottom: 50px;
+  margin-left: 50px;
+  z-index: -1;
+}
+.Breadcrumb a {
+  text-decoration: none;
+  color: var(--Main-BackGround);
+}
+
+.no-data-message {
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  font-weight: bold;
+  color: var(--Main-BackGround);
+  margin-top: 50px;
+  font-size: 30px;
+  text-decoration: underline;
+}
+
+@media (max-width: 1000px) {
+  .Breadcrumb {
     margin-left: 15px;
-}
-}
-@media (max-width:992px) {
-  .searchContainer2 {
-      width: 85%;
-    }
-}
-
-@media (max-width:750px) {
-  .searchContainer2 {
-      width: 85%;
-    }
-}
-
-  @media (max-width:369px) {
-      .searchContainer2 {
-          width: 85%;
-        }
   }
+}
+@media (max-width: 992px) {
+  .searchContainer2 {
+    width: 85%;
+  }
+}
+
+@media (max-width: 750px) {
+  .searchContainer2 {
+    width: 85%;
+  }
+}
+
+@media (max-width: 369px) {
+  .searchContainer2 {
+    width: 85%;
+  }
+}

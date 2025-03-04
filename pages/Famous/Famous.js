@@ -59,14 +59,18 @@ export default function FamousPage() {
       </div> */}
       <div className="bookPageContainer">
 
+          <div className="titcatContainer">
+          <h5 className="titCat">أشهر الكتب </h5>
+          </div>
+
+
         <div className="search-container">
-      <h5 className="titCat">أشهر الكتب </h5>
           <i className="fas fa-search search-icon"></i>
           <input 
             type="text"
             placeholder="ابحث عن كتاب"
             className="search-input"
-            value={searchTerm}
+            value={searchTerm} 
             onChange={handleSearch}
             autoFocus
           />

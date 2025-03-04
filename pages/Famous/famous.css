@@ -24,7 +24,8 @@
 .search-icon {
   position: absolute;
   left: 10px;
-  top: 60px;
+  top: 50%;
+  transform: translateY(-50%);
   color: #000000;
   font-size: 16px;
 }
@@ -35,6 +36,10 @@
   font-size: 16px;
   border: 1px solid #000000;
   border-radius: 20px;
+}
+.titcatContainer{
+  width: 90%;
+  margin: auto;
 }
 .titCat{
   margin: 0 0 20px;

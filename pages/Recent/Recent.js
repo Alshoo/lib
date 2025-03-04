@@ -44,7 +44,7 @@ export default function RecentPage() {
         book.author.name.toLowerCase().includes(e.target.value.toLowerCase())
       ));
     } else {
-      setDisplayBooks(Books.slice(0, 4)); 
+      setDisplayBooks(Books); 
     }
   };
 
@@ -58,8 +58,13 @@ export default function RecentPage() {
       <br />
       <br />
       <div className="bookPageContainer">
+
+      <div className="titcatContainer">
+          <h5 className="titCat">أحدث الكتب </h5>
+          </div>
+
+
       <div className="search-container">
-      <h5 className="titCat">أحدث الكتب </h5>
           <i className="fas fa-search search-icon"></i>
           <input 
             type="text"
@@ -81,7 +86,7 @@ export default function RecentPage() {
               <div className="Maincards">
                 {displayBooks.map((book) => (
                   <Link href={`${book.id}`} className="CardCont" key={book.id}>
-                    <Image className="CardImg44"
+                    <img className="CardImg44"
                       src={book.cover_image || defaultBook}
                       alt="ERR404" />
                     <div className="lastCardSec">
