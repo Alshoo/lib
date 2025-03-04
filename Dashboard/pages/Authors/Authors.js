@@ -9,18 +9,30 @@ import Image from 'next/image';
 import AddAuthor from './addauthor';
 import add from "../../../public/Images/unnbfbfamed.png";
 import { api } from '@/context/ApiText/APITEXT';
+import EditAuthor from './editAuthor';
 
 const backendUrl = api;
 
 export default function Authors() {
   const [isPopupVisible, setIsPopupVisible] = useState(false);
+  const [isPopupVisible1, setIsPopupVisible1] = useState(false);
   const [books, setBooks] = useState([]); 
   const [books1, setBooks1] = useState([]);
   const [loading, setLoading] = useState(true);
   const [searchTerm, setSearchTerm] = useState(""); 
+  const [CurrentAuthor, setCurrentAuthor] = useState({
+    id:'',
+    name:'',
+    description:'',
+    date:'',
+    image:'',
+  });
 
   const togglePopup = () => {
     setIsPopupVisible(!isPopupVisible);
+  };
+  const togglePopup1 = () => {
+    setIsPopupVisible1(!isPopupVisible1);
   };
 
   useEffect(() => {
@@ -48,7 +60,7 @@ export default function Authors() {
             Authorization: `Bearer ${auth_token}`,
           },
         });
-        setBooks1(response.data.data);
+        setBooks1(response.data);
         setLoading(false);
       } catch (error) {
         console.error("Error fetching books:", error);
@@ -202,31 +214,46 @@ export default function Authors() {
         <ul className="books-list22">
           {filteredAuthors.map((author) => (
             <li key={author.id} className="book-item">
-            {author.profile_image ? (
+           <div>
+           {author.profile_image ? (
                            <img
                              src={author.profile_image}
                              alt="ERR404"
-                             className="CardImg44"
+                             className="book-image"
                            />
                          ) : (
                            <Image
                              src={defaultPortifolio}
                              alt="ERR404"
-                             className="CardImg44"
+                             className="book-image"
                            /> 
                          )}
               <h3 className="book-title">{author.name}</h3>
               <div className="descript">
-                <p className="book-description">{author.biography || "لا توجد سيرة ذاتية متاحة"}</p>
+                <p className="book-description">{author.biography}</p>
               </div>
-              <p className="book-info"><strong>تاريخ الميلاد:</strong> {author.birthdate || "غير محدد"}</p>
-              <button className="reject-btn11" onClick={() => handledelete(author.id)}>حذف</button>
+              <p className="book-info"><strong>تاريخ الميلاد:</strong> {author.birthdate.split('-')[0] || "غير محدد"}</p>
+             <div className='authorEdition'>
+             <button className="edit-btn11" onClick={()=>{
+              togglePopup1();
+              setCurrentAuthor({
+                id: author.id,
+                name: author.name,
+                description: author.biography,
+                date: author.birthdate.split('-')[0],
+                image: author.profile_image,
+              });
+              }}>تعديل</button>
+             <button className="reject-btn11" onClick={() => handledelete(author.id)}>حذف</button>
+             </div>
+           </div>
             </li>
           ))}
         </ul>
       )}
 
       {isPopupVisible && <AddAuthor />}
+      {isPopupVisible1 && <EditAuthor data = {CurrentAuthor}/>}
     </div>
   );
 }

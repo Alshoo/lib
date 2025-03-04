@@ -28,27 +28,20 @@ body {
   }
   
   .book-item {
-    display: flex;
-    width: 95%;
-    height: 100%;
-    padding: 0;
-    flex-direction: column; 
-    padding: 0px;
+    width: 100%;
+    max-width: 220px;
+    margin: auto;
+    padding: 10px;
     border: 1px solid #ddd;
     border-radius: 10px;
     background-color: #fff;
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
     transition: transform 0.3s ease;
-    
-
-
-   
   }
   
   .book-item:hover {
     transform: translateY(-5px);
   }
-
   
   .book-image {
     width: 100%;
@@ -59,6 +52,7 @@ body {
     margin-bottom: 10px;
   }
   
+  
   .book-title {
     font-size: 0.9rem;
     font-weight: bold;
@@ -68,7 +62,9 @@ body {
   }
   
   .book-description {
+    width: 100%;
     font-size: 0.7rem;
+    line-break: anywhere;
     color: #555;
     margin-bottom: 5px;
     text-align: center;
@@ -79,15 +75,16 @@ body {
     font-size: 0.7rem;
     text-align: center;
   }
-  .CardImg44{
-    width: 100%;
-    height: 100%;
-    border-radius: 20px 20px 0 0;
-    object-fit:cover;
-}
   
+  .authorEdition{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
   .approve-btn,
-  .reject-btn11 {
+  .reject-btn11,
+  .edit-btn11
+  {
     background-color: #007bff;
     color: white;
     border: none;
@@ -103,6 +100,9 @@ body {
     background-color: #0056b3;
   }
   
+  .edit-btn11 {
+    background-color: #a26700;
+  }
   .reject-btn11 {
     background-color: #dc3545;
   }
@@ -129,18 +129,7 @@ body {
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
     line-height: 1.5;
   }
-  
-  .no-books-message-container::before {
-    content: "";
-    position: absolute;
-    top: -10px;
-    left: -10px;
-    right: -10px;
-    bottom: -10px;
-    border-radius: 10px;
-    background: rgba(0, 0, 0, 0.1);
-    z-index: -1;
-  }
+
 
 
   .addauthorbtn{
@@ -356,7 +345,7 @@ body {
   }
 
   .editbtn, .addbtn {
-      width: auto; 
+      width: auto;
       padding: 5px 10px;
       font-size: 14px;
   }
@@ -369,9 +358,6 @@ body {
 
 
 @media (max-width: 768px) {
-  .CardImg44 {
-    height: 110px;
-  }
   .form-container {
       padding: 15px;
       width: 90%;

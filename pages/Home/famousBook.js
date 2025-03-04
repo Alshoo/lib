@@ -65,7 +65,7 @@ export default function FamousBook() {
             <div className="Maincards">
             {popularBooks.map((book) => (
               <motion.div
-              whileHover={{ scale: 1.06 }}
+              whileHover={{ scale: 1.01 }}
                 whileTap={{ scale: 0.95 }}
                 transition={{ duration: 0.2 }}
                 key={book.id}

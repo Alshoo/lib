@@ -10,14 +10,15 @@ import { api } from '@/context/ApiText/APITEXT';
 
 const backendUrl = api;
 
-export default function AddAuthor() {
+export default function EditAuthor({data}) {
+
     const [show, setShow] = useState(true);
     
     const handleClose = () => setShow(false);
 
-    const [bookName, setBookName] = useState('');
-    const [description, setDescription] = useState('');
-    const [publishDate, setPublishDate] = useState('');
+    const [bookName, setBookName] = useState(data.name);
+    const [description, setDescription] = useState(data.description);
+    const [publishDate, setPublishDate] = useState(data.date);
     const [coverImage, setCoverImage] = useState(null);
     
     const [coverImageName, setCoverImageName] = useState('');
@@ -34,19 +35,19 @@ export default function AddAuthor() {
         const formData = new FormData();
         formData.append('name', bookName);
         formData.append('biography', description);
-        formData.append('birthdate', publishDate);
+        formData.append('birthdate', publishDate + "-01-01");
         formData.append('image', coverImage);
     
         try {
             const auth_token = Cookies.get('auth_token');
     
-            const response = await axios.post(`${backendUrl}/api/author-requests/create/`, formData, {
+            const response = await axios.post(`${backendUrl}/api/author-requests/${data.id}/update/`, formData, {
                 headers: {
                     'Authorization': `Bearer ${auth_token}`,
                 },
             });
     
-            toast.success(`لقد تم ارسال طلب انشاء المؤلف بنجاح`, {
+            toast.success(`لقد تم تحديث بيانات المؤلف بنجاح`, {
                 duration: 4000,
                 position: "top-center",
                 style: {
@@ -83,13 +84,13 @@ export default function AddAuthor() {
 
 
 
-    
-    return (
-        <div>
+  return (
+    <div>
+           <div>
             <Toaster position="top-center" toastOptions={{ duration: 4000 }} />
             <Modal show={show} onHide={handleClose}>
                 <Modal.Header closeButton>
-                    اضافة مؤلف
+                    تعديل فى البيانات
                 </Modal.Header>
                 <Modal.Body>
                     <form onSubmit={handleSubmit}>
@@ -114,8 +115,8 @@ export default function AddAuthor() {
                             <input
                                 type="number"
                                 placeholder="تاريخ الميلاد"
-                                // value={publishDate}
-                                onChange={(e) => setPublishDate(e.target.value + "-01-01")}
+                                value={publishDate}
+                                onChange={(e) => setPublishDate( e.target.value )}
                             />
                         </div>
                 
@@ -126,16 +127,18 @@ export default function AddAuthor() {
                             <div className="custom-file-upload">
                                 <Image src={upload} alt="ERR404" className='upload' />
                                 <span>صورة المؤلف </span>
-                                <input type="file" onChange={(e) => handleFileChange(e, setCoverImage, setCoverImageName)} />
+                                <input type="file" 
+                                onChange={(e) => handleFileChange(e, setCoverImage, setCoverImageName)} />
                                 {coverImageName && <p>{coverImageName}</p>}
                             </div>
                         </div>
                       
                        
-                        <button type="submit" className='booksubmitbtn'>إرسال</button>
+                        <button type="submit" className='booksubmitbtn'>التحديث</button>
                     </form>
                 </Modal.Body>
             </Modal>
         </div>
-    );
+    </div>
+  )
 }

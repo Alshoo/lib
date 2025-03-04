@@ -23,8 +23,8 @@ export default function AuthorsPage() {
     const fetchAuthors = async () => {
       try {
         const response = await axios.get(`${api}/api/authors?per_page=1520`);
-        setAuthors(response.data.data);
-        setDisplayAuthors(response.data.data);
+        setAuthors(response.data);
+        setDisplayAuthors(response.data);
         setLoading(false);
       } catch (error) {
         console.error("Error fetching authors:", error);
@@ -94,35 +94,34 @@ export default function AuthorsPage() {
             {displayAuthors.length > 0 ? (
               <div className="Maincards">
                 {displayAuthors.map((author) => (
-                  <motion.div
-                    whileHover={{ scale: 1.06 }}
-                    whileTap={{ scale: 0.95 }}
-                    transition={{ duration: 0.2 }}
-                    key={author.id}
-                  >
-                    <Link href={`Authors/${author.id}`} className="CardCont">
-                      {author.profile_image ? (
-                        <img 
-                          src={author.profile_image} 
-                          alt="ERR404" 
-                          className="CardImg44"
-                        />
-                      ) : (
-                        <Image 
-                          src={defaultPortifolio} 
-                          alt="ERR404" 
-                          className="CardImg44"
-                        />
-                      )}
-                      <div className="lastCardSecAuthor">
-                        <h6>{author.name}</h6>
-                        <div className="bookNum">
-                          {/* <Image src={bookicon} alt="ERR404" /> */}
-                          <p>عدد الكتب: {author.book_count || "غير معروف"}</p>
-                        </div>
-                      </div>
-                    </Link>
-                  </motion.div>
+               <motion.div
+               whileHover={{ scale: 1.001 }}
+               whileTap={{ scale: 0.95 }}
+               transition={{ duration: 0.2 }}
+               key={author.id}
+             >
+               <Link href={`Authors/${author.id}`} className="CardContAuthor">
+                 {author.profile_image ? (
+                   <img
+                     src={author.profile_image}
+                     alt="ERR404"
+                     className="CardImg44Author"
+                   />
+                 ) : (
+                   <Image
+                     src={defaultPortifolio}
+                     alt="ERR404"
+                     className="CardImg44Author"
+                   />
+                 )}
+                 <div className="lastCardSecAuthor">
+                   <h6>{author.name}</h6>
+                   <div className="bookNum">
+                     <p>عدد الكتب: {author.books_count || "0"}</p>
+                   </div>
+                 </div>
+               </Link>
+             </motion.div>
                 ))}
               </div>
             ) : (
@@ -131,6 +130,8 @@ export default function AuthorsPage() {
           </div>
         )}
       </div>
+
+      <br></br>
     </div>
   );
 }

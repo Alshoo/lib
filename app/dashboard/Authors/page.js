@@ -29,7 +29,7 @@ export default function DashAuthorsPage() {
     setUserRole(data.user.role.name);
     setLoading(false);
   }, []);
-
+ 
   useEffect(() => {
     if (userRole && userRole !== "SuperAdmin") {
       toast.error("ليس لديك صلاحية للوصول لهذه الصفحة.");

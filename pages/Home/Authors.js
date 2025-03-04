@@ -1,4 +1,4 @@
-"use client"
+"use client";
 import Image from "next/image";
 import bookIcon from "../../public/Images/iconoir-book-solid.png";
 import LinkIcon from "../../public/Images/vector44.png";
@@ -12,15 +12,15 @@ import { api } from "@/context/ApiText/APITEXT";
 
 export default function Authors() {
   const [authors, setAuthors] = useState([]);
-  const [loading, setLoading] = useState(true); 
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const fetchAuthors = async () => {
       try {
         const response = await axios.get(`${api}/api/authors`);
-        setAuthors(response.data.data.slice(0, 6));
+        setAuthors(response.data.slice(0, 6));
         setLoading(false);
-      } catch (error) { 
+      } catch (error) {
         console.error("Error fetching authors:", error);
         setLoading(false);
       }
@@ -39,7 +39,7 @@ export default function Authors() {
 
         <Link href="/Authors" className="betweenItems2">
           <p>المزيد</p>
-          <i class="fa-solid fa-arrow-left iifram"></i>
+          <i className="fa-solid fa-arrow-left iifram"></i>
         </Link>
       </div>
 
@@ -47,47 +47,43 @@ export default function Authors() {
         <div className="spinner-container">
           <div className="spinner"></div>
         </div>
+      ) : authors == "" ? (
+        <div className="notFundTxt">لا توجد مؤلفين حاليا هنا</div>
       ) : (
-        authors == "" ? (
-          <div className="notFundTxt">
-          لا توجد مؤلفين حاليا هنا
-        </div>
-        ):(
-        <div className="Maincards">
+        <div className="MaincardsAuthor">
           {authors.map((author) => (
             <motion.div
-              whileHover={{ scale: 1.06 }}
+              whileHover={{ scale: 1.001 }}
               whileTap={{ scale: 0.95 }}
               transition={{ duration: 0.2 }}
               key={author.id}
             >
-              <Link href={`Authors/${author.id}`} className="CardCont" >
+              <Link href={`Authors/${author.id}`} className="CardContAuthor">
                 {author.profile_image ? (
                   <img
                     src={author.profile_image}
                     alt="ERR404"
-                    className="CardImg44"
+                    className="CardImg44Author"
                   />
                 ) : (
                   <Image
                     src={defaultPortifolio}
                     alt="ERR404"
-                    className="CardImg44"
-                  /> 
+                    className="CardImg44Author"
+                  />
                 )}
                 <div className="lastCardSecAuthor">
                   <h6>{author.name}</h6>
                   <div className="bookNum">
-                    {/* <Image src={bookicon} alt="ERR404" /> */}
-                    <p>عدد الكتب: {author.book_count || "غير معروف"}</p>
+                    <p>عدد الكتب: {author.books_count || "0"}</p>
                   </div>
                 </div>
               </Link>
             </motion.div>
           ))}
         </div>
-        )
       )}
+      <br />
     </div>
   );
 }

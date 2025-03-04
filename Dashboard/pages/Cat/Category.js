@@ -186,7 +186,7 @@ export default function Category() {
                 <div>
                 <span>{category.name}</span>
                 </div>
-                <div>
+                <div> 
                 <button className="toggle-btn" onClick={() => {
                   setMainCatId(category);
                   toggleSection(category.name)}}>

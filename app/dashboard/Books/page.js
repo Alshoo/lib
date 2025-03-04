@@ -17,7 +17,7 @@ export default function DashBooksPage() {
   };
   useEffect(() => {
     updateUser();
-  }, []);
+  }, []); 
 
   const [userDetails, setUserDetails] = useState([]);
   const [userRole, setUserRole] = useState("");
