@@ -121,7 +121,7 @@ export default function BookDet({ props }) {
                     <strong>حجم الملف:</strong> {details.size} MB
                   </p>
                   <p>
-                    <strong>نوع الملف:</strong> {details.file.split(".")[3]}
+                    <strong>نوع الملف:</strong> {details?.file.split(".")[3]}
                   </p>
                   <p>
                     <strong>تاريخ النشر:</strong>{" "}
