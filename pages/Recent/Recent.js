@@ -25,7 +25,7 @@ export default function RecentPage() {
       try {
         const response = await axios.get(`${api}/api`);
         setBooks(response.data.popularBooks);
-        setDisplayBooks(response.data.popularBooks.slice(0, 4)); 
+        setDisplayBooks(response.data.popularBooks); 
         setLoading(false);
       } catch (error) {
         console.error("Error fetching authors:", error);
