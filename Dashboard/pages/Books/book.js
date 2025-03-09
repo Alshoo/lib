@@ -7,6 +7,7 @@ import Cookies from "js-cookie";
 import defaultPortifolio from "../../../public/Images/defaultPortifolio.jpeg";
 import Image from "next/image";
 import { api } from "@/context/ApiText/APITEXT";
+import EditBook from "./editBook";
 
 const backendUrl = api;
 
@@ -15,7 +16,11 @@ export default function Book() {
   const [books1, setBooks1] = useState([]);
   const [loading, setLoading] = useState(true);
   const [searchTerm, setSearchTerm] = useState("");
- 
+  const [isPopupVisible, setIsPopupVisible] = useState(false);
+
+  const togglePopup = () => {
+    setIsPopupVisible(!isPopupVisible);
+  };
   useEffect(() => {
     const fetchBooks = async () => {
       try {
@@ -197,7 +202,7 @@ export default function Book() {
       )}
 
       <br />
-      <br />
+      <br /> 
       <h1 className="title">حذف عناصر</h1>
 
       <div className="search-container">
@@ -235,24 +240,46 @@ export default function Book() {
                 <h3 className="book-title">{book.title}</h3>
                 <div className="descript">
                   <p className="book-description">{book.description}</p>
+                  
                 </div>
+                <div className="descript">
                 <p className="book-info">
                   <strong>المؤلف:</strong> {book.author.name}
                 </p>
+                </div>
+
+             
                 <p className="book-info">
                   <strong>الفئة:</strong> {book.category.name}
                 </p>
+                <div className='bookEdition'>
+                <button className="edit-btn21" onClick={()=>{
+              togglePopup();
+              setCurrentAuthor({
+                id: book.id,
+                name: book.title,
+                description: book.description,
+                date: book.birthdate,
+                image: book.cover_image,
+              });
+              }}>تعديل</button>
                 <button
-                  className="reject-btn"
+                  className="reject-btn21"
                   onClick={() => handledelete(book.id)}
                 >
                   حذف
                 </button>
+
+                </div>
               </div>
             </li>
           ))}
         </ul>
       )}
+
+
+
+            {isPopupVisible && <EditBook data = {''}/>}
     </div>
   );
 }

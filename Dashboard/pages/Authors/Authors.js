@@ -228,7 +228,10 @@ export default function Authors() {
                              className="book-image"
                            /> 
                          )}
+              
+              <div className="descript">
               <h3 className="book-title">{author.name}</h3>
+              </div>
               <div className="descript">
                 <p className="book-description">{author.biography}</p>
               </div>
@@ -240,7 +243,7 @@ export default function Authors() {
                 id: author.id,
                 name: author.name,
                 description: author.biography,
-                date: author.birthdate.split('-')[0],
+                date: author.birthdate,
                 image: author.profile_image,
               });
               }}>تعديل</button>

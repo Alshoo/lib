@@ -9,7 +9,7 @@ import toast, { Toaster } from 'react-hot-toast';
 import { api } from '@/context/ApiText/APITEXT';
 
 const backendUrl = api;
-
+ 
 export default function AddAuthor() {
     const [show, setShow] = useState(true);
     
@@ -112,10 +112,10 @@ export default function AddAuthor() {
 
                         <div className="form-row">
                             <input
-                                type="number"
+                                type="text"
                                 placeholder="تاريخ الميلاد"
                                 // value={publishDate}
-                                onChange={(e) => setPublishDate(e.target.value + "-01-01")}
+                                onChange={(e) => setPublishDate(e.target.value)}
                             />
                         </div>
                 

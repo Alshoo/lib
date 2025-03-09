@@ -10,8 +10,8 @@ import { api } from '@/context/ApiText/APITEXT';
 
 const backendUrl = api;
 
-export default function EditAuthor({data}) {
-
+export default function EditBook({data}) {
+ 
     const [show, setShow] = useState(true);
     
     const handleClose = () => setShow(false);
@@ -97,7 +97,7 @@ export default function EditAuthor({data}) {
                         <div className="form-row">
                             <input
                                 type="text"
-                                placeholder="اسم المؤلف"
+                                placeholder="اسم الكتاب"
                                 value={bookName}
                                 onChange={(e) => setBookName(e.target.value)}
                             />

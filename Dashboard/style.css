@@ -50,7 +50,7 @@ html, body {
 }
 #nav-toggle:checked ~ #nav-footer #nav-footer-titlebox, #nav-toggle:checked ~ #nav-footer label[for=nav-footer-toggle] {
   opacity: 0;
-  transition: opacity 0.1s;
+  transition: opacity 0.1s; 
   pointer-events: none;
 }
 
@@ -313,6 +313,12 @@ label[for=nav-footer-toggle] {
   }
   #nav-footer-avatar {
     transform: translateX(-10%);
+  }
+  .nav-button span{
+    display: none!important;
+  }
+  #nav-content {
+    transform: translateX(-5px);
   }
 }
 @media (max-width:440px) {

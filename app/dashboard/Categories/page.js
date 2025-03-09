@@ -24,7 +24,7 @@ export default function DashCatPage() {
   useEffect(() => {
     const userData = Cookies.get("user");
     const data = JSON.parse(userData);
-    setUserDetails(data.user);
+    setUserDetails(data.user); 
     setUserRole(data.user.role.name);
     setLoading(false);
   }, []);
@@ -45,7 +45,7 @@ export default function DashCatPage() {
     );
   }
 
-  return (
+  return ( 
     <div>
       <Category />
     </div>

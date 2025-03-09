@@ -1,10 +1,9 @@
 body {
-    font-family: 'Arial', sans-serif;
-    background-color: #f5f5f5;
-    color: #333;
-    width: 100%;
-    overflow-x: scroll;
-  }
+  background-color: #f5f5f5;
+  color: #333;
+  margin: 0;
+  padding: 0;
+  } 
   
   .title {
     color: white;
@@ -396,7 +395,7 @@ body {
   border: 1px solid #000000;
   border-radius: 20px;
 }
-
+ 
   .dropdown-section {
     border: 1px solid #ddd;
     border-radius: 5px;
@@ -422,7 +421,16 @@ body {
   .dropdown-header:hover {
     background-color: #e0e0e0;
   }
-  
+  @media (max-width:880px) {
+    .dropdown-container23{
+      width: 100%;
+      overflow: scroll;
+      float: left;
+    }
+    .dropdown-section {
+      width: 100%;
+    }
+  }
   .arrow-icon {
     transition: transform 0.3s ease;
   }

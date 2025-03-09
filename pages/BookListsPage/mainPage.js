@@ -108,6 +108,7 @@ export default function MainPage() {
                                 whileHover={{ scale: 1.2 }}
                                 whileTap={{ scale: 0.75 }}
                                 transition={{ duration: 0.2 }}
+                                style={{width:"100%",overflow: "hidden"}}
                               >
                                 {subCategory.name}
                               </motion.div>

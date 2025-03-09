@@ -38,7 +38,7 @@ export default function Sidebar() {
           setUserRoleLev(JSONPARSEUSERDATA.user.role?.role_level || null);
       }
  
-    };
+    }; 
     fetchUserDetails();
   }, [user?.user?.name]);
 

@@ -21,3 +21,9 @@
     }
     
 }
+@media (max-width: 500px) {
+    .MainDashContainer{
+        grid-template-columns: 1fr 6fr;
+    }
+    
+}

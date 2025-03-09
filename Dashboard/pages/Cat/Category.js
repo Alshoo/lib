@@ -176,7 +176,7 @@ export default function Category() {
 
 
       <br></br>
-      <div>
+      <div className="dropdown-container23">
         {filteredCategories.length === 0 ? (
           <p className="no-data-message">لا يوجد نتائج</p>
         ) : (

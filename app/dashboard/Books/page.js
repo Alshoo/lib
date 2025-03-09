@@ -26,7 +26,7 @@ export default function DashBooksPage() {
     const data = JSON.parse(userData);
     setUserDetails(data.user);
     setUserRole(data.user.role.name);
-    setLoading(false);
+    setLoading(false); 
   }, []);
 
   useEffect(() => {

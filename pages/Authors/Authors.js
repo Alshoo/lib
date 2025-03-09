@@ -90,9 +90,9 @@ export default function AuthorsPage() {
             <div className="spinner"></div>
           </div>
         ) : (
-          <div>
+          <div> 
             {displayAuthors.length > 0 ? (
-              <div className="Maincards">
+              <div className="MaincardsAuthor">
                 {displayAuthors.map((author) => (
                <motion.div
                whileHover={{ scale: 1.001 }}

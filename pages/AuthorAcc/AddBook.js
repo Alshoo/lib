@@ -143,9 +143,9 @@ export default function AddBook({ AuthorID }) {
             </div>
             <div className="form-row">
               <input
-                type="number"
+                type="text"
                 placeholder="تاريخ النشر"
-                onChange={(e) => setPublishDate(e.target.value + "-01-01")}
+                onChange={(e) => setPublishDate(e.target.value)}
               />
             </div>
             <div className="form-row">
