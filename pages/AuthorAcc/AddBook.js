@@ -1,7 +1,7 @@
 "use client";
 import { useState, useEffect } from 'react';
 import Modal from 'react-bootstrap/Modal';
-import "./Author.css";
+import "./Author.css"; 
 import Image from 'next/image';
 import upload from "../../public/Images/vechgfhor.png";
 import axios from 'axios';

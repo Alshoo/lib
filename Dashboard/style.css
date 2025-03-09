@@ -306,7 +306,7 @@ label[for=nav-footer-toggle] {
   #nav-bar {
     right: 5px;
     width: 11%!important;
-    transform: translateX(-30%);
+    transform: translateX(3%);
   }
   #nav-title{
     display: none!important;
@@ -325,7 +325,7 @@ label[for=nav-footer-toggle] {
   #nav-bar {
     right: 5px;
     width: 13%!important;
-    transform: translateX(-15%);
+    transform: translateX(-0%);
   }
   #nav-title{
     display: none!important;
@@ -337,7 +337,7 @@ label[for=nav-footer-toggle] {
 @media (max-width:380px) {
   #nav-bar {
     width: 15%!important;
-    transform: translateX(5%);
+    transform: translateX(-10%);
   }
   #nav-title{
     display: none!important;

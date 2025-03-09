@@ -1,13 +1,12 @@
 .users-container {
     width: 90%;
     overflow-x: auto;
-    max-width: 1200px;
     margin: 20px auto;
     padding: 15px;
     background: #fff;
     border-radius: 10px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  }
+  } 
   
   h1 {
     text-align: center;
@@ -83,8 +82,12 @@
   .remove-role-btn:hover {
     background-color: #d32f2f;
   }
-  
-  /* Responsive Styles */
+  @media (max-width: 1030px) {
+    #nav-bar {
+      /* right: auto; */
+    }
+    
+  }
   @media screen and (max-width: 768px) {
     h1 {
       font-size: 1.5rem;
@@ -109,7 +112,7 @@
       margin-top: 10px;
     }
   }
-  
+
   @media screen and (max-width: 480px) {
     h1 {
       font-size: 1.2rem;

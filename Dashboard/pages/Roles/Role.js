@@ -23,7 +23,7 @@ export default function RolesPage() {
 
     useEffect(() => {
         fetchRoles();
-    }, []);
+    }, []); 
 
     const fetchRoles = async () => {
         try {
@@ -175,6 +175,7 @@ export default function RolesPage() {
                 </form>
             )}
 
+            <div className="table-container">
             <table className="roles-table">
                 <thead>
                     <tr>
@@ -202,6 +203,8 @@ export default function RolesPage() {
                     ))}
                 </tbody>
             </table>
+            </div>
+           
         </div>
     );
 }

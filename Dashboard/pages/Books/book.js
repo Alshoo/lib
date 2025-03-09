@@ -13,6 +13,7 @@ const backendUrl = api;
 
 export default function Book() {
   const [books, setBooks] = useState([]);
+  const [CurrentBook, setCurrentBook] = useState('');
   const [books1, setBooks1] = useState([]);
   const [loading, setLoading] = useState(true);
   const [searchTerm, setSearchTerm] = useState("");
@@ -139,7 +140,9 @@ export default function Book() {
     );
   });
 
-  if (loading) {
+  console.log(filteredBooks);
+  
+  if (loading) { 
     return (
       <div className="spinner-container">
         <div className="spinner"></div>
@@ -255,13 +258,7 @@ export default function Book() {
                 <div className='bookEdition'>
                 <button className="edit-btn21" onClick={()=>{
               togglePopup();
-              setCurrentAuthor({
-                id: book.id,
-                name: book.title,
-                description: book.description,
-                date: book.birthdate,
-                image: book.cover_image,
-              });
+              setCurrentBook(book);
               }}>تعديل</button>
                 <button
                   className="reject-btn21"
@@ -279,7 +276,7 @@ export default function Book() {
 
 
 
-            {isPopupVisible && <EditBook data = {''}/>}
+            {isPopupVisible && <EditBook data = {CurrentBook}/>}
     </div>
   );
 }

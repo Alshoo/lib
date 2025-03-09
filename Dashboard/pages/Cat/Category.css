@@ -354,7 +354,6 @@ body {
   }
   .search-input11 {
     width: 100%!important;
-    max-width: 300px!important;
     padding: 7px!important;
     font-size: 13px!important;
   }
@@ -423,14 +422,36 @@ body {
   }
   @media (max-width:880px) {
     .dropdown-container23{
-      width: 100%;
-      overflow: scroll;
-      float: left;
+      width: 80vw;
+      overflow-x: scroll;
     }
-    .dropdown-section {
-      width: 100%;
+    .main-Search-container11 {
+      width: 90%;
+      margin: auto;
     }
+    #nav-bar{
+      right: auto;
+    }
+    .dropdown-header {
+      display: block;
+      gap: 204px;
+    }
+    .dropdown-header div:first-child {
+      width: 100%;
+      
+      /* overflow-x:hidden; */
   }
+  
+.dropdown-section {
+  border: none;
+}
+.dropdown-item {
+  display: block!important;
+}
+  }
+
+
+  
   .arrow-icon {
     transition: transform 0.3s ease;
   }
