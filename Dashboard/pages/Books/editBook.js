@@ -29,6 +29,9 @@ export default function EditBook({ data }) {
   const [bookfileName, setbookfileName] = useState('');
   const [descriptionParagraphs, setDescriptionParagraphs] = useState(['']);
 
+
+  console.log(data);
+  
   const handleFileChange = (e, setFile, setFileName) => {
     const file = e.target.files[0];
     setFile(file);
@@ -49,7 +52,7 @@ export default function EditBook({ data }) {
     const paragraphs = [...descriptionParagraphs];
     paragraphs.splice(index, 1);
     setDescriptionParagraphs(paragraphs);
-  };
+  }; 
 
   const handleSubmit = async (e) => {
     e.preventDefault();

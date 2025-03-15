@@ -12,14 +12,14 @@ const backendUrl = api;
 
 export default function EditAuthor({data}) {
 
-    const [show, setShow] = useState(true);
+    const [show, setShow] = useState(true); 
     
     const handleClose = () => setShow(false);
 
     const [bookName, setBookName] = useState(data.name);
     const [description, setDescription] = useState(data.description);
     const [publishDate, setPublishDate] = useState(data.date);
-    const [coverImage, setCoverImage] = useState(null);
+    const [coverImage, setCoverImage] = useState('');
     
     const [coverImageName, setCoverImageName] = useState('');
 
