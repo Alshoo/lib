@@ -130,6 +130,7 @@ export default function EditAuthor({data}) {
                                 <input type="file" 
                                 onChange={(e) => handleFileChange(e, setCoverImage, setCoverImageName)} />
                                 {coverImageName && <p>{coverImageName}</p>}
+                                <img src={data.image} alt='ERR404' width={100} height={100}/>
                             </div>
                         </div>
                       
