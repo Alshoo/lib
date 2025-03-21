@@ -88,6 +88,10 @@ export default function Sidebar() {
               <i className="fas fa-list"></i>
               <span>أقسام الكتب </span>
             </Link>
+            <Link href="/dashboard/Series" className={`nav-button ${pathname === "/dashboard/Series" ? "active" : ""}`}>
+              <i className="fas fa-list"></i>
+              <span>سلاسل الكتب </span>
+            </Link>
                 <Link href="/dashboard/userDetails" className={`nav-button  ${pathname == "/dashboard/userDetails" ? "active" : "" }`}>
               <i className="fas fa-solid fa-user"></i>
               <span>بياناتى</span>

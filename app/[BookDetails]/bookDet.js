@@ -125,7 +125,7 @@ export default function BookDet({ props }) {
                   </p>
                   <p>
                     <strong>تاريخ النشر:</strong>{" "}
-                    {details.published_at.split(" ")[2]}
+                    {details.published_at}
                   </p>
                 </div>
               </div>

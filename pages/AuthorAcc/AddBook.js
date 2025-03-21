@@ -1,7 +1,7 @@
 "use client";
 import { useState, useEffect } from 'react';
 import Modal from 'react-bootstrap/Modal';
-import "./Author.css"; 
+import "./Author.css";
 import Image from 'next/image';
 import upload from "../../public/Images/vechgfhor.png";
 import axios from 'axios';
@@ -15,8 +15,10 @@ export default function AddBook({ AuthorID }) {
   const [show, setShow] = useState(true);
   const [editionNumber, setEditionNumber] = useState('');
   const [categoryId, setCategoryId] = useState('');
+  const [subCategoryId, setSubCategoryId] = useState('');
   const [bookSeriesId, setBookSeriesId] = useState('');
   const [categories, setCategories] = useState([]);
+  const [bookSeriesOptions, setBookSeriesOptions] = useState([]);
   const handleClose = () => setShow(false);
   const [bookName, setBookName] = useState('');
   const [publisherName, setPublisherName] = useState('');
@@ -54,12 +56,15 @@ export default function AddBook({ AuthorID }) {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const formattedDescription = descriptionParagraphs.filter(p => p.trim() !== '').map(p => `<li>${p.trim()}</li>`).join("");
+    const formattedDescription = descriptionParagraphs
+      .filter(p => p.trim() !== '')
+      .map(p => `<li>${p.trim()}</li>`)
+      .join("");
     const formData = new FormData();
     formData.append('title', bookName);
     formData.append('description', formattedDescription);
-    formData.append('category_id', bookSeriesId);
-    formData.append('book_series_id', 1);
+    formData.append('category_id', subCategoryId || categoryId);
+    formData.append('book_series_id', bookSeriesId);
     formData.append('published_at', publishDate);
     formData.append('author_id', AuthorID);
     formData.append('lang', bookLanguage);
@@ -100,6 +105,21 @@ export default function AddBook({ AuthorID }) {
       }
     };
     fetchCategories();
+  }, []);
+
+  useEffect(() => {
+    const fetchBookSeries = async () => {
+      try {
+        const auth_token = Cookies.get('auth_token');
+        const response = await axios.get(`${backendUrl}/api/book-series/`, {
+          headers: { Authorization: `Bearer ${auth_token}` }
+        });
+        setBookSeriesOptions(response.data.data);
+      } catch (error) {
+        console.error("Error fetching book series:", error);
+      }
+    };
+    fetchBookSeries();
   }, []);
 
   return (
@@ -153,7 +173,7 @@ export default function AddBook({ AuthorID }) {
                 value={categoryId}
                 onChange={(e) => {
                   setCategoryId(e.target.value);
-                  setBookSeriesId('');
+                  setSubCategoryId('');
                 }}
               >
                 <option value="">اختر الفئة الرئيسية</option>
@@ -167,8 +187,8 @@ export default function AddBook({ AuthorID }) {
             {categoryId && (
               <div className="form-row">
                 <select
-                  value={bookSeriesId}
-                  onChange={(e) => setBookSeriesId(e.target.value)}
+                  value={subCategoryId}
+                  onChange={(e) => setSubCategoryId(e.target.value)}
                 >
                   <option value="">اختر الفئة الفرعية</option>
                   {categories
@@ -184,6 +204,22 @@ export default function AddBook({ AuthorID }) {
                 </select>
               </div>
             )}
+            <div className="form-row">
+              <select
+                value={bookSeriesId}
+                onChange={(e) => setBookSeriesId(e.target.value)}
+              >
+                <option value="">اختر سلسلة الكتب</option>
+                {bookSeriesOptions.map((series) => (
+                  <option key={series.id} value={series.id}>
+                    {series.title}
+                  </option>
+                ))}
+                {bookSeriesOptions.length === 0 && (
+                  <option disabled>لا توجد سلاسل</option>
+                )}
+              </select>
+            </div>
             <div className="form-row">
               <div className="custom-file-upload">
                 <Image src={upload} alt="ERR404" className='upload' />
@@ -205,21 +241,21 @@ export default function AddBook({ AuthorID }) {
               {bookfileName && <p>{bookfileName}</p>}
             </div>
             <div className="form-row description">
-              <div className="paragraph-container" style={{ maxHeight: "200px",width:"100%", overflowY: "auto", }}>
+              <div className="paragraph-container" style={{ maxHeight: "200px", width:"100%", overflowY: "auto" }}>
                 {descriptionParagraphs.map((para, index) => (
                   <div key={index} className="paragraph-input" style={{ display: "flex", alignItems: "center", marginBottom: "10px" }}>
                     <textarea
                       placeholder="اكتب الفقرة هنا"
                       value={para}
                       onChange={(e) => handleParagraphChange(index, e.target.value)}
-                      style={{ flex: 1,resize:'both'}}
+                      style={{ flex: 1, resize:'both' }}
                     />
                     <div style={{ display: "flex", flexDirection: "column", marginLeft: "5px" }}>
                       {index === descriptionParagraphs.length - 1 && (
-                        <button type="button" onClick={handleAddParagraph} style={{ marginBottom: "5px" ,border:'none'}}>+</button>
+                        <button type="button" onClick={handleAddParagraph} style={{ marginBottom: "5px", border:'none' }}>+</button>
                       )}
                       {descriptionParagraphs.length > 1 && (
-                        <button type="button" style={{ marginBottom: "5px" ,border:'none'}} onClick={() => handleDeleteParagraph(index)}>-</button>
+                        <button type="button" onClick={() => handleDeleteParagraph(index)} style={{ marginBottom: "5px", border:'none' }}>-</button>
                       )}
                     </div>
                   </div>

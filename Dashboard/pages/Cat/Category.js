@@ -20,7 +20,7 @@ const backendUrl = api;
 
 export default function Category() {
   const [openSection, setOpenSection] = useState(null);
-  const [searchTerm, setSearchTerm] = useState("");
+  const [searchTerm, setSearchTerm] = useState(""); 
   const [Cat, setCat] = useState([]);
   const [MainCatId, setMainCatId] = useState([]);
   const [subCatId, setSubCatId] = useState([]);

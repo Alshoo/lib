@@ -54,7 +54,7 @@ export default function RolesPage() {
             const auth_token = Cookies.get("auth_token");
 
             if (editMode) {
-                const response = await axios.put(`${backendUrl}/api/roles/${currentRoleId}`, formDataPayload, {
+                const response = await axios.post(`${backendUrl}/api/roles/${currentRoleId}`, formDataPayload, {
                     headers: {
                         "Authorization": `Bearer ${auth_token}`,
                     },
