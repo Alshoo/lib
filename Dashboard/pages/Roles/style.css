@@ -1,3 +1,4 @@
+/* --- Original CSS Code Provided --- */
 body {
   background-color: #f7fafc;
   margin: 0;
@@ -34,11 +35,14 @@ h1 {
 
 .role-form {
   width: 95%;
+    float: left;
   background-color: white;
   padding: 20px;
   border-radius: 8px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   margin-bottom: 20px;
+
+
 }
 
 .role-form input {
@@ -101,9 +105,9 @@ h1 {
 }
 
 @media (max-width: 616px) {
-    .roles-table {
-        float: none;
-      }
+  .roles-table {
+    float: none;
+  }
 
   .roles-table th,
   .roles-table td {
@@ -143,4 +147,30 @@ h1 {
   text-align: center;
   font-size: 18px;
   margin-top: 50px;
+}
+
+.permissions-container {
+  width: 100%;
+}
+
+.checkbox-group {
+  display: flex;
+  gap: 100px;
+}
+
+.permission-label {
+  display: flex;
+}
+
+
+.checkbox-group {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.permission-label {
+  display: inline-flex;
+  align-items: center;
+  margin-right: 10px;
 }
