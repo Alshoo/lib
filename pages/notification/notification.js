@@ -214,7 +214,7 @@ export default function NotificationPage() {
   }, []);
 
   return (
-    <div>
+    <div style={{minHeight:"50vh"}}>
       <div>
         {/* <div className="Breadcrumb">
           <Link href="/">الرئيسية</Link>
@@ -309,7 +309,7 @@ export default function NotificationPage() {
                   )}
                 </>
               ) : (
-                <div className="no-data-message">لا توجد إشعارات حالياً</div>
+                <div className="no-data-message" style={{display:"flex",alignItems:"center",justifyContent:"center"}}>لا توجد إشعارات حالياً</div>
               )}
             </div>
           )}
