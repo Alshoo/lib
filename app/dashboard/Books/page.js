@@ -25,12 +25,12 @@ export default function DashBooksPage() {
     const userData = Cookies.get("user");
     const data = JSON.parse(userData);
     setUserDetails(data.user);
-    setUserRole(data.user.role.name);
+    setUserRole(data.user.role.role_level);
     setLoading(false); 
   }, []);
 
   useEffect(() => {
-    if (userRole && userRole !== "SuperAdmin") {
+    if (userRole && userRole !== 5 && userRole !== 3 && userRole !== 4){
       toast.error("ليس لديك صلاحية للوصول لهذه الصفحة.");
       setTimeout(() => {
         window.location.href = "/";
