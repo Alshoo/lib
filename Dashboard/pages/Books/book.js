@@ -255,7 +255,7 @@ export default function Book() {
                 <p className="book-info">
                   <strong>الفئة:</strong> {book.category.name}
                 </p>
-                <div className='bookEdition'>
+                <div className='bookEdition'> 
                 <button className="edit-btn21" onClick={()=>{
               togglePopup();
               setCurrentBook(book);

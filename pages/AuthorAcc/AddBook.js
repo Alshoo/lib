@@ -1,6 +1,7 @@
 "use client";
 import { useState, useEffect } from 'react';
 import Modal from 'react-bootstrap/Modal';
+import Spinner from 'react-bootstrap/Spinner';
 import "./Author.css";
 import Image from 'next/image';
 import upload from "../../public/Images/vechgfhor.png";
@@ -8,9 +9,7 @@ import axios from 'axios';
 import Cookies from 'js-cookie';
 import toast, { Toaster } from 'react-hot-toast';
 import { api } from '@/context/ApiText/APITEXT';
-
 const backendUrl = api;
-
 export default function AddBook({ AuthorID }) {
   const [show, setShow] = useState(true);
   const [editionNumber, setEditionNumber] = useState('');
@@ -19,7 +18,6 @@ export default function AddBook({ AuthorID }) {
   const [bookSeriesId, setBookSeriesId] = useState('');
   const [categories, setCategories] = useState([]);
   const [bookSeriesOptions, setBookSeriesOptions] = useState([]);
-  const handleClose = () => setShow(false);
   const [bookName, setBookName] = useState('');
   const [publisherName, setPublisherName] = useState('');
   const [bookLanguage, setBookLanguage] = useState('');
@@ -31,35 +29,30 @@ export default function AddBook({ AuthorID }) {
   const [copyrightImageName, setCopyrightImageName] = useState('');
   const [bookfileName, setbookfileName] = useState('');
   const [descriptionParagraphs, setDescriptionParagraphs] = useState(['']);
-
+  const [loading, setLoading] = useState(false);
+  const handleClose = () => setShow(false);
   const handleFileChange = (e, setFile, setFileName) => {
     const file = e.target.files[0];
     setFile(file);
     setFileName(file?.name || '');
   };
-
   const handleParagraphChange = (index, value) => {
     const paragraphs = [...descriptionParagraphs];
     paragraphs[index] = value;
     setDescriptionParagraphs(paragraphs);
   };
-
   const handleAddParagraph = () => {
     setDescriptionParagraphs([...descriptionParagraphs, '']);
   };
-
   const handleDeleteParagraph = (index) => {
     const paragraphs = [...descriptionParagraphs];
     paragraphs.splice(index, 1);
     setDescriptionParagraphs(paragraphs);
   };
-
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const formattedDescription = descriptionParagraphs
-      .filter(p => p.trim() !== '')
-      .map(p => `<li>${p.trim()}</li>`)
-      .join("");
+    setLoading(true);
+    const formattedDescription = descriptionParagraphs.filter(p => p.trim() !== '').map(p => `<li>${p.trim()}</li>`).join("");
     const formData = new FormData();
     formData.append('title', bookName);
     formData.append('description', formattedDescription);
@@ -78,23 +71,23 @@ export default function AddBook({ AuthorID }) {
       await axios.post(`${backendUrl}/api/books/`, formData, {
         headers: {
           'Authorization': `Bearer ${auth_token}`,
-          'Content-Type': 'multipart/form-data',
-        },
+          'Content-Type': 'multipart/form-data'
+        }
       });
-      toast.success(`لقد تم انشاء الكتاب بنجاح`, {
+      toast.success("لقد تم انشاء الكتاب بنجاح", {
         duration: 4000,
         position: "top-center",
         style: {
           fontSize: "20px",
-          width: "50%",
-        },
+          width: "50%"
+        }
       });
       handleClose();
     } catch (error) {
       toast.error('خطأ فى تسجيل البيانات');
     }
+    setLoading(false);
   };
-
   useEffect(() => {
     const fetchCategories = async () => {
       try {
@@ -106,7 +99,6 @@ export default function AddBook({ AuthorID }) {
     };
     fetchCategories();
   }, []);
-
   useEffect(() => {
     const fetchBookSeries = async () => {
       try {
@@ -121,7 +113,6 @@ export default function AddBook({ AuthorID }) {
     };
     fetchBookSeries();
   }, []);
-
   return (
     <div>
       <Toaster position="top-center" toastOptions={{ duration: 4000 }} />
@@ -132,50 +123,20 @@ export default function AddBook({ AuthorID }) {
         <Modal.Body>
           <form onSubmit={handleSubmit}>
             <div className="form-row">
-              <input
-                type="text"
-                placeholder="اسم الكتاب"
-                value={bookName}
-                onChange={(e) => setBookName(e.target.value)}
-              />
+              <input type="text" placeholder="اسم الكتاب" value={bookName} onChange={(e) => setBookName(e.target.value)} />
             </div>
             <div className="form-row">
-              <input
-                type="text"
-                placeholder="دار النشر"
-                value={publisherName}
-                onChange={(e) => setPublisherName(e.target.value)}
-              />
-              <input
-                type="text"
-                placeholder="لغة الكتاب"
-                value={bookLanguage}
-                onChange={(e) => setBookLanguage(e.target.value)}
-              />
+              <input type="text" placeholder="دار النشر" value={publisherName} onChange={(e) => setPublisherName(e.target.value)} />
+              <input type="text" placeholder="لغة الكتاب" value={bookLanguage} onChange={(e) => setBookLanguage(e.target.value)} />
             </div>
             <div className="form-row">
-              <input
-                type="text"
-                placeholder="رقم الطبعة"
-                value={editionNumber}
-                onChange={(e) => setEditionNumber(e.target.value)}
-              />
+              <input type="text" placeholder="رقم الطبعة" value={editionNumber} onChange={(e) => setEditionNumber(e.target.value)} />
             </div>
             <div className="form-row">
-              <input
-                type="text"
-                placeholder="تاريخ النشر"
-                onChange={(e) => setPublishDate(e.target.value)}
-              />
+              <input type="text" placeholder="تاريخ النشر" onChange={(e) => setPublishDate(e.target.value)} />
             </div>
             <div className="form-row">
-              <select
-                value={categoryId}
-                onChange={(e) => {
-                  setCategoryId(e.target.value);
-                  setSubCategoryId('');
-                }}
-              >
+              <select value={categoryId} onChange={(e) => { setCategoryId(e.target.value); setSubCategoryId(''); }}>
                 <option value="">اختر الفئة الرئيسية</option>
                 {categories.map((category) => (
                   <option key={category.id} value={category.id}>
@@ -186,18 +147,13 @@ export default function AddBook({ AuthorID }) {
             </div>
             {categoryId && (
               <div className="form-row">
-                <select
-                  value={subCategoryId}
-                  onChange={(e) => setSubCategoryId(e.target.value)}
-                >
+                <select value={subCategoryId} onChange={(e) => setSubCategoryId(e.target.value)}>
                   <option value="">اختر الفئة الفرعية</option>
-                  {categories
-                    .find(category => category.id === parseInt(categoryId))
-                    ?.categories?.map((subCategory) => (
-                      <option key={subCategory.id} value={subCategory.id}>
-                        {subCategory.name}
-                      </option>
-                    ))}
+                  {categories.find(category => category.id === parseInt(categoryId))?.categories?.map((subCategory) => (
+                    <option key={subCategory.id} value={subCategory.id}>
+                      {subCategory.name}
+                    </option>
+                  ))}
                   {(!categories.find(category => category.id === parseInt(categoryId))?.categories) && (
                     <option disabled>لا توجد فئات فرعية</option>
                   )}
@@ -205,10 +161,7 @@ export default function AddBook({ AuthorID }) {
               </div>
             )}
             <div className="form-row">
-              <select
-                value={bookSeriesId}
-                onChange={(e) => setBookSeriesId(e.target.value)}
-              >
+              <select value={bookSeriesId} onChange={(e) => setBookSeriesId(e.target.value)}>
                 <option value="">اختر سلسلة الكتب</option>
                 {bookSeriesOptions.map((series) => (
                   <option key={series.id} value={series.id}>
@@ -222,47 +175,44 @@ export default function AddBook({ AuthorID }) {
             </div>
             <div className="form-row">
               <div className="custom-file-upload">
-                <Image src={upload} alt="ERR404" className='upload' />
+                <Image src={upload} alt="ERR404" className="upload" />
                 <span>صورة الكتاب</span>
                 <input type="file" onChange={(e) => handleFileChange(e, setCoverImage, setCoverImageName)} />
                 {coverImageName && <p>{coverImageName}</p>}
               </div>
               <div className="custom-file-upload">
-                <Image src={upload} alt="ERR404" className='upload' />
+                <Image src={upload} alt="ERR404" className="upload" />
                 <span>صورة إثبات ملكية الكتاب</span>
                 <input type="file" onChange={(e) => handleFileChange(e, setCopyrightImage, setCopyrightImageName)} />
                 {copyrightImageName && <p>{copyrightImageName}</p>}
               </div>
             </div>
             <div className="custom-file-upload">
-              <Image src={upload} alt="ERR404" className='upload' />
+              <Image src={upload} alt="ERR404" className="upload" />
               <span>ملف الكتاب</span>
               <input type="file" onChange={(e) => handleFileChange(e, setbookfile, setbookfileName)} />
               {bookfileName && <p>{bookfileName}</p>}
             </div>
             <div className="form-row description">
-              <div className="paragraph-container" style={{ maxHeight: "200px", width:"100%", overflowY: "auto" }}>
+              <div className="paragraph-container" style={{ maxHeight: "200px", width: "100%", overflowY: "auto" }}>
                 {descriptionParagraphs.map((para, index) => (
                   <div key={index} className="paragraph-input" style={{ display: "flex", alignItems: "center", marginBottom: "10px" }}>
-                    <textarea
-                      placeholder="اكتب الفقرة هنا"
-                      value={para}
-                      onChange={(e) => handleParagraphChange(index, e.target.value)}
-                      style={{ flex: 1, resize:'both' }}
-                    />
+                    <textarea placeholder="اكتب الفقرة هنا" value={para} onChange={(e) => handleParagraphChange(index, e.target.value)} style={{ flex: 1, resize: 'both' }} />
                     <div style={{ display: "flex", flexDirection: "column", marginLeft: "5px" }}>
                       {index === descriptionParagraphs.length - 1 && (
-                        <button type="button" onClick={handleAddParagraph} style={{ marginBottom: "5px", border:'none' }}>+</button>
+                        <button type="button" onClick={handleAddParagraph} style={{ marginBottom: "5px", border: 'none' }}>+</button>
                       )}
                       {descriptionParagraphs.length > 1 && (
-                        <button type="button" onClick={() => handleDeleteParagraph(index)} style={{ marginBottom: "5px", border:'none' }}>-</button>
+                        <button type="button" onClick={() => handleDeleteParagraph(index)} style={{ marginBottom: "5px", border: 'none' }}>-</button>
                       )}
                     </div>
                   </div>
                 ))}
               </div>
             </div>
-            <button type="submit" className='booksubmitbtn'>إرسال</button>
+            <button type="submit" className="booksubmitbtn" disabled={loading}>
+              {loading ? <Spinner animation="border" size="sm" /> : "إرسال"}
+            </button>
           </form>
         </Modal.Body>
       </Modal>

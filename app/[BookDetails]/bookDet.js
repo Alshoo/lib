@@ -63,7 +63,6 @@ export default function BookDet({ props }) {
       console.error("Error downloading file:", error);
     }
   };
-  console.log(details.description);
 
   return (
     <div>

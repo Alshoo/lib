@@ -28,7 +28,7 @@ export default function EditSubCat({ subCatId , MainCatId}) {
     try {
       const auth_token = Cookies.get("auth_token");
 
-      const response = await axios.put(
+      const response = await axios.post(
         `${backendUrl}/api/categories/${subCatId.id}`,
         Raw,
         {

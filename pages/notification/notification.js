@@ -262,7 +262,7 @@ export default function NotificationPage() {
                           >
                             <div className="notificationContent">
                               <div>
-                                <h6>{notification.type}</h6>
+                                {/* <h6>{notification.type}</h6> */}
                                 <p>{notification.data.message}</p>
                               </div>
                             </div>
@@ -295,7 +295,7 @@ export default function NotificationPage() {
                           >
                             <div className="notificationContent">
                               <div>
-                                <h6>{notification.type}</h6>
+                                {/* <h6>{notification.type}</h6> */}
                                 <p>{notification.data.message}</p>
                               </div>
                             </div>

@@ -33,7 +33,7 @@ export default function EditCat({ MainCatId2 }) {
     }
     try {
       const auth_token = Cookies.get('auth_token');
-      await axios.put(`${backendUrl}/api/book-series/${MainCatId2.id}`, formData, {
+      await axios.post(`${backendUrl}/api/book-series/${MainCatId2.id}`, formData, {
         headers: {
           "Authorization": `Bearer ${auth_token}`,
         },

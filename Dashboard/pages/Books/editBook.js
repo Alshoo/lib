@@ -7,16 +7,15 @@ import axios from 'axios';
 import Cookies from 'js-cookie';
 import toast, { Toaster } from 'react-hot-toast';
 import { api } from '@/context/ApiText/APITEXT';
-
 const backendUrl = api;
-
 export default function EditBook({ data }) {
   const [show, setShow] = useState(true);
   const [editionNumber, setEditionNumber] = useState(data.edition_number);
-  const [categoryId, setCategoryId] = useState('');
-  const [bookSeriesId, setBookSeriesId] = useState('');
+  const [mainCategoryId, setMainCategoryId] = useState(data.category_id || '');
+  const [subCategoryId, setSubCategoryId] = useState(data.sub_category_id || '');
+  const [bookSeriesId, setBookSeriesId] = useState(data.book_series_id || '');
   const [categories, setCategories] = useState([]);
-  const handleClose = () => setShow(false);
+  const [bookSeriesOptions, setBookSeriesOptions] = useState([]);
   const [bookName, setBookName] = useState(data.title);
   const [publisherName, setPublisherName] = useState(data.publisher_name);
   const [bookLanguage, setBookLanguage] = useState(data.lang);
@@ -28,40 +27,34 @@ export default function EditBook({ data }) {
   const [copyrightImageName, setCopyrightImageName] = useState('');
   const [bookfileName, setbookfileName] = useState('');
   const [descriptionParagraphs, setDescriptionParagraphs] = useState(['']);
-
-
-  console.log(data);
-  
+  const handleClose = () => setShow(false);
   const handleFileChange = (e, setFile, setFileName) => {
     const file = e.target.files[0];
     setFile(file);
     setFileName(file?.name || '');
   };
-
   const handleParagraphChange = (index, value) => {
     const paragraphs = [...descriptionParagraphs];
     paragraphs[index] = value;
     setDescriptionParagraphs(paragraphs);
   };
-
   const handleAddParagraph = () => {
     setDescriptionParagraphs([...descriptionParagraphs, '']);
   };
-
   const handleDeleteParagraph = (index) => {
     const paragraphs = [...descriptionParagraphs];
     paragraphs.splice(index, 1);
     setDescriptionParagraphs(paragraphs);
-  }; 
-
+  };
   const handleSubmit = async (e) => {
     e.preventDefault();
     const formattedDescription = descriptionParagraphs.filter(p => p.trim() !== '').map(p => `<li>${p.trim()}</li>`).join("");
     const formData = new FormData();
     if(bookName !== data.title) formData.append('title', bookName);
     if(formattedDescription !== data.description) formData.append('description', formattedDescription);
-    if(bookSeriesId) formData.append('category_id', bookSeriesId);
-    if(1 !== data.book_series_id) formData.append('book_series_id', 1);
+    if(mainCategoryId) formData.append('category_id', mainCategoryId);
+    if(subCategoryId) formData.append('sub_category_id', subCategoryId);
+    if(bookSeriesId) formData.append('book_series_id', bookSeriesId);
     if(publishDate !== data.published_at) formData.append('published_at', publishDate);
     if(data.author.id) formData.append('author_id', data.author.id);
     if(bookLanguage !== data.lang) formData.append('lang', bookLanguage);
@@ -78,7 +71,7 @@ export default function EditBook({ data }) {
           'Content-Type': 'multipart/form-data'
         }
       });
-      toast.success(`لقد تم تعديل البيانات`, {
+      toast.success("لقد تم تعديل البيانات", {
         duration: 4000,
         position: "top-center",
         style: {
@@ -91,7 +84,6 @@ export default function EditBook({ data }) {
       toast.error('خطأ فى تسجيل البيانات');
     }
   };
-
   useEffect(() => {
     const fetchCategories = async () => {
       try {
@@ -103,62 +95,55 @@ export default function EditBook({ data }) {
     };
     fetchCategories();
   }, []);
-
+  useEffect(() => {
+    const fetchBookSeries = async () => {
+      try {
+        const auth_token = Cookies.get('auth_token');
+        const response = await axios.get(`${backendUrl}/api/book-series/`, {
+          headers: { Authorization: `Bearer ${auth_token}` }
+        });
+        setBookSeriesOptions(response.data.data);
+      } catch (error) {
+        console.error("Error fetching book series:", error);
+      }
+    };
+    fetchBookSeries();
+  }, []);
+  useEffect(() => {
+    if(data.description) {
+      const regex = /<li>(.*?)<\/li>/g;
+      let matches = [];
+      let match;
+      while ((match = regex.exec(data.description)) !== null) {
+        matches.push(match[1]);
+      }
+      setDescriptionParagraphs(matches.length ? matches : ['']);
+    }
+  }, [data.description]);
   return (
     <div>
       <Toaster position="top-center" toastOptions={{ duration: 4000 }} />
       <Modal show={show} onHide={handleClose}>
         <Modal.Header closeButton>
-          اضافة كتاب
+          تعديل كتاب
         </Modal.Header>
         <Modal.Body>
           <form onSubmit={handleSubmit}>
             <div className="form-row">
-              <input
-                type="text"
-                placeholder="اسم الكتاب"
-                value={bookName}
-                onChange={(e) => setBookName(e.target.value)}
-              />
+              <input type="text" placeholder="اسم الكتاب" value={bookName} onChange={(e) => setBookName(e.target.value)} />
             </div>
             <div className="form-row">
-              <input
-                type="text"
-                placeholder="دار النشر"
-                value={publisherName}
-                onChange={(e) => setPublisherName(e.target.value)}
-              />
-              <input
-                type="text"
-                placeholder="لغة الكتاب"
-                value={bookLanguage}
-                onChange={(e) => setBookLanguage(e.target.value)}
-              />
+              <input type="text" placeholder="دار النشر" value={publisherName} onChange={(e) => setPublisherName(e.target.value)} />
+              <input type="text" placeholder="لغة الكتاب" value={bookLanguage} onChange={(e) => setBookLanguage(e.target.value)} />
             </div>
             <div className="form-row">
-              <input
-                type="text"
-                placeholder="رقم الطبعة"
-                value={editionNumber}
-                onChange={(e) => setEditionNumber(e.target.value)}
-              />
+              <input type="text" placeholder="رقم الطبعة" value={editionNumber} onChange={(e) => setEditionNumber(e.target.value)} />
             </div>
             <div className="form-row">
-              <input
-                type="text"
-                placeholder="تاريخ النشر"
-                value={publishDate}
-                onChange={(e) => setPublishDate(e.target.value)}
-              />
+              <input type="text" placeholder="تاريخ النشر" value={publishDate} onChange={(e) => setPublishDate(e.target.value)} />
             </div>
             <div className="form-row">
-              <select
-                value={categoryId}
-                onChange={(e) => {
-                  setCategoryId(e.target.value);
-                  setBookSeriesId('');
-                }}
-              >
+              <select value={mainCategoryId} onChange={(e) => { setMainCategoryId(e.target.value); setSubCategoryId(''); }}>
                 <option value="">اختر الفئة الرئيسية</option>
                 {categories.map((category) => (
                   <option key={category.id} value={category.id}>
@@ -167,42 +152,50 @@ export default function EditBook({ data }) {
                 ))}
               </select>
             </div>
-            {categoryId && (
+            {mainCategoryId && (
               <div className="form-row">
-                <select
-                  value={bookSeriesId}
-                  onChange={(e) => setBookSeriesId(e.target.value)}
-                >
+                <select value={subCategoryId} onChange={(e) => setSubCategoryId(e.target.value)}>
                   <option value="">اختر الفئة الفرعية</option>
-                  {categories
-                    .find(category => category.id === parseInt(categoryId))
-                    ?.categories?.map((subCategory) => (
-                      <option key={subCategory.id} value={subCategory.id}>
-                        {subCategory.name}
-                      </option>
-                    ))}
-                  {(!categories.find(category => category.id === parseInt(categoryId))?.categories) && (
+                  {categories.find(category => category.id === parseInt(mainCategoryId))?.categories?.map((subCategory) => (
+                    <option key={subCategory.id} value={subCategory.id}>
+                      {subCategory.name}
+                    </option>
+                  ))}
+                  {(!categories.find(category => category.id === parseInt(mainCategoryId))?.categories) && (
                     <option disabled>لا توجد فئات فرعية</option>
                   )}
                 </select>
               </div>
             )}
             <div className="form-row">
+              <select value={bookSeriesId} onChange={(e) => setBookSeriesId(e.target.value)}>
+                <option value="">اختر سلسلة الكتب</option>
+                {bookSeriesOptions.map((series) => (
+                  <option key={series.id} value={series.id}>
+                    {series.title}
+                  </option>
+                ))}
+                {bookSeriesOptions.length === 0 && (
+                  <option disabled>لا توجد سلاسل</option>
+                )}
+              </select>
+            </div>
+            <div className="form-row">
               <div className="custom-file-upload">
-                <Image src={upload} alt="ERR404" className='upload' />
+                <Image src={upload} alt="ERR404" className="upload" />
                 <span>صورة الكتاب</span>
                 <input type="file" onChange={(e) => handleFileChange(e, setCoverImage, setCoverImageName)} />
                 {coverImageName && <p>{coverImageName}</p>}
               </div>
               <div className="custom-file-upload">
-                <Image src={upload} alt="ERR404" className='upload' />
+                <Image src={upload} alt="ERR404" className="upload" />
                 <span>صورة إثبات ملكية الكتاب</span>
                 <input type="file" onChange={(e) => handleFileChange(e, setCopyrightImage, setCopyrightImageName)} />
                 {copyrightImageName && <p>{copyrightImageName}</p>}
               </div>
             </div>
             <div className="custom-file-upload">
-              <Image src={upload} alt="ERR404" className='upload' />
+              <Image src={upload} alt="ERR404" className="upload" />
               <span>ملف الكتاب</span>
               <input type="file" onChange={(e) => handleFileChange(e, setbookfile, setbookfileName)} />
               {bookfileName && <p>{bookfileName}</p>}
@@ -211,25 +204,20 @@ export default function EditBook({ data }) {
               <div className="paragraph-container" style={{ maxHeight: "200px", width: "100%", overflowY: "auto" }}>
                 {descriptionParagraphs.map((para, index) => (
                   <div key={index} className="paragraph-input" style={{ display: "flex", alignItems: "center", marginBottom: "10px" }}>
-                    <textarea
-                      placeholder="اكتب الفقرة هنا"
-                      value={para}
-                      onChange={(e) => handleParagraphChange(index, e.target.value)}
-                      style={{ flex: 1, resize: 'both' }}
-                    />
+                    <input type="text" placeholder="اكتب الفقرة هنا" value={para} onChange={(e) => handleParagraphChange(index, e.target.value)} style={{ flex: 1 }} />
                     <div style={{ display: "flex", flexDirection: "column", marginLeft: "5px" }}>
                       {index === descriptionParagraphs.length - 1 && (
                         <button type="button" onClick={handleAddParagraph} style={{ marginBottom: "5px", border: 'none' }}>+</button>
                       )}
                       {descriptionParagraphs.length > 1 && (
-                        <button type="button" style={{ marginBottom: "5px", border: 'none' }} onClick={() => handleDeleteParagraph(index)}>-</button>
+                        <button type="button" onClick={() => handleDeleteParagraph(index)} style={{ marginBottom: "5px", border: 'none' }}>-</button>
                       )}
                     </div>
                   </div>
                 ))}
               </div>
             </div>
-            <button type="submit" className='booksubmitbtn'>تحديث</button>
+            <button type="submit" className="booksubmitbtn">تحديث</button>
           </form>
         </Modal.Body>
       </Modal>
