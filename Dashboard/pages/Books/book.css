@@ -15,7 +15,14 @@ body {
   border-radius: 30px;
   padding: 5px 25px;
 }
-
+.addkeywords{
+  background: var( --Main-BackGround);
+  color: white;
+  border: none;
+  border-radius: 20px;
+  padding: 5px 25px;
+  margin-top: 10px;
+}
 .books-list12 { 
   display: grid;
   grid-template-columns: repeat(6, 1fr);

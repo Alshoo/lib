@@ -27,6 +27,8 @@ export default function EditBook({ data }) {
   const [copyrightImageName, setCopyrightImageName] = useState('');
   const [bookfileName, setbookfileName] = useState('');
   const [descriptionParagraphs, setDescriptionParagraphs] = useState(['']);
+  const [keywordsArray, setKeywordsArray] = useState([]);
+  const [keywordInput, setKeywordInput] = useState('');
   const handleClose = () => setShow(false);
   const handleFileChange = (e, setFile, setFileName) => {
     const file = e.target.files[0];
@@ -46,6 +48,18 @@ export default function EditBook({ data }) {
     paragraphs.splice(index, 1);
     setDescriptionParagraphs(paragraphs);
   };
+  const handleAddKeyword = () => {
+    const value = keywordInput.trim();
+    if (value && !keywordsArray.includes(value)) {
+      setKeywordsArray([...keywordsArray, value]);
+    }
+    setKeywordInput('');
+  };
+  const removeKeyword = (index) => {
+    const arr = [...keywordsArray];
+    arr.splice(index, 1);
+    setKeywordsArray(arr);
+  };
   const handleSubmit = async (e) => {
     e.preventDefault();
     const formattedDescription = descriptionParagraphs.filter(p => p.trim() !== '').map(p => `<li>${p.trim()}</li>`).join("");
@@ -63,6 +77,9 @@ export default function EditBook({ data }) {
     if(editionNumber !== data.edition_number) formData.append('edition_number', editionNumber);
     if(publisherName !== data.publisher_name) formData.append('publisher_name', publisherName);
     if(copyrightImage) formData.append('copyright_image', copyrightImage);
+    keywordsArray.forEach(keyword => {
+      formData.append('keywords[]', keyword);
+    });
     try {
       const auth_token = Cookies.get('auth_token');
       await axios.post(`${backendUrl}/api/books/${data.id}`, formData, {
@@ -74,10 +91,7 @@ export default function EditBook({ data }) {
       toast.success("لقد تم تعديل البيانات", {
         duration: 4000,
         position: "top-center",
-        style: {
-          fontSize: "20px",
-          width: "50%"
-        }
+        style: { fontSize: "20px", width: "50%" }
       });
       handleClose();
     } catch (error) {
@@ -119,7 +133,10 @@ export default function EditBook({ data }) {
       }
       setDescriptionParagraphs(matches.length ? matches : ['']);
     }
-  }, [data.description]);
+    if(data.keywords && Array.isArray(data.keywords)) {
+      setKeywordsArray(data.keywords);
+    }
+  }, [data.description, data.keywords]);
   return (
     <div>
       <Toaster position="top-center" toastOptions={{ duration: 4000 }} />
@@ -146,9 +163,7 @@ export default function EditBook({ data }) {
               <select value={mainCategoryId} onChange={(e) => { setMainCategoryId(e.target.value); setSubCategoryId(''); }}>
                 <option value="">اختر الفئة الرئيسية</option>
                 {categories.map((category) => (
-                  <option key={category.id} value={category.id}>
-                    {category.name}
-                  </option>
+                  <option key={category.id} value={category.id}>{category.name}</option>
                 ))}
               </select>
             </div>
@@ -157,9 +172,7 @@ export default function EditBook({ data }) {
                 <select value={subCategoryId} onChange={(e) => setSubCategoryId(e.target.value)}>
                   <option value="">اختر الفئة الفرعية</option>
                   {categories.find(category => category.id === parseInt(mainCategoryId))?.categories?.map((subCategory) => (
-                    <option key={subCategory.id} value={subCategory.id}>
-                      {subCategory.name}
-                    </option>
+                    <option key={subCategory.id} value={subCategory.id}>{subCategory.name}</option>
                   ))}
                   {(!categories.find(category => category.id === parseInt(mainCategoryId))?.categories) && (
                     <option disabled>لا توجد فئات فرعية</option>
@@ -171,14 +184,30 @@ export default function EditBook({ data }) {
               <select value={bookSeriesId} onChange={(e) => setBookSeriesId(e.target.value)}>
                 <option value="">اختر سلسلة الكتب</option>
                 {bookSeriesOptions.map((series) => (
-                  <option key={series.id} value={series.id}>
-                    {series.title}
-                  </option>
+                  <option key={series.id} value={series.id}>{series.title}</option>
                 ))}
                 {bookSeriesOptions.length === 0 && (
                   <option disabled>لا توجد سلاسل</option>
                 )}
               </select>
+            </div>
+            <div className="form-row"  style={{display:"block"}}>
+              <input
+                type="text"
+                placeholder="أدخل كلمة مفتاحية"
+                value={keywordInput}
+                onChange={(e) => setKeywordInput(e.target.value)}
+                style={{ width: '100%' }}
+              />
+              <button type="button" onClick={handleAddKeyword} className='addkeywords'>أضف الكلمة</button>
+              <div style={{ marginTop: '10px', display: 'flex', flexWrap: 'wrap', gap: '5px' }}>
+                {keywordsArray.map((keyword, index) => (
+                  <div key={index} style={{ backgroundColor: '#eee', padding: '5px 10px', borderRadius: '15px', display: 'flex', alignItems: 'center' }}>
+                    <span>{keyword}</span>
+                    <button type="button" onClick={() => removeKeyword(index)} style={{ marginLeft: '5px', background: 'transparent', border: 'none', cursor: 'pointer' }}>x</button>
+                  </div>
+                ))}
+              </div>
             </div>
             <div className="form-row">
               <div className="custom-file-upload">
