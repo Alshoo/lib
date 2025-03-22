@@ -29,6 +29,7 @@ export default function AddBook({ AuthorID }) {
   const [copyrightImageName, setCopyrightImageName] = useState('');
   const [bookfileName, setbookfileName] = useState('');
   const [descriptionParagraphs, setDescriptionParagraphs] = useState(['']);
+  const [keywords, setKeywords] = useState('');
   const [loading, setLoading] = useState(false);
   const handleClose = () => setShow(false);
   const handleFileChange = (e, setFile, setFileName) => {
@@ -53,6 +54,7 @@ export default function AddBook({ AuthorID }) {
     e.preventDefault();
     setLoading(true);
     const formattedDescription = descriptionParagraphs.filter(p => p.trim() !== '').map(p => `<li>${p.trim()}</li>`).join("");
+    const keywordsArray = keywords.split(',').map(k => k.trim()).filter(k => k !== '');
     const formData = new FormData();
     formData.append('title', bookName);
     formData.append('description', formattedDescription);
@@ -66,6 +68,10 @@ export default function AddBook({ AuthorID }) {
     formData.append('edition_number', editionNumber);
     formData.append('publisher_name', publisherName);
     formData.append('copyright_image', copyrightImage);
+    formData.append('keywords', JSON.stringify(keywordsArray));
+
+    console.log(formData);
+    
     try {
       const auth_token = Cookies.get('auth_token');
       await axios.post(`${backendUrl}/api/books/`, formData, {
@@ -172,6 +178,9 @@ export default function AddBook({ AuthorID }) {
                   <option disabled>لا توجد سلاسل</option>
                 )}
               </select>
+            </div>
+            <div className="form-row">
+              <input type="text" placeholder="الكلمات المفتاحية (افصل بين الكلمات بفاصلة)" value={keywords} onChange={(e) => setKeywords(e.target.value)} />
             </div>
             <div className="form-row">
               <div className="custom-file-upload">
