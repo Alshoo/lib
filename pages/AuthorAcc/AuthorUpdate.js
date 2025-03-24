@@ -59,7 +59,6 @@ export default function AuthorUpdate({ AuthorID ,AuthorName,AuthorBiography,prof
                 withCredentials: true,
             });
     
-            // console.log('نجاح:', response.data);
             toast.success(`لقد تم تحديث البيانات بنجاح`, {
                 duration: 4000,
                 position: "top-center",

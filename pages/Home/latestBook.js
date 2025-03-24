@@ -43,7 +43,7 @@ export default function LatestBook() {
 
         <Link href="/RecentBook" className="betweenItems2">
           <p>المزيد</p>
-          <i class="fa-solid fa-arrow-left iifram"></i>
+          <i className="fa-solid fa-arrow-left iifram"></i>
         </Link>
       </div>
 

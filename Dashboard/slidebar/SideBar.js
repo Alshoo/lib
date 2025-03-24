@@ -107,7 +107,7 @@ export default function Sidebar() {
             userRoleLev == 5 ? (
               <>
               <Link href="/dashboard/Roles" className={`nav-button ${pathname === "/dashboard/Roles" ? "active" : ""}`}>
-              <i class="fas fa-hand-sparkles"></i>
+              <i className="fas fa-hand-sparkles"></i>
               <span>الأدوار</span>
             </Link>
               <Link href="/dashboard/Users" className={`nav-button ${pathname === "/dashboard/Users" ? "active" : ""}`}>

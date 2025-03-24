@@ -46,7 +46,6 @@ export default function AddComment({props}) {
                 // withCredentials: true,
             });
     
-            // console.log('نجاح:', response.data);
             toast.success(`تم نشر تعليقك بنجاح`, {
                 duration: 4000,
                 position: "top-center",

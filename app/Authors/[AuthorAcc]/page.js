@@ -6,7 +6,6 @@ import AuthorPage from "@/pages/AuthorAcc/Author";
 export default function AuthorAcc(props) {
 
 
-  console.log();
 
   
   return (

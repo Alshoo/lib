@@ -140,7 +140,6 @@ export default function Book() {
     );
   });
 
-  console.log(filteredBooks);
   
   if (loading) { 
     return (

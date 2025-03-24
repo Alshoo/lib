@@ -37,7 +37,6 @@ export default function BooksPage({ props }) {
       setLoading(false);
     }
   };
-console.log(Rate);
 
   useEffect(() => {
     fetchBooks();

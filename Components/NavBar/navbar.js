@@ -97,7 +97,7 @@ export default function CustomNavbar() {
                     {user && (
                         <Nav.Link href="/notification" className="notif">         
                         <span>{notificationsCount}</span>
-                          <i class="fa-regular fa-bell"></i>
+                          <i className="fa-regular fa-bell"></i>
                           <p>الإشعارات</p>
                         </Nav.Link>
                     )}

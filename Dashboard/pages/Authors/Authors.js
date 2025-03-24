@@ -235,7 +235,7 @@ export default function Authors() {
               <div className="descript">
                 <p className="book-description">{author.biography}</p>
               </div>
-              <p className="book-info"><strong>تاريخ الميلاد:</strong> {author.birthdate.split('-')[0] || "غير محدد"}</p>
+              <p className="book-info"><strong>تاريخ الميلاد:</strong> {author.birthdate || "غير محدد"}</p>
              <div className='authorEdition'>
              <button className="edit-btn11" onClick={()=>{
               togglePopup1();

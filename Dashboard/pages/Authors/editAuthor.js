@@ -35,7 +35,7 @@ export default function EditAuthor({data}) {
         const formData = new FormData();
         formData.append('name', bookName);
         formData.append('biography', description);
-        formData.append('birthdate', publishDate + "-01-01");
+        formData.append('birthdate', publishDate);
         formData.append('image', coverImage);
     
         try {

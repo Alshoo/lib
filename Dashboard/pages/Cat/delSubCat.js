@@ -66,9 +66,6 @@ export default function DelSubCat() {
     };
     
 
-
-    console.log(bookSeriesId);
-    console.log(bookSeriesId);
     
     return (
         <div>

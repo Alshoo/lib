@@ -68,7 +68,7 @@ export default function BookSeries() {
             onClick={async () => {
               try {
                 const auth_token = Cookies.get('auth_token');
-                await axios.delete(`${backendUrl}/api/category-groups/${categoryId}`, {
+                await axios.delete(`${backendUrl}/api/book-series/${categoryId}`, {
                   headers: { "Authorization": `Bearer ${auth_token}` },
                 });
                 toast.success('تم حذف السلسه بنجاح');
@@ -135,7 +135,7 @@ export default function BookSeries() {
                   <button className="delete-btn" onClick={(e) => handleDeleteCategory(ser.id, e)}>حذف</button>
                 </div>
               </div>
-            </div>
+            </div> 
           ))
         )}
       </div>
