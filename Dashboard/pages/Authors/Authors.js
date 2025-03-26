@@ -28,7 +28,7 @@ export default function Authors() {
     date: '',
     image: '',
   });
-  const [activeAccordion, setActiveAccordion] = useState(null);
+  const [popupAuthor, setPopupAuthor] = useState(null);
 
   const togglePopup = () => {
     setIsPopupVisible(!isPopupVisible);
@@ -168,41 +168,42 @@ export default function Authors() {
           <p className="no-books-message">لا توجد مؤلفين في انتظار الموافقة</p>
         </div>
       ) : (
-        <ul className="accordion-list">
+        <ul className="pending-list">
           {books.map((author) => (
-            <li key={author.id} className="accordion-item">
-              <div className="accordion-header">
-                {author.request_image ? (
-                  <img src={author.request_image} alt={author.name} className="accordion-small-image" />
-                ) : (
-                  <Image src={defaultPortifolio} alt={author.name} className="accordion-small-image" />
-                )}
-                <h3 className="accordion-title">{author.name}</h3>
-                <button className="accordion-toggle-btn" onClick={() => setActiveAccordion(activeAccordion === author.id ? null : author.id)}>
-                  {activeAccordion === author.id ? "إخفاء" : "عرض"}
-                </button>
-              </div>
-              {activeAccordion === author.id && (
-                <div className="accordion-content">
-                  {author.request_image ? (
-                    <img src={author.request_image} alt={author.name} className="book-image" />
-                  ) : (
-                    <Image src={defaultPortifolio} alt={author.name} className="book-image" />
-                  )}
-                  <h3 className="book-title">{author.name}</h3>
-                  <div className="descript">
-                    <p className="book-description">{author.biography || "لا توجد سيرة ذاتية متاحة"}</p>
-                  </div>
-                  <p className="book-info"><strong>تاريخ الميلاد:</strong> {author.birthdate || "غير محدد"}</p>
-                  <div className='authorEdition2'>
-                  <button className="approve-btn" onClick={() => handleApproval(author.id, "approved")}>قبول</button>
-                  <button className="reject-btn" onClick={() => handleApproval(author.id, "rejected")}>رفض</button>
-                  </div>
-                </div>
+            <li key={author.id} className="pending-item">
+              {author.request_image ? (
+                <img src={author.request_image} alt={author.name} className="pending-small-image" />
+              ) : (
+                <Image src={defaultPortifolio} alt={author.name} className="pending-small-image" />
               )}
+              <h3 className="pending-title">{author.name}</h3>
+              <button className="pending-popup-btn" onClick={() => setPopupAuthor(author)}>
+                ℹ️
+              </button>
             </li>
           ))}
         </ul>
+      )}
+      {popupAuthor && (
+        <div className="popup-overlay" onClick={() => setPopupAuthor(null)}>
+          <div className="popup-content" onClick={(e) => e.stopPropagation()}>
+            <button className="popup-close-btn" onClick={() => setPopupAuthor(null)}>X</button>
+            {popupAuthor.request_image ? (
+              <img src={popupAuthor.request_image} alt={popupAuthor.name} className="popup-image" />
+            ) : (
+              <Image src={defaultPortifolio} alt={popupAuthor.name} className="popup-image" />
+            )}
+            <h3 className="popup-title">{popupAuthor.name}</h3>
+            <div className="descript">
+              <p className="popup-description">{popupAuthor.biography || "لا توجد سيرة ذاتية متاحة"}</p>
+            </div>
+            <p className="popup-info"><strong>تاريخ الميلاد:</strong> {popupAuthor.birthdate || "غير محدد"}</p>
+            <div className="popup-buttons">
+              <button className="approve-btn" onClick={() => { handleApproval(popupAuthor.id, "approved"); setPopupAuthor(null); }}>قبول</button>
+              <button className="reject-btn" onClick={() => { handleApproval(popupAuthor.id, "rejected"); setPopupAuthor(null); }}>رفض</button>
+            </div>
+          </div>
+        </div>
       )}
       <br />
       <br />
