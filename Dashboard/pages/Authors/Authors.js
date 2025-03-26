@@ -38,41 +38,37 @@ export default function Authors() {
   };
 
   useEffect(() => {
-    const fetchBooks = async () => {
+    const fetchAuthorsRequest = async () => {
       try {
         const auth_token = Cookies.get('auth_token');
         const response = await axios.get(`${backendUrl}/api/author-requests`, {
-          headers: {
-            Authorization: `Bearer ${auth_token}`,
-          },
+          headers: { Authorization: `Bearer ${auth_token}` },
         });
         setBooks(response.data);
         setLoading(false);
       } catch (error) {
-        console.error("Error fetching books:", error);
+        console.error("Error fetching author requests:", error);
         setLoading(false);
       }
     };
 
-    const fetchBooks1 = async () => {
+    const fetchAuthors = async () => {
       try {
         const auth_token = Cookies.get('auth_token');
         const response = await axios.get(`${backendUrl}/api/authors/`, {
-          headers: {
-            Authorization: `Bearer ${auth_token}`,
-          },
+          headers: { Authorization: `Bearer ${auth_token}` },
         });
         setBooks1(response.data);
         setLoading(false);
       } catch (error) {
-        console.error("Error fetching books:", error);
+        console.error("Error fetching authors:", error);
         setLoading(false);
       }
     };
 
     setTimeout(() => {
-      fetchBooks();
-      fetchBooks1();
+      fetchAuthorsRequest();
+      fetchAuthors();
     }, 2101);
   }, []);
 
@@ -82,13 +78,11 @@ export default function Authors() {
     try {
       const auth_token = Cookies.get('auth_token');
       const response = await axios.post(`${backendUrl}/api/author-requests/${authorId}/handle`, formData, {
-        headers: {
-          Authorization: `Bearer ${auth_token}`,
-        },
+        headers: { Authorization: `Bearer ${auth_token}` },
       });
       if (response.status === 200) {
-        const updatedBooks = books.filter((book) => book.id !== authorId);
-        setBooks(updatedBooks);
+        const updated = books.filter((a) => a.id !== authorId);
+        setBooks(updated);
         toast.success('تم تحديث حالة المؤلف');
       } else {
         toast.error('حدث خطأ أثناء المعالجة');
@@ -103,13 +97,11 @@ export default function Authors() {
     try {
       const auth_token = Cookies.get('auth_token');
       const response = await axios.delete(`${backendUrl}/api/authors/${authorId}`, {
-        headers: {
-          "Authorization": `Bearer ${auth_token}`,
-        },
+        headers: { Authorization: `Bearer ${auth_token}` },
       });
       if (response.status === 200) {
-        const updatedBooks = books1.filter((book) => book.id !== authorId);
-        setBooks1(updatedBooks);
+        const updated = books1.filter((a) => a.id !== authorId);
+        setBooks1(updated);
         toast.success('تم حذف المؤلف بنجاح', {
           duration: 4000,
           position: "top-center",
@@ -128,7 +120,7 @@ export default function Authors() {
         position: "top-center",
         style: { fontSize: "18px", width: "60%" },
       });
-      console.error("Error deleting book:", error);
+      console.error(error);
     }
   };
 
@@ -151,8 +143,7 @@ export default function Authors() {
   return (
     <div>
       <Toaster position="top-center" toastOptions={{ duration: 4000 }} />
-      <br />
-      <br />
+      <br /><br />
       <h1 className="title">اضافه عناصر</h1>
       <div style={{ width: "85%", margin: "auto" }}>
         <div onClick={togglePopup} className="addauthorbtn">
@@ -160,8 +151,7 @@ export default function Authors() {
           <Image src={add} alt="ERR404" />
         </div>
       </div>
-      <br />
-      <br />
+      <br /><br />
       <h1 className="title">المؤلفون في انتظار الموافقة</h1>
       {books.length === 0 ? (
         <div className="no-books-message-container">
@@ -170,16 +160,16 @@ export default function Authors() {
       ) : (
         <ul className="pending-list">
           {books.map((author) => (
-            <li key={author.id} className="pending-item">
-              {author.request_image ? (
-                <img src={author.request_image} alt={author.name} className="pending-small-image" />
-              ) : (
-                <Image src={defaultPortifolio} alt={author.name} className="pending-small-image" />
-              )}
-              <h3 className="pending-title">{author.name}</h3>
-              <button className="pending-popup-btn" onClick={() => setPopupAuthor(author)}>
-                ℹ️
-              </button>
+            <li key={author.id} className="pending-item" onClick={() => setPopupAuthor(author)}>
+              <div className="titleContainer">
+                {author.request_image ? (
+                  <img src={author.request_image} alt={author.name} className="pending-small-image" />
+                ) : (
+                  <Image src={defaultPortifolio} alt={author.name} className="pending-small-image" />
+                )}
+                <h3 className="pending-title">{author.name}</h3>
+              </div>
+              <button className="pending-popup-btn" onClick={() => setPopupAuthor(author)}>ℹ️</button>
             </li>
           ))}
         </ul>
@@ -205,17 +195,10 @@ export default function Authors() {
           </div>
         </div>
       )}
-      <br />
-      <br />
+      <br /><br />
       <h1 className="title">حذف عناصر</h1>
       <div className="search-container">
-        <input
-          type="text"
-          placeholder="ابحث عن مؤلف بالاسم أو السيرة الذاتية أو تاريخ الميلاد..."
-          value={searchTerm}
-          onChange={(e) => setSearchTerm(e.target.value)}
-          className="search-input"
-        />
+        <input type="text" placeholder="ابحث عن مؤلف بالاسم أو السيرة الذاتية أو تاريخ الميلاد..." value={searchTerm} onChange={(e) => setSearchTerm(e.target.value)} className="search-input" />
       </div>
       {filteredAuthors.length === 0 ? (
         <div className="no-books-message-container">
@@ -225,29 +208,29 @@ export default function Authors() {
         <ul className="books-list22">
           {filteredAuthors.map((author) => (
             <li key={author.id} className="book-item">
-              <div>
+              <div className="card-content">
                 {author.profile_image ? (
                   <img src={author.profile_image} alt="ERR404" className="book-image" />
                 ) : (
                   <Image src={defaultPortifolio} alt="ERR404" className="book-image" />
                 )}
-                <div className="descript">
+                <div className="card-body">
                   <Link href={`/Authors/${author.id}`} className="book-title">{author.name}</Link>
+                  <p className="book-info"><strong>تاريخ الميلاد:</strong> {author.birthdate || "غير محدد"}</p>
                 </div>
-                <p className="book-info"><strong>تاريخ الميلاد:</strong> {author.birthdate || "غير محدد"}</p>
-                <div className="authorEdition">
-                  <button className="edit-btn11" onClick={()=>{
-                    togglePopup1();
-                    setCurrentAuthor({
-                      id: author.id,
-                      name: author.name,
-                      description: author.biography,
-                      date: author.birthdate,
-                      image: author.profile_image,
-                    });
-                  }}>تعديل</button>
-                  <button className="reject-btn11" onClick={() => handledelete(author.id)}>حذف</button>
-                </div>
+              </div>
+              <div className="authorEdition">
+                <button className="edit-btn11" onClick={()=>{
+                  togglePopup1();
+                  setCurrentAuthor({
+                    id: author.id,
+                    name: author.name,
+                    description: author.biography,
+                    date: author.birthdate,
+                    image: author.profile_image,
+                  });
+                }}>تعديل</button>
+                <button className="reject-btn11" onClick={() => handledelete(author.id)}>حذف</button>
               </div>
             </li>
           ))}
