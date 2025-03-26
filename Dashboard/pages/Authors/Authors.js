@@ -10,23 +10,25 @@ import AddAuthor from './addauthor';
 import add from "../../../public/Images/unnbfbfamed.png";
 import { api } from '@/context/ApiText/APITEXT';
 import EditAuthor from './editAuthor';
+import Link from 'next/link';
 
 const backendUrl = api;
 
 export default function Authors() {
   const [isPopupVisible, setIsPopupVisible] = useState(false);
   const [isPopupVisible1, setIsPopupVisible1] = useState(false);
-  const [books, setBooks] = useState([]); 
+  const [books, setBooks] = useState([]);
   const [books1, setBooks1] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [searchTerm, setSearchTerm] = useState(""); 
+  const [searchTerm, setSearchTerm] = useState("");
   const [CurrentAuthor, setCurrentAuthor] = useState({
-    id:'',
-    name:'',
-    description:'',
-    date:'',
-    image:'',
+    id: '',
+    name: '',
+    description: '',
+    date: '',
+    image: '',
   });
+  const [activeAccordion, setActiveAccordion] = useState(null);
 
   const togglePopup = () => {
     setIsPopupVisible(!isPopupVisible);
@@ -38,8 +40,8 @@ export default function Authors() {
   useEffect(() => {
     const fetchBooks = async () => {
       try {
-          const auth_token = Cookies.get('auth_token');
-        const response = await axios.get(`${backendUrl}/api/author-requests`,{
+        const auth_token = Cookies.get('auth_token');
+        const response = await axios.get(`${backendUrl}/api/author-requests`, {
           headers: {
             Authorization: `Bearer ${auth_token}`,
           },
@@ -55,7 +57,7 @@ export default function Authors() {
     const fetchBooks1 = async () => {
       try {
         const auth_token = Cookies.get('auth_token');
-        const response = await axios.get(`${backendUrl}/api/authors/`,{
+        const response = await axios.get(`${backendUrl}/api/authors/`, {
           headers: {
             Authorization: `Bearer ${auth_token}`,
           },
@@ -77,7 +79,6 @@ export default function Authors() {
   const handleApproval = async (authorId, status) => {
     const formData = new FormData();
     formData.append('status', status);
-
     try {
       const auth_token = Cookies.get('auth_token');
       const response = await axios.post(`${backendUrl}/api/author-requests/${authorId}/handle`, formData, {
@@ -85,7 +86,6 @@ export default function Authors() {
           Authorization: `Bearer ${auth_token}`,
         },
       });
-
       if (response.status === 200) {
         const updatedBooks = books.filter((book) => book.id !== authorId);
         setBooks(updatedBooks);
@@ -107,7 +107,6 @@ export default function Authors() {
           "Authorization": `Bearer ${auth_token}`,
         },
       });
-
       if (response.status === 200) {
         const updatedBooks = books1.filter((book) => book.id !== authorId);
         setBooks1(updatedBooks);
@@ -161,7 +160,6 @@ export default function Authors() {
           <Image src={add} alt="ERR404" />
         </div>
       </div>
-
       <br />
       <br />
       <h1 className="title">المؤلفون في انتظار الموافقة</h1>
@@ -169,33 +167,46 @@ export default function Authors() {
         <div className="no-books-message-container">
           <p className="no-books-message">لا توجد مؤلفين في انتظار الموافقة</p>
         </div>
-      ) : ( 
-        <ul className="books-list22">
+      ) : (
+        <ul className="accordion-list">
           {books.map((author) => (
-            <li key={author.id} className="book-item">
-              {author.request_image ? (
-                <img src={author.request_image} alt={author.name} className="book-image" />
-              ) : (
-                <Image src={defaultPortifolio} alt={author.name} className="book-image" />
-              )}
-              <h3 className="book-title">{author.name}</h3>
-              <div className="descript">
-                <p className="book-description">{author.biography || "لا توجد سيرة ذاتية متاحة"}</p>
+            <li key={author.id} className="accordion-item">
+              <div className="accordion-header">
+                {author.request_image ? (
+                  <img src={author.request_image} alt={author.name} className="accordion-small-image" />
+                ) : (
+                  <Image src={defaultPortifolio} alt={author.name} className="accordion-small-image" />
+                )}
+                <h3 className="accordion-title">{author.name}</h3>
+                <button className="accordion-toggle-btn" onClick={() => setActiveAccordion(activeAccordion === author.id ? null : author.id)}>
+                  {activeAccordion === author.id ? "إخفاء" : "عرض"}
+                </button>
               </div>
-              <p className="book-info"><strong>تاريخ الميلاد:</strong> {author.birthdate || "غير محدد"}</p>
-              <button className="approve-btn" onClick={() => handleApproval(author.id, "approved")}>قبول</button>
-              <button className="reject-btn" onClick={() => handleApproval(author.id, "rejected")}>رفض</button>
+              {activeAccordion === author.id && (
+                <div className="accordion-content">
+                  {author.request_image ? (
+                    <img src={author.request_image} alt={author.name} className="book-image" />
+                  ) : (
+                    <Image src={defaultPortifolio} alt={author.name} className="book-image" />
+                  )}
+                  <h3 className="book-title">{author.name}</h3>
+                  <div className="descript">
+                    <p className="book-description">{author.biography || "لا توجد سيرة ذاتية متاحة"}</p>
+                  </div>
+                  <p className="book-info"><strong>تاريخ الميلاد:</strong> {author.birthdate || "غير محدد"}</p>
+                  <div className='authorEdition2'>
+                  <button className="approve-btn" onClick={() => handleApproval(author.id, "approved")}>قبول</button>
+                  <button className="reject-btn" onClick={() => handleApproval(author.id, "rejected")}>رفض</button>
+                  </div>
+                </div>
+              )}
             </li>
           ))}
         </ul>
       )}
-
       <br />
       <br />
       <h1 className="title">حذف عناصر</h1>
-
-   
-   
       <div className="search-container">
         <input
           type="text"
@@ -205,7 +216,6 @@ export default function Authors() {
           className="search-input"
         />
       </div>
-
       {filteredAuthors.length === 0 ? (
         <div className="no-books-message-container">
           <p className="no-books-message">لا توجد مؤلفين مطابقين للبحث</p>
@@ -214,49 +224,36 @@ export default function Authors() {
         <ul className="books-list22">
           {filteredAuthors.map((author) => (
             <li key={author.id} className="book-item">
-           <div>
-           {author.profile_image ? (
-                           <img
-                             src={author.profile_image}
-                             alt="ERR404"
-                             className="book-image"
-                           />
-                         ) : (
-                           <Image
-                             src={defaultPortifolio}
-                             alt="ERR404"
-                             className="book-image"
-                           /> 
-                         )}
-              
-              <div className="descript">
-              <h3 className="book-title">{author.name}</h3>
+              <div>
+                {author.profile_image ? (
+                  <img src={author.profile_image} alt="ERR404" className="book-image" />
+                ) : (
+                  <Image src={defaultPortifolio} alt="ERR404" className="book-image" />
+                )}
+                <div className="descript">
+                  <Link href={`/Authors/${author.id}`} className="book-title">{author.name}</Link>
+                </div>
+                <p className="book-info"><strong>تاريخ الميلاد:</strong> {author.birthdate || "غير محدد"}</p>
+                <div className="authorEdition">
+                  <button className="edit-btn11" onClick={()=>{
+                    togglePopup1();
+                    setCurrentAuthor({
+                      id: author.id,
+                      name: author.name,
+                      description: author.biography,
+                      date: author.birthdate,
+                      image: author.profile_image,
+                    });
+                  }}>تعديل</button>
+                  <button className="reject-btn11" onClick={() => handledelete(author.id)}>حذف</button>
+                </div>
               </div>
-              <div className="descript">
-                <p className="book-description">{author.biography}</p>
-              </div>
-              <p className="book-info"><strong>تاريخ الميلاد:</strong> {author.birthdate || "غير محدد"}</p>
-             <div className='authorEdition'>
-             <button className="edit-btn11" onClick={()=>{
-              togglePopup1();
-              setCurrentAuthor({
-                id: author.id,
-                name: author.name,
-                description: author.biography,
-                date: author.birthdate,
-                image: author.profile_image,
-              });
-              }}>تعديل</button>
-             <button className="reject-btn11" onClick={() => handledelete(author.id)}>حذف</button>
-             </div>
-           </div>
             </li>
           ))}
         </ul>
       )}
-
       {isPopupVisible && <AddAuthor />}
-      {isPopupVisible1 && <EditAuthor data = {CurrentAuthor}/>}
+      {isPopupVisible1 && <EditAuthor data={CurrentAuthor} />}
     </div>
   );
 }

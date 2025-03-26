@@ -8,6 +8,21 @@
   --navbar-light-secondary: #f0efef;
 }
 
+
+
+.headerLOGOIMG{
+  width: 90px;
+  height: 90px;
+  margin: auto;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+}
+
+.headerLOGO{
+  margin: auto;
+  transform: translateX(-7%);
+}
 html, body {
   margin: 0;
   background: var(--background);
@@ -209,7 +224,6 @@ label[for=nav-toggle] {
   width: var(--navbar-width);
   height: 54px;
   background: var(--navbar-dark-secondary);
-  border-radius: 16px;
   display: flex;
   flex-direction: column;
   z-index: 2;
@@ -303,10 +317,25 @@ label[for=nav-footer-toggle] {
   }
 }
 @media (max-width:500px) {
+  .headerLOGO{
+    transform: translateX(-370%);
+  }
+  
+  .headerLOGOIMG{
+    width: 30px;
+    height: 30px;
+    margin: auto;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+  }
   #nav-bar {
-    right: 5px;
-    width: 11%!important;
-    transform: translateX(3%);
+    right: 0px;
+    width: 56px!important;
+    transform: translateX(0%);
+    top: 0;
+    height: 100%!important;
+    border-radius: 0;
   }
   #nav-title{
     display: none!important;
@@ -320,12 +349,13 @@ label[for=nav-footer-toggle] {
   #nav-content {
     transform: translateX(-5px);
   }
+ 
 }
 @media (max-width:440px) {
   #nav-bar {
-    right: 5px;
-    width: 13%!important;
-    transform: translateX(-0%);
+    right: 0px;
+    width: 56px!important;
+    transform: translateX(0%);
   }
   #nav-title{
     display: none!important;
@@ -336,8 +366,8 @@ label[for=nav-footer-toggle] {
 }
 @media (max-width:380px) {
   #nav-bar {
-    width: 15%!important;
-    transform: translateX(-10%);
+    width: 56px!important;
+    transform: translateX(0%);
   }
   #nav-title{
     display: none!important;

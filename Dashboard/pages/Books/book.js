@@ -8,6 +8,7 @@ import defaultPortifolio from "../../../public/Images/defaultPortifolio.jpeg";
 import Image from "next/image";
 import { api } from "@/context/ApiText/APITEXT";
 import EditBook from "./editBook";
+import Link from "next/link";
 
 const backendUrl = api;
 
@@ -177,8 +178,8 @@ export default function Book() {
                     className="book-image"
                   />
                 )}
-                <h3 className="book-title">{book.title}</h3>
-                <p className="book-description">{book.description}</p>
+                <Link href={`/${book.id}`} className="book-title">{book.title}</Link>
+                {/* <p className="book-description">{book.description}</p> */}
                 <p className="book-info">
                   <strong>المؤلف:</strong> {book.author.name}
                 </p>
@@ -239,9 +240,9 @@ export default function Book() {
                     className="book-image"
                   />
                 )}
-                <h3 className="book-title">{book.title}</h3>
+                <Link href={`/${book.id}`} className="book-title">{book.title}</Link>
                 <div className="descript">
-                  <p className="book-description">{book.description}</p>
+                  {/* <p className="book-description">{book.description}</p> */}
                   
                 </div>
                 <div className="descript">

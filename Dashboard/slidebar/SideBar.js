@@ -33,7 +33,7 @@ export default function Sidebar() {
           const userData = Cookies.get("user");
           const JSONPARSEUSERDATA = JSON.parse(userData);
           setUserRole(JSONPARSEUSERDATA.user.role?.name || null);
-          setUserImg(JSONPARSEUSERDATA.image_url);
+          setUserImg(JSONPARSEUSERDATA.user.profile_image);
           setUserDes(JSONPARSEUSERDATA.user.created_at);
           setUserRoleLev(JSONPARSEUSERDATA.user.role?.role_level || null);
       }
@@ -48,13 +48,13 @@ export default function Sidebar() {
 
 
   
-  return (
+  return ( 
     <div lang="en" dir="ltr" style={{height:"100vh"}}>
       <div id="nav-bar">
         <input id="nav-toggle" type="checkbox" />
         <div id="nav-header">
-        <a href="/" rel="noopener noreferrer" style={{margin:"auto",transform:"translateX(-7%)"}}>
-          <Image src={logo} style={{width:"90px", height:"90px",margin:"auto",textAlign:"center",display:'flex',justifyContent:"center"}} alt="ERR404" />
+        <a href="/" rel="noopener noreferrer" className="headerLOGO" >
+          <Image src={logo} className="headerLOGOIMG" alt="ERR404" />
         </a>
         {/* <label htmlFor="nav-toggle">
           <span id="nav-toggle-burger"></span>
@@ -65,37 +65,37 @@ export default function Sidebar() {
           {
             userRoleLev ==  null || userRoleLev ==  1 ?(
                <>
-              <Link href="/dashboard/userDetails" className={`nav-button  ${pathname == "/dashboard" ? "active" : "" ||pathname == "/dashboard/userDetails" ? "active" : ""|| pathname == "/dashboard/DownloadBooks"   ? "" : "active"}`}>
+              <a href="/dashboard/userDetails" className={`nav-button  ${pathname == "/dashboard" ? "active" : "" ||pathname == "/dashboard/userDetails" ? "active" : ""|| pathname == "/dashboard/DownloadBooks"   ? "" : "active"}`}>
               <i className="fas fa-solid fa-user"></i>
               <span>بياناتى</span>
-            </Link>
-            <Link href="/dashboard/DownloadBooks" className={`nav-button ${pathname === "/dashboard/DownloadBooks" ? "active" : ""}`}>
+            </a>
+            <a href="/dashboard/DownloadBooks" className={`nav-button ${pathname === "/dashboard/DownloadBooks" ? "active" : ""}`}>
               <i className="fas fa-solid fa-book-open-reader"></i>
               <span>الكتب التى تم تنزيلها</span>
-            </Link>
+            </a>
                </>
             ):(
               <>
-              <Link href="/dashboard/Books" className={`nav-button  ${pathname == "/dashboard" ? "active" : "" ||pathname == "/dashboard/Books" ? "active" : ""|| pathname == "/dashboard/Authors" ||"/dashboard/Categories"||"/dashboard/Categories"||"/dashboard/Notification"||"/dashboard/Users"   ? "" : "active"}`}>
+              <a href="/dashboard/Books" className={`nav-button  ${pathname == "/dashboard" ? "active" : "" ||pathname == "/dashboard/Books" ? "active" : ""|| pathname == "/dashboard/Authors" ||"/dashboard/Categories"||"/dashboard/Categories"||"/dashboard/Notification"||"/dashboard/Users"   ? "" : "active"}`}>
               <i className="fas fa-solid fa-book"></i>
               <span>الكتب</span>
-            </Link>
-            <Link href="/dashboard/Authors" className={`nav-button ${pathname === "/dashboard/Authors" ? "active" : ""}`}>
+            </a>
+            <a href="/dashboard/Authors" className={`nav-button ${pathname === "/dashboard/Authors" ? "active" : ""}`}>
               <i className="fas fa-solid fa-book-open-reader"></i>
               <span>المؤلفون</span>
-            </Link>
-            <Link href="/dashboard/Categories" className={`nav-button ${pathname === "/dashboard/Categories" ? "active" : ""}`}>
+            </a>
+            <a href="/dashboard/Categories" className={`nav-button ${pathname === "/dashboard/Categories" ? "active" : ""}`}>
               <i className="fas fa-list"></i>
               <span>أقسام الكتب </span>
-            </Link>
-            <Link href="/dashboard/Series" className={`nav-button ${pathname === "/dashboard/Series" ? "active" : ""}`}>
+            </a>
+            <a href="/dashboard/Series" className={`nav-button ${pathname === "/dashboard/Series" ? "active" : ""}`}>
               <i className="fas fa-list"></i>
               <span>سلاسل الكتب </span>
-            </Link>
-                <Link href="/dashboard/userDetails" className={`nav-button  ${pathname == "/dashboard/userDetails" ? "active" : "" }`}>
+            </a>
+                <a href="/dashboard/userDetails" className={`nav-button  ${pathname == "/dashboard/userDetails" ? "active" : "" }`}>
               <i className="fas fa-solid fa-user"></i>
               <span>بياناتى</span>
-            </Link>
+            </a>
             {/* <Link href="/dashboard/Notification" className={`nav-button ${pathname === "/dashboard/Notification" ? "active" : ""}`}>
               <i className="fas fa-regular fa-bell"></i>
               <span>ارسال اشعارات</span>
@@ -106,14 +106,14 @@ export default function Sidebar() {
           {
             userRoleLev == 5 ? (
               <>
-              <Link href="/dashboard/Roles" className={`nav-button ${pathname === "/dashboard/Roles" ? "active" : ""}`}>
+              <a href="/dashboard/Roles" className={`nav-button ${pathname === "/dashboard/Roles" ? "active" : ""}`}>
               <i className="fas fa-hand-sparkles"></i>
               <span>الأدوار</span>
-            </Link>
-              <Link href="/dashboard/Users" className={`nav-button ${pathname === "/dashboard/Users" ? "active" : ""}`}>
+            </a>
+              <a href="/dashboard/Users" className={`nav-button ${pathname === "/dashboard/Users" ? "active" : ""}`}>
               <i className="fas fa-solid fa-users"></i>
               <span>المستخدمون</span>
-            </Link>
+            </a>
             </>
             ):(
               null

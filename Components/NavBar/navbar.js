@@ -139,8 +139,8 @@ export default function CustomNavbar() {
                           className="MAinDropdownContainer"
                         >
                           <p>{user?.user?.name}</p>
-                          <Image
-                            src={defaultPortifolio} 
+                          <img
+                            src={user?.user?.profile_image || defaultPortifolio} 
                             className="UserAvatar"
                             alt="ERR404"
                           />
