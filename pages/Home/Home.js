@@ -60,7 +60,7 @@ export default function Home() {
 
 
 
-          <div className="HeadLinks2">
+          <div className="HeadLinks2"> 
             <Link href="/FamousBook">
               <button>اشهر الكتب</button>
             </Link>

@@ -27,7 +27,7 @@ export default function Footer() {
   return (
     <div style={{ paddingTop: '2vh' }}>
       <footer className="footer">
-        <div className="footer-container">
+        {/* <div className="footer-container">
           <div className="footer-left">
             <Image src={logo} alt='ERR404' className="logo"/>
             <p className="description">
@@ -80,7 +80,7 @@ export default function Footer() {
               </ul>
             </div>
           </div>
-        </div>
+        </div> */}
 
         <div className='lastFooterSec'>
          

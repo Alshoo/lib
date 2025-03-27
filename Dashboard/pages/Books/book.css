@@ -24,10 +24,11 @@ body {
   flex-wrap: wrap;
   gap: 20px;
   justify-content: center;
+  overflow: auto;
+  max-height: 300px;
 }
 .pending-item {
   width: 300px;
-  height: 80px;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -36,6 +37,8 @@ body {
   padding: 10px;
   background-color: #fff;
   cursor: pointer;
+  min-width: 200px;
+  object-fit: content;
 }
 .titleContainer {
   display: flex;

@@ -147,7 +147,7 @@ export default function CustomNavbar() {
                         </Dropdown.Toggle>
 
                         <Dropdown.Menu>
-                          <Dropdown.Item onClick={() => {
+                          <Dropdown.Item onClick={() => { 
                             logout();
                             handleLogout();
                           }}>

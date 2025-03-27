@@ -15,7 +15,6 @@ body {
   border-radius: 30px;
   padding: 5px 25px;
 }
-/* Deletion Section - Fluid Card Layout */
 .books-list22 {
   display: grid;
   gap: 15px;
@@ -25,13 +24,12 @@ body {
   margin: auto;
 }
 
-/* Responsive grid:
-   Small: 1 card,
-   Tablet: 3 cards,
-   Large: 5 cards */
 @media (max-width: 480px) {
   .books-list22 {
     grid-template-columns: 1fr;
+  }
+  .title{
+    font-size: 1em;
   }
 }
 @media (min-width: 481px) and (max-width: 1024px) {
@@ -43,6 +41,7 @@ body {
   .books-list22 {
     grid-template-columns: repeat(5, 1fr);
   }
+
 }
 
 .book-item {
@@ -174,7 +173,6 @@ body {
   box-shadow: 0 0 5px #4e342e;
 }
 
-/* Popup Styles */
 .pending-list {
   list-style: none;
   margin: 40px auto;
@@ -184,10 +182,11 @@ body {
   flex-wrap: wrap;
   gap: 20px;
   justify-content: center;
+  overflow: auto;
+  max-height: 300px;
 }
 .pending-item {
   width: 300px;
-  height: 80px;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -196,6 +195,8 @@ body {
   padding: 10px;
   background-color: #fff;
   cursor: pointer;
+  min-width: 200px;
+  object-fit: content;
 }
 .pending-small-image {
   width: 50px;

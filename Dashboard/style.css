@@ -10,9 +10,8 @@
 
 
 
-.headerLOGOIMG{
-  width: 90px;
-  height: 90px;
+.headerLOGOIMG *{
+  width: 150px;
   margin: auto;
   text-align: center;
   display: flex;
@@ -322,8 +321,8 @@ label[for=nav-footer-toggle] {
   }
   
   .headerLOGOIMG{
-    width: 30px;
-    height: 30px;
+    width: 29px;
+    height: 29px;
     margin: auto;
     text-align: center;
     display: flex;

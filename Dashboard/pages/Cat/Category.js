@@ -14,8 +14,8 @@ import { motion } from "framer-motion";
 import Cookies from 'js-cookie';
 import { api } from "@/context/ApiText/APITEXT";
 import EditCat from "./edit";
-import EditSubCat from "./editSub";
-
+import EditSubCat from "./editSub"; 
+  
 const backendUrl = api;
 
 export default function Category() {

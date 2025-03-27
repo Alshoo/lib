@@ -15,7 +15,7 @@ export default function RolesPage() {
   const [formData, setFormData] = useState({
     name: "",
     description: "",
-    role_level: "",
+    role_level: "", 
     permissions: [],
   });
   const [loading, setLoading] = useState(true);
@@ -262,6 +262,7 @@ export default function RolesPage() {
                 <td>{role.description || "لا يوجد وصف"}</td>
                 <td>{role.role_level}</td>
                 <td>
+                  <div className="BtnCont3">
                   <button onClick={() => handleEdit(role)} className="edit-btn">
                     تعديل
                   </button>
@@ -271,6 +272,8 @@ export default function RolesPage() {
                   >
                     حذف
                   </button>
+                  </div>
+               
                 </td>
               </tr>
             ))}

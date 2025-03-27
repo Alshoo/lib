@@ -106,6 +106,9 @@
   display: flex;
   gap: 10px;
 }
+.betweenItems1 p {
+  font-size: 22px;
+}
 .betweenItems2 {
   display: flex;
   align-items: center;
@@ -122,14 +125,20 @@
 .Maincards {
   padding-top: 10px;
   max-width: 100%;
-  width: 90%;
+  width: 80%;
   margin: auto;
   display: grid;
-  grid-template-columns: repeat(6, 1fr);
-  gap: 20px;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  /* max-width: 660px;  */
+  gap:10px;
   margin-bottom: 20px;
   margin-top: 40px;
   border-radius: 25px;
+}
+.cardmaincont{
+  min-width: 180px;
+  max-width:220px;
+  margin: auto;
 }
 .MaincardsAuthor {
   padding-top: 10px;
@@ -269,6 +278,7 @@
   .Maincards {
     grid-template-columns: repeat(4, 1fr);
   }
+
   .MaincardsAuthor {
     grid-template-columns: repeat(4, 1fr);
   }
@@ -298,7 +308,8 @@
     width: 70%;
   }
   .Maincards {
-    grid-template-columns: repeat(4, 1fr);
+    width: 80%;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
   }
   .MaincardsAuthor {
     grid-template-columns: repeat(4, 1fr);
@@ -343,7 +354,8 @@
     width: 80%;
   }
   .Maincards {
-    grid-template-columns: repeat(4, 1fr);
+    width: 80%;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
   }
   .MaincardsAuthor {
     width: 96%;
@@ -390,7 +402,7 @@
     grid-template-columns: repeat(3, 1fr);
   }
   .Maincards {
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
   }
   .MaincardsAuthor {
     grid-template-columns: repeat(3, 1fr);
@@ -461,7 +473,13 @@
     width: 90%;
   }
   .Maincards {
-    grid-template-columns: repeat(2, 1fr);
+    width: 80%;
+    grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+    max-width: 260px;
+  }
+  .cardmaincont{
+    min-width: 240px;
+    /* margin: auto; */
   }
   .MaincardsAuthor {
     grid-template-columns: repeat(2, 1fr);

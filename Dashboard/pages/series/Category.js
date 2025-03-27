@@ -10,7 +10,7 @@ import Cookies from 'js-cookie';
 import { api } from "@/context/ApiText/APITEXT";
 import EditCat from "./edit";
 
-const backendUrl = api;
+const backendUrl = api; 
 
 export default function BookSeries() {
   const [searchTerm, setSearchTerm] = useState(""); 
@@ -88,6 +88,8 @@ export default function BookSeries() {
     );
   };
 
+  console.log(filteredSeries);
+  
   return (
     <div>
     <Toaster position="top-center" toastOptions={{ duration: 4000 }} />
@@ -128,6 +130,7 @@ export default function BookSeries() {
             <div className="dropdown-section" key={ser.id}>
               <div className="dropdown-header">
                 <div>
+                  <img src={ser.image} className="serImage"/>
                   <span>{ser.title}</span>
                 </div>
                 <div> 

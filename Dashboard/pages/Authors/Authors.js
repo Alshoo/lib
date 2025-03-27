@@ -195,7 +195,6 @@ export default function Authors() {
           </div>
         </div>
       )}
-      <br /><br />
       <h1 className="title">حذف عناصر</h1>
       <div className="search-container">
         <input type="text" placeholder="ابحث عن مؤلف بالاسم أو السيرة الذاتية أو تاريخ الميلاد..." value={searchTerm} onChange={(e) => setSearchTerm(e.target.value)} className="search-input" />

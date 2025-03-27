@@ -34,7 +34,7 @@ export default function FamousBook() {
   }, []);
 
   const popularBooks = Books.slice(0, 6);
-
+ 
 
   return (
     <div className="CardSecContainer">
@@ -69,6 +69,7 @@ export default function FamousBook() {
                 whileTap={{ scale: 0.95 }}
                 transition={{ duration: 0.2 }}
                 key={book.id}
+                className="cardmaincont"
               >
                 <Link href={`${book.id}`} className="CardCont" >
                   {book.cover_image ? (

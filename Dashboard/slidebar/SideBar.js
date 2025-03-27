@@ -54,7 +54,8 @@ export default function Sidebar() {
         <input id="nav-toggle" type="checkbox" />
         <div id="nav-header">
         <a href="/" rel="noopener noreferrer" className="headerLOGO" >
-          <Image src={logo} className="headerLOGOIMG" alt="ERR404" />
+          {/* <Image src={logo} className="headerLOGOIMG" alt="ERR404" /> */}
+          <i class="fa-solid fa-house headerLOGOIMG"></i>
         </a>
         {/* <label htmlFor="nav-toggle">
           <span id="nav-toggle-burger"></span>

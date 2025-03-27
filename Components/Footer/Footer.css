@@ -2,7 +2,7 @@
 .footer {
   background-color: var(--Main-BackGround);
   color: #fff;
-  padding: 40px 20px 20px 20px;
+  /* padding: 1px; */
   font-family: Arial, sans-serif;
   text-align: right;
   margin-top: 5px; 
@@ -102,15 +102,21 @@
 
 .lastFooterSec {
   display: flex;
+  padding-top: 5px;
+  align-items: center;
   justify-content: space-between;
   width: 90%;
   margin: auto;
   margin-top: 60px;
 }
+
 .lastFooterSec a {
   text-decoration: none;
   color: #ffffff;
 } 
+.lastFooterSec div h6 {
+  transform: translateY(20%);
+}
 .socialIcn {
   display: flex;
   gap: 10px;

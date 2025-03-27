@@ -14,7 +14,7 @@ body {
     margin: auto;
     border-radius: 30px;
     padding: 5px 25px;
-  }
+  } 
   
   .books-list {
     display: grid;
@@ -414,7 +414,7 @@ body {
   }
   .dropdown-header div:first-child{
     width: 90%;
-    overflow-x:hidden;
+    /* overflow-x:hidden; */
   }
   
   .dropdown-header:hover {
@@ -430,7 +430,7 @@ body {
       margin: auto;
     }
     #nav-bar{
-      right: auto;
+      right: 0;
     }
     .dropdown-header {
       display: block;

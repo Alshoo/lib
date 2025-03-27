@@ -414,7 +414,6 @@ body {
   }
   .dropdown-header div:first-child{
     width: 90%;
-    overflow-x:hidden;
   }
   
   .dropdown-header:hover {
@@ -451,6 +450,13 @@ body {
   }
 
 
+
+  .serImage{
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    margin-left: 10px;
+  }
   
   .arrow-icon {
     transition: transform 0.3s ease;

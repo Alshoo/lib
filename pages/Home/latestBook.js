@@ -64,6 +64,7 @@ export default function LatestBook() {
               whileTap={{ scale: 0.95 }}
               transition={{ duration: 0.2 }}
               key={book.id}
+                className="cardmaincont"
             >
               <Link href={`${book.id}`} className="CardCont">
                 {book.cover_image ? (

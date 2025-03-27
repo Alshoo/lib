@@ -13,7 +13,7 @@ body {
 h1 {
   text-align: center;
   color: #2d3748;
-  margin-bottom: 20px;
+  margin-bottom: 20px; 
 }
 
 .add-role-btn {
@@ -103,7 +103,10 @@ h1 {
 .roles-table tr:hover {
   background-color: #f7fafc;
 }
-
+.BtnCont3{
+  display: flex;
+  gap: 10px;
+}
 @media (max-width: 616px) {
   .roles-table {
     float: none;

@@ -18,7 +18,7 @@
 }
 .MainNavContainer{
     display: flex;
-    width: 95%;
+    width: 100%;
     margin: auto;
     justify-content: space-between;
     align-items: center;
@@ -46,6 +46,7 @@
 .SignBtn{
     display: flex;
     gap: 13px;
+    padding:  0 25px;
 }
 
 .CreateBtn{
