@@ -61,13 +61,13 @@ export default function Home() {
 
 
           <div className="HeadLinks2"> 
-            <Link href="/FamousBook">
+            <Link href="/filteredBooks">
               <button>اشهر الكتب</button>
             </Link>
-            <Link href="/RecentBook">
+            <Link href="/filteredBooks">
               <button>احدث الكتب</button>
             </Link>
-            <Link href="/HighBook">
+            <Link href="/filteredBooks">
               <button>الاعلى تقييم</button>
             </Link>
           </div>
