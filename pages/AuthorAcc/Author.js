@@ -148,7 +148,7 @@ export default function AuthorPage({AuthorID}) {
        />
       )}
 
-      <History AuthorID={AuthorID} AuthorName={authorData.name}/>
+      <History AuthorID={AuthorID} AuthorName={authorData.name} AuthorImage = {authorData.profile_image}/>
 
     </div>
   )

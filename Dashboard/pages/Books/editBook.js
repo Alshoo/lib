@@ -7,7 +7,7 @@ import axios from 'axios';
 import Cookies from 'js-cookie';
 import toast, { Toaster } from 'react-hot-toast';
 import { api } from '@/context/ApiText/APITEXT';
-const backendUrl = api;
+const backendUrl = api; 
 export default function EditBook({ data }) {
   const [show, setShow] = useState(true);
   const [editionNumber, setEditionNumber] = useState(data.edition_number);

@@ -20,7 +20,7 @@ export default function LatestBook() {
     const fetchBooks = async () => {
       try {
         const response = await axios.get(`${api}/api`);
-        setBooks(response.data.popularBooks);
+        setBooks(response.data.latestBooks);
         setLoading(false);
       } catch (error) {
         console.error("Error fetching books:", error);
@@ -41,7 +41,7 @@ export default function LatestBook() {
           <p>أحدث الكتب</p>
         </div>
 
-        <Link href="/RecentBook" className="betweenItems2">
+        <Link href="/filteredBooks" className="betweenItems2">
           <p>المزيد</p>
           <i className="fa-solid fa-arrow-left iifram"></i>
         </Link>
@@ -81,7 +81,7 @@ export default function LatestBook() {
                   />
                 )}
                 <div className="lastCardSec">
-                  <Image src={defaultPortifolio} className="AuthorImg" alt="ERR404" />
+                  <img src={book.author? book.author.profile_image : defaultPortifolio} className="AuthorImg" alt="ERR404" />
                   <h6>{book.title}</h6>
                   <p>{book.author?.name || "غير معرف"}</p>
                 </div>

@@ -3,7 +3,7 @@ import "./bookDet.css";
 import Image from "next/image";
 import defaultBook from "../../public/Images/defaultBook.jpg";
 import { useEffect, useState } from "react";
-import "../../pages/Famous/famous.css";
+import "../../pages/filtered/filtered.css";
 import "../../pages/Home/Home.css";
 import Link from "next/link";
 import download from "../../public/Images/arrow-backup-down-download-save-storage-transfer-1225091.png";
@@ -123,8 +123,7 @@ export default function BookDet({ props }) {
                     <strong>نوع الملف:</strong> {details?.file.split(".")[3]}
                   </p>
                   <p>
-                    <strong>تاريخ النشر:</strong>{" "}
-                    {details.published_at}
+                    <strong>تاريخ النشر:</strong> {details.published_at}
                   </p>
                 </div>
               </div>

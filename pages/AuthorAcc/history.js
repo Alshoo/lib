@@ -13,7 +13,7 @@ import { api } from "@/context/ApiText/APITEXT";
 
 
 
-export default function History({AuthorID,AuthorName}) {
+export default function History({AuthorID,AuthorName,AuthorImage}) {
 
 
   
@@ -42,7 +42,6 @@ const HistoryBooks = Books;
 
 
 
-
 return (
   <div>
     <br></br>
@@ -60,12 +59,15 @@ return (
         </div>
 
         {loading ? (
-          <div className="spinner-container">
+          <div className="spinner-container"> 
             <div className="spinner"></div>
           </div>
         ) : (
           <div className="Maincards">
             {HistoryBooks.map((book) => (
+              <div 
+              className="cardmaincont"
+              >
               <Link href={`/${book.id}`} className="CardCont" key={book.id}>
                 {book.cover_image ? (
                   <img 
@@ -81,12 +83,14 @@ return (
                   />
                 )}
                 <div className="lastCardSec">
-                  <Image src={defaultPortifolio} className="AuthorImg" alt="ERR404" />
+                  <img src={AuthorImage || defaultPortifolio} className="AuthorImg" alt="ERR404" />
                   <h6>{book.title}</h6>
                   <p>{AuthorName}</p>
                 </div>
                 <RatingStars rating={book.average_rating || 0 } />
               </Link>
+              </div>
+
             ))}
           </div>
         )}

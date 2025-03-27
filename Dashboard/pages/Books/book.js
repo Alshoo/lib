@@ -281,7 +281,7 @@ export default function Book() {
                     }}
                   >
                     تعديل
-                  </button>
+                  </button> 
                   <button
                     className="reject-btn21"
                     onClick={() => handledelete(book.id)}

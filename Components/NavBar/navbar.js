@@ -139,11 +139,23 @@ export default function CustomNavbar() {
                           className="MAinDropdownContainer"
                         >
                           <p>{user?.user?.name}</p>
-                          <img
-                            src={user?.user?.profile_image || defaultPortifolio} 
-                            className="UserAvatar"
-                            alt="ERR404"
-                          />
+                          {
+                            user.user.profile_image != "" ?
+                            (
+                              <img
+                              src={user.user.profile_image} 
+                              className="UserAvatar"
+                              alt="ERR404"
+                            />
+                            ):(
+                              <Image
+                              src={ defaultPortifolio} 
+                              className="UserAvatar"
+                              alt="ERR404"
+                            />
+                            )
+                          }
+                         
                         </Dropdown.Toggle>
 
                         <Dropdown.Menu>

@@ -1,9 +1,6 @@
 "use client"
 import Image from "next/image";
 import bookIcon from "../../public/Images/iconoir-book-solid.png";
-import LinkIcon from "../../public/Images/vector44.png";
-import CardImg from "../../public/Images/cardimage.png";
-import Editor from "../../public/Images/frame-2888.png";
 import defaultBook from "../../public/Images/defaultBook.jpg";
 import defaultPortifolio from "../../public/Images/defaultPortifolio.jpeg";
 import Link from "next/link";
@@ -23,6 +20,7 @@ export default function FamousBook() {
       try {
         const response = await axios.get(`${api}/api`);
         setBooks(response.data.popularBooks);
+        setٌRate(response.data);
         setLoading(false);
       } catch (error) {
         console.error("Error fetching authors:", error);
@@ -44,7 +42,7 @@ export default function FamousBook() {
           <p>أشهر الكتب</p>
         </div>
 
-        <Link href="/FamousBook" className="betweenItems2">
+        <Link href="/filteredBooks" className="betweenItems2">
           <p>المزيد</p>
           <i className="fa-solid fa-arrow-left iifram"></i>
           {/* <Image src={LinkIcon} alt="ERR404" /> */}
@@ -87,7 +85,7 @@ export default function FamousBook() {
                                   
                   )}
                   <div className="lastCardSec">
-                    <Image src={defaultPortifolio} className="AuthorImg" alt="ERR404" />
+                    <img src={book.author? book.author.profile_image : defaultPortifolio} className="AuthorImg" alt="ERR404" />
                     <h6>{book.title}</h6>
                     <p>{book.author.name}</p>
                   </div>

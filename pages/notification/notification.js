@@ -214,7 +214,7 @@ export default function NotificationPage() {
   }, []);
 
   return (
-    <div style={{minHeight:"50vh"}}>
+    <div style={{minHeight:"79vh"}}>
       <div>
         {/* <div className="Breadcrumb">
           <Link href="/">الرئيسية</Link>

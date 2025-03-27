@@ -1,19 +1,15 @@
 import Footer from "@/Components/Footer/Footer";
 import CustomNavbar from "@/Components/NavBar/navbar";
-import FamousPage from "@/pages/Famous/Famous";
+import FilteredPage from "@/pages/filtered/filtered";
 
 export default function FamousBook() {
   return (
-    <div >
-      <CustomNavbar/>
+    <div>
+      <CustomNavbar />
 
+      <FilteredPage  />
 
-        <FamousPage/>
-
-
-     <Footer/>
-
-     
+      <Footer />
     </div>
   );
 }
