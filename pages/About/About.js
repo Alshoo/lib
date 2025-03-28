@@ -29,7 +29,7 @@ export default function About() {
 
   return (
     <div className="AboutContainer">
-      <h1 className="AboutTitle">عن مكتبة نور</h1>
+      <h1 className="AboutTitle">عن المكتبة الأندلسيه</h1>
       <div className="Accordion">
         {sections.map((section, index) => (
           <div key={index} className="AccordionItem">
