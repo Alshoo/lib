@@ -96,7 +96,7 @@ export default function Footer() {
 
 
           <div>
-            <h6>المكتبة الاندلسية</h6>
+            <Link href="/">المكتبة الاندلسية</Link>
           </div>
 
 
@@ -104,9 +104,9 @@ export default function Footer() {
           <div className='lastFooterLink'>
             <Link href="/About">عن المكتبة </Link>
             <p>.</p>
-            <Link href="/Terms">اتفاقيه الاستخدام</Link>
+            <Link href="/Terms">اتفاقية الاستخدام</Link>
             <p>.</p>
-            <Link href="/policy">سياسة الخصوصة </Link>
+            <Link href="/policy">سياسة الخصوصية </Link>
           </div>
 
 
