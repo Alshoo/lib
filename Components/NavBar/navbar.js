@@ -63,7 +63,8 @@ export default function CustomNavbar() {
     }, 2000);
   };
   return (
-    <div className="MainNav1">
+   <div style={{marginBottom:"67px"}}>
+     <div className="MainNav1">
       <div className="MainNav2">
         <Navbar collapseOnSelect expand="lg" className="bg-body-tertiary">
           <div className="MainNavContainer">
@@ -111,7 +112,7 @@ export default function CustomNavbar() {
                           <Image src={Search} alt="Search" />
                           <p>بحث</p>
                         </Dropdown.Toggle>
-                        <Dropdown.Menu>
+                        <Dropdown.Menu style={{padding:"0"}}>
                           <Dropdown.Item>
                             <Link href="/Authors" className="searchDrop">
                               بحث عن مؤلف
@@ -139,7 +140,7 @@ export default function CustomNavbar() {
                           className="MAinDropdownContainer"
                         >
                           <p>{user?.user?.name}</p>
-                          {
+                          { 
                             user.user.profile_image != "" ?
                             (
                               <img
@@ -158,7 +159,7 @@ export default function CustomNavbar() {
                          
                         </Dropdown.Toggle>
 
-                        <Dropdown.Menu>
+                        <Dropdown.Menu style={{padding:"0",marginTop:"5px"}}>
                           <Dropdown.Item onClick={() => { 
                             logout();
                             handleLogout();
@@ -185,5 +186,6 @@ export default function CustomNavbar() {
         </Navbar>
       </div>
     </div>
+   </div>
   );
 }

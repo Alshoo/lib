@@ -25,7 +25,7 @@ export default function Footer() {
   }, [])
 
   return (
-    <div style={{ paddingTop: '2vh' }}>
+    <div>
       <footer className="footer">
         {/* <div className="footer-container">
           <div className="footer-left">
@@ -102,7 +102,7 @@ export default function Footer() {
 
 
           <div className='lastFooterLink'>
-            <Link href="/About">عن المكتبة </Link>
+            <Link href="/About">من نحن </Link>
             <p>.</p>
             <Link href="/Terms">اتفاقية الاستخدام</Link>
             <p>.</p>

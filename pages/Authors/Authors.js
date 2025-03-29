@@ -16,7 +16,7 @@ import { api } from "@/context/ApiText/APITEXT";
 export default function AuthorsPage() {
   const [authors, setAuthors] = useState([]);
   const [displayAuthors, setDisplayAuthors] = useState([]);
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(true); 
   const [searchTerm, setSearchTerm] = useState("");
 
   useEffect(() => {
@@ -92,7 +92,7 @@ export default function AuthorsPage() {
         ) : (
           <div> 
             {displayAuthors.length > 0 ? (
-              <div className="MaincardsAuthor">
+              <div className="MaincardsAuthor" style={{width:"92%"}}>
                 {displayAuthors.map((author) => (
                <motion.div
                whileHover={{ scale: 1.001 }}

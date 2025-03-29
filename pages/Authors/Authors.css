@@ -1,7 +1,8 @@
 .bookPageContainer{
   direction: rtl;
-  width: 90%;
+  width: 80%;
   margin: auto;
+  min-height: 75vh;
 }
 .search-container11 {
   position: relative;
@@ -10,7 +11,7 @@
 }
 
 .search-icon11 {
-  position: absolute;
+  position: absolute; 
   left: 10px;
   top: 50%;
   transform: translateY(-50%);
@@ -26,8 +27,8 @@
   border-radius: 20px;
 }
 .titCat11{
-  margin: 0 0 20px;
-  font-size:xx-large;
+  margin: 0px 0 20px;
+  font-size:x-large;
   font-weight: bold;
   color: var(--Main-BackGround);
 }

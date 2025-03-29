@@ -130,7 +130,7 @@ export default function MainPage() {
       </div>
       {isPopupVisible1 && <AddMainCat />}
       {isPopupVisible2 && <AddSubCat />}
-      <br />
+      
     </div>
   );
 }

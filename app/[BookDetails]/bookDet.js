@@ -12,7 +12,7 @@ import ratings from "../../public/Images/unnamed.png";
 import axios from "axios";
 import { api } from "@/context/ApiText/APITEXT";
 
-export default function BookDet({ props }) {
+ export default function BookDet({ props }) {
   const [activeTab, setActiveTab] = useState("description");
   const [details, setDetails] = useState([]);
   const [category, setCategory] = useState([]);
@@ -49,7 +49,7 @@ export default function BookDet({ props }) {
         {
           responseType: "blob",
         }
-      );
+      ); 
 
       const url = window.URL.createObjectURL(new Blob([response.data]));
       const link = document.createElement("a");

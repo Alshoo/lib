@@ -8,6 +8,13 @@
     box-shadow: 1px 4px 10px 0px rgba(0, 0, 0, 0.30);
     top: 0;
 } */
+ .MainNav1{
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 9999999;
+    box-shadow: rgba(0, 0, 0, 0.722) 1px 1px 15px -1px ;
+ }
 .nav-link{ 
     display: flex;
     gap: 5px;

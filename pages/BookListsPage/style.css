@@ -17,9 +17,7 @@
 
 .main-container {
     direction: rtl;
-    /* padding: 100px 20px; */
-    font-family: Arial, sans-serif;
-    width: 90%;
+    width: 80%;
     margin: auto;
   }
   
@@ -31,7 +29,7 @@
   }
   .titCat{
     margin: 0 0 20px;
-    font-size:xx-large;
+    font-size:x-large;
     font-weight: bold;
     color: var(--Main-BackGround);
   }

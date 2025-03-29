@@ -1,6 +1,6 @@
 .bookPageContainer {
   margin-top: 80px;
-  min-height: 70vh;
+  min-height: 72vh;
 }
 .searchContainer2 {
   display: flex; 
@@ -13,7 +13,7 @@
 }
 .search-container {
   position: relative;
-  width: 90%;
+  width: 80%;
   margin-bottom: 20px;
   margin: auto;
 }

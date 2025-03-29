@@ -8,7 +8,7 @@ import "../../pages/Home/Home.css";
 import BookDet from "./bookDet";
 import Relations from "./relations";
 import Comments from "./Comments";
-
+ 
 export default function BookPage(props) {
   return (
     <div>
