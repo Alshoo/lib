@@ -12,7 +12,7 @@ export default function LoginPage() {
 
   const handleLogin = async (e) => { 
     e.preventDefault();
-    if (email === "" || password === "") {
+    if (email === "" || password === "") { 
       toast.error("من فضلك أكمل جميع الحقول.");
       return; 
     }
