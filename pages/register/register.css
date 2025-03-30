@@ -66,6 +66,21 @@
     margin-bottom: 35px;
 
 }
+.showPasswordContainer {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    justify-content: flex-start;
+    width: 80%;
+  }
+  
+  .showPasswordContainer input[type="checkbox"] {
+    margin-right: 5px;
+  }
+  .showPasswordTxt{
+    color: antiquewhite;
+
+  }
 
 
 @media (max-width:900px) {
@@ -80,6 +95,9 @@
     .registerContainer{
         height: 100vh;
     }
+    .showPasswordContainer {
+        width: 90%;
+      }
 }
 @media (max-width:450px) {
     .registerContainer input{

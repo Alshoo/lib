@@ -2,17 +2,18 @@
 import { useState } from "react";
 import useAuthContext from "@/hooks/useAuthContext";
 import Link from "next/link";
-import './login.css';
+import "./login.css";
 import toast, { Toaster } from "react-hot-toast";
 
 export default function LoginPage() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [showPassword, setShowPassword] = useState(false);
   const { login, errors, loading } = useAuthContext();
 
   const handleLogin = async (e) => { 
     e.preventDefault();
-    if (email === "" || password === "") { 
+    if (email === "" || password === "") {
       toast.error("من فضلك أكمل جميع الحقول.");
       return; 
     }
@@ -41,12 +42,22 @@ export default function LoginPage() {
           <input
             id="password"
             name="password"
-            type="password"
+            type={showPassword ? "text" : "password"}
             placeholder="كلمة المرور"
             autoComplete="current-password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
           />
+
+          <div className="showPasswordContainer">
+            <input 
+              type="checkbox" 
+              id="showPassword" 
+              checked={showPassword} 
+              onChange={(e) => setShowPassword(e.target.checked)} 
+            />
+            <label htmlFor="showPassword" className="showPasswordTxt">عرض كلمه المرور</label>
+          </div>
 
           {errors?.email && (
             <span style={{ color: "red", fontSize: "12px", marginBottom: "5px" }}>

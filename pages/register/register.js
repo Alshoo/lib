@@ -1,5 +1,5 @@
 "use client";
-import "./register.css";
+import "./register.css"; 
 import { useState } from "react";
 import useAuthContext from "@/hooks/useAuthContext";
 import Link from "next/link";
