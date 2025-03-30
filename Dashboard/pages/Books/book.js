@@ -77,6 +77,10 @@ export default function Book() {
     }
   };
 
+
+  console.log(pendingBooks)
+
+  
   const handledelete = async (bookId) => {
     try {
       const auth_token = Cookies.get("auth_token");
@@ -192,6 +196,8 @@ export default function Book() {
                 className="popup-image"
               />
             )}
+
+          
             <h3 className="popup-title">{popupBook.title}</h3>
             <div className="descript">
               <p className="popup-description">
@@ -204,6 +210,23 @@ export default function Book() {
             <p className="popup-info">
               <strong>الفئة:</strong> {popupBook.category.name}
             </p>
+
+            <h3 className="popup-title">صورة اثبات الملكيه :</h3>
+            {popupBook.copyright_image ? (
+              <img
+                src={popupBook.copyright_image}
+                alt={popupBook.title}
+                className="popup-image2"
+              />
+            ) : (
+              <Image
+                src={defaultPortifolio}
+                alt={popupBook.title}
+                className="popup-image2"
+              />
+            )}
+            <br></br>
+            <br></br>
             <div className="popup-buttons">
               <button
                 className="approve-btn"

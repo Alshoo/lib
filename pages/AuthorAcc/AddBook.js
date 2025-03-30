@@ -132,7 +132,7 @@ export default function AddBook({ AuthorID }) {
   return (
     <div>
       <Toaster position="top-center" toastOptions={{ duration: 4000 }} />
-      <Modal show={show} onHide={handleClose} style={{zIndex:"9999999999999999999"}}>
+      <Modal show={show} onHide={handleClose}>
         <Modal.Header closeButton>
           اضافة كتاب
         </Modal.Header>

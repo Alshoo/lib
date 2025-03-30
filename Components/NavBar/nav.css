@@ -12,7 +12,7 @@
     position: fixed;
     top: 0;
     width: 100%;
-    z-index: 9999999;
+    z-index: 1;
     box-shadow: rgba(0, 0, 0, 0.722) 1px 1px 15px -1px ;
  }
 .nav-link{ 

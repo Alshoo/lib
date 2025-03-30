@@ -328,6 +328,13 @@ body {
   border-radius: 8px;
   margin-bottom: 10px;
 }
+.popup-image2 {
+  width: 50%;
+  height: 100px;
+  object-fit: cover;
+  border-radius: 8px;
+  margin-bottom: 10px;
+}
 .popup-title {
   font-size: 1.2rem;
   font-weight: bold;
