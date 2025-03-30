@@ -15,7 +15,7 @@ export default function RootLayout({ children }) {
   return (
     <html lang="ar" dir="rtl">
       
-      <head>
+      
         <link
           href="https://fonts.googleapis.com/css2?family=Cairo:wght@200;400;700;900&display=swap"
           rel="stylesheet"
@@ -25,7 +25,6 @@ export default function RootLayout({ children }) {
         rel="icon"
         href="Images/logo.svg"
         />
-     </head>
 
 
 
