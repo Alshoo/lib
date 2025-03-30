@@ -317,7 +317,7 @@ export default function NotificationPage() {
       </div>
 
       {showModal && (
-        <Modal show={showModal} onHide={handleCloseModal}>
+        <Modal show={showModal} onHide={handleCloseModal} style={{zIndex:"99999999999999999999999"}}>
           <Modal.Header>
             <Modal.Title>{selectedNotification?.type}</Modal.Title>
           </Modal.Header>
