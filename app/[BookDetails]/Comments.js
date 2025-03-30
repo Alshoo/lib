@@ -38,7 +38,7 @@ export default function Comments({ props }) {
 
     fetchAuthors();
   }, []);
-
+ console.log(Comments)
   const [isPopupVisible, setIsPopupVisible] = useState(false);
 
   const togglePopup = () => {
