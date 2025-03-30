@@ -1,5 +1,4 @@
 "use client";
-
 import "./style.css";
 import "../Home/Home.css";
 import Image from "next/image";
@@ -11,19 +10,14 @@ import defaultPortifolio from "../../public/Images/defaultPortifolio.jpeg";
 import axios from "axios";
 import { api } from "@/context/ApiText/APITEXT";
 
-export default function SearchResultpage({ params }) {
+export default function SearchResultpage({ props }) {
   const [Books, setBooks] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [searchQuery, setSearchQuery] = useState(
-    params?.SearchResults ? decodeURIComponent(params.SearchResults) : ""
-  );
+  const [searchQuery, setSearchQuery] = useState(props.params?.SearchResults ? decodeURIComponent(props.params.SearchResults) : "");
   const [showSearchInput, setShowSearchInput] = useState(false);
-
   const fetchBooks = async (query) => {
     try {
-      const response = await axios.get(
-        `${api}/api/books?search=${query}`
-      );
+      const response = await axios.get(`${api}/api/books?search=${query}`);
       setBooks(response.data.data || []);
     } catch (error) {
       setBooks([]);
@@ -31,12 +25,10 @@ export default function SearchResultpage({ params }) {
       setLoading(false);
     }
   };
-
   useEffect(() => {
     setLoading(true);
     fetchBooks(searchQuery);
   }, [searchQuery]);
-
   const handleSearch = () => {
     if (searchQuery.trim()) {
       setLoading(true);
@@ -44,7 +36,6 @@ export default function SearchResultpage({ params }) {
       setShowSearchInput(false);
     }
   };
-
   return (
     <div>
       <br />
@@ -57,10 +48,7 @@ export default function SearchResultpage({ params }) {
             <h1 className="title">
               نتائج البحث عن: <span>{searchQuery}</span>
             </h1>
-            <button
-              className="actionButton toggleButton"
-              onClick={() => setShowSearchInput(true)}
-            >
+            <button className="actionButton toggleButton" onClick={() => setShowSearchInput(true)}>
               بحث جديد
             </button>
           </div>
@@ -76,16 +64,12 @@ export default function SearchResultpage({ params }) {
             <button className="actionButton" onClick={handleSearch}>
               ابحث
             </button>
-            <button
-              className="actionButton toggleButton"
-              onClick={() => setShowSearchInput(false)}
-            >
+            <button className="actionButton toggleButton" onClick={() => setShowSearchInput(false)}>
               إلغاء
             </button>
           </div>
         )}
       </div>
-
       <div className="bookPageContainer">
         {loading ? (
           <div className="spinner-container">
@@ -94,31 +78,23 @@ export default function SearchResultpage({ params }) {
         ) : Books.length > 0 ? (
           <div className="Maincards">
             {Books.map((book) => (
+              <div
+              className="cardmaincont">
               <Link href={`${book.id}`} className="CardCont" key={book.id}>
                 {book.cover_image ? (
-                  <img
-                    src={book.cover_image}
-                    alt="Book Cover"
-                    className="CardImg44"
-                  />
+                  <img src={book.cover_image} alt="Book Cover" className="CardImg44" />
                 ) : (
-                  <Image
-                    src={defaultBook}
-                    alt="Default Book Cover"
-                    className="CardImg44"
-                  />
+                  <Image src={defaultBook} alt="Default Book Cover" className="CardImg44" />
                 )}
                 <div className="lastCardSec">
-                  <Image
-                    src={defaultPortifolio}
-                    className="AuthorImg"
-                    alt="ERR404"
-                  />
+                  <Image src={defaultPortifolio} className="AuthorImg" alt="ERR404" />
                   <h6>{book.title}</h6>
                   <p>{book.author.name}</p>
                 </div>
                 <RatingStars rating={3} />
               </Link>
+
+              </div>
             ))}
           </div>
         ) : (

@@ -56,14 +56,14 @@ export default function FilteredPage() {
   return (
     <div>
       <div className="bookPageContainer">
-        <div className="filter-tabs" style={{ display: "flex", justifyContent: "center", gap: "20px", marginBottom: "20px" }}>
-          <button onClick={() => changeCategory("popular")} style={{ background: activeCategory === "popular" ? "var(--Main-BackGround)" : "#f5f5f5", color: activeCategory === "popular" ? "#fff" : "#000", border: "none", padding: "10px 20px", borderRadius: "20px", cursor: "pointer" }}>
+        <div className="filter-tabs">
+          <button onClick={() => changeCategory("popular")} className={`filter-btn ${activeCategory === "popular" ? "active" : ""}`}>
             أشهر الكتب
           </button>
-          <button onClick={() => changeCategory("latest")} style={{ background: activeCategory === "latest" ? "var(--Main-BackGround)" : "#f5f5f5", color: activeCategory === "latest" ? "#fff" : "#000", border: "none", padding: "10px 20px", borderRadius: "20px", cursor: "pointer" }}>
+          <button onClick={() => changeCategory("latest")} className={`filter-btn ${activeCategory === "latest" ? "active" : ""}`}>
             أحدث الكتب
           </button>
-          <button onClick={() => changeCategory("topRated")} style={{ background: activeCategory === "topRated" ? "var(--Main-BackGround)" : "#f5f5f5", color: activeCategory === "topRated" ? "#fff" : "#000", border: "none", padding: "10px 20px", borderRadius: "20px", cursor: "pointer" }}>
+          <button onClick={() => changeCategory("topRated")} className={`filter-btn ${activeCategory === "topRated" ? "active" : ""}`}>
             الأعلى تقييماً
           </button>
         </div>
