@@ -11,10 +11,10 @@ export default function SearchReasults(props) {
       <SearchResultpage props={props}/>
 
 
+ 
 
 
-
-
+ 
 
       <Footer/>
     </div>

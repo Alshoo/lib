@@ -1,5 +1,4 @@
 "use client";
-
 import "./style.css";
 import "../Home/Home.css";
 import Image from "next/image";
@@ -11,19 +10,18 @@ import defaultPortifolio from "../../public/Images/defaultPortifolio.jpeg";
 import axios from "axios";
 import { api } from "@/context/ApiText/APITEXT";
 
-export default function SearchResultpage({ props }) {
+export default function SearchResultpage({props}) {
+  const { params = {} } = props;
   const [Books, setBooks] = useState([]);
   const [loading, setLoading] = useState(true);
   const [searchQuery, setSearchQuery] = useState(
-    props.params?.SearchResults ? decodeURIComponent(props.params.SearchResults) : ""
+    params?.SearchResults ? decodeURIComponent(params.SearchResults) : ""
   );
   const [showSearchInput, setShowSearchInput] = useState(false);
 
   const fetchBooks = async (query) => {
     try {
-      const response = await axios.get(
-        `${api}/api/books?search=${query}`
-      );
+      const response = await axios.get(`${api}/api/books?search=${query}`);
       setBooks(response.data.data || []);
     } catch (error) {
       setBooks([]);
@@ -34,7 +32,9 @@ export default function SearchResultpage({ props }) {
 
   useEffect(() => {
     setLoading(true);
-    fetchBooks(searchQuery);
+    if (searchQuery) {
+      fetchBooks(searchQuery);
+    }
   }, [searchQuery]);
 
   const handleSearch = () => {
@@ -85,7 +85,6 @@ export default function SearchResultpage({ props }) {
           </div>
         )}
       </div>
-
       <div className="bookPageContainer">
         {loading ? (
           <div className="spinner-container">
@@ -94,34 +93,32 @@ export default function SearchResultpage({ props }) {
         ) : Books.length > 0 ? (
           <div className="Maincards">
             {Books.map((book) => (
-              <div
-                className="cardmaincont"
-              >
-                <Link href={`${book.id}`} className="CardCont" key={book.id}>
-                {book.cover_image ? (
-                  <img
-                    src={book.cover_image}
-                    alt="Book Cover"
-                    className="CardImg44"
-                  />
-                ) : (
-                  <Image
-                    src={defaultBook}
-                    alt="Default Book Cover"
-                    className="CardImg44"
-                  />
-                )}
-                <div className="lastCardSec">
-                  <Image
-                    src={defaultPortifolio}
-                    className="AuthorImg"
-                    alt="ERR404"
-                  />
-                  <h6>{book.title}</h6>
-                  <p>{book.author.name}</p>
-                </div>
-                <RatingStars rating={3} />
-              </Link>
+              <div className="cardmaincont" key={book.id}>
+                <Link href={`${book.id}`} className="CardCont">
+                  {book.cover_image ? (
+                    <img
+                      src={book.cover_image}
+                      alt="Book Cover"
+                      className="CardImg44"
+                    />
+                  ) : (
+                    <Image
+                      src={defaultBook}
+                      alt="Default Book Cover"
+                      className="CardImg44"
+                    />
+                  )}
+                  <div className="lastCardSec">
+                    <Image
+                      src={defaultPortifolio}
+                      className="AuthorImg"
+                      alt="ERR404"
+                    />
+                    <h6>{book.title}</h6>
+                    <p>{book.author.name}</p>
+                  </div>
+                  <RatingStars rating={3} />
+                </Link>
               </div>
             ))}
           </div>
