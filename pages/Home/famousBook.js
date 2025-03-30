@@ -65,7 +65,7 @@ export default function FamousBook() {
               <motion.div 
               whileHover={{ scale: 1.01 }}
                 whileTap={{ scale: 0.95 }}
-                transition={{ duration: 0.2 }} 
+                transition={{ duration: 0.2 }}
                 key={book.id}
                 className="cardmaincont"
               >

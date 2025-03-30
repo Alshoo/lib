@@ -208,8 +208,13 @@
 }
 .lastCardSec h6{
   color: #000;
-  font-size: 22px;
+  width: 150px;
+  margin: auto;
+  font-size: 20px;
   font-weight: 400;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 /* .cardmaincont2{
   min-width: 200px;
