@@ -11,7 +11,7 @@ import axios from "axios";
 import { api } from "@/context/ApiText/APITEXT";
 
 export default function SearchResultpage({props}) {
-  const { params = {} } = props;
+  const { params = {} } = props || {};
   const [Books, setBooks] = useState([]);
   const [loading, setLoading] = useState(true);
   const [searchQuery, setSearchQuery] = useState(
