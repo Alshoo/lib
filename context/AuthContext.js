@@ -42,8 +42,7 @@ export function AuthProvider({ children }) {
         duration: 4000,
         position: "top-center",
         style: {
-          fontSize: "20px",
-          width: "50%",
+          fontSize: "15px",
         },
       });
 
@@ -83,8 +82,7 @@ export function AuthProvider({ children }) {
         duration: 4000,
         position: "top-center",
         style: {
-          fontSize: "20px",
-          width: "50%",
+          fontSize: "15px",
         },
       });
 
@@ -123,8 +121,7 @@ export function AuthProvider({ children }) {
         style: {
           backgroundColor: "#4CAF50",
           color: "#ffffff",
-          fontSize: "20px",
-          width: "50%",
+          fontSize: "15px",
         },
       });
     } catch (e) {

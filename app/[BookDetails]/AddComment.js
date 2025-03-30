@@ -67,10 +67,10 @@ export default function AddComment({props}) {
 
 
   return (
-    <div>
+    <div style={{zIndex:"999999999999999999999999999"}}>
                         <Toaster position="top-center" toastOptions={{ duration: 4000 }} />
 
-      <Modal show={show} onHide={handleClose}>
+      <Modal show={show} onHide={handleClose}  style={{zIndex:"999999999999999999999999999"}}>
                 <Modal.Header closeButton>
                     اضافة تعليق
                 </Modal.Header>

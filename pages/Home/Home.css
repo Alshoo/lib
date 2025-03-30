@@ -1,5 +1,6 @@
 .CustomizeHeight {
   height: 100vh;
+  box-shadow: black 1px 5px 29px 1px;
 }
 .MainHomeImg {
   position: absolute;
@@ -445,6 +446,7 @@
   .betweenItems1 img {
     width: 25px;
     height: 25px;
+    transform: translateY(-10%);
   }
   .betweenItems2 img {
     transform: translateY(55%);
@@ -516,11 +518,10 @@
   .betweenItems1 img {
     width: 25px;
     height: 25px;
+    transform: translateY(-15%);
   }
-  .betweenItems2 img {
-    transform: translateY(55%);
-    width: 10px;
-    height: 10px;
+  .betweenItems2 .iifram {
+    transform: translateY(-40%);
   }
   .CardCont {
     width: 100%;

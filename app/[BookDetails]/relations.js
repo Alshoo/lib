@@ -1,9 +1,6 @@
 "use client";
-import Footer from "@/Components/Footer/Footer";
-import CustomNavbar from "@/Components/NavBar/navbar";
 import "./bookDet.css";
 import Image from "next/image";
-import productImage from "../../public/Images/rwrwqr3.png";
 import defaultBook from "../../public/Images/defaultBook.jpg";
 import { useEffect, useState } from "react";
 import "../../pages/filtered/filtered.css";
@@ -64,7 +61,7 @@ export default function Relations() {
                     src={book.cover_image}
                     alt="Book Cover"
                     className="CardImg44"
-                  />
+                  /> 
                 ) : (
                   <Image
                     src={defaultBook}

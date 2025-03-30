@@ -6,6 +6,7 @@
   font-family: Arial, sans-serif;
   text-align: right;
   margin-top: 5px; 
+  box-shadow: black 1px 5px 29px 1px;
 }
 
 .footer-container {
@@ -150,4 +151,10 @@
     margin-left: 0;
     margin-bottom: 20px;
   }
+}
+@media (max-width: 400px) {
+  .lastFooterSec a {
+    font-size: 12px;
+}
+
 }

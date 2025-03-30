@@ -5,15 +5,13 @@ import './style.css'
 import Image from 'next/image';
 import Link from 'next/link';
 import RatingStars from '../Home/ratingStar';
-import arrow from "../../public/Images/arfegrow.png";
-import searchIcon from "@/public/Images/navSearch.png";
 import defaultBook from "../../public/Images/defaultBook.jpg";
 import defaultPortifolio from "../../public/Images/defaultPortifolio.jpeg";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { motion } from "framer-motion";
 import { api } from "@/context/ApiText/APITEXT";
-
+ 
 export default function BooksPage({ props }) {
   const [Books, setBooks] = useState([]);
   const [Rate, setٌRate] = useState([]);
@@ -98,6 +96,7 @@ export default function BooksPage({ props }) {
                 whileTap={{ scale: 0.75 }}
                 transition={{ duration: 0.2 }}
                 key={book.id}
+                className="cardmaincont"
               >
                 <Link href={`/${book.id}`} className="CardCont">
                   {book.cover_image ? (

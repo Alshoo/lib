@@ -11,7 +11,7 @@ import RatingStars2 from "./ratingStar2";
 import AddComment from "./AddComment";
 import { api } from "@/context/ApiText/APITEXT";
 
-export default function Comments({ props }) {
+export default function Comments({ props }) { 
   // Carousels
   const [index, setIndex] = useState(0);
 
@@ -75,10 +75,10 @@ export default function Comments({ props }) {
         </Carousel>
       ) : null}
 
-      <div className="commentBtn" onClick={togglePopup}>
+      <button className="commentBtn" onClick={togglePopup}>
         <p>تعليق</p>
         <Image src={Comment} alt="ERR404" />
-      </div>
+      </button>
 
       {isPopupVisible && <AddComment props={props} />}
     </div>

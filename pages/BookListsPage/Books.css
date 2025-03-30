@@ -2,6 +2,7 @@
   margin-top: 30px;
   width: 90%;
   margin: auto;
+  min-height: 77vh;
 }
 .searchContainer2 {
   display: flex;

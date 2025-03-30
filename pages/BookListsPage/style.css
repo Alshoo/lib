@@ -10,7 +10,7 @@
 .Breadcrumb a{
   text-decoration: none;
   color: var(--Main-BackGround);
-}
+} 
  
 
 
@@ -19,6 +19,7 @@
     direction: rtl;
     width: 80%;
     margin: auto;
+    min-height: 80vh;
   }
   
   h1 {
